@@ -108,12 +108,12 @@
 
 
 
- <!-- Contact Section -->
+   <!-- Contact Section -->
     <section id="contact">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Nous contacter</h2>
+                    <h2>Contact Me</h2>
                     <hr class="star-primary">
                 </div>
             </div>
@@ -124,22 +124,29 @@
                     <form name="sentMessage" id="contactForm" novalidate>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Nom Prénom</label>
-                                <input type="text" class="form-control" placeholder="nom/prénom" id="Name" required data-validation-required-message="S'il vous plaît entrez votre nom et prénom.">
+                                <label>Name</label>
+                                <input type="text" class="form-control" placeholder="Name" id="name" required data-validation-required-message="Please enter your name.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>email</label>
-                                <input type="email" class="form-control" placeholder="e-mail de contact" id="email" required data-validation-required-message="Veuillez saisir votre adresse e-mail.">
+                                <label>Email Address</label>
+                                <input type="email" class="form-control" placeholder="Email Address" id="email" required data-validation-required-message="Please enter your email address.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>mesage</label>
-                                <textarea rows="5" class="form-control" placeholder="message" id="message" required data-validation-required-message="Veuillez entrer un message."></textarea>
+                                <label>Phone Number</label>
+                                <input type="tel" class="form-control" placeholder="Phone Number" id="phone" required data-validation-required-message="Please enter your phone number.">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Message</label>
+                                <textarea rows="5" class="form-control" placeholder="Message" id="message" required data-validation-required-message="Please enter a message."></textarea>
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
@@ -147,7 +154,7 @@
                         <div id="success"></div>
                         <div class="row">
                             <div class="form-group col-xs-12">
-                                <button type="submit" class="btn btn-success btn-lg">Envoyer</button>
+                                <button type="submit" class="btn btn-success btn-lg">Send</button>
                             </div>
                         </div>
                     </form>
@@ -155,6 +162,7 @@
             </div>
         </div>
     </section>
+
 
 
 
@@ -193,7 +201,7 @@
                             </li>
 
                             <li>
-                                <a class="btn-social btn-outline  " href="cv/tanguy-guillo--developpeur-Full-Stack.pdf">CV</a>
+                                <a class="btn-social btn-outline" href="cv/tanguy-guillo--developpeur-full-stack.pdf">CV</a>
                             </li>
                         </ul>
                     </div>
