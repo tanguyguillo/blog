@@ -63,7 +63,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a  class="navbar-brand page-scroll" href="#page-top">Blog Web Full Stack </a>
+                <a  class="navbar-brand page-scroll" href="#page-top"> <!-- <img  src="favicon.ico" alt="Visuel logo OmegaWebProd"> -->Bienvenue à tous</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -223,10 +223,10 @@
             <div class="container">
                 <div class="row">
                     <span class="col-lg-6">
-                        OmegaWebProd Copyright &copy; 2022
+                        OmegaWebProd Copyright &copy; <?php echo date('Y');?>
                     </span>
                     </span class="col-lg-6">
-                    <a href="#confidential" class="portfolio-link" data-toggle="modal">Politique de confidentialité</a> | <a href="#">Administrationn</a>
+                    <a href="#confidential" class="portfolio-link" data-toggle="modal">Politique de confidentialité</a> | <a  href="#">Administration</a>
                     </span>
                 </div>
             </div>
