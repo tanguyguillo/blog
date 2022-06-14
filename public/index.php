@@ -17,20 +17,20 @@
 <!-- Place favicon.ico in the root directory -->
 
 <!-- Bootstrap Core CSS -->
-<!--<link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet"> -->
-<link href="css/styles.css" rel="stylesheet"> 
+<link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+<!--<link href="css/styles.css" rel="stylesheet">  -->
 
     <!-- CSS only -->
 <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">-->
 
 <!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>-->
 
     <!-- Theme CSS -->
     <link href="css/freelancer.min.css" rel="stylesheet">
 
 <!-- Theme CSS blog.omegawebprod -->
-    <link href="css/blog-omegawebprod.css" rel="stylesheet">
+  <!--  <link href="css/blog-omegawebprod.css" rel="stylesheet">-->
 
 <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -40,14 +40,12 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-
-
-<!--<link rel="stylesheet" href="css/normalize.css">
-<link rel="stylesheet" href="css/main.css">-->
+<link rel="stylesheet" href="css/normalize.css">
+<link rel="stylesheet" href="css/main.css">
 
 <meta name="theme-color" content="#fafafa">
 </head>
@@ -77,7 +75,7 @@
                     <li class="page-scroll">
                         <a href="#home">Accueil</a>
                     </li>
-                    <li class="page-scroll">
+                    <li class="disabled page-scroll">
                         <a href="#">Blog</a>
                     </li>
                     <li class="page-scroll">
