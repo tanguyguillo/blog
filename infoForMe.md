@@ -3,4 +3,4 @@
 - en local git fonctionne 
 - installation de composer avec twig/twig": "^3.4" en dev
 ************************************************************
-- 14 juin 2022 - UK version fot contact page working
+- 14 juin 2022 - UK version for contact form working well
