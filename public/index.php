@@ -168,7 +168,7 @@
         </div>
     </section>
 
-    
+
 <!-- Footer -->
     <footer class="text-center">
         <div class="footer-above">
@@ -180,6 +180,7 @@
                         <br>92140 Clamart
                         <br>France
                         <br>+33 6 31 52 41 53</p>
+                        <a href="mailto:blog-pots@omegawebprod@gmail.com?subject=Contact direct par Email">Nous envoyer un Email</A>
                     </div>
                     <div id= "about" class="footer-col col-md-4">
                         <h3>OmegaWebProd</3>
@@ -261,7 +262,7 @@
 Si vous téléversez des images sur le site, nous vous conseillons d’éviter de téléverser des images contenant des données EXIF de coordonnées GPS. Les personnes visitant votre site peuvent télécharger et extraire des données de localisation depuis ces images.
 Cookies</p>
 
-<p> vous déposez un commentaire sur notre site, il vous sera proposé d’enregistrer votre nom, adresse e-mail et site dans des cookies. 
+<p> vous déposez un commentaire sur notre site, il vous sera proposé d’enregistrer votre nom, adresse e-mail et site dans des cookies.
     <br />C’est uniquement pour votre confort afin de ne pas avoir à saisir ces informations si vous déposez un autre commentaire plus tard. Ces cookies expirent au bout d’un an.
 Si vous vous rendez sur la page de connexion, un cookie temporaire sera créé afin de déterminer si votre navigateur accepte les cookies. Il ne contient pas de données personnelles et sera supprimé automatiquement à la fermeture de votre navigateur.
 <br />Lorsque vous vous connecterez, nous mettrons en place un certain nombre de cookies pour enregistrer vos informations de connexion et vos préférences d’écran. La durée de vie d’un cookie de connexion est de deux jours, celle d’un cookie d’option d’écran est d’un an. Si vous cochez « Se souvenir de moi », votre cookie de connexion sera conservé pendant deux semaines. Si vous vous déconnectez de votre compte, le cookie de connexion sera effacé.
