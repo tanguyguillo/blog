@@ -63,6 +63,9 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
+
+             <!--  <a class = "navbar-brand"  href="index.html"><img src="img/logo-small.png" alt="visuel logo omegawebprod" width="50" height="50"  > Bienvenue à tous ;)</a>-->
+
                <a class="navbar-brand" href="#page-top">Bienvenue à tous</a>
             </div>
 
@@ -180,10 +183,10 @@
                         <br>92140 Clamart
                         <br>France
                         <br>+33 6 31 52 41 53</p>
-                        <a href="mailto:blog-pots@omegawebprod@gmail.com?subject=Contact direct par Email">Nous envoyer un Email</A>
                     </div>
                     <div id= "about" class="footer-col col-md-4">
-                        <h3>OmegaWebProd</3>
+                        <h3><img src="img/logo-small.png" alt="visuel logo omegawebprod" width="50" height="50">&ensp;OmegaWebProd</h3>
+
                         <H4>François Tanguy Guillo</h4>
                         <ul class="list-inline">
                             <!-- <li>
@@ -211,6 +214,7 @@
                     <div class="" id = "about">
                     <h3>A propos de OmegaWebProd</h3>
                         <p>Nous sommes spécialisé dans la réalisation de sites web "sur mesure" pour de petites structures</p>
+                        <a href="mailto:blog-pots@omegawebprod@gmail.com?subject=Demandez de devis OmegaWebProduct">Demander un devis</A>
                         <!-- <p>In his tractibus navigerum nusquam visitur flumen sed in locis plurimis aquae suapte natura calentes emergunt ad
                         usus aptae multiplicium medelarum. verum has quoque regiones pari sorte Pompeius Iudaeis domitis
                         et Hierosolymis captis in provinciae speciem delata iuris dictione formavit.-->
