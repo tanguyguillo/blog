@@ -104,7 +104,7 @@
                         <h3>François Tanguy Guillo</h3>
                         <hr class="star-light">
                         <span class="skills">Seul on va plus vite<br>
-                        <span class="teaser">ensemble on plus loin</span>
+                        <span class="teaser">ensemble on va plus loin</span>
                     </div>
                 </div>
             </div>
