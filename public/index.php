@@ -214,7 +214,7 @@
                     <div class="" id = "about">
                     <h3>A propos de OmegaWebProd</h3>
                         <p>Nous sommes spécialisé dans la réalisation de sites web "sur mesure" pour de petites structures</p>
-                        <a href="mailto:blog-pots@omegawebprod@gmail.com?subject=Demandez de devis OmegaWebProduct">Demander un devis</A>
+                        <a href="mailto:blog-pots@omegawebprod@gmail.com?subject=Demandez de devis OmegaWebProduct">Demandez un devis</A>
                         <!-- <p>In his tractibus navigerum nusquam visitur flumen sed in locis plurimis aquae suapte natura calentes emergunt ad
                         usus aptae multiplicium medelarum. verum has quoque regiones pari sorte Pompeius Iudaeis domitis
                         et Hierosolymis captis in provinciae speciem delata iuris dictione formavit.-->
