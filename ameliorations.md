@@ -1,6 +1,3 @@
-# blog P5 OC
-**********************
-
 Description du besoin
 Le projet est donc de développer votre blog professionnel. Ce site web se décompose en deux grands groupes de pages :
 
@@ -91,3 +88,40 @@ Afin de fluidifier votre avancement voici une proposition de manière de travail
 Étape 9 - Effectuez une démonstration de l’ensemble de l’application.
 Étape 10 - Préparez l’ensemble de vos livrables et soumettez-les sur la plateforme.
 
+Prenez le temps de valider chaque étape avec votre mentor afin de vous assurer que vous avancez dans la bonne direction.
+
+Livrables
+Un fichier au format TXT contenant un lien vers un repository Github contenant l’ensemble du projet :
+Tout le code nécessaire (fichiers PHP/HTML/JS/CSS) ;
+Un fichier README à la racine du dossier et contenant les instructions pour installer le projet ;
+Un dossier contenant les diagrammes UML au format PNG ou JPG dans un dossier nommé “diagrammes” à la racine du projet :
+diagrammes de cas d’utilisation
+diagramme de classes
+diagrammes de séquence
+Les issues sur le repository GitHub que vous aurez créé
+Un fichier au format TXT contenant un lien vers la dernière analyse SymfonyInsight ou Codacy (ou vers le projet public sur la plateforme).
+Pour faciliter votre passage devant le jury, déposez sur la plateforme, dans un dossier zip nommé “Titre_du_projet_nom_prénom”, avec tous les livrables du projet comme suit : Nom_Prénom_n° du livrable_nom du livrable__date de démarrage du projet. Cela donnera :
+
+Nom_Prénom_1_repository_git_mmaaaa ;
+Nom_Prénom_2_analyse_code_mmaaaa.
+Par exemple, le premier livrable peut être nommé comme suit : Dupont_Jean_1_repository_git_012022.
+
+Soutenance
+La soutenance, d’une durée maximum de 30 minutes, se déroulera en 3 étapes :
+
+Présentation des livrables (20 minutes)
+À l'oral, en condition réelle, vous présenterez votre projet. Votre évaluateur jouera le rôle du client. Voici comment vous pouvez organiser votre présentation :
+Présentation globale du projet : rappelez le contexte du projet, ainsi que l'analyse de besoin en vous focalisant sur une fonctionnalité et en présentant ses diagrammes UML. Résumez également l'organisation du projet et la méthodologie de gestion de projet adoptée.
+Démonstration de l'application : présentez l'ensemble des fonctionnalités de l'application.‌
+Présentez votre projet du point de vue technique cette fois-ci :
+
+montrez comment vous avez versionné votre projet ;
+présentez l'architecture technique que vous avez mise en place ;
+listez les librairies que vous avez choisies et expliquer comment vous les avez intégrées ;
+choisissez une pull request correspondant à une tâche sur GitHub et détaillez comment vous avez mené à bien cette tâche ;
+présentez une analyse SymfonyInsight ou Codacy et expliquez les correctifs apportés ;
+expliquez comment vous avez procédé pour garantir la mise en place des bonnes pratiques en vigueur.‌
+Discussion (5 minutes)
+Echange de questions/réponses. L’évaluateur pourra revenir sur certains points pour vous questionner sur vos choix.
+Debriefing (5 minutes)
+Votre évaluateur reprendra son rôle de mentor et vous fera un retour sur votre prestation en soutenance.
