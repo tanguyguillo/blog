@@ -23,3 +23,8 @@ le 10 juin 2022
 ************************************************************
 - 14 juin 2022 - UK version for contact form working well
 >>>>>>> ba16acf65bae66e2340ea3cdfe0ebf5da247a8f3
+************************************************************
+Ok on 22 june 2022
+un formulaire de contact (à la soumission de ce formulaire,
+un e-mail avec toutes ces informations vous sera envoyé)
+avec les champs suivants : nom/prénom, e-mail de contact... tel ? + traduction
