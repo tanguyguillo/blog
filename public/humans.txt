@@ -3,11 +3,11 @@
 
 # TEAM
 
-    <name> -- <role> -- <twitter>
+    François Tanguy Guillo -- Web developer  
 
 # THANKS
 
-    <name>
+    OpenClassrooms
 
 # TECHNOLOGY COLOPHON
 

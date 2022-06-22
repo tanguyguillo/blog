@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Page introuvable</title>
+  <title>Page Not Found</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     * {
@@ -54,9 +54,8 @@
 </head>
 
 <body>
-  <h1>Page introuvable</h1>
-  <p>Désolé, mais la page que vous tentiez d'afficher n'existe pas.</p>
-  <a href="index.php">Retour à la page d'accueil</a>
+  <h1>Page Not Found</h1>
+  <p>Sorry, but the page you were trying to view does not exist.</p>
 </body>
 
 </html>
