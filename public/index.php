@@ -4,9 +4,10 @@ require_once('../app/controllers/homepage.php');
 
 use Application\Controllers\Homepage\Homepage;
 
-
 try {
+
      (new Homepage())->execute();
+
 } catch (Exception $e) {
     $errorMessage = $e->getMessage();
     require('../app/views/error.php');

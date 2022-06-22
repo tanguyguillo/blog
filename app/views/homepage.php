@@ -1,7 +1,4 @@
-
-
 <?php ob_start(); ?>
-
 
 <!-- Header -->
     <header>
@@ -21,8 +18,6 @@
             </div>
         </div>
     </header>
-
-
 
 <!-- Contact Section -->
     <section id="contact">
@@ -78,8 +73,6 @@
             </div>
         </div>
     </section>
-
-    
 
 <?php $content = ob_get_clean(); ?>
 
