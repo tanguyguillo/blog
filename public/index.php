@@ -1,28 +1,20 @@
 <?php
-
+// see autoloader ....
+require_once('../app/controllers/posts.php');
 require_once('../app/controllers/homepage.php');
+require_once('../app/lib/database.php');
 
 use Application\Controllers\Homepage\Homepage;
-
-// <a href="test_get.php?subject=PHP&web=W3schools.com">Test $GET</a>
-// echo "Study " . $_GET['subject'] . " at " . $_GET['web'];
-//http://blog-omega.local/index.php?posts=list
-//echo "test " . $_GET['posts'] ;
-//exit();
-
+use Application\Controllers\Posts\Posts;
 
 try {
-// router  ex : http://blog.local/index.php?action=posts
+  // to get listingPage : index.php?posts=bloglist
+  if ($_GET['posts'] === 'bloglist') {
+   // echo "test " . $_GET['posts'] ; // OK    //http://blog-omega.local/index.php?posts=bloglist
+    (new Posts())->execute();
 
-
-  if ($_GET['action'] === 'posts') {
-
-    var_dump('test');
-
-    exit();
 
   } else {
-
     (new Homepage())->execute();
   }
 } catch (Exception $e) {

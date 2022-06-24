@@ -1,10 +1,29 @@
 <?php
+namespace Application\Controllers\Posts;
 
-namespace Application\Controllers\Post;
+
+use Application\Lib\Database\DatabaseConnection;
+
+class Posts
+{
+
+  public function execute()
+  {
+    $connection = new DatabaseConnection();
+
+    var_dump('passing connect');
+    exit();
+
+    //require('../app/views/homepage.php');
+  }
+}
+
+
+/*namespace Application\Controllers\Post;
 
 require_once('src/lib/database.php');
 require_once('src/model/comment.php');
-require_once('src/model/posts.php');
+require_once('src/model/post.php');
 
 use Application\Lib\Database\DatabaseConnection;
 use Application\Model\Comment\CommentRepository;
@@ -24,6 +43,6 @@ class Post
     $commentRepository->connection = $connection;
     $comments = $commentRepository->getComments($identifier);
 
-    require('templates/posts.php');
+    require('templates/post.php');
   }
-}
+}*/
