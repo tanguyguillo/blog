@@ -4,14 +4,34 @@ require_once('../app/controllers/homepage.php');
 
 use Application\Controllers\Homepage\Homepage;
 
+// <a href="test_get.php?subject=PHP&web=W3schools.com">Test $GET</a>
+// echo "Study " . $_GET['subject'] . " at " . $_GET['web'];
+//http://blog-omega.local/index.php?posts=list
+//echo "test " . $_GET['posts'] ;
+//exit();
+
+
 try {
+// router  ex : http://blog.local/index.php?action=posts
 
-     (new Homepage())->execute();
 
+  if ($_GET['action'] === 'posts') {
+
+    var_dump('test');
+
+    exit();
+
+  } else {
+
+    (new Homepage())->execute();
+  }
 } catch (Exception $e) {
-    $errorMessage = $e->getMessage();
-    require('../app/views/error.php');
+  $errorMessage = $e->getMessage();
+  require('../app/views/error.php');
 }
+
+
+
 
 
 
