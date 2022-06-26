@@ -8,18 +8,16 @@ use Application\Controllers\Homepage\Homepage;
 use Application\Controllers\Posts\Posts;
 
 try {
-  // to get listingPage : index.php?posts=bloglist
-  if ($_GET['posts'] === 'bloglist') {
-   // echo "test " . $_GET['posts'] ; // OK    //http://blog-omega.local/index.php?posts=bloglist
-    (new Posts())->execute();
-
-
-  } else {
-    (new Homepage())->execute();
-  }
+    // to get listingPage : index.php?posts=bloglist
+    if ($_GET['posts'] === 'bloglist') {
+        // echo "test " . $_GET['posts'] ; // OK    //http://blog-omega.local/index.php?posts=bloglist
+        (new Posts())->execute();
+    } else {
+        (new Homepage())->execute();
+    }
 } catch (Exception $e) {
-  $errorMessage = $e->getMessage();
-  require('../app/views/error.php');
+    $errorMessage = $e->getMessage();
+    require('../app/views/error.php');
 }
 
 

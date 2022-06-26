@@ -1,20 +1,25 @@
 <?php
 namespace Application\Controllers\Posts;
 
-
 use Application\Lib\Database\DatabaseConnection;
+//use Application\Model\Posts\PostsRepository;
+
+
 
 class Posts
 {
 
   public function execute()
   {
+    // 1 connection to BDD
     $connection = new DatabaseConnection();
 
-    var_dump('passing connect');
-    exit();
 
-    //require('../app/views/homepage.php');
+    //$postsRepository = new PostsRepository();
+    //$postsRepository->connection = $connection;
+    var_dump("in controller pots");
+
+    exit();
   }
 }
 
