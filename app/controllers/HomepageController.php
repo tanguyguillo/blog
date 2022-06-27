@@ -1,9 +1,7 @@
 <?php
+namespace Application\Controllers\HomepageController;
 
-namespace Application\Controllers\Homepage;
-
-
-class Homepage
+class HomepageController
 {
     public function execute()
     {   
