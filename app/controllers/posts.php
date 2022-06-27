@@ -1,27 +1,83 @@
 <?php
-namespace Application\Controllers\Posts;
-
-use Application\Lib\Database\DatabaseConnection;
-//use Application\Model\Posts\PostsRepository;
+namespace Application\Controllers\Posts; // just the name space name of this class
 
 
+///Users/Tanguy/Documents/sites/blog-omega/app/lib/database.php
+//require_once('lib/database.php');  // used for $connection
 
+require_once('///Users/Tanguy/Documents/sites/blog-omega/app/lib/database.php');  // used for $connection
+require_once('///Users/Tanguy/Documents/sites/blog-omega/app/models/posts.php'); // used for getPosts
+
+use Application\Lib\Database\DatabaseConnection; // we use it for the method : DatabaseConnection()
+use Application\Models\Posts\PostsRepository; // we use it for new PostsRepository()
+
+/*
+//url used for this controller : in local : http://blog-omega.local/index.php?posts=bloglist
+
+
+
+  Fatal error: Uncaught Error: Class "Application\Lib\Database\DatabaseConnection" 
+  not found in /Users/Tanguy/Documents/sites/blog-omega/app/controllers/posts.php:17 
+  Stack trace: #0 /Users/Tanguy/Documents/sites/blog-omega/public/index.php(16): 
+  Application\Controllers\Posts\Posts->execute() #1 {main} thrown 
+  in /Users/Tanguy/Documents/sites/blog-omega/app/controllers/posts.php on line 17
+
+*/
 class Posts
 {
-
   public function execute()
   {
-    // 1 connection to BDD
-    $connection = new DatabaseConnection();
+    // just one connection to BDD
+    $connection = new DatabaseConnection(); // from models  ... not founf ? why
 
-
-    //$postsRepository = new PostsRepository();
-    //$postsRepository->connection = $connection;
-    var_dump("in controller pots");
-
-    exit();
+    //then we will use this connexion to get what we want ; here posts
+    $postsRepository = new PostsRepository();  // in french dépot.... 
+    $postsRepository->connection = $connection;
+    $posts = $postsRepository->getPosts();
+    var_dump($posts);
   }
+}//ending of class Post
+
+
+
+/* exemple
+
+<?php
+
+namespace Application\Controllers\Post;
+
+require_once('src/lib/database.php');
+require_once('src/model/comment.php');
+require_once('src/model/post.php');
+
+use Application\Lib\Database\DatabaseConnection;
+use Application\Model\Comment\CommentRepository;
+use Application\Model\Post\PostRepository;
+
+class Post
+{
+    public function execute(string $identifier)
+    {
+        $connection = new DatabaseConnection();
+
+        $postRepository = new PostRepository();
+        $postRepository->connection = $connection;
+        $post = $postRepository->getPost($identifier);
+
+        $commentRepository = new CommentRepository();
+        $commentRepository->connection = $connection;
+        $comments = $commentRepository->getComments($identifier);
+
+        require('templates/post.php');
+    }
 }
+
+
+
+
+
+
+
 
 
 /*namespace Application\Controllers\Post;

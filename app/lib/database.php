@@ -1,12 +1,62 @@
-<?php // lib
+<?php namespace
+Application\Lib\Database;
+
+class DatabaseConnection
+{
+  public ?\PDO $database = null;
+
+    public function getConnection(): \PDO
+    {
+        if ($this->database === null) {
+          $this->database = new \PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'blog', 'blog');
+        }
+
+        var_dump('testbase');
+
+        return $this->database;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+<?php 
 
 namespace Application\Lib\Database;
-//namespace Application\Lib\Database\PDO\PDO;
 
-require("config.php");
+//require("config.php"); not yet but later yes
 
 
 class DatabaseConnection
+{
+  public ?\PDO $database = null;
+
+  public function getConnection() : \PDO 
+  {
+  if ($this->database === null) {
+      $this->database = new \PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'blog', 'blog');
+    }
+    return $this->database;
+  }
+}// end of class
+
+
+
+
+/*class Database
 {
   private $login;
   private $pass;
