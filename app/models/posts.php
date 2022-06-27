@@ -29,7 +29,11 @@ public $postName;              // not used yet
 public $postModified;          // not used yet
 }
 
-class PostsRepository // OK
+/**
+ * 
+ * return an Array
+ */
+class PostsRepository
 {
     public DatabaseConnection $connection;
 

@@ -1,7 +1,6 @@
 <?php
 namespace Application\Controllers\Posts; // just the name space name of this class
 
-
 ///Users/Tanguy/Documents/sites/blog-omega/app/lib/database.php
 //require_once('lib/database.php');  // used for $connection
 
@@ -11,18 +10,11 @@ require_once('///Users/Tanguy/Documents/sites/blog-omega/app/models/posts.php');
 use Application\Lib\Database\DatabaseConnection; // we use it for the method : DatabaseConnection()
 use Application\Models\Posts\PostsRepository; // we use it for new PostsRepository()
 
-/*
-//url used for this controller : in local : http://blog-omega.local/index.php?posts=bloglist
-
-
-
-  Fatal error: Uncaught Error: Class "Application\Lib\Database\DatabaseConnection" 
-  not found in /Users/Tanguy/Documents/sites/blog-omega/app/controllers/posts.php:17 
-  Stack trace: #0 /Users/Tanguy/Documents/sites/blog-omega/public/index.php(16): 
-  Application\Controllers\Posts\Posts->execute() #1 {main} thrown 
-  in /Users/Tanguy/Documents/sites/blog-omega/app/controllers/posts.php on line 17
-
-*/
+/**
+ * 
+ * //url used for this controller : in local : http://blog-omega.local/index.php?posts=bloglist
+ * 
+ */
 class Posts
 {
   public function execute()
@@ -33,8 +25,7 @@ class Posts
     //then we will use this connexion to get what we want ; here posts
     $postsRepository = new PostsRepository();  // in french dépot.... 
     $postsRepository->connection = $connection;
-    $posts = $postsRepository->getPosts();
-    var_dump($posts);
+    $posts = $postsRepository->getPosts(); // a array
   }
 }//ending of class Post
 
