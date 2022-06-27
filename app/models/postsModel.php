@@ -1,9 +1,10 @@
 <?php
-namespace Application\Models\Posts;  // nameSpace for this (these) Class
+namespace Application\Models\PostsModel;  // nameSpace for this (these) Class
 
-require_once('///Users/Tanguy/Documents/sites/blog-omega/app/lib/database.php');
+use Application\Lib\Database\DatabaseConnection;
 
-use Application\Lib\Database\DatabaseConnection; 
+
+//require_once('///Users/Tanguy/Documents/sites/blog-omega/app/lib/database.php');
 
 /* table blog_post
 id
@@ -14,10 +15,10 @@ postCreated
 postStatus
 postName
 postModified
-user_id 
+user_id
 */
 
-class Posts
+class PostsModel
 {
 public $id;
 public $posTitle;
@@ -30,7 +31,7 @@ public $postModified;          // not used yet
 }
 
 /**
- * 
+ *
  * return an Array
  */
 class PostsRepository
@@ -44,7 +45,7 @@ class PostsRepository
         );
     $posts = [];
         while (($row = $statement->fetch())) {
-            $post = new Posts();
+            $post = new PostsModel();
             $post->title = $row['postTitle'];
             $post->frenchCreationDate = $row['french_creation_date'];
             $post->content = $row['postChapo'];
@@ -52,6 +53,9 @@ class PostsRepository
 
             $posts[] = $post;
         }
+
+        var_dump($posts);
+
         return $posts;
     }
 
@@ -60,7 +64,7 @@ class PostsRepository
     /*public function getPosts
     {
         $statement = $this->connection->getConnection()->prepare(
-            "SELECT id, postChapo, postContent, DATE_FORMAT(creation_date, '%d/%m/%Y à %Hh%imin%ss') AS french_creation_date FROM posts 
+            "SELECT id, postChapo, postContent, DATE_FORMAT(creation_date, '%d/%m/%Y à %Hh%imin%ss') AS french_creation_date FROM posts
         );
         $statement->execute([$identifier]);
 

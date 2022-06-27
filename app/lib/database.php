@@ -1,6 +1,8 @@
 <?php namespace
 Application\Lib\Database;
 
+//require("config.php"); not yet but later yes
+
 class DatabaseConnection
 {
   public ?\PDO $database = null;

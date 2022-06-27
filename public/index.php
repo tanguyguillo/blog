@@ -1,19 +1,20 @@
 <?php
 // see autoloader ....
 //Loading controller files, we need then
-require_once('../app/controllers/posts.php');
+require_once('../app/controllers/postsController.php');
 require_once('../app/controllers/homepage.php');
 
 // in the controller we only use the controllers witch is the "chef d'orchestre" du MVC's model"
 // we look for one method : for exemple Homepage/Homepage (the second Homepage is the method (function of this class))
 use Application\Controllers\Homepage\Homepage;
-use Application\Controllers\Posts\Posts;
+use Application\Controllers\PostsControler\PostsController;
+use Application\Controllers\PostsController\Posts;
 
 try {
     // to get listingPage : index.php?posts=bloglist
     if ($_GET['posts'] === 'bloglist') {
         // echo "test " . $_GET['posts'] ; // OK    //http://blog-omega.local/index.php?posts=bloglist
-        (new Posts())->execute();
+        (new PostsController())->execute();
     } else {
         (new Homepage())->execute();
     }

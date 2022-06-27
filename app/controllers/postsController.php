@@ -1,21 +1,21 @@
 <?php
-namespace Application\Controllers\Posts; // just the name space name of this class
+namespace Application\Controllers\PostsControler; // just the name space name of this class
 
 ///Users/Tanguy/Documents/sites/blog-omega/app/lib/database.php
-//require_once('lib/database.php');  // used for $connection
+
 
 require_once('///Users/Tanguy/Documents/sites/blog-omega/app/lib/database.php');  // used for $connection
-require_once('///Users/Tanguy/Documents/sites/blog-omega/app/models/posts.php'); // used for getPosts
+require_once('///Users/Tanguy/Documents/sites/blog-omega/app/models/postsModel.php'); // used for getPosts
 
 use Application\Lib\Database\DatabaseConnection; // we use it for the method : DatabaseConnection()
-use Application\Models\Posts\PostsRepository; // we use it for new PostsRepository()
+use Application\Models\PostsModel\PostsRepository; // we use it for new PostsRepository()
 
 /**
- * 
+ *
  * //url used for this controller : in local : http://blog-omega.local/index.php?posts=bloglist
- * 
+ *
  */
-class Posts
+class PostsController
 {
   public function execute()
   {
@@ -23,9 +23,11 @@ class Posts
     $connection = new DatabaseConnection(); // from models  ... not founf ? why
 
     //then we will use this connexion to get what we want ; here posts
-    $postsRepository = new PostsRepository();  // in french dépot.... 
+    $postsRepository = new PostsRepository();  // in french dépot....
     $postsRepository->connection = $connection;
     $posts = $postsRepository->getPosts(); // a array
+
+    //require('templates/post.php');
   }
 }//ending of class Post
 
@@ -62,13 +64,6 @@ class Post
         require('templates/post.php');
     }
 }
-
-
-
-
-
-
-
 
 
 /*namespace Application\Controllers\Post;
