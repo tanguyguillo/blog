@@ -20,14 +20,30 @@ use Application\Controllers\PostsController\PostsController;
 //use Application\Controllers;
 
 
+
+
+
+
 try {
-    // to get listingPage : index.php?posts=bloglist // generating a error : posts
+    // to get listingPage : index.php?posts=bloglist 
     if ($_GET['posts'] === 'bloglist') {
+        var_dump('passage 1');
+      
         // echo "test " . $_GET['posts'] ; // OK    //http://blog-omega.local/index.php?posts=bloglist
         (new PostsController())->execute();
+
+    //} elseif (isset($_GET['post']) && $_GET['post'] > 0) {
+
+            //$id = $_GET['post'];
+
+            //var_dump($id);
+    
     } else {
         (new HomepageController())->execute();
     }
+
+
+
 } catch (Exception $e) {
     $errorMessage = $e->getMessage();
     require('../app/views/error.php');

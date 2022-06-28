@@ -27,16 +27,7 @@ class PostsController extends Controller
     $postsRepository->connection = $connection;
     $posts = $postsRepository->getPosts(); // return an array
 
-    // make a array
-    //$posts = json_decode(json_encode($posts), true);
-
-    //var_dump( $posts );
-
-  //$posts =(array)$posts;
-  //var_dump(  $posts);
-
   $this->twig->display('posts/posts.html.twig', compact('posts'));
-
 
 /** 
 *$this->twig->display('posts/posts.html.twig', [

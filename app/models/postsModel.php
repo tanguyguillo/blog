@@ -42,30 +42,18 @@ class PostsRepository
     public function getPosts(): array
     {
         $statement = $this->connection->getConnection()->query(
-            "SELECT id, postTitle, postChapo, DATE_FORMAT(postCreated, '%d/%m/%Y à %Hh%imin%ss') AS french_creation_date FROM blog_post ORDER BY postCreated DESC LIMIT 0, 5"
+            "SELECT id, postTitle, postChapo, DATE_FORMAT(postModified, '%d/%m/%Y à %Hh%imin') AS french_modified_date FROM blog_post ORDER BY postModified DESC LIMIT 0, 5"
         );
         $posts = [];
- 
+
         while (($row = $statement->fetch())) {
-    
             $post = new PostsRepository();
             $post->postTitle = $row['postTitle'];
-            $post->frenchCreationDate = $row['french_creation_date'];
+            $post->frenchModifiedDate = $row['french_modified_date'];
             $post->postChapo = $row['postChapo'];
-            $post->identifier = $row['id'];
-
-            /**var_dump($post->postTitle);
-            var_dump($post->postChapo);
-            var_dump('-------------------------');**/
-
+            $post->id = $row['id'];
             $posts[] = $post;
         }
-
-        /**
-         * 
-         *var_dump($posts);
-        * exit();**/
-
         return $posts;
     }
 
