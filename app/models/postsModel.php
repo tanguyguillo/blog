@@ -1,4 +1,5 @@
 <?php
+
 namespace Application\Models\PostsModel;  // nameSpace for this (these) Class
 
 use Application\Lib\Database\DatabaseConnection;
@@ -20,14 +21,14 @@ user_id
 
 class PostsModel
 {
-public $id;
-public $posTitle;
-public $postChapo;
-public $postContent;
-public $postCreated;
-public $postStatus;
-public $postName;              // not used yet
-public $postModified;          // not used yet
+    public $id;
+    public $posTitle;
+    public $postChapo;
+    public $postContent;
+    public $postCreated;
+    public $postStatus;
+    public $postName;              // not used yet
+    public $postModified;          // not used yet
 }
 
 /**
@@ -43,18 +44,27 @@ class PostsRepository
         $statement = $this->connection->getConnection()->query(
             "SELECT id, postTitle, postChapo, DATE_FORMAT(postCreated, '%d/%m/%Y à %Hh%imin%ss') AS french_creation_date FROM blog_post ORDER BY postCreated DESC LIMIT 0, 5"
         );
-    $posts = [];
+        $posts = [];
+ 
         while (($row = $statement->fetch())) {
-            $post = new PostsModel();
-            $post->title = $row['postTitle'];
+    
+            $post = new PostsRepository();
+            $post->postTitle = $row['postTitle'];
             $post->frenchCreationDate = $row['french_creation_date'];
-            $post->content = $row['postChapo'];
+            $post->postChapo = $row['postChapo'];
             $post->identifier = $row['id'];
+
+            /**var_dump($post->postTitle);
+            var_dump($post->postChapo);
+            var_dump('-------------------------');**/
 
             $posts[] = $post;
         }
 
-        var_dump($posts);
+        /**
+         * 
+         *var_dump($posts);
+        * exit();**/
 
         return $posts;
     }
@@ -77,5 +87,4 @@ class PostsRepository
 
         return $post;
     }*/
-
 }

@@ -1,10 +1,14 @@
 <?php
 namespace Application\Controllers\HomepageController;
 
-class HomepageController
+use Application\Controllers\Controller;
+
+require_once(ROOT . '/app/controllers/controller.php'); //
+
+class HomepageController extends Controller
 {
     public function execute()
     {   
-        require('../app/views/homepage.php');
+        $this->twig->display('homepage/homepage.html.twig');
     }
 }

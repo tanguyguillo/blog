@@ -4,3 +4,6 @@
 #####################################################################
 #.DS_Store
 /vendor/
+/config.php/
+/config-local.php/
+/config-online.php/
