@@ -12,28 +12,25 @@ use Application\Models\PostsModel\PostsRepository; // we use it for new PostsRep
 
 /**
  *
- * //url used for this controller : in local : http://blog-omega.local/index.php?posts=bloglist
  *
  */
 class PostsController extends Controller
 {
   public function execute()
   {
-    // just one connection to BDD
     $connection = new DatabaseConnection(); // from models
 
     //then we will use this connexion to get what we want ; here posts
-    $postsRepository = new PostsRepository();  // in french dépot....
+    $postsRepository = new PostsRepository();  // in french Repository : "dépot"...."
     $postsRepository->connection = $connection;
     $posts = $postsRepository->getPosts(); // return an array
 
   $this->twig->display('posts/posts.html.twig', compact('posts'));
 
-/** 
-*$this->twig->display('posts/posts.html.twig', [
+/**  another synthaxe
+*$ this->twig->display('posts/posts.html.twig', [
 *   'posts' => $posts
-* ]);
+*  ]);
  */
-
   }
 }
