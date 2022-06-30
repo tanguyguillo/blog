@@ -1,5 +1,5 @@
 <?php
-define('ROOT', dirname(__DIR__));  // in local : "/Users/Tanguy/Documents/sites/blog-omega" yesy
+define('ROOT', dirname(__DIR__));  // in local : "/Users/Tanguy/Documents/sites/blog-omega" yes
 
 //Loading controller files, we need then
 require_once(ROOT . '/app/controllers/postsController.php');
@@ -13,9 +13,11 @@ require_once(ROOT . '/vendor/autoload.php');
 use Application\Controllers\HomepageController\HomepageController;
 use Application\Controllers\PostsController\PostsController;
 
+
+
 try {
     // to get listingPage Url : index.php?posts=bloglist 
-    if ($_GET['posts'] === 'bloglist') {
+    if ($_GET['owp'] === 'bloglist') {
         (new PostsController())->execute();
     } else {
         (new HomepageController())->execute();

@@ -82,7 +82,7 @@
                         <a href="index.php#home">Accueil</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="index.php?posts=bloglist">Blog</a>
+                        <a href="index.php?owp=bloglist">Blog</a>
                     </li>
                     <li class="page-scroll">
                         <a href="index.php#contact">Contact</a>
@@ -169,7 +169,7 @@
                 <div class="row">
                     <span class="col-lg-6">
                         OmegaWebProd Copyright &copy;
-                        <?php echo date('Y'); ?>
+                        {{ "now"|date("Y") }}
                     </span>
                     </span class="col-lg-6">
                     <a href="#confidential" class="portfolio-link" data-toggle="modal">Politique de confidentialité</a>
