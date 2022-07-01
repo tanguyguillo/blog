@@ -1,7 +1,10 @@
 <?php
-namespace Application\Models\PostsModel;  
 
-use Application\Lib\Database\DatabaseConnection;
+namespace Application\Models\PostsModel;
+
+//use Application\Lib\Database\DatabaseConnection;
+use Application\Core\Database\Database\DatabaseConnection;
+
 
 class PostsModel
 {
@@ -11,17 +14,17 @@ class PostsModel
     public $postContent;
     public $postCreated;
     public $postStatus;
-    public $postName;            
-    public $postModified;         
+    public $postName;
+    public $postModified;
 }
 class PostsRepository
 {
     public DatabaseConnection $connection;
 
     /**
-    *
-    * return an Array
-    */
+     *
+     * return an Array
+     */
     public function getPosts(): array
     {
         $statement = $this->connection->getConnection()->query(
@@ -39,24 +42,23 @@ class PostsRepository
         return $posts;
     }
 
-/**
- * 
- * return an Array
- */
+    /**
+     * 
+     * return an Array
+     */
     public function getPost($id): array
     {
         $post = [];
         $statement = $this->connection->getConnection()->prepare(
-            "SELECT id, postChapo, postContent, DATE_FORMAT(postModified, '%d/%m/%Y à %Hh%imin') AS french_modified_date FROM blog_post where id =".$id
+            "SELECT id, postChapo, postContent, DATE_FORMAT(postModified, '%d/%m/%Y à %Hh%imin') AS french_modified_date FROM blog_post where id =" . $id
         );
         $statement->execute($id);
         $post = new PostsRepository();
-            $post->postTitle = $row['postTitle'];
-            $post->frenchModifiedDate = $row['french_modified_date'];
-            $post->postChapo = $row['postChapo'];
-            $post->id = $row['id'];
-            $posts[] = $post;
-            return $posts;
+        $post->postTitle = $row['postTitle'];
+        $post->frenchModifiedDate = $row['french_modified_date'];
+        $post->postChapo = $row['postChapo'];
+        $post->id = $row['id'];
+        $posts[] = $post;
+        return $posts;
     }
 }
-

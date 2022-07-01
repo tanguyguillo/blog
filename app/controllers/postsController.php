@@ -3,18 +3,16 @@
 namespace Application\Controllers\PostsController;
 
 // to use requite here have to fbe fix....
-require_once(ROOT . '/app/lib/database.php');  // used for $connection
+require_once(ROOT . '/app/core/database/database.php');  // used for $connection
 require_once(ROOT . '/app/models/postsModel.php'); // used for getPosts
 require_once(ROOT . '/app/controllers/controller.php'); //
 
 use Application\Controllers\Controller;
-use Application\Lib\Database\DatabaseConnection; // we use it for the method : DatabaseConnection()
+//use Application\Lib\Database\DatabaseConnection; // we use it for the method : DatabaseConnection()
 use Application\Models\PostsModel\PostsModel;
 use Application\Models\PostsModel\PostsRepository; // we use it for new PostsRepository()
 use Application\Lib\Database;
-
-
-
+use Application\Core\Database\Database\DatabaseConnection;
 
 
 
