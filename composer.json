@@ -2,7 +2,10 @@
     "name": "tanguy/blog-omega",
     "autoload": {
         "psr-4": {
-            "App\\": "app"
+            "App\\": "app",
+            "App\\Services\\": "app/services",
+            "App\\Controllers\\": "app/Controllers",
+            "App\\Core\\Database\\": "app/Core/Database"
         }
     },
     "authors": [

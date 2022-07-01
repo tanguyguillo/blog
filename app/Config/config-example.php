@@ -1,4 +1,5 @@
 <?php
+// exemple to use for you
 define('USER',"your user name");
 define('PASSWD',"your password");
 define('SERVER',"localhost");
