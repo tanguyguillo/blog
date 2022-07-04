@@ -26,3 +26,5 @@ try {
     $errorMessage = $e->getMessage();
     require('../app/views/error.php');
 }
+
+// All the blog post with just the title and the chapo
