@@ -28,7 +28,8 @@ class Detail
     public function getPost(string $identifier): Detail
     {
         $statement = $this->connection->getConnection()->query(
-            "SELECT * FROM `blog_post` WHERE id = $identifier"
+
+            "SELECT id, postTitle, postChapo, postContent, DATE_FORMAT(postCreated, '%d/%m/%Y à %Hh%imin') AS french_created_date, postStatus, postName, DATE_FORMAT(postModified, '%d/%m/%Y à %Hh%imin') AS french_modified_date, user_id  FROM blog_post where id = $identifier"
         );
 
         $statement->execute();
@@ -43,7 +44,7 @@ class Detail
         $post->postStatus = $row['postStatus'];
         $post->postName = $row['postName'];
         $post->postModified = $row['postModified'];
-        $post->user_id = $row['$user_id'];
+        $post->user_id = $row['user_id'];
 
         $posts[] = $post;
 

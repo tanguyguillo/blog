@@ -7,14 +7,15 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h1>Listing des articles</h1>
+                <h1>{{detail.postTitle}}</h1>
+                <h4>auteur : </h4>
+                <h6>Dernière mise à jour de cet article : lE  {{detail.french_modified_date|date("d m Y à m:s")}} minutes</h6>
                 <hr>
-                {# todo : a condition post.postStatus = open #}     
-                <h2>{{post.postTitle}}</a></h2>
-                <p >Dernière modification : {{post.frenchModifiedDate}}</p>
-                <p class="align-left"></p>{{post.postChapo}}</p>
+                {# todo : a condition post.postStatus = open # ... here not necessary the blogPost havebeen filtred before #}     
+                <p>{{detail.postChapo}}<p>
+                    <hr>
+                <p>{{detail.postContent}}</p>
                 <hr>
-            
             </div>
         </div>
     </div>

@@ -24,6 +24,8 @@ class DetailController extends Controller
         $postDetail->connection = $connection;
         $detail =   $postDetail->getPost($identifier); // return an array
 
+        // <p>{{detai.frenchModifiedDate}}</p>
+
         $this->twig->display('detail/detail.html.twig', compact('detail'));
     }
 }
