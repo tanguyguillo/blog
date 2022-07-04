@@ -15,7 +15,7 @@ use Application\Controllers\PostsController\PostsController;
 
 
 
-try {
+/*try {
     // to get listingPage Url : index.php?posts=bloglist 
     if ($_GET['owp'] === 'bloglist') {
         (new PostsController())->execute();
@@ -25,6 +25,35 @@ try {
 } catch (Exception $e) {
     $errorMessage = $e->getMessage();
     require('../app/views/error.php');
-}
+}*/
 
-// All the blog post with just the title and the chapo
+
+//-----------
+try {
+    if (isset($_GET['owp']) && $_GET['owp'] !== '') {
+        if ($_GET['owp'] === 'bloglist') {
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                $id = $_GET['id'];
+                // (new PostsController())->executePost($id);
+            } else {
+                (new PostsController())->executePosts();
+            }
+        } elseif ($_GET['owp'] === 'addComment') {
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                $identifier = $_GET['id'];
+                //  (new AddComment())->execute($identifier, $_POST);
+            } else {
+                // no id provide
+                // (new PostsController())->execute();
+            }
+        } else {
+            throw new Exception("La page que vous recherchez n'existe pas.");
+        }
+    } else {
+        (new HomepageController())->execute();
+    }
+} catch (Exception $e) {
+    $errorMessage = $e->getMessage();
+
+    require('templates/error.php');
+}
