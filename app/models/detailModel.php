@@ -43,8 +43,9 @@ class Detail
         $post->postCreated = $row['postCreated'];
         $post->postStatus = $row['postStatus'];
         $post->postName = $row['postName'];
-        $post->postModified = $row['postModified'];
+        $post->postModified = $row['french_modified_date'];
         $post->user_id = $row['user_id'];
+
 
         $posts[] = $post;
 
