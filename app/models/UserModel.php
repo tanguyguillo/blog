@@ -7,8 +7,7 @@ use Application\Core\Database\Database\DatabaseConnection;
 
 
 class PostsModel
-{
-    	
+{	
 public $id;
 public $EmailUser;
 public $passWordUser;
