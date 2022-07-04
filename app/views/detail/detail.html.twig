@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>juste un article</title>{% endblock %}
+
+{% block header %}
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Listing des articles</h1>
+                <hr>
+                {# todo : a condition post.postStatus = open #}     
+                <h2>{{post.postTitle}}</a></h2>
+                <p >Dernière modification : {{post.frenchModifiedDate}}</p>
+                <p class="align-left"></p>{{post.postChapo}}</p>
+                <hr>
+            
+            </div>
+        </div>
+    </div>
+    </div>
+</header>
+{% endblock %}
+
