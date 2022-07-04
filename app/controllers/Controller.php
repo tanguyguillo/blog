@@ -14,7 +14,7 @@ abstract class Controller
     protected $twig;
 
     /**
-     * Undocumented function
+     * 
      */
     public function __construct()
     {

@@ -21,38 +21,12 @@ use Application\Core\Database\Database\DatabaseConnection;
  */
 class PostsController extends Controller
 {
-
   /**
-   * Only showing postewith all post with date ans teaser
+   * Only showing postewith all post with new date and teaser
    *
    * @return void
    */
-
   public function executePosts()
-  {
-    $connection = new DatabaseConnection(); // from models
-
-    //then we will use this connexion to get what we want ; here posts
-    $postsRepository = new PostsRepository();  // in french Repository : "dépot"...."
-    $postsRepository->connection = $connection;
-    $posts = $postsRepository->getPosts(); // return an array
-
-    $this->twig->display('posts/posts.html.twig', compact('posts'));
-
-    /**  another synthaxe
-     *$ this->twig->display('posts/posts.html.twig', [
-     *   'posts' => $posts
-     *  ]);
-     */
-  }
-
-  /**
-   * showing Post with everything
-   *
-   * $id is a integer
-   * @return void
-   */
-  public function executePost($id)
   {
     $connection = new DatabaseConnection(); // from models
 

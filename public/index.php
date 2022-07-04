@@ -1,18 +1,17 @@
 <?php
 define('ROOT', dirname(__DIR__));  // in local : "/Users/Tanguy/Documents/sites/blog-omega" yes
 
-//Loading controller files, we need then
-require_once(ROOT . '/app/controllers/postsController.php');
-require_once(ROOT . '/app/controllers/HomepageController.php');
+use Application\Controllers\HomepageController\HomepageController;
+use Application\Controllers\PostsController\PostsController;
+use Application\Controllers\DetailController;
+use Application\Controllers\DetailController\DetailController as DetailControllerDetailController;
 
 // autoloader
 require_once(ROOT . '/vendor/autoload.php');
-
-// in the controller we only use the controllers witch is the "chef d'orchestre" du MVC's model"
-// we look for one method : for exemple Homepage/Homepage (the second Homepage is the method (function of this class))
-use Application\Controllers\HomepageController\HomepageController;
-use Application\Controllers\PostsController\PostsController;
-
+//Loading controller files, we need then
+require_once(ROOT . '/app/controllers/HomepageController.php');
+require_once(ROOT . '/app/controllers/PostsController.php');
+require_once(ROOT . '/app/controllers/DetailController.php');
 
 
 /*try {
@@ -33,8 +32,8 @@ try {
     if (isset($_GET['owp']) && $_GET['owp'] !== '') {
         if ($_GET['owp'] === 'bloglist') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
-                $id = $_GET['id'];
-                // (new PostsController())->executePost($id);
+                $identifier = $_GET['id'];
+                (new DetailControllerDetailController())->executeDetail($identifier);
             } else {
                 (new PostsController())->executePosts();
             }
