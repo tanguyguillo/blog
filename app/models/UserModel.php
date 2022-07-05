@@ -19,7 +19,6 @@ class UserModel
 
 class User
 {
-
     /**
      * function to get a user with all of this properties
      *
@@ -47,9 +46,10 @@ class User
         $user->roleUser = $row['roleUser'];
         $user->pictureOrLogo = $row['pictureOrLogo'];
 
-        $UserArray[] = $user;
+        //$UserArray[] = $user;
+        $user = json_decode(json_encode($user), true);
 
-        return $UserArray;
+        return $user;
     }
 
 
