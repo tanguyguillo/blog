@@ -40,12 +40,11 @@ class Detail
         $post->postTitle = $row['postTitle'];
         $post->postChapo = $row['postChapo'];
         $post->postContent = $row['postContent'];
-        $post->postCreated = $row['postCreated'];
+        $post->postCreated = $row['french_created_date'];
         $post->postStatus = $row['postStatus'];
         $post->postName = $row['postName'];
         $post->postModified = $row['french_modified_date'];
         $post->user_id = $row['user_id'];
-
 
         $posts[] = $post;
 
