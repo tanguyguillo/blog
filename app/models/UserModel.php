@@ -46,7 +46,8 @@ class User
         $user->roleUser = $row['roleUser'];
         $user->pictureOrLogo = $row['pictureOrLogo'];
 
-        //$UserArray[] = $user;
+        // to convert the objet in array (warning if property private ?)
+        // perhaps an function will be better....
         $user = json_decode(json_encode($user), true);
 
         return $user;
