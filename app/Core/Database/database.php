@@ -10,8 +10,9 @@ class DatabaseConnection
   public ?\PDO $database = null;  // if PDO .... ok otherwise = null 
 
   /**
-   * Sonnexion to the database; get SERVER, BASE and USER, PASSWD in a congig file in folder congif to the root of app
-   *
+   * connexion to the database; 
+   *  SERVER, BASE and USER, PASSWD in a congig file in folder config to the root of app
+   * 
    * @var \PDO|null
    */
   public function getConnection(): \PDO

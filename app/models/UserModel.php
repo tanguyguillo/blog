@@ -5,7 +5,6 @@ namespace Application\Models\userModel;
 //use Application\Lib\Database\DatabaseConnection;
 use Application\Core\Database\Database\DatabaseConnection;
 
-
 class PostsModel
 {	
 public $id;

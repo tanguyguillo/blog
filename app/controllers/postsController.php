@@ -32,7 +32,7 @@ class PostsController extends Controller
     $this->twig->display('posts/posts.html.twig', compact('posts'));
 
     /**  another synthaxe
-     *$ this->twig->display('posts/posts.html.twig', [
+     * $this->twig->display('posts/posts.html.twig', [
      *   'posts' => $posts
      *  ]);
      */

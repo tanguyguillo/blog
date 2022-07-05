@@ -7,7 +7,6 @@ use Application\Controllers\DetailController;
 use Application\Controllers\DetailController\DetailController as DetailControllerDetailController;
 //use Application\Controllers\ErrorController\ErrorController as ErrorController;
 
-
 // autoloader
 require_once(ROOT . '/vendor/autoload.php');
 //Loading controller files, we need then
@@ -45,7 +44,7 @@ try {
 } catch (Exception $e) {
     // for instance
     $errorMessage = $e->getMessage();
-    require(ROOT . '/app/templates/error.php');
+    require(ROOT . '/app/templatesError/error.php');
 
     // $errorMessage = $e->getMessage();
     // (new ErrorController())->execute($errorMessager);
