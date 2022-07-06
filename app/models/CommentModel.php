@@ -4,7 +4,7 @@ namespace Application\Models\CommentModel;
 
 // use Application\Core\Database\Database\DatabaseConnection;  //still in main controller
 
-class UserModel
+class CommentModel
 {
     public $id;
     public $CommentCreated;
@@ -18,12 +18,12 @@ class UserModel
 /**
  * class of blog's comments
  */
-class comment
+class Comment
 {
     /**
      * function to get all comments with all of this properties of a user
      *
-     * @param string $identifier
+     * @param string $identifier (of a post)
      * @return Array
      */
     public function getComments(string $identifier): array
@@ -38,7 +38,7 @@ class comment
         while (($row = $statement->fetch())) {
             $postComment = new comment();
             $postComment->commentStatus = $row['commentStatus'];
-            $postComment->commentConten = $row['commentContent'];
+            $postComment->commentContent = $row['commentContent'];
             $postComment->blog_post_id = $row['blog_post_id'];
             $postComment->user_id = $row['user_id'];
             $postComment->id = $row['id'];
@@ -49,6 +49,6 @@ class comment
         // perhaps an function will be better....
         //$postComments = json_decode(json_encode($postComments), true);
 
-        return $postComment;
+        return $postComments;
     }
 }
