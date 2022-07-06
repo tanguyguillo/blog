@@ -6,7 +6,7 @@ namespace Application\Controllers\HomepageController;
 
 use Application\Controllers\Controller;
 
-require_once(ROOT . '/app/controllers/controller.php'); //
+require_once(ROOT . '/app/controllers/Controller.php'); //
 
 class HomepageController extends Controller
 {

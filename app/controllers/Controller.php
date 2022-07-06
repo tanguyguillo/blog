@@ -25,9 +25,13 @@ abstract class Controller
         //$connection = new DatabaseConnection();
 
         // where the twig views
-        $this->loader = new FilesystemLoader(ROOT . '/app/views');
+        $this->loader = new FilesystemLoader(ROOT . '/app/Views');
 
         // env twig
         $this->twig = new Environment($this->loader);
+    }
+
+    public function deletePostsIfNotValid(array $array)
+    {
     }
 }

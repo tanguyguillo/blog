@@ -9,17 +9,30 @@
             <div class="col-lg-12">
                 <h1>Listing des articles</h1>
                 <hr>
-                {# todo : a condition post.postStatus = open #}
-                {% for post in posts %}   
-                <h2><a style="color:aliceblue" href="index.php?owp=bloglist&id={{post.id}}">{{post.postTitle}}</a></h2>
-                <h6 >Dernière modification : {{post.frenchModifiedDate}} </h6>
-                <p class="align-left"></p>{{post.postChapo}}</p>
-                <hr>
+                {% for post in posts %}  
+                    {% if post.postStatus == 'Open' %} 
+                    <h2><a style="color:aliceblue" href="index.php?owp=bloglist&id={{post.id}}">{{post.postTitle}}</a></h2>
+                    <h6>Dernière modification : {{post.frenchModifiedDate}}</h6>
+                    <p class="align-left"></p>{{post.postChapo}}</p>
+                    <hr>
+                    {% endif %}
                 {% endfor %}
             </div>
         </div>
     </div>
     </div>
 </header>
+
+<!-- if necessary
+<nav aria-label="Page pagination" class="text-center">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="#">Précédent</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">suivant</a></li>
+  </ul>
+</nav> -->
+
 {% endblock %}
 

@@ -3,7 +3,7 @@
 namespace Application\Core\Database\Database;
 
 // Loading the config
-require_once(ROOT . '/app/Config/config.php');
+require_once(ROOT . '/app/config/config.php');
 
 class DatabaseConnection
 {

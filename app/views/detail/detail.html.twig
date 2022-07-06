@@ -5,10 +5,11 @@
 {% block header %}
 <header>
     <div class="container">
-        <div class="row">
+        <div class="row">   
             <div class="col-lg-12">
+                {% if detail.postStatus == 'Open' %} 
                 <h1>{{detail.postTitle}}</h1>
-                <h4>auteur : </h4>
+                <h4>auteur : {{user.nameUser}} {{user.surNameUser}}</h4>
                 <h6>Dernière mise à jour de cet article : lE  {{detail.postModified}}</h6>
                 <hr>
                 {# todo : a condition post.postStatus = open # ... here not necessary the blogPost havebeen filtred before #}     
@@ -16,9 +17,29 @@
                     <hr>
                 <p>{{detail.postContent}}</p>
                 <hr>
+                {% else %}
+                <h1>Désolé cet article est en attente de validation ou a été fermé</h1>
+                {% endif %}
             </div>
         </div>
     </div>
     </div>
 </header>
 {% endblock %}
+
+
+     {% block comment %}
+     <h4 class="ttitleComment">Commentaires</h4>
+                {# <ul>
+                  <li>
+                  <div>
+                    <a href="#!"><img src="avatars/05.jpg" alt="Avatar" class="avatar">></a>
+                  </div>
+                  <div class="ms-2">
+                    <!-- Comment by -->
+                    <div class="bg-light rounded-start-top-0 p-3 rounded">
+                      test
+                  </div>
+                  </li>
+                </ul> #}
+    {% endblock %}

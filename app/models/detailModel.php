@@ -2,7 +2,7 @@
 
 namespace Application\Models\DetailModel;
 
-use Application\Core\Database\Database\DatabaseConnection;
+// use Application\Core\Database\Database\DatabaseConnection; still in main controler
 
 class DetailModel
 {

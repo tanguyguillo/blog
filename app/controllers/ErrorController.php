@@ -4,7 +4,6 @@ namespace Application\Controllers\ErrorController;
 
 use Application\Controllers\Controller;
 
-
 class ErrorController extends Controller
 {
 
