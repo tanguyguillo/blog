@@ -30,8 +30,8 @@ class Comment
     {
         $statement = $this->connection->getConnection()->query(
             // id	CommentCreated	commentStatus	commentContent	user_id	blog_post_id	blog_post_user_id
-            //"SELECT id; EmailUser; passWordUser; nameUser; surNameUser; titleUser; telGsmUser; roleUser; pictureOrLogo;  FROM user where id = $identifier"
-            "SELECT * FROM comment where id = $identifier"
+            //"SELECT id; EmailUser; passWordUser; nameUser; surNameUser; titleUser; telGsmUser; roleUser; pictureOrLogo;  FROM user where  blog_post_id = $identifier"
+            "SELECT * FROM comment where blog_post_id = $identifier" // blog_post_id is the id of the post
         );
 
         $postComment = [];
