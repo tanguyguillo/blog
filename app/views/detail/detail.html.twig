@@ -50,8 +50,30 @@
 </div>
 {% endblock %}
 
-{% block inscription %} {# attention faire une page d'inscription voir
-https://www.w3schools.com/html/html_form_input_types.asp #}
+    {% block giveComment %}
+<div class="d-flex flex-column min-vh-100">
+            <div class="container">
+                    <h4 class="text-center">Ajouter un commentaire</h4>
+                    <!-- form comment-->
+                        <form name="giveComment" id="giveCommentForm" novalidate>
+                            <div class="row control-group">
+                                <div class="form-group col-xs-12 floating-label-form-group controls">
+                                    <label>Votre commentaire</label>
+                                    <textarea rows="5" class="form-control" placeholder="Veuillez entrer votre commentaire" id="giveComment" required data-validation-required-message="Veuillez entrer un commentaire."></textarea>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <br>
+                            <div id="success"></div>
+                                <div class="form-group col-xs-12">
+                                    <button type="submit" class="btn btn-success btn-lg">Envoyer</button>
+                                </div>
+                        </form>
+            </div>
+</div>
+    {% endblock %}
+
+{# {% block inscription %}
 <div class="d-flex flex-column min-vh-100">
     <div class="container">
         <h4 class="text-center">Connectez vous ou inscrivez vous pour pouvoir laisser un commentaire</h4>
@@ -73,4 +95,4 @@ https://www.w3schools.com/html/html_form_input_types.asp #}
         <br />
     </div>
 </div>
-{% endblock %}
+{% endblock %} #}

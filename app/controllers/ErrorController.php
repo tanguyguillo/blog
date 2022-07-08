@@ -6,7 +6,6 @@ use Application\Controllers\Controller;
 
 class ErrorController extends Controller
 {
-
     /**
      * error page
      *

@@ -21,9 +21,6 @@ abstract class Controller
      */
     public function __construct()
     {
-        // Connexion to the dataBase... to see later
-        //$connection = new DatabaseConnection();
-
         // where the twig views
         $this->loader = new FilesystemLoader(ROOT . '/app/Views');
 

@@ -4,9 +4,6 @@ namespace Application\Controllers\HomepageController;
 
 use Application\Controllers\Controller;
 
-
-//require_once(ROOT . '/app/controllers/Controller.php'); // c'est le dernier des requires
-
 class HomepageController extends Controller
 {
     /**

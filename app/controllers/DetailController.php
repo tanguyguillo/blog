@@ -8,10 +8,6 @@ use Application\Models\DetailModel\Detail;
 use Application\Models\UserModel\User;
 use Application\Models\CommentModel\Comment;
 
-require_once(ROOT . '/app/models/DetailModel.php');
-require_once(ROOT . '/app/models/UserModel.php');
-require_once(ROOT . '/app/models/CommentModel.php');
-
 class DetailController extends Controller
 {
     /**
