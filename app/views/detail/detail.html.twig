@@ -31,23 +31,44 @@
     {# id	CommentCreated	commentStatus	commentContent	user_id	blog_post_id	blog_post_user_id #}
     {% block myComments %}
 
-    <div class="container">
-        <div class="row"> 
-            <div class="col-lg-12"></div>  
-            <h6 class="text-center">Commentaire(s)</h6>
+        <div class="d-flex flex-column min-vh-100">
+        <div class="container">
+            <h4 class="text-center">Commentaire(s)</h4>
             <hr>
-            <p>
             {% for comment in postComments %}
                 {% if comment.commentStatus == 'Open' %} 
-                        <p>{{comment.commentContent}}</p>
+                        <p class="mb-3"></p>{{comment.commentContent}}</p>
                 {% else %}
                     <h1>Désolé aucun commentaire n'a été trouvé.</h1>
                 {% endif %} 
                 <hr>
             {% endfor %}  
-            </p>
-    </div> 
+        </div> 
     </div>
     {% endblock %}
 
+{% block inscription %}   {# attention faire une page d'inscription voir https://www.w3schools.com/html/html_form_input_types.asp #}
+        <div class="d-flex flex-column min-vh-100">
+        <div class="container">
+                <h4 class="text-center">Connectez vous ou inscrivez vous pour pouvoit laisser un commentaire</h4>
+                <form <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email">
+                        <div class="form-text">Votre Email ne sera ni partagé ni vendu</div>
+                    <br>
+                    <label for="fname" class="form-label">Prénom</label>
+                        <input type="fname" class="form-control" id="fname" Prenom="fname">
+                        <div class="form-text">Votre Prénom</div>
+                    <br>
+                    <label for="surName" class="form-label">Nom</label>
+                        <input type="fname" class="form-control" id="fname" name="fname">
+                        <div class="form-text">Votre Nom</div>
+                    <br>
 
+
+                    <button type="submit" class="btn btn-primary">Envoyer</button>
+                </form>
+                <br />
+            </div>
+        </div>
+    {% endblock %}
