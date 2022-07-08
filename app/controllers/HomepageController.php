@@ -2,9 +2,8 @@
 
 namespace Application\Controllers\HomepageController;
 
-//use Application\Controllers\Controller;
-
 use Application\Controllers\Controller;
+
 
 require_once(ROOT . '/app/controllers/Controller.php'); //
 

@@ -5,7 +5,6 @@ namespace Application\Controllers\DetailController;
 use Application\Core\Database\Database\DatabaseConnection;
 use Application\Controllers\Controller;
 use Application\Models\DetailModel\Detail;
-use Application\Models\UseModel\PostsModel;
 use Application\Models\UserModel\User;
 use Application\Models\CommentModel\Comment;
 
