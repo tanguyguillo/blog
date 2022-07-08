@@ -36,7 +36,7 @@
             <hr>
             {% for comment in postComments %}
                 {% if comment.commentStatus == 'Open' %} 
-                        <p class="mb-3"></p>{{comment.commentContent}}</p>
+                        <div class="mb-3"></p><span class = "bi bi-chat-left">&nbsp;&nbsp;</span>{{comment.commentContent}}/<span></p></div>
                 {% endif %} 
                 <hr>
             {% endfor %}  
