@@ -43,10 +43,8 @@ class DetailController extends Controller
         $connection = new DatabaseConnection();
         $postComments = new Comment();
         $postComments->connection = $connection;
-        $postComments  = $postComments->getComments(1); // return an array
+        $postComments  = $postComments->getComments($identifier); // return an array
         $postComments = json_decode(json_encode($postComments), true);
-
-
 
         //array(1) { [0]=> array(5) { ["commentStatus"]=> string(4) "Open" ["commentContent"]=> string(11) "bla bla bla" ["blog_post_id"]=> string(1) "1" ["user_id"]=> string(1) "1" ["id"]=> string(1) "1" } }
 

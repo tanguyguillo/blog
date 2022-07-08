@@ -30,7 +30,6 @@
     {# postComments
     {# id	CommentCreated	commentStatus	commentContent	user_id	blog_post_id	blog_post_user_id #}
     {% block myComments %}
-
         <div class="d-flex flex-column min-vh-100">
         <div class="container">
             <h4 class="text-center">Commentaire(s)</h4>
@@ -38,8 +37,6 @@
             {% for comment in postComments %}
                 {% if comment.commentStatus == 'Open' %} 
                         <p class="mb-3"></p>{{comment.commentContent}}</p>
-                {% else %}
-                    <h1>Désolé aucun commentaire n'a été trouvé.</h1>
                 {% endif %} 
                 <hr>
             {% endfor %}  

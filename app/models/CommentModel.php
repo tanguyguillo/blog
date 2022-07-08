@@ -33,7 +33,6 @@ class Comment
             //"SELECT id; EmailUser; passWordUser; nameUser; surNameUser; titleUser; telGsmUser; roleUser; pictureOrLogo;  FROM user where  blog_post_id = $identifier"
             "SELECT * FROM comment where blog_post_id = $identifier" // blog_post_id is the id of the post
         );
-
         $postComment = [];
         while (($row = $statement->fetch())) {
             $postComment = new comment();
@@ -49,6 +48,14 @@ class Comment
         // perhaps an function will be better....
         //$postComments = json_decode(json_encode($postComments), true);
 
+        // if no comment... "Désolé pas de commentaire pour ce post" is a kind of comment....
+        if (!isset($postComments)) {
+            $postComment = [
+                'commentStatus' => 'Open',
+                'commentContent' => 'Désolé pas de commentaire pour ce post',
+            ];
+            $postComments[] = $postComment;
+        }
         return $postComments;
     }
 }

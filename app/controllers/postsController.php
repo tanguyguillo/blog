@@ -30,11 +30,5 @@ class PostsController extends Controller
     $posts = $postsRepository->getPosts(); // return an array
 
     $this->twig->display('posts/posts.html.twig', compact('posts'));
-
-    /**  another synthaxe
-     * $this->twig->display('posts/posts.html.twig', [
-     *   'posts' => $posts
-     *  ]);
-     */
   }
 }
