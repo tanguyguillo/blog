@@ -9,11 +9,14 @@ use Application\Controllers\DetailController\DetailController as DetailControlle
 
 // autoloader
 require_once(ROOT . '/vendor/autoload.php');
+// Config
+require_once(ROOT . '/app/config/config.php');
 //Loading controller files, we need then
-require_once(ROOT . '/app/controllers/HomepageController.php');
-require_once(ROOT . '/app/controllers/PostsController.php');
-require_once(ROOT . '/app/controllers/DetailController.php');
-require_once(ROOT . '/app/controllers/ErrorController.php');
+// require_once(ROOT . '/app/controllers/Controller.php');
+// require_once(ROOT . '/app/controllers/HomepageController.php');
+// require_once(ROOT . '/app/controllers/PostsController.php');
+// require_once(ROOT . '/app/controllers/DetailController.php');
+// require_once(ROOT . '/app/controllers/ErrorController.php');
 
 /**
  * $identifier is a string

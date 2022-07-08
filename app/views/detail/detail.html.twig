@@ -5,18 +5,21 @@
 {% block header %}
 <header>
     <div class="container">
-        <div class="row">   
+        <div class="row">
             <div class="col-lg-12">
-                {% if detail.postStatus == 'Open' %} 
+                {% if detail.postStatus == 'Open' %}
                 <h1>{{detail.postTitle}}</h1>
                 <h4><i class="bi bi-person-fill">&nbsp;&nbsp;</i>auteur : {{user.nameUser}} {{user.surNameUser}}</h4>
-                <h6>Dernière mise à jour de cet article : lE  {{detail.postModified}}</h6>
-                <hr>
-                {# todo : a condition post.postStatus = open # ... here not necessary the blogPost havebeen filtred before #}     
-                <p>&nbsp;&nbsp;</i>{{detail.postChapo}}<p>
-                    <hr>
+                <h6>Mise à jour le {{detail.postModified}}</h6>
+                <hr class="star-light">
+                {# todo : a condition post.postStatus = open # ... here not necessary the blogPost havebeen filtred
+                before #}
+                <p>&nbsp;&nbsp;</i>{{detail.postChapo}}
+                <p>
+                    <br>
                 <p>{{detail.postContent}}</p>
-                {# <a http://blog-omega.local/index.php?owp=bloglist#{{post.id}}" class="btn btn-primary btn-small" role="button" title="Retour">Retour</a>  #}
+                {# <a http://blog-omega.local/index.php?owp=bloglist#{{post.id}}" class="btn btn-primary btn-small"
+                    role="button" title="Retour">Retour</a> #}
                 <hr>
                 {% else %}
                 <h1>Désolé cet article est en attente de validation ou a été fermé</h1>
@@ -28,43 +31,46 @@
 </header>
 {% endblock %}
 
-    {# postComments
-    {# id	CommentCreated	commentStatus	commentContent	user_id	blog_post_id	blog_post_user_id #}
-    {% block myComments %}
-        <div class="d-flex flex-column min-vh-100">
-        <div class="container">
-            <h4 class="text-center">Commentaire(s)</h4>
-            <hr>
-            {% for comment in postComments %}
-                {% if comment.commentStatus == 'Open' %} 
-                        <div class="mb-3"></p><span class="bi bi-chat-left">&nbsp;&nbsp;</span>{{comment.commentContent}}/<span></p></div>
-                {% endif %} 
-                <hr>
-            {% endfor %}  
-        </div> 
-    </div>
-    {% endblock %}
-
-{% block inscription %}   {# attention faire une page d'inscription voir https://www.w3schools.com/html/html_form_input_types.asp #}
-        <div class="d-flex flex-column min-vh-100">
-        <div class="container">
-                <h4 class="text-center">Connectez vous ou inscrivez vous pour pouvoit laisser un commentaire</h4>
-                <form <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email">
-                        <div class="form-text">Votre Email ne sera ni partagé ni vendu</div>
-                    <br>
-                    <label for="fname" class="form-label">Prénom</label>
-                        <input type="fname" class="form-control" id="fname" Prenom="fname">
-                        <div class="form-text">Votre Prénom</div>
-                    <br>
-                    <label for="surName" class="form-label">Nom</label>
-                        <input type="fname" class="form-control" id="fname" name="fname">
-                        <div class="form-text">Votre Nom</div>
-                    <br>
-                    <button type="submit" class="btn btn-primary">Envoyer</button>
-                </form>
-                <br />
-            </div>
+{# postComments
+{# id CommentCreated commentStatus commentContent user_id blog_post_id blog_post_user_id #}
+{% block myComments %}
+<div class="d-flex flex-column min-vh-100">
+    <div class="container">
+        <h4 class="text-center">Commentaire(s)</h4>
+        <hr>
+        {% for comment in postComments %}
+        {% if comment.commentStatus == 'Open' %}
+        <div class="mb-3">
+            </p><span class="bi bi-chat-left">&nbsp;&nbsp;</span>{{comment.commentContent}}/<span></p>
         </div>
-    {% endblock %}
+        {% endif %}
+        <hr>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block inscription %} {# attention faire une page d'inscription voir
+https://www.w3schools.com/html/html_form_input_types.asp #}
+<div class="d-flex flex-column min-vh-100">
+    <div class="container">
+        <h4 class="text-center">Connectez vous ou inscrivez vous pour pouvoit laisser un commentaire</h4>
+        <form <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email">
+            <div class="form-text">Votre Email ne sera ni partagé ni vendu</div>
+            <br>
+            <label for="fname" class="form-label">Prénom</label>
+            <input type="fname" class="form-control" id="fname" Prenom="fname">
+            <div class="form-text">Votre Prénom</div>
+            <br>
+            <label for="surName" class="form-label">Nom</label>
+            <input type="fname" class="form-control" id="fname" name="fname">
+            <div class="form-text">Votre Nom</div>
+            <br>
+            <button type="submit" class="btn btn-primary">Envoyer</button>
+        </form>
+        <br />
+    </div>
+</div>
+{% endblock %}

@@ -5,7 +5,8 @@
             "App\\": "app",
             "App\\Services\\": "app/services",
             "App\\Controllers\\": "app/controllers",
-            "App\\Core\\Database\\": "app/core/Database"
+            "App\\Core\\Database\\": "app/core/Database",
+            "App\\Models\\": "app/models"
         }
     },
     "authors": [
