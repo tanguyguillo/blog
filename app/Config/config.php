@@ -5,6 +5,10 @@ define('PASSWD', "blog");
 define('SERVER', "localhost");
 define('BASE', "blog");
 
+define('BASE_URL', 'http://http://blog-omega.local');
+
+
+
 require_once(ROOT . '/app/models/DetailModel.php');
 require_once(ROOT . '/app/models/UserModel.php');
 require_once(ROOT . '/app/models/CommentModel.php');

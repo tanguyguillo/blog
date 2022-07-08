@@ -5,6 +5,7 @@ use Application\Controllers\HomepageController\HomepageController;
 use Application\Controllers\PostsController\PostsController;
 use Application\Controllers\DetailController;
 use Application\Controllers\DetailController\DetailController as DetailControllerDetailController;
+use Application\Controllers\InscriptionUserController\InscriptionUserController as inscriptionUserController;
 
 // autoloader
 require_once(ROOT . '/vendor/autoload.php');
@@ -28,8 +29,9 @@ try {
                 $identifier = $_GET['id'];
                 //  (new AddComment())->execute($identifier, $_POST);
             } else {
-                // no id provide
-                // (new PostsController())->execute();
+                if ($_GET['owp'] === 'inscription') {
+                    (new inscriptionUserController())->execute();
+                }
             }
         } else {
             throw new Exception("La page que vous recherchez n'existe pas.");

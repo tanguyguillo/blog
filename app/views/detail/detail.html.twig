@@ -41,7 +41,7 @@
         {% for comment in postComments %}
         {% if comment.commentStatus == 'Open' %}
         <div class="mb-3">
-            </p><span class="bi bi-chat-left">&nbsp;&nbsp;</span>{{comment.commentContent}}/<span></p>
+            </p><span class="bi bi-chat-left">&nbsp;&nbsp;</span>{{comment.commentContent}}<span></p>
         </div>
         {% endif %}
         <hr>
@@ -55,7 +55,7 @@
             <div class="container">
                     <h4 class="text-center">Ajouter un commentaire</h4>
                     <!-- form comment-->
-                        <form name="giveComment" id="giveCommentForm" novalidate>
+                        <form name="giveComment" id="giveCommentForm">
                             <div class="row control-group">
                                 <div class="form-group col-xs-12 floating-label-form-group controls">
                                     <label>Votre commentaire</label>
@@ -69,11 +69,20 @@
                                     <button type="submit" class="btn btn-success btn-lg">Envoyer</button>
                                 </div>
                         </form>
+                        <div class="col-xs-12"></div>
+                        <p>{{ app.request.getBaseURL() }}</p> 
+                        <a href=  "{{ app.request.getBaseURL() }} index.php?owp=inscription"><button type="submit" class="btn btn-success btn-lg">Se connecter</button></a>
+                        </div>
+                        <br>
             </div>
 </div>
     {% endblock %}
 
+
 {# {% block inscription %}
+
+"http://" .
+
 <div class="d-flex flex-column min-vh-100">
     <div class="container">
         <h4 class="text-center">Connectez vous ou inscrivez vous pour pouvoir laisser un commentaire</h4>

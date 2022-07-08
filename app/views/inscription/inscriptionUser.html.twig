@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title></title>{% endblock %}
+
+
+{% block inscription %}
+<div class="d-flex flex-column min-vh-100">
+    <div class="container">
+        <h4 class="text-center">Connectez vous ou inscrivez vous pour pouvoir laisser un commentaire</h4>
+        <form <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email">
+            <div class="form-text">Votre Email ne sera ni partagé ni vendu</div>
+            <br>
+            <label for="fname" class="form-label">Prénom</label>
+            <input type="fname" class="form-control" id="fname" Prenom="fname">
+            <div class="form-text">Votre Prénom</div>
+            <br>
+            <label for="surName" class="form-label">Nom</label>
+            <input type="fname" class="form-control" id="fname" name="fname">
+            <div class="form-text">Votre Nom</div>
+            <br>
+            <button type="submit" class="btn btn-primary">Envoyer</button>
+        </form>
+        <br />
+    </div>
+</div>
+{% endblock %}

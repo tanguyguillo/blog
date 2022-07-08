@@ -6,7 +6,7 @@ use Application\Controllers\Controller;
 use Application\Core\Database\Database\DatabaseConnection;
 
 /**
- * Class of the blog listing
+ * Class of user inscription
  */
 class InscriptionUserController extends Controller
 {
@@ -15,5 +15,6 @@ class InscriptionUserController extends Controller
   {
     //$connection = new DatabaseConnection(); // from models
 
+    $this->twig->display('inscription/inscription.html.twig');
   }
 }
