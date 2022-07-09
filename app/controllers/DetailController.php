@@ -19,6 +19,7 @@ class DetailController extends Controller
     public function Detail($identifier)
     {
         $connection = new DatabaseConnection();
+
         // 1 - Detail
         $postDetail = new Detail();
         $postDetail->connection = $connection;

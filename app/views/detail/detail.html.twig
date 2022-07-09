@@ -14,12 +14,12 @@
                 <hr class="star-light">
                 {# todo : a condition post.postStatus = open # ... here not necessary the blogPost havebeen filtred
                 before #}
-                <p>&nbsp;&nbsp;</i>{{detail.postChapo}}
-                <p>
-                    <br>
-                <p>{{detail.postContent}}</p>
-                {# <a http://blog-omega.local/index.php?owp=bloglist#{{post.id}}" class="btn btn-primary btn-small"
-                    role="button" title="Retour">Retour</a> #}
+                <p>&nbsp;{{detail.postChapo}} </p>
+                  <br>
+                  <p>********</p>
+                  <p>{{detail.postContent}}</p>
+                <a href = "http://blog-omega.local/index.php?owp=bloglist#{{detail.idPost}}" class="btn btn-primary btn-small"
+                    role="button" title="Retour">Retour</a>
                 <hr>
                 {% else %}
                 <h1>Désolé cet article est en attente de validation ou a été fermé</h1>
@@ -70,7 +70,7 @@
                                 </div>
                         </form>
                         <div class="col-xs-12"></div>
-                        <p>{{ app.request.getBaseURL() }}</p> 
+                        <p>{{ app.request.getBaseURL() }}</p>
                         <a href=  "{{ app.request.getBaseURL() }} index.php?owp=inscription"><button type="submit" class="btn btn-success btn-lg">Se connecter</button></a>
                         </div>
                         <br>

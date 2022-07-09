@@ -22,7 +22,7 @@ class Detail
 {
     /**
      *  put in an array one post
-     * 
+     *
      * return an Array
      */
     public function getPost(string $identifier): Detail
@@ -43,6 +43,7 @@ class Detail
         $post->postModified = $row['french_modified_date'];
         $post->user_id = $row['user_id'];
         $posts[] = $post;
+
         return $post;
     }
 }

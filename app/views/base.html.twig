@@ -31,7 +31,7 @@
     <!-- Theme CSS -->
     <link href="css/freelancer.min.css" rel="stylesheet">
 
-    
+
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -56,7 +56,7 @@
     <meta name="theme-color" content="#fafafa">
 </head>
 
-<body>
+<body class="navyBlue">
     <span id="home"></span>
 
     {% block nav %}
@@ -72,7 +72,7 @@
 
                 <!--  <a class = "navbar-brand"  href="index.html"><img src="img/logo-small.png" alt="visuel logo omegawebprod" width="50" height="50"  > Bienvenue à tous ;)</a>-->
 
-                <a class="navbar-brand" href="index.php#page-top">Bienvenue à tous</a>
+                <a class="navbar-brand" href="index.php#page-top">Bienvenue <?php echo $_COOKIE['LOGGED_USER']; ?> </a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
