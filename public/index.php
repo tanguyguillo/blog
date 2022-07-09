@@ -1,21 +1,32 @@
 <?php
-define('ROOT', dirname(__DIR__));  // in local : "/Users/Tanguy/Documents/sites/blog-omega" yes
+define('ROOT', dirname(__DIR__));  // in local : "/Users/Tanguy/Documents/sites/blog-omega" yes != BASEURL
 
 use Application\Controllers\HomepageController\HomepageController;
 use Application\Controllers\PostsController\PostsController;
-use Application\Controllers\DetailController;
 use Application\Controllers\DetailController\DetailController as DetailControllerDetailController;
-use Application\Controllers\InscriptionUserController\InscriptionUserController as inscriptionUserController;
+use Application\Controllers\InsscriptionController\InscriptionController;
 
 // autoloader
 require_once(ROOT . '/vendor/autoload.php');
 // Config
 require_once(ROOT . '/app/config/config.php');
 
+require_once('../app/controllers/InscriptionController.php');
+
 /**
  * $identifier is a string
  */
 try {
+
+    if (isset($_GET['owp']) && $_GET['owp'] !== '') {
+        if ($_GET['owp'] === 'inscription') {
+            (new InscriptionController())->execute();
+            exit;
+        }
+    }
+
+
+
     if (isset($_GET['owp']) && $_GET['owp'] !== '') {
         if ($_GET['owp'] === 'bloglist') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
@@ -29,9 +40,6 @@ try {
                 $identifier = $_GET['id'];
                 //  (new AddComment())->execute($identifier, $_POST);
             } else {
-                if ($_GET['owp'] === 'inscription') {
-                    (new inscriptionUserController())->execute();
-                }
             }
         } else {
             throw new Exception("La page que vous recherchez n'existe pas.");

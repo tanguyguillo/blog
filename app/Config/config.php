@@ -7,8 +7,6 @@ define('BASE', "blog");
 
 define('BASE_URL', 'http://http://blog-omega.local');
 
-
-
 require_once(ROOT . '/app/models/DetailModel.php');
 require_once(ROOT . '/app/models/UserModel.php');
 require_once(ROOT . '/app/models/CommentModel.php');
@@ -20,3 +18,4 @@ require_once(ROOT . '/app/controllers/HomepageController.php');
 require_once(ROOT . '/app/controllers/PostsController.php');
 require_once(ROOT . '/app/controllers/DetailController.php');
 require_once(ROOT . '/app/controllers/ErrorController.php');
+require_once(ROOT . '/app/controllers/InscriptionController.php');

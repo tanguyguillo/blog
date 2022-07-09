@@ -31,4 +31,10 @@ abstract class Controller
     public function deletePostsIfNotValid(array $array)
     {
     }
+
+
+    //     spl_autoload_register(function ($class)
+    // {
+    //     require '../../class/' . $class . '.php';}
+
 }
