@@ -7,6 +7,7 @@ define('BASE', "blog");
 
 define('BASE_URL', 'http://http://blog-omega.local');
 
+// perhaps there is a problem beetwen php 8 of Mamp et Php 8 oo the mac ? .... to see... perhaps on line it 'll works without those requires?
 require_once(ROOT . '/app/models/DetailModel.php');
 require_once(ROOT . '/app/models/UserModel.php');
 require_once(ROOT . '/app/models/CommentModel.php');

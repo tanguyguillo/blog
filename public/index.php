@@ -11,7 +11,7 @@ require_once(ROOT . '/vendor/autoload.php');
 // Config
 require_once(ROOT . '/app/config/config.php');
 
-require_once('../app/controllers/InscriptionController.php');
+//require_once('../app/controllers/InscriptionController.php');
 
 /**
  * $identifier is a string
