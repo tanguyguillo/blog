@@ -21,6 +21,7 @@ class DetailController extends Controller
         $connection = new DatabaseConnection();
 
         // 1 - Detail
+        $identifier = htmlspecialchars($identifier);
         $postDetail = new Detail();
         $postDetail->connection = $connection;
         $detail =   $postDetail->getPost($identifier); // return an array

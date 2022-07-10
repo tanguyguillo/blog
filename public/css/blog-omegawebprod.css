@@ -9,6 +9,7 @@
   background: black;
 } */
 
+
 .upper {
   text-transform: uppercase
 }
@@ -26,4 +27,12 @@
 
 .navyBlue {
   /* background-color: #233140 !important */
+}
+
+a,
+a.active,
+a:active,
+a:focus,
+a:hover {
+  color: #ffffff !;
 }

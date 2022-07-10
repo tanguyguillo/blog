@@ -11,10 +11,15 @@ use Application\Core\Database\Database\DatabaseConnection;
 class InscriptionController extends Controller
 {
 
-  public function execute()
+  public function inscription()
   {
     //$connection = new DatabaseConnection(); // from models
 
     $this->twig->display('inscription/inscription.html.twig');
+  }
+
+
+  public function connexion()
+  {
   }
 }

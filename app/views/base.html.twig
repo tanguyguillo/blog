@@ -71,7 +71,6 @@
                 </button>
 
                 <!--  <a class = "navbar-brand"  href="index.html"><img src="img/logo-small.png" alt="visuel logo omegawebprod" width="50" height="50"  > Bienvenue à tous ;)</a>-->
-
                 <a class="navbar-brand" href="index.php#page-top">Bienvenue <?php echo $_COOKIE['LOGGED_USER']; ?> </a>
             </div>
 
@@ -81,8 +80,6 @@
                     <li class="hidden">
                         <a href="#page-top"></a>
                     </li>
-
-
                     <li class="page-scroll">
                         <a href="index.php#home">Accueil</a>
                     </li>
@@ -92,9 +89,7 @@
                     <li class="page-scroll">
                         <a href="index.php#contact">Contact</a>
                     </li>
-                    <li class="page-scroll">
-                        <a href="index.php?owp=inscription#connexion">Se connecter</a>
-                    </li>
+                    
                     <li class="page-scroll">
                         <a href="index.php#about">A propos</a>
                     </li>
@@ -122,7 +117,10 @@
     {% block inscription %}
     {% endblock %}
 
-    <!--aera spécific to homepage  -->
+   {% block connexion %}
+    {% endblock %}
+
+    <!--aera specific to homepage  -->
     {% block contact %}
     {% endblock %}
 
@@ -188,6 +186,7 @@
                         {{ "now"|date("Y") }}
                     </span>
                     </span class="col-lg-6">
+                    <!--<a href="index.php?owp=connexion#connexion">Se connecter</a>  |-->
                     <a href="#confidential" class="portfolio-link" data-toggle="modal">Politique de confidentialité</a>
                     | <a href="#">Administration</a>
                     </span>
