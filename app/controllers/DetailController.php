@@ -18,6 +18,16 @@ class DetailController extends Controller
      */
     public function Detail($identifier)
     {
+        /**
+         * verify is an integer if not display error page
+         */
+        if ($this->isInteger($identifier) == false) {
+            $message = "l'identifiant de la page doit être un chiffre";
+            $this->twig->display('error/error.html.twig', compact('message'));
+            exit;
+        }
+
+
         $connection = new DatabaseConnection();
 
         // 1 - Detail
@@ -48,5 +58,18 @@ class DetailController extends Controller
         ////*  use deletePostsIfNotValid($array) from Controller to delete post not valid for instance it use twig
 
         $this->twig->display('detail/detail.html.twig', compact('detail', 'user', 'postComments'));
+    }
+
+
+    /**
+     * function return true if number false otherwise
+     *
+     * @param [type] $identifier
+     * @return bool
+     */
+    public function isInteger($identifier)
+    {
+        $identifier = filter_var($identifier, FILTER_VALIDATE_INT);
+        return ($identifier !== FALSE);
     }
 }

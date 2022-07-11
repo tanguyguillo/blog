@@ -16,8 +16,11 @@ require_once(ROOT . '/app/config/config.php');
 require_once(ROOT . '/app/config/required.php');
 
 /**
- * $identifier is a string
+ * $identifier is a string... but must be a integer
  */
+
+// todo use isInteger function
+
 try {
     // just for instance....
     if (isset($_GET['owp']) && $_GET['owp'] !== '') {

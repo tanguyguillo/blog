@@ -32,6 +32,18 @@ abstract class Controller
     {
     }
 
+    /**
+     * function return true if number false otherwise
+     *
+     * @param [type] $identifier
+     * @return bool
+     */
+    public function isInteger($identifier)
+    {
+        $identifier = filter_var($identifier, FILTER_VALIDATE_INT);
+        return ($identifier !== FALSE);
+    }
+
 
     //     spl_autoload_register(function ($class)
     // {
