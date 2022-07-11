@@ -1,21 +1,21 @@
 <?php
 
-namespace Application\Models\PostsModel;
+namespace Application\Model\PostModel;
 
 //use Application\Lib\Database\DatabaseConnection;
 use Application\Core\Database\Database\DatabaseConnection;
 
-class PostsModel
-{
-    public $id;
-    public $posTitle;
-    public $postChapo;
-    public $postContent;
-    public $postCreated;
-    public $postStatus;
-    public $postName;
-    public $postModified;
-}
+// class PostModel
+// {
+//     public $id;
+//     public $posTitle;
+//     public $postChapo;
+//     public $postContent;
+//     public $postCreated;
+//     public $postStatus;
+//     public $postName;
+//     public $postModified;
+// }
 
 class PostsRepository
 {

@@ -1,0 +1,26 @@
+header {
+  background: pink !;
+}
+
+.upper {
+  text-transform: uppercase
+}
+
+.avatar {
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.titleComment {
+  text-align: center;
+}
+
+.backgroundNavyBlue {
+  background-color: #233140 !important
+}
+
+.backgroundWhite {
+  background-color: white !important
+}

@@ -5,22 +5,24 @@
 {% block connexion %}
 
 <div class="d-flex flex-column min-vh-100">
-
 <section id="inscription">
 <div class="container">
 <div class="row">
+
+    {# userConnexion #}
 
 <h3 class="text-center">Connection</h3>
 <hr class="star-primary">
     <div class="container">
         <h4 class="text-center">Connectez vous</h4>
-        <p><span class="text-center">Pour pouvoir laisser un commentaire, inscrivez vous</span></p>
-        <form action="##" method="post">
+        <p><span class="text-center">Pour pouvoir écrire un commentaire, connectez vous</span></p>
+         {# <form action="{{ render(controller( 'App\\Controllers\\ConnexionController::userConnexion', { 'max': 1 } )) }}" method="post"></form> #}
+        <form action="userConnexion" method="post">
 
     <div class="form-group">
-        <label for="exampleInputEmail1">Votre Email</label>
+        <label for="userEmail">Votre Email</label>
         <input type="email" class="form-control" id="fInputEmail1"  minlength="12" requiredplaceholder="Entrez votre Email">
-        <div class="form-text">Pour rappel, au minimum 12 caractères, une phrase facile à retenir et pas déja utilisée sur un autre site</div>
+        <div class="form-text">Pour rappel, le mot de passe est constitué d'au minimum 12 caractères, une phrase facile à retenir et pas déja utilisée sur un autre site</div>
         <br>
     </div>
 
@@ -38,42 +40,3 @@
 </div>
 <br>
 {% endblock %}
-
-
-{# <div class="d-flex flex-column min-vh-100">
-
-<section id="connexion">
-<div class="container">
-<div class="row">
-
-<h3 class="text-center">Connection</h3
-
-<hr class="star-primary">
-<h4 class="text-center">Connectez vous</h4>
-<p><span class="text-center">Si vous déja inscript, reconnectez vous</span></p>
-    <form action="##" method="post">
-
-    <div class="form-group">
-        <label for="exampleInputEmail1">Votre Email</label>
-        <input type="email" class="form-control" id="fInputEmail1"  minlength="12" requiredplaceholder="Entrez votre Email">
-        <div class="form-text">Pour rappel, au minimum 12 caractères, une phrase facile à retenir et pas déja utilisée sur un autre site</div>
-        <br>
-    </div>
-
-    <div class="form-group" id="connexion">
-        <label for="passUser">Votre mot de passe</label>
-        <input type="password" class="form-control" id="fpassword" placeholder="Mot de passe">
-    </div>
-
-    {# <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div> 
-    <button type="submit" class="btn btn-success btn-lg">Envoyer</button>
-</form>
-        <br />
-    </div>
-</div>
-</section>
-</div>
-#}

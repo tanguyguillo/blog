@@ -1,10 +1,13 @@
 <?php
 
-namespace Application\Models\CommentModel;
+namespace Application\Model\CommentModel;
 
 // use Application\Core\Database\Database\DatabaseConnection;  //still in main controller
 
-class CommentModel
+/**
+ * Undocumented class
+ */
+class CommentMamingBase
 {
     public $id;
     public $CommentCreated;

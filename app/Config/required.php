@@ -3,10 +3,10 @@
 // the order hace a importance ?
 require_once(ROOT . '/app/core/database/database.php');  // used for $connection
 
-require_once(ROOT . '/app/models/DetailModel.php');
-require_once(ROOT . '/app/models/UserModel.php');
-require_once(ROOT . '/app/models/CommentModel.php');
-require_once(ROOT . '/app/models/PostsModel.php'); // used for getPosts
+require_once(ROOT . '/app/model/DetailModel.php');
+require_once(ROOT . '/app/model/UserModel.php');
+require_once(ROOT . '/app/model/CommentModel.php');
+require_once(ROOT . '/app/model/PostModel.php'); // used for getPosts
 
 require_once(ROOT . '/app/controllers/Controller.php');
 require_once(ROOT . '/app/controllers/HomepageController.php');

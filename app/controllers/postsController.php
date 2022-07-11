@@ -3,7 +3,7 @@
 namespace Application\Controllers\PostsController;
 
 use Application\Controllers\Controller;
-use Application\Models\PostsModel\PostsRepository;
+use Application\Model\PostModel\PostsRepository;
 use Application\Core\Database\Database\DatabaseConnection;
 
 /**

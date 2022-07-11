@@ -23,11 +23,11 @@ try {
     if (isset($_GET['owp']) && $_GET['owp'] !== '') {
         if ($_GET['owp'] === 'inscription') {
             (new InscriptionController())->inscription();
-            exit;
+            exit; // to review
         }
         if ($_GET['owp'] === 'connexion') {
             (new ConnexionController())->connexion();
-            exit;
+            exit; // to review
         }
     }
 
@@ -35,7 +35,7 @@ try {
         if ($_GET['owp'] === 'bloglist') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 $identifier = $_GET['id'];
-                $identifier = htmlspecialchars($identifier);
+                $identifier = strip_tags(htmlspecialchars($identifier));
                 (new DetailController())->Detail($identifier);
             } else {
                 (new PostsController())->executePosts();
@@ -43,7 +43,7 @@ try {
         } elseif ($_GET['owp'] === 'addComment') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 $identifier = $_GET['id'];
-                $identifier = htmlspecialchars($identifier);
+                $identifier = strip_tags(htmlspecialchars($identifier));
                 //  (new AddComment())->execute($identifier, $_POST);
             } else {
             }

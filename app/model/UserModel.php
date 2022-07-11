@@ -1,21 +1,21 @@
 <?php
 
-namespace Application\Models\UserModel;
+namespace Application\Model\UserModel;
 
 use Application\Core\Database\Database\DatabaseConnection;
 
-class UserModel
-{
-    public $id;
-    public $EmailUser;
-    public $passWordUser;
-    public $nameUser;
-    public $surNameUser;
-    public $titleUser;
-    public $telGsmUser;
-    public $roleUser;
-    public $pictureOrLogo;
-}
+// class UserModel
+// {
+//     public $id;
+//     public $EmailUser;
+//     public $passWordUser;
+//     public $nameUser;
+//     public $surNameUser;
+//     public $titleUser;
+//     public $telGsmUser;
+//     public $roleUser;
+//     public $pictureOrLogo;
+// }
 
 class User
 {

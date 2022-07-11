@@ -1,10 +1,14 @@
 <?php
 
-namespace Application\Models\DetailModel;
+namespace Application\Model\DetailModel;
 
 // use Application\Core\Database\Database\DatabaseConnection; still in main controler
 
-class DetailModel
+
+/**
+ * class just to keep in mind the attribut's names of the bdd
+ */
+class DetailNamingBase
 {
     /// inside blogPost table
     public $idPost;
@@ -20,6 +24,10 @@ class DetailModel
 
 class Detail
 {
+    function __construct()
+    {
+    }
+
     /**
      *  put in an array one post // use of htmlspecialchars for id (XSS)
      *
@@ -27,7 +35,6 @@ class Detail
      */
     public function getPost(string $identifier): Detail
     {
-
         $identifier = htmlspecialchars($identifier);
         $statement = $this->connection->getConnection()->query(
             "SELECT id, postTitle, postChapo, postContent, DATE_FORMAT(postCreated, '%d/%m/%Y à %Hh%imin') AS french_created_date, postStatus, postName, DATE_FORMAT(postModified, '%d/%m/%Y à %Hh%imin') AS french_modified_date, user_id  FROM blog_post where id = $identifier"
