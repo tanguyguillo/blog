@@ -1,27 +1,37 @@
 <?php
+
 namespace Application\Controllers;
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
+use Application\Core\Database\Database\DatabaseConnection;
 
 /**
  * make working twig by heritage
  */
 abstract class Controller
 {
-        private $Loader;
-        protected $twig;
+    private $Loader;
+    protected $twig;
 
-        public function __construct()
-        {
-                $this->loader = new FilesystemLoader(ROOT . '/app/templates');
+    /**
+     * main controller
+     * integration twig
+     * 
+     */
+    public function __construct()
+    {
+        // Connexion to the dataBase... to see later
+        //$connection = new DatabaseConnection();
 
-                // env twig
-                $this->twig = new Environment($this->loader);
+        // where the twig views
+        $this->loader = new FilesystemLoader(ROOT . '/app/Views');
 
-                /* or if we want a cache for twig
-                *$this->twig = new \Twig\Environment(loader, [
-                        'cache' => ROOT . '/compilation_cache',
-                ]);*/
-        }
+        // env twig
+        $this->twig = new Environment($this->loader);
+    }
+
+    public function deletePostsIfNotValid(array $array)
+    {
+    }
 }

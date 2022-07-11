@@ -31,11 +31,11 @@
     <!-- Theme CSS -->
     <link href="css/freelancer.min.css" rel="stylesheet">
 
-    <!-- Theme CSS blog.omegawebprod -->
-    <!--  <link href="css/blog-omegawebprod.css" rel="stylesheet">-->
+    
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
         type="text/css">
@@ -49,6 +49,9 @@
 
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css">
+
+<!-- Theme CSS blog.omegawebprod -->
+<link href="css/blog-omegawebprod.css" rel="stylesheet">
 
     <meta name="theme-color" content="#fafafa">
 </head>
@@ -82,7 +85,7 @@
                         <a href="index.php#home">Accueil</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="index.php?posts=bloglist">Blog</a>
+                        <a href="index.php?owp=bloglist">Blog</a>
                     </li>
                     <li class="page-scroll">
                         <a href="index.php#contact">Contact</a>
@@ -101,11 +104,17 @@
     {% block header %}
     {% endblock %}
 
-    <!--aera spécific to the page -->
+    <!--aera spécific to the homePage ? -->
     {% block main %}
     {% endblock %}
 
-    <!--aera spécific to homegade the page -->
+    {% block myComments %}
+    {% endblock %}
+
+    {% block inscription %}
+    {% endblock %}
+
+    <!--aera spécific to homepage  -->
     {% block contact %}
     {% endblock %}
 
@@ -156,8 +165,7 @@
                             <h3>A propos de OmegaWebProd</h3>
                             <p>Nous sommes spécialisé dans la réalisation de sites web "sur mesure" pour de petites
                                 structures</p>
-                            <a href="mailto:blog-pots@omegawebprod@gmail.com?subject=Demandez de devis OmegaWebProduct">Demandez
-                                un devis</A>
+                            <a href="mailto:blog-pots@omegawebprod.com?subject=Demande de devis OmegaWebProduct">Demandez un devis</A>
                             </p>
                         </div>
                     </div>
@@ -169,7 +177,7 @@
                 <div class="row">
                     <span class="col-lg-6">
                         OmegaWebProd Copyright &copy;
-                        <?php echo date('Y'); ?>
+                        {{ "now"|date("Y") }}
                     </span>
                     </span class="col-lg-6">
                     <a href="#confidential" class="portfolio-link" data-toggle="modal">Politique de confidentialité</a>
