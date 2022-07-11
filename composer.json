@@ -1,18 +1,17 @@
 {
     "name": "tanguy/blog-omega",
-    "require-dev": {
-        "twig/twig": "^3.4"
-    },
     "autoload": {
         "psr-4": {
-            "Tanguy\\BlogOmega\\": "src/"
+            "App\\": "app"
         }
     },
     "authors": [
         {
-            "name": "Tanguy",
+            "name": "François Tanguy Guillo",
             "email": "tanguy.guillo@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "twig/twig": "^3.4"
+    }
 }
