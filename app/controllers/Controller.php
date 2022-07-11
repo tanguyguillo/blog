@@ -36,17 +36,15 @@ abstract class Controller
      * function return true if number false otherwise
      *
      * @param [type] $identifier
-     * @return bool
+     * @return boll
      */
     public function isInteger($identifier)
     {
-        $identifier = filter_var($identifier, FILTER_VALIDATE_INT);
-        return ($identifier !== FALSE);
+        if ($this->isInteger($identifier) == false) {
+            $message = "l'identifiant de la page doit être un chiffre";
+            $this->twig->display('error/error.html.twig', compact('message'));
+            exit;
+        }
+        return true;
     }
-
-
-    //     spl_autoload_register(function ($class)
-    // {
-    //     require '../../class/' . $class . '.php';}
-
 }

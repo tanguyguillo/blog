@@ -27,6 +27,8 @@ class DetailController extends Controller
             exit;
         }
 
+        // verification .... to see   
+        //$this->isInteger($identifier); // if not redirection on error page
 
         $connection = new DatabaseConnection();
 
@@ -34,6 +36,9 @@ class DetailController extends Controller
         $identifier = htmlspecialchars($identifier);
         $postDetail = new Detail();
         $postDetail->connection = $connection;
+
+        //$max = $postDetail->getMaxAndOpen(); // todo later
+
         $detail =   $postDetail->getPost($identifier); // return an array
         // turn in Array
         $detail = json_decode(json_encode($detail), true);

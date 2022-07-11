@@ -55,4 +55,15 @@ class Detail
 
         return $post;
     }
+
+    /**
+     * Undocumented function... see later
+     *
+     * @return void
+     */
+    public function getMaxAndOpen()
+    {
+        $statement = $this->connection->getConnection()->query("SELECT COUNT(*) FROM blog_post where postStatus = 'Open'");
+        $statement->execute();
+    }
 }
