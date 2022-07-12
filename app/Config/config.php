@@ -5,6 +5,6 @@ define('PASSWD', "blog");
 define('SERVER', "localhost");
 define('BASE', "blog");
 
-define('BASE_URL', 'http://http://blog-omega.local');
+define('BASE_URL', 'http://blog-omega.local/');
 
 //$_SESSION['nom']  = 'tanguy';
