@@ -4,18 +4,21 @@ namespace Application\Model\UserModel;
 
 use Application\Core\Database\Database\DatabaseConnection;
 
-// class UserModel
-// {
-//     public $id;
-//     public $EmailUser;
-//     public $passWordUser;
-//     public $nameUser;
-//     public $surNameUser;
-//     public $titleUser;
-//     public $telGsmUser;
-//     public $roleUser;
-//     public $pictureOrLogo;
-// }
+/**
+ * class just to keep in mind the attribut's names of the bdd
+ */
+class UserNamingBase
+{
+    public $id;
+    public $EmailUser;
+    public $passWordUser;
+    public $nameUser;
+    public $surNameUser;
+    public $titleUser;
+    public $telGsmUser;
+    public $roleUser;
+    public $pictureOrLogo;
+}
 
 class User
 {
@@ -52,28 +55,45 @@ class User
 
         return $user;
     }
+}
 
-
-    // /**
-    //  *
-    //  * return an Array
-    //  */
-    // public function getUsers(): //array
-    // {
-    //     // $statement = $this->connection->getConnection()->query(
-    //     //     "SELECT id, postTitle, postChapo, DATE_FORMAT(postModified, '%d/%m/%Y à %Hh%imin') AS french_modified_date FROM blog_post ORDER BY postModified DESC LIMIT 0, 5"
-    //     // );
-    //     // $posts = [];
-    //     // while (($row = $statement->fetch())) {
-    //     //     $post = new PostsRepository();
-    //     //     $post->postTitle = $row['postTitle'];
-    //     //     $post->frenchModifiedDate = $row['french_modified_date'];
-    //     //     $post->postChapo = $row['postChapo'];
-    //     //     $post->id = $row['id'];
-    //     //     $posts[] = $post;
-    //     // }
-    //     // return $posts;
-    // }
-
-
+class UsersRepository
+{
+    /**
+     * Undocumented function
+    
+     * id
+     * EmailUser
+     * passWordUser
+     * nameUser
+     * surNameUser
+     * titleUser // not used
+     * telGsmUser // not used
+     * roleUser
+     * pictureOrLogo  // not used
+     *
+     * 
+     * for EmailUser : todo : emailUser with a e
+     *
+     * 
+     * @return array
+     */
+    public function findall(): array
+    {
+        $statement = $this->connection->getConnection()->query(
+            "SELECT id, EmailUser, passWordUser, nameUser, surNameUser, roleUser FROM user"
+        );
+        $users = [];
+        while (($row = $statement->fetch())) {
+            $user = new UsersRepository();
+            $user->id = $row['id'];
+            $user->postStatus = $row['EmailUser'];
+            $user->postTitle = $row['passWordUser'];
+            $user->postTitle = $row['nameUser'];
+            $user->postTitle = $row['surNameUser'];
+            $user->postTitle = $row['roleUser'];
+            $users[] = $user;
+        }
+        return $users;
+    }
 }

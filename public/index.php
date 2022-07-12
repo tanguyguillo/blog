@@ -1,7 +1,20 @@
 
-
 <?php
-define('ROOT', dirname(__DIR__));  // in local : "/Users/Tanguy/Documents/sites/blog-omega" yes != BASEURL
+session_start();
+
+
+define('ROOT', dirname(__DIR__));  // in local : "/Users/Tanguy/Documents/sites/blog-omega"
+
+
+// var_dump($postData);
+
+// if ($_Post['action'] == 'newUser') {
+//     viewAddUser();
+// }
+
+// if (isset($postData['userEmail']) &&  isset($postData['userPassword'])) {
+// }
+
 
 use Application\Controllers\HomepageController\HomepageController;
 use Application\Controllers\PostsController\PostsController;
@@ -15,12 +28,18 @@ require_once(ROOT . '/vendor/autoload.php');
 require_once(ROOT . '/app/config/config.php');
 require_once(ROOT . '/app/config/required.php');
 
+
+//     spl_autoload_register(function ($class)
+// {
+//     require '../../class/' . $class . '.php';}
+
 /**
  * $identifier is a string... but must be a integer
  */
 
 // todo use isInteger function
 
+$postData = $_POST; // for user's connection
 try {
     // just for instance....
     if (isset($_GET['owp']) && $_GET['owp'] !== '') {
@@ -30,6 +49,12 @@ try {
         }
         if ($_GET['owp'] === 'connexion') {
             (new ConnexionController())->connexion();
+            exit; // to review
+        }
+
+        // from page connexion : redirection to comment
+        if ($_GET['owp'] === 'detailconnexion') {
+            (new detailController())->detailconnexion($postData);
             exit; // to review
         }
     }

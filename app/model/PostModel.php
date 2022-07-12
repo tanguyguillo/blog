@@ -5,17 +5,21 @@ namespace Application\Model\PostModel;
 //use Application\Lib\Database\DatabaseConnection;
 use Application\Core\Database\Database\DatabaseConnection;
 
-// class PostModel
-// {
-//     public $id;
-//     public $posTitle;
-//     public $postChapo;
-//     public $postContent;
-//     public $postCreated;
-//     public $postStatus;
-//     public $postName;
-//     public $postModified;
-// }
+
+/**
+ * class just to keep in mind the attribut's names of the bdd
+ */
+class PostNamingBase
+{
+    public $id;
+    public $posTitle;
+    public $postChapo;
+    public $postContent;
+    public $postCreated;
+    public $postStatus;
+    public $postName;
+    public $postModified;
+}
 
 class PostsRepository
 {

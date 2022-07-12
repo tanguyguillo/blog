@@ -7,6 +7,7 @@ use Application\Controllers\Controller;
 use Application\Model\DetailModel\Detail;
 use Application\Model\UserModel\User;
 use Application\Model\CommentModel\Comment;
+use Application\Model\UserModel\UsersRepository;
 
 class DetailController extends Controller
 {
@@ -19,7 +20,7 @@ class DetailController extends Controller
     public function Detail($identifier)
     {
         /**
-         * verify is an integer if not display error page
+         * verify is $identifier is a "string(integer)" if not display a message
          */
         if ($this->isInteger($identifier) == false) {
             $message = "l'identifiant de la page doit être un chiffre";
@@ -63,6 +64,65 @@ class DetailController extends Controller
         ////*  use deletePostsIfNotValid($array) from Controller to delete post not valid for instance it use twig
 
         $this->twig->display('detail/detail.html.twig', compact('detail', 'user', 'postComments', 'baseUrl'));
+    }
+
+
+    /**
+     * Undocumented function
+     *
+     * @param [type] $postData
+     * @return void
+     */
+    public function DetailConnexion($postData)
+    {
+        // EXAMPLE array(2) { ["userEmail"]=> string(23) "tanguy.guillo@gmail.com" ["userPassword"]=> string(16) "sdqddsdSQDSQDSQD" }
+        if (isset($postData['userEmail']) &&  isset($postData['userPassword'])) {
+
+            var_dump($postData['userEmail']);
+            var_dump($postData['userPassword']);
+
+
+            $connection = new DatabaseConnection();
+            $users = new User();
+            $users->connection = $connection;
+            $users = UsersRepository->findAll();  // issue...
+
+            var_export($users);
+
+
+
+
+            //     foreach ($users as $user) {
+            //         if (
+            //             $user['email'] === $postData['email'] &&
+            //             $user['password'] === $postData['password']
+            //         ) {
+            //             $loggedUser = [
+            //                 'email' => $user['email'],
+            //             ];
+
+            //             /**
+            //              * Cookie qui expire dans un an
+            //              */
+            //             setcookie(
+            //                 'LOGGED_USER',
+            //                 $loggedUser['email'],
+            //                 [
+            //                     'expires' => time() + 365*24*3600,
+            //                     'secure' => true,
+            //                     'httponly' => true,
+            //                 ]
+            //             );
+
+            //             $_SESSION['LOGGED_USER'] = $loggedUser['email'];
+            //         } else {
+            //             $errorMessage = sprintf('Les informations envoyées ne permettent pas de vous identifier : (%s/%s)',
+            //                 $postData['email'],
+            //                 $postData['password']
+            //             );
+            //         }
+            //     }
+        }
     }
 
 

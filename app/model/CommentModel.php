@@ -7,7 +7,7 @@ namespace Application\Model\CommentModel;
 /**
  * Undocumented class
  */
-class CommentMamingBase
+class CommentNamingBase
 {
     public $id;
     public $CommentCreated;

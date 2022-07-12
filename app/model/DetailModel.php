@@ -36,6 +36,7 @@ class Detail
     public function getPost(string $identifier): Detail
     {
         $identifier = htmlspecialchars($identifier);
+
         $statement = $this->connection->getConnection()->query(
             "SELECT id, postTitle, postChapo, postContent, DATE_FORMAT(postCreated, '%d/%m/%Y à %Hh%imin') AS french_created_date, postStatus, postName, DATE_FORMAT(postModified, '%d/%m/%Y à %Hh%imin') AS french_modified_date, user_id  FROM blog_post where id = $identifier"
         );
@@ -52,12 +53,11 @@ class Detail
         $post->postModified = $row['french_modified_date'];
         $post->user_id = $row['user_id'];
         $posts[] = $post;
-
         return $post;
     }
 
     /**
-     * Undocumented function... see later
+     * Undocumented function... see later... perhaps with stored procedure
      *
      * @return void
      */

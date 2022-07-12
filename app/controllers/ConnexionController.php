@@ -11,9 +11,9 @@ class ConnexionController extends Controller
 {
   public function connexion()
   {
-    $this->twig->display('connexion/connexion.html.twig');
+    $baseUrl = BASE_URL;
+    $this->twig->display('connexion/connexion.html.twig', compact('baseUrl'));
   }
-
 
   public function userConnexion()
   {
