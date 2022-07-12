@@ -5,4 +5,4 @@ define('PASSWD', "your password");
 define('SERVER', "localhost");
 define('BASE', "your bdd name");
 
-$_SESSION['nom']  = 'tanguy';
+define('BASE_URL', 'https://yourDomaine.com');
