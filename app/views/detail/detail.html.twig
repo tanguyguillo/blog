@@ -15,10 +15,9 @@
                 {# todo : a condition post.postStatus = open # ... here not necessary the blogPost havebeen filtred
                 before #}
                 <p>&nbsp;{{detail.postChapo}} </p>
-                  <br>
-                  <p>********</p>
-                  <p>{{detail.postContent}}</p>
-                <a href = "http://blog-omega.local/index.php?owp=bloglist#{{detail.idPost}}" class="btn btn-primary btn-small"
+                <br>
+                <p>{{detail.postContent}}</p>
+                <a href = "{{ baseUrl }} /index.php?owp=bloglist#{{detail.idPost}}" class="btn btn-primary btn-small"
                     role="button" title="Retour">Retour</a>
                 <hr>
                 {% else %}

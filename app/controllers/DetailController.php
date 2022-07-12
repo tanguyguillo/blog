@@ -57,12 +57,12 @@ class DetailController extends Controller
         $postComments->connection = $connection;
         $postComments  = $postComments->getComments($identifier); // return an array
         $postComments = json_decode(json_encode($postComments), true);
+        $baseUrl = BASE_URL;
 
         //array(1) { [0]=> array(5) { ["commentStatus"]=> string(4) "Open" ["commentContent"]=> string(11) "bla bla bla" ["blog_post_id"]=> string(1) "1" ["user_id"]=> string(1) "1" ["id"]=> string(1) "1" } }
-
         ////*  use deletePostsIfNotValid($array) from Controller to delete post not valid for instance it use twig
 
-        $this->twig->display('detail/detail.html.twig', compact('detail', 'user', 'postComments'));
+        $this->twig->display('detail/detail.html.twig', compact('detail', 'user', 'postComments', 'baseUrl'));
     }
 
 
