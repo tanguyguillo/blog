@@ -7,4 +7,4 @@ define('BASE', "blog");
 
 define('BASE_URL', 'http://http://blog-omega.local');
 
-$_SESSION['nom']  = 'tanguy';
+//$_SESSION['nom']  = 'tanguy';
