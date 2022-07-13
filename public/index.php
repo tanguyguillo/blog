@@ -2,9 +2,7 @@
 <?php
 session_start();
 
-
 define('ROOT', dirname(__DIR__));  // in local : "/Users/Tanguy/Documents/sites/blog-omega"
-
 
 // var_dump($postData);
 
@@ -15,23 +13,24 @@ define('ROOT', dirname(__DIR__));  // in local : "/Users/Tanguy/Documents/sites/
 // if (isset($postData['userEmail']) &&  isset($postData['userPassword'])) {
 // }
 
-
 use Application\Controllers\HomepageController\HomepageController;
 use Application\Controllers\PostsController\PostsController;
 use Application\Controllers\DetailController\DetailController;
 use Application\Controllers\InsscriptionController\InscriptionController;
 use Application\Controllers\connexion\ConnexionController;
 
-
 // Config
 require_once(ROOT . '/app/config/config.php');
+
+// requires
 require_once(ROOT . '/app/config/required.php');
 
 // autoloader
-require_once('../vendor/autoload.php');
+require_once(ROOT . '/vendor/autoload.php');  // /Users/Tanguy/Documents/sites/blog-omega/vendor/autoload.php" // the path is OK
 
-//// to test speudo class ....
-//     spl_autoload_register(function ($class)
+//var_dump(ROOT . '/vendor/autoload.php'); // string(60) "/Users/Tanguy/Documents/sites/blog-omega/vendor/autoload.php" : the path is OK
+
+//     spl_autoload_register(function ($class)  // to test speudoClass
 // {
 //     require '../../class/' . $class . '.php';}
 

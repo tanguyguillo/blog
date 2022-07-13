@@ -58,7 +58,7 @@ class DetailController extends Controller
         $postComments->connection = $connection;
         $postComments  = $postComments->getComments($identifier); // return an array
         $postComments = json_decode(json_encode($postComments), true);
-        $baseUrl = BASE_URL;
+        $baseUrl = BASE_URL; // used for return button
 
         //array(1) { [0]=> array(5) { ["commentStatus"]=> string(4) "Open" ["commentContent"]=> string(11) "bla bla bla" ["blog_post_id"]=> string(1) "1" ["user_id"]=> string(1) "1" ["id"]=> string(1) "1" } }
         ////*  use deletePostsIfNotValid($array) from Controller to delete post not valid for instance it use twig
@@ -68,80 +68,63 @@ class DetailController extends Controller
 
 
     /**
-     * Undocumented function
+     *  function to get all data which is useful
      *
      * @param [type] $postData
      * @return void
      */
     public function DetailConnexion($postData)
     {
-        // EXAMPLE array(2)array(2) { ["user_login"]=> string(23) "tanguy.guillo@gmail.com" ["user_pass"]=> string(18) "lepetitchatestbeau" }
+        // EXAMPLE  string(10) "tsd@fqd.fr" string(21) "sffqddfdqfqdfdqsffdqs"
         if (isset($postData['user_login']) &&  isset($postData['user_login'])) {
 
-            var_dump($postData['user_login']); // here an email address
-            var_dump($postData['user_pass']);
-
+            // var_dump($postData['user_login']); // here an email address
+            // var_dump($postData['user_pass']);
 
             $connection = new DatabaseConnection();
             $UsersRepository = new UsersRepository();
             $UsersRepository->connection = $connection;
-            $users = $UsersRepository->getUsers();  // issue...
+            $users = $UsersRepository->getUsers(); // return an object
 
-            //var_export($users);
+            // to see later
+            foreach ($users as $user) {
+                //commandes
+            }
 
+            // if (
+            //     $user['EmailUser'] === $postData['user_login'] && $user['passWordUser"'] === $postData['user_pass']
 
+            // //     $loggedUser = [{
+            // //         'email' => $user['EmailUser'],
+            //     ];
 
+            //     /**
+            //      * Cookie qui expire dans un an
+            //      */
+            //     setcookie(
+            //         'LOGGED_USER',
+            //         $loggedUser['email'],
+            //         [
+            //             'expires' => time() + 365 * 24 * 3600,
+            //             'secure' => true,
+            //             'httponly' => true,
+            //         ]
+            //     );
 
+            //     $_SESSION['LOGGED_USER'] = $loggedUser['email'];
 
-
-
-
-
-
-
-
-
-
-
-            // $connection = new DatabaseConnection(); // from models
-
-            // //then we will use this connexion to get what we want ; here posts
-            // $postsRepository = new PostsRepository();
-            // $postsRepository->connection = $connection;
-            // $posts = $postsRepository->getPosts(); // return an array
-
-
-            //     foreach ($users as $user) {
-            //         if (
-            //             $user['email'] === $postData['email'] &&
-            //             $user['password'] === $postData['password']
-            //         ) {
-            //             $loggedUser = [
-            //                 'email' => $user['email'],
-            //             ];
-
-            //             /**
-            //              * Cookie qui expire dans un an
-            //              */
-            //             setcookie(
-            //                 'LOGGED_USER',
-            //                 $loggedUser['email'],
-            //                 [
-            //                     'expires' => time() + 365*24*3600,
-            //                     'secure' => true,
-            //                     'httponly' => true,
-            //                 ]
-            //             );
-
-            //             $_SESSION['LOGGED_USER'] = $loggedUser['email'];
-            //         } else {
-            //             $errorMessage = sprintf('Les informations envoyées ne permettent pas de vous identifier : (%s/%s)',
-            //                 $postData['email'],
-            //                 $postData['password']
-            //             );
-            //         }
+            //     var_dump($_SESSION['LOGGED_USER']);
+            // } else {
+            //     $errorMessage = sprintf(
+            //         'Les informations envoyées ne permettent pas de vous identifier : (%s/%s)',
+            //         $postData['email'],
+            //         $postData['password']
+            //     );
+            // }
+            // }
         }
     }
+
 
 
 
