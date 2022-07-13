@@ -9,8 +9,18 @@ use Application\Model\UserModel\User;
 use Application\Model\CommentModel\Comment;
 use Application\Model\UserModel\UsersRepository;
 
+
+
+
 class DetailController extends Controller
 {
+
+    // public $hash;  // conflict with twig ?
+    // public function __construct()
+    // {
+    //     $this->hash = '9DEFF146D808FFF8A263BDFA150C61F003C7B8B';
+    // }
+
     /**
      * Function to show one blog post
      *
@@ -89,11 +99,23 @@ class DetailController extends Controller
             $UsersRepository->connection = $connection;
             $users = $UsersRepository->getUsers(); // return an object
 
+            //hach of password
+
             //var_dump($users);
 
             foreach ($users as $user) {
                 // if there is correspondance
                 if ($user['EmailUser'] === $postData['user_login'] && $user['passWordUser'] === $postData['user_pass']) {
+
+                    var_dump("****** OK **********");
+
+                    //passwordVerify($password, $hash)
+                    // $hash = $this->hash;
+                    // if ($this->passwordVerify($postData['user_pass'], $hash)) {
+                    //     var_dump("****** OK  ********** : " . $postData['user_login']);
+                    // }
+
+
                     // $loggedUser = [
                     //         'email' => $postData['user_login'],
 
@@ -116,6 +138,14 @@ class DetailController extends Controller
                 } else {
 
                     var_dump("****** else **********");
+
+                    // crypt(string $string, string $salt): string
+
+                    // $test =  crypt('lepetitchatestbeau', 'axNTxKKRUM69MaxNTxKKRUM69M'); // ax7uK1tE9l94g  moi
+                    // var_dump($test);
+
+
+
                     //     $errorMessage = sprintf(
                     //         'Les informations envoyées ne permettent pas de vous identifier : (%s/%s)',
                     //         $postData['email'],
@@ -126,6 +156,32 @@ class DetailController extends Controller
         }
     }
 
+    /**
+     * Undocumented function  // 	
+     *F9DEFF146D808FFF8A263BDFA150C61F003C7B8B
+     *
+     * @param [type] $password
+     * @param [type] $hash
+     * @return void
+     */
+    public function passwordVerify($password, $hash)
+    {
+        $passwordVerify = password_verify($password, $hash);
+        return  $passwordVerify;
+    }
+
+    /**
+     *  function crypt password
+     *
+     * @param [type] $password
+     * @param [type] $hash
+     * @return string
+     */
+    public function passwordCrypt($password, $hash)
+    {
+        $passwordCrypt = crypt($password, $hash);
+        return $passwordCrypt;
+    }
 
 
     /**
