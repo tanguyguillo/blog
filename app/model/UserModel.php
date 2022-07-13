@@ -56,29 +56,30 @@ class User
         return $user;
     }
 }
-
+/**
+ * class used for user connexion
+ */
 class UsersRepository
 {
     /**
-     * Undocumented function
+     * function get all users with main informations
     
      * id
      * EmailUser
      * passWordUser
      * nameUser
      * surNameUser
-     * titleUser // not used
-     * telGsmUser // not used
+     * titleUser // not used yet, next improvement perhaps
+     * telGsmUser // not used, next improvement perhaps
      * roleUser
-     * pictureOrLogo  // not used
-     *
+     * pictureOrLogo  // not used, next improvement perhaps
      * 
      * for EmailUser : todo : emailUser with a e
      *
      * 
      * @return array
      */
-    public function findall(): array
+    public function getUsers(): array
     {
         $statement = $this->connection->getConnection()->query(
             "SELECT id, EmailUser, passWordUser, nameUser, surNameUser, roleUser FROM user"
@@ -87,11 +88,11 @@ class UsersRepository
         while (($row = $statement->fetch())) {
             $user = new UsersRepository();
             $user->id = $row['id'];
-            $user->postStatus = $row['EmailUser'];
-            $user->postTitle = $row['passWordUser'];
-            $user->postTitle = $row['nameUser'];
-            $user->postTitle = $row['surNameUser'];
-            $user->postTitle = $row['roleUser'];
+            $user->EmailUser = $row['EmailUser'];
+            $user->passWordUser = $row['passWordUser'];
+            $user->nameUser = $row['nameUser'];
+            $user->surNameUse = $row['surNameUser'];
+            $user->roleUser = $row['roleUser'];
             $users[] = $user;
         }
         return $users;

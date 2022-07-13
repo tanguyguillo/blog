@@ -75,21 +75,40 @@ class DetailController extends Controller
      */
     public function DetailConnexion($postData)
     {
-        // EXAMPLE array(2) { ["userEmail"]=> string(23) "tanguy.guillo@gmail.com" ["userPassword"]=> string(16) "sdqddsdSQDSQDSQD" }
-        if (isset($postData['userEmail']) &&  isset($postData['userPassword'])) {
+        // EXAMPLE array(2)array(2) { ["user_login"]=> string(23) "tanguy.guillo@gmail.com" ["user_pass"]=> string(18) "lepetitchatestbeau" }
+        if (isset($postData['user_login']) &&  isset($postData['user_login'])) {
 
-            var_dump($postData['userEmail']);
-            var_dump($postData['userPassword']);
+            var_dump($postData['user_login']); // here an email address
+            var_dump($postData['user_pass']);
 
 
             $connection = new DatabaseConnection();
-            $users = new User();
-            $users->connection = $connection;
-            $users = UsersRepository->findAll();  // issue...
+            $UsersRepository = new UsersRepository();
+            $UsersRepository->connection = $connection;
+            $users = $UsersRepository->getUsers();  // issue...
 
-            var_export($users);
+            //var_export($users);
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+            // $connection = new DatabaseConnection(); // from models
+
+            // //then we will use this connexion to get what we want ; here posts
+            // $postsRepository = new PostsRepository();
+            // $postsRepository->connection = $connection;
+            // $posts = $postsRepository->getPosts(); // return an array
 
 
             //     foreach ($users as $user) {
@@ -121,9 +140,9 @@ class DetailController extends Controller
             //                 $postData['password']
             //             );
             //         }
-            //     }
         }
     }
+
 
 
     /**

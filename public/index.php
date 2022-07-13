@@ -22,13 +22,15 @@ use Application\Controllers\DetailController\DetailController;
 use Application\Controllers\InsscriptionController\InscriptionController;
 use Application\Controllers\connexion\ConnexionController;
 
-// autoloader
-require_once(ROOT . '/vendor/autoload.php');
+
 // Config
 require_once(ROOT . '/app/config/config.php');
 require_once(ROOT . '/app/config/required.php');
 
+// autoloader
+require_once('../vendor/autoload.php');
 
+//// to test speudo class ....
 //     spl_autoload_register(function ($class)
 // {
 //     require '../../class/' . $class . '.php';}
@@ -39,7 +41,7 @@ require_once(ROOT . '/app/config/required.php');
 
 // todo use isInteger function
 
-$postData = $_POST; // for user's connection
+$postData = $_POST; // for user's
 try {
     // just for instance....
     if (isset($_GET['owp']) && $_GET['owp'] !== '') {
