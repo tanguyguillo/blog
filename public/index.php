@@ -28,12 +28,6 @@ require_once(ROOT . '/app/config/required.php');
 // autoloader
 require_once(ROOT . '/vendor/autoload.php');  // /Users/Tanguy/Documents/sites/blog-omega/vendor/autoload.php" // the path is OK
 
-//var_dump(ROOT . '/vendor/autoload.php'); // string(60) "/Users/Tanguy/Documents/sites/blog-omega/vendor/autoload.php" : the path is OK
-
-//     spl_autoload_register(function ($class)  // to test speudoClass
-// {
-//     require '../../class/' . $class . '.php';}
-
 /**
  * $identifier is a string... but must be a integer
  */

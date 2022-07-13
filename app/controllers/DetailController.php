@@ -76,6 +76,9 @@ class DetailController extends Controller
     public function DetailConnexion($postData)
     {
         // EXAMPLE  string(10) "tsd@fqd.fr" string(21) "sffqddfdqfqdfdqsffdqs"
+
+        $loggedUser = [];
+
         if (isset($postData['user_login']) &&  isset($postData['user_login'])) {
 
             // var_dump($postData['user_login']); // here an email address
@@ -86,45 +89,42 @@ class DetailController extends Controller
             $UsersRepository->connection = $connection;
             $users = $UsersRepository->getUsers(); // return an object
 
-            // to see later
+            //var_dump($users);
+
             foreach ($users as $user) {
-                //commandes
+                // if there is correspondance
+                if ($user['EmailUser'] === $postData['user_login'] && $user['passWordUser'] === $postData['user_pass']) {
+                    // $loggedUser = [
+                    //         'email' => $postData['user_login'],
+
+
+                    /**
+                     * Cookie qui expire dans un an
+                     */
+                    // setcookie(
+                    //     'LOGGED_USER',
+                    //     $loggedUser['email'],
+                    //     [
+                    //         'expires' => time() + 365 * 24 * 3600,
+                    //         'secure' => true,
+                    //         'httponly' => true,
+                    //     ]
+
+                    // $_SESSION['LOGGED_USER'] = $loggedUser['email'];
+
+                    // var_dump($_SESSION['LOGGED_USER']);
+                } else {
+
+                    var_dump("****** else **********");
+                    //     $errorMessage = sprintf(
+                    //         'Les informations envoyées ne permettent pas de vous identifier : (%s/%s)',
+                    //         $postData['email'],
+                    //         $postData['password']
+                    //     );
+                }
             }
-
-            // if (
-            //     $user['EmailUser'] === $postData['user_login'] && $user['passWordUser"'] === $postData['user_pass']
-
-            // //     $loggedUser = [{
-            // //         'email' => $user['EmailUser'],
-            //     ];
-
-            //     /**
-            //      * Cookie qui expire dans un an
-            //      */
-            //     setcookie(
-            //         'LOGGED_USER',
-            //         $loggedUser['email'],
-            //         [
-            //             'expires' => time() + 365 * 24 * 3600,
-            //             'secure' => true,
-            //             'httponly' => true,
-            //         ]
-            //     );
-
-            //     $_SESSION['LOGGED_USER'] = $loggedUser['email'];
-
-            //     var_dump($_SESSION['LOGGED_USER']);
-            // } else {
-            //     $errorMessage = sprintf(
-            //         'Les informations envoyées ne permettent pas de vous identifier : (%s/%s)',
-            //         $postData['email'],
-            //         $postData['password']
-            //     );
-            // }
-            // }
         }
     }
-
 
 
 
