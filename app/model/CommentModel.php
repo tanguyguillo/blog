@@ -7,16 +7,16 @@ namespace Application\Model\CommentModel;
 /**
  * Undocumented class
  */
-class CommentNamingBase
-{
-    public $id;
-    public $CommentCreated;
-    public $commentStatus;
-    public $commentContent;
-    public $user_id;
-    public $blog_post_id;
-    public $blog_post_user_id;
-}
+// class CommentNamingBase
+// {
+//     public $id;
+//     public $CommentCreated;
+//     public $commentStatus;
+//     public $commentContent;
+//     public $user_id;
+//     public $blog_post_id;
+//     public $blog_post_user_id;
+// }
 
 /**
  * class of blog's comments
@@ -33,7 +33,7 @@ class Comment
     {
         $statement = $this->connection->getConnection()->query(
             // id	CommentCreated	commentStatus	commentContent	user_id	blog_post_id	blog_post_user_id
-            //"SELECT id; EmailUser; passWordUser; nameUser; surNameUser; titleUser; telGsmUser; roleUser; pictureOrLogo;  FROM user where  blog_post_id = $identifier"
+            //"SELECT id; EmailUser; passWordUser; firstnNameUser; surNameUser; titleUser; telGsmUser; roleUser; pictureOrLogo;  FROM user where  blog_post_id = $identifier"
             "SELECT * FROM comment where blog_post_id = $identifier" // blog_post_id is the id of the post
         );
         $postComment = [];

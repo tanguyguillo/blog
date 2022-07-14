@@ -7,18 +7,18 @@ use Application\Core\Database\Database\DatabaseConnection;
 /**
  * class just to keep in mind the attribut's names of the bdd
  */
-class UserNamingBase
-{
-    public $id;
-    public $EmailUser;
-    public $passWordUser;
-    public $nameUser;
-    public $surNameUser;
-    public $titleUser;
-    public $telGsmUser;
-    public $roleUser;
-    public $pictureOrLogo;
-}
+// class UserNamingBase
+// {
+//     public $id;
+//     public $EmailUser;
+//     public $passWordUser;
+//     public $firstnNameUser;
+//     public $surNameUser;
+//     public $titleUser;
+//     public $telGsmUser;
+//     public $roleUser;
+//     public $pictureOrLogo;
+// }
 
 class User
 {
@@ -31,18 +31,16 @@ class User
     public function getUser(string $identifier): array
     {
         $statement = $this->connection->getConnection()->query(
-            //"SELECT id; EmailUser; passWordUser; nameUser; surNameUser; titleUser; telGsmUser; roleUser; pictureOrLogo;  FROM user where id = $identifier"
+            //"SELECT id; EmailUser; passWordUser; firstNameUser; surNameUser; titleUser; telGsmUser; roleUser; pictureOrLogo;  FROM user where id = $identifier"
             "SELECT * FROM user where id = $identifier"
         );
-
         $statement->execute();
-
         $row = $statement->fetch();
         $user = new User();
         $user->idUser = $row['id'];
         $user->emailUser = $row['EmailUser'];
         $user->passWordUser = $row['passWordUser'];
-        $user->nameUser = $row['nameUser'];
+        $user->firstNameUser = $row['firstNameUser'];
         $user->surNameUser = $row['surNameUser'];
         $user->titleUser = $row['titleUser'];
         $user->telGsmUser = $row['telGsmUser'];
@@ -52,7 +50,6 @@ class User
         // to convert the objet in array (warning if property private ?)
         // perhaps an function will be better....
         $user = json_decode(json_encode($user), true);
-
         return $user;
     }
 }
@@ -67,7 +64,7 @@ class UsersRepository
      * id
      * EmailUser
      * passWordUser
-     * nameUser
+     * firstNameUser
      * surNameUser
      * titleUser // not used yet, next improvement perhaps
      * telGsmUser // not used, next improvement perhaps
@@ -82,7 +79,7 @@ class UsersRepository
     public function getUsers(): array
     {
         $statement = $this->connection->getConnection()->query(
-            "SELECT id, EmailUser, passWordUser, nameUser, surNameUser, roleUser FROM user"
+            "SELECT id, EmailUser, passWordUser, firstNameUser, surNameUser, roleUser FROM user"
         );
         $users = [];
         while (($row = $statement->fetch())) {
@@ -90,7 +87,7 @@ class UsersRepository
             $user->id = $row['id'];
             $user->EmailUser = $row['EmailUser'];
             $user->passWordUser = $row['passWordUser'];
-            $user->nameUser = $row['nameUser'];
+            $user->firstNameUser = $row['firstNameUser'];
             $user->surNameUse = $row['surNameUser'];
             $user->roleUser = $row['roleUser'];
             $users[] = $user;

@@ -1,17 +1,23 @@
 
 <?php
-session_start();
 
 define('ROOT', dirname(__DIR__));  // in local : "/Users/Tanguy/Documents/sites/blog-omega"
 
-// var_dump($postData);
-
-// if ($_Post['action'] == 'newUser') {
-//     viewAddUser();
+// Si le cookie ou la session sont présentes
+// if (isset($_COOKIE['LOGGED_USER']) || isset($_SESSION['LOGGED_USER'])) {
+//     $loggedUser = [
+//         'email' => $_COOKIE['LOGGED_USER'] ?? $_SESSION['LOGGED_USER'],
+//     ];
 // }
 
-// if (isset($postData['userEmail']) &&  isset($postData['userPassword'])) {
-// }
+// if present
+if (isset($_COOKIE['LOGGED_USER'])) {
+
+    var_dump($_COOKIE['LOGGED_USER']);
+    // $loggedUser = [
+    //     'email' => $_COOKIE['LOGGED_USER'] ?? $_SESSION['LOGGED_USER'],
+    // ];
+}
 
 use Application\Controllers\HomepageController\HomepageController;
 use Application\Controllers\PostsController\PostsController;

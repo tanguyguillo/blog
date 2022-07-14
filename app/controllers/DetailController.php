@@ -15,11 +15,15 @@ use Application\Model\UserModel\UsersRepository;
 class DetailController extends Controller
 {
 
+    public $message;
     // public $hash;  // conflict with twig ?
     // public function __construct()
     // {
     //     $this->hash = '9DEFF146D808FFF8A263BDFA150C61F003C7B8B';
     // }
+
+
+
 
     /**
      * Function to show one blog post
@@ -29,9 +33,8 @@ class DetailController extends Controller
      */
     public function Detail($identifier)
     {
-        /**
-         * verify is $identifier is a "string(integer)" if not display a message
-         */
+
+        //verify is $identifier is a "string(integer)" if not display a message
         if ($this->isInteger($identifier) == false) {
             $message = "l'identifiant de la page doit être un chiffre";
             $this->twig->display('error/error.html.twig', compact('message'));
@@ -52,7 +55,6 @@ class DetailController extends Controller
 
         $detail =   $postDetail->getPost($identifier); // return an array
         // turn in Array
-        $detail = json_decode(json_encode($detail), true);
 
         //$blog_post_id = $detail['blog_post_id']; // here the id of the post : blog_post_id
 
@@ -70,117 +72,73 @@ class DetailController extends Controller
         $postComments = json_decode(json_encode($postComments), true);
         $baseUrl = BASE_URL; // used for return button
 
-        //array(1) { [0]=> array(5) { ["commentStatus"]=> string(4) "Open" ["commentContent"]=> string(11) "bla bla bla" ["blog_post_id"]=> string(1) "1" ["user_id"]=> string(1) "1" ["id"]=> string(1) "1" } }
-        ////*  use deletePostsIfNotValid($array) from Controller to delete post not valid for instance it use twig
+        if (isset($this->message)) {
+        }
 
-        $this->twig->display('detail/detail.html.twig', compact('detail', 'user', 'postComments', 'baseUrl'));
+        $message = $this->message = "Veuillez entrer votre commentaire si vous êtes connecté puis valider";
+
+        $this->twig->display('detail/detail.html.twig', compact('detail', 'user', 'postComments', 'baseUrl, message'));
     }
 
 
     /**
-     *  function to get all data which is useful
+     *  function to get all data which is useful - EXAMPLE  string(10) "tsd@fqd.fr" string(21) "sffqddfdqfqdfdqsffdqs"
+     * htmlspecialchars($_COOKIE["name"])
+     * time() + 365 * 24 * 3600 : one year
+     * time() + 3600 : one hour ?
      *
      * @param [type] $postData
      * @return void
      */
     public function DetailConnexion($postData)
     {
-        // EXAMPLE  string(10) "tsd@fqd.fr" string(21) "sffqddfdqfqdfdqsffdqs"
-
-        $loggedUser = [];
-
-        if (isset($postData['user_login']) &&  isset($postData['user_login'])) {
-
-            // var_dump($postData['user_login']); // here an email address
-            // var_dump($postData['user_pass']);
-
+        // if exist
+        if (isset($postData['user_login']) &&  isset($postData['user_pass'])) {
             $connection = new DatabaseConnection();
             $UsersRepository = new UsersRepository();
             $UsersRepository->connection = $connection;
-            $users = $UsersRepository->getUsers(); // return an object
+            $users = $UsersRepository->getUsers(); // return an array
 
-            //hach of password
-
-            //var_dump($users);
-
+            // if correspondance email + password ( $_POST and DB )   // todo / see sha 512
             foreach ($users as $user) {
-                // if there is correspondance
                 if ($user['EmailUser'] === $postData['user_login'] && $user['passWordUser'] === $postData['user_pass']) {
-
-                    var_dump("****** OK **********");
-
-                    //passwordVerify($password, $hash)
-                    // $hash = $this->hash;
-                    // if ($this->passwordVerify($postData['user_pass'], $hash)) {
-                    //     var_dump("****** OK  ********** : " . $postData['user_login']);
-                    // }
-
-
-                    // $loggedUser = [
-                    //         'email' => $postData['user_login'],
-
-
-                    /**
-                     * Cookie qui expire dans un an
-                     */
                     // setcookie(
-                    //     'LOGGED_USER',
-                    //     $loggedUser['email'],
-                    //     [
-                    //         'expires' => time() + 365 * 24 * 3600,
-                    //         'secure' => true,
-                    //         'httponly' => true,
-                    //     ]
+                    //     'blogOmegawebProduct',
+                    //     $user['firstNameUser'],
+                    //     time() + 3600,
+                    //     'blog.omegawebproduct.com',
+                    //     true,
+                    //     true
+                    // );
+                    // exemple
+                    // setcookie("nom", "John Watkin", time() + 3600, "/", "", 0);
+                    // setcookie("age", "36", time() + 3600, "/", "",  0);
 
-                    // $_SESSION['LOGGED_USER'] = $loggedUser['email'];
+                    setcookie(
+                        'LOGGED_USER',
+                        $postData['user_login'],
+                        [
+                            'expires' => time() + 3600,
+                            'secure' => true,
+                            'httponly' => true,
+                        ]
+                    );
 
-                    // var_dump($_SESSION['LOGGED_USER']);
-                } else {
+                    $this->message = "Bravo vous êtes connecté et pouvez laisser un commentaire";
+                    // redirection to the good post
+                    $this->Detail($postData['postId']);
+                    // $this->twig->display('detail/detail.html.twig', compact('detail', 'user', 'postComments', 'baseUrl'));
 
-                    var_dump("****** else **********");
-
-                    // crypt(string $string, string $salt): string
-
-                    // $test =  crypt('lepetitchatestbeau', 'axNTxKKRUM69MaxNTxKKRUM69M'); // ax7uK1tE9l94g  moi
-                    // var_dump($test);
-
-
-
+                    // $currentUser['emailUser'] = $postData['emailUser'];
+                    // $_SESSION['LOGGED_USER'] = $currentUser;
+                    // } else {
                     //     $errorMessage = sprintf(
-                    //         'Les informations envoyées ne permettent pas de vous identifier : (%s/%s)',
-                    //         $postData['email'],
-                    //         $postData['password']
-                    //     );
+                    //             'Les informations envoyées ne permettent pas de vous identifier : (%s/%s)',
+                    //         );
+                    //     }
                 }
             }
         }
-    }
-
-    /**
-     * Undocumented function  // 	
-     *F9DEFF146D808FFF8A263BDFA150C61F003C7B8B
-     *
-     * @param [type] $password
-     * @param [type] $hash
-     * @return void
-     */
-    public function passwordVerify($password, $hash)
-    {
-        $passwordVerify = password_verify($password, $hash);
-        return  $passwordVerify;
-    }
-
-    /**
-     *  function crypt password
-     *
-     * @param [type] $password
-     * @param [type] $hash
-     * @return string
-     */
-    public function passwordCrypt($password, $hash)
-    {
-        $passwordCrypt = crypt($password, $hash);
-        return $passwordCrypt;
     }
 
 

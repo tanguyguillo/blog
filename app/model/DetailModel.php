@@ -8,19 +8,19 @@ namespace Application\Model\DetailModel;
 /**
  * class just to keep in mind the attribut's names of the bdd
  */
-class DetailNamingBase
-{
-    /// inside blogPost table
-    public $idPost;
-    public $postTitle;
-    public $postChapo;
-    public $postContent;
-    public $postCreated;
-    public $postStatus;
-    public $postName;
-    public $postModified;
-    public $user_id;
-}
+// class DetailNamingBase
+// {
+//     /// inside blogPost table
+//     public $idPost;
+//     public $postTitle;
+//     public $postChapo;
+//     public $postContent;
+//     public $postCreated;
+//     public $postStatus;
+//     public $postName;
+//     public $postModified;
+//     public $user_id;
+// }
 
 class Detail
 {
@@ -53,6 +53,7 @@ class Detail
         $post->postModified = $row['french_modified_date'];
         $post->user_id = $row['user_id'];
         $posts[] = $post;
+        $posts = json_decode(json_encode($posts), true); // it's was an object
         return $post;
     }
 

@@ -11,3 +11,8 @@ error_reporting(E_ALL);
 
 // deactivationofmagic_quotes_gpc ?... see later
 ini_set('magic_quotes_gpc', 0);
+
+
+// // session
+// session_start();
+// $_SESSION["blogOmegaWebProduct"] = '';

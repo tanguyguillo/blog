@@ -9,7 +9,7 @@
             <div class="col-lg-12">
                 {% if detail.postStatus == 'Open' %}
                 <h1>{{detail.postTitle}}</h1>
-                <h4><i class="bi bi-person-fill">&nbsp;&nbsp;</i>auteur : {{user.nameUser}} {{user.surNameUser}}</h4>
+                <h4><i class="bi bi-person-fill">&nbsp;&nbsp;</i>auteur : {{user.firstNameUser}} {{user.surNameUser}}</h4>
                 <h6>Mise à jour le {{detail.postModified}}</h6>
                 <hr class="star-light">
                 {# todo : a condition post.postStatus = open # ... here not necessary the blogPost havebeen filtred
@@ -53,11 +53,12 @@
 <div class="d-flex flex-column min-vh-100">
             <div class="container">
                     <h4 class="text-center">Ajouter un commentaire</h4>
-                    <!-- form comment-->
+                    <!-- form comment -->
                         <form name="giveComment" id="giveCommentForm">
                             <div class="row control-group">
                                 <div class="form-group col-xs-12 floating-label-form-group controls">
                                     <label>Votre commentaire</label>
+                                    
                                     <textarea rows="5" class="form-control" placeholder="Veuillez entrer votre commentaire si vous êtes connecté puis valider" id="giveComment" required data-validation-required-message="Veuillez entrer un commentaire."></textarea>
                                     <p class="help-block text-danger"></p>
                                 </div>
@@ -69,7 +70,7 @@
                                 </div>
                         </form>
                         <span>{{ app.request.getBaseURL() }}</span>
-                        <a href=  "{{ app.request.getBaseURL() }} index.php?owp=connexion"><button type="submit" class="btn btn-success btn-lg">Se connecter</button></a>
+                        <a href=  "{{ app.request.getBaseURL() }} index.php?owp=connexion&id=3"><button type="submit" class="btn btn-success btn-lg">Se connecter</button></a>
                         <span>{{ app.request.getBaseURL() }}</span>
                         <a href=  "{{ app.request.getBaseURL() }} index.php?owp=inscription"><button type="submit" class="btn btn-success btn-lg">S'inscrire</button></a>
                     </div>
