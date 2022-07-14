@@ -92,7 +92,6 @@ class UsersRepository
             $user->roleUser = $row['roleUser'];
             $users[] = $user;
         }
-
         // turn in Array
         $users = json_decode(json_encode($users), true);
         return $users;

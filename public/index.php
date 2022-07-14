@@ -1,5 +1,5 @@
 
-<?php
+<?php session_start();
 
 define('ROOT', dirname(__DIR__));  // in local : "/Users/Tanguy/Documents/sites/blog-omega"
 

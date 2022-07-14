@@ -23,9 +23,9 @@ abstract class Controller
     {
         // where the twig views
         $this->loader = new FilesystemLoader(ROOT . '/app/Views');
-
         // env twig
         $this->twig = new Environment($this->loader);
+        $this->twig->addGlobal('session', $_SESSION);
     }
 
     public function deletePostsIfNotValid(array $array)

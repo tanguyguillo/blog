@@ -72,12 +72,13 @@ class DetailController extends Controller
         $postComments = json_decode(json_encode($postComments), true);
         $baseUrl = BASE_URL; // used for return button
 
+
         if (isset($this->message)) {
         }
 
-        $message = $this->message = "Veuillez entrer votre commentaire si vous êtes connecté puis valider";
+        //$info = ['message' => "Veuillez entrer votre commentaire si vous êtes connecté puis valider"];
 
-        $this->twig->display('detail/detail.html.twig', compact('detail', 'user', 'postComments', 'baseUrl, message'));
+        $this->twig->display('detail/detail.html.twig', compact('detail', 'user', 'postComments', 'baseUrl'));
     }
 
 
@@ -102,17 +103,6 @@ class DetailController extends Controller
             // if correspondance email + password ( $_POST and DB )   // todo / see sha 512
             foreach ($users as $user) {
                 if ($user['EmailUser'] === $postData['user_login'] && $user['passWordUser'] === $postData['user_pass']) {
-                    // setcookie(
-                    //     'blogOmegawebProduct',
-                    //     $user['firstNameUser'],
-                    //     time() + 3600,
-                    //     'blog.omegawebproduct.com',
-                    //     true,
-                    //     true
-                    // );
-                    // exemple
-                    // setcookie("nom", "John Watkin", time() + 3600, "/", "", 0);
-                    // setcookie("age", "36", time() + 3600, "/", "",  0);
 
                     setcookie(
                         'LOGGED_USER',
@@ -124,18 +114,11 @@ class DetailController extends Controller
                         ]
                     );
 
-                    $this->message = "Bravo vous êtes connecté et pouvez laisser un commentaire";
-                    // redirection to the good post
-                    $this->Detail($postData['postId']);
-                    // $this->twig->display('detail/detail.html.twig', compact('detail', 'user', 'postComments', 'baseUrl'));
+                    $_SESSION['LOGGED_USER'] =  $user["firstNameUser"];
+                    $_SESSION['LOGGED_EMAIL'] = $postData['user_login'];
 
-                    // $currentUser['emailUser'] = $postData['emailUser'];
-                    // $_SESSION['LOGGED_USER'] = $currentUser;
-                    // } else {
-                    //     $errorMessage = sprintf(
-                    //             'Les informations envoyées ne permettent pas de vous identifier : (%s/%s)',
-                    //         );
-                    //     }
+                    // we return to the page detail with the good id
+                    $this->Detail($postData['postId']);
                 }
             }
         }
