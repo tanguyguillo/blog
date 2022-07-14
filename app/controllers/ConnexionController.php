@@ -5,7 +5,7 @@ namespace Application\Controllers\connexion;
 use Application\Controllers\Controller;
 
 /**
- * Class of user inscription
+ * Class of user connexion
  */
 class ConnexionController extends Controller
 {

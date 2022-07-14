@@ -3,20 +3,11 @@
 
 define('ROOT', dirname(__DIR__));  // in local : "/Users/Tanguy/Documents/sites/blog-omega"
 
-// Si le cookie ou la session sont présentes
-// if (isset($_COOKIE['LOGGED_USER']) || isset($_SESSION['LOGGED_USER'])) {
-//     $loggedUser = [
-//         'email' => $_COOKIE['LOGGED_USER'] ?? $_SESSION['LOGGED_USER'],
-//     ];
-// }
-
-// if present
-if (isset($_COOKIE['LOGGED_USER'])) {
-
-    var_dump($_COOKIE['LOGGED_USER']);
-    // $loggedUser = [
-    //     'email' => $_COOKIE['LOGGED_USER'] ?? $_SESSION['LOGGED_USER'],
-    // ];
+// if cookie or session present
+if (isset($_COOKIE['LOGGED_USER']) || isset($_SESSION['LOGGED_USER'])) {
+    $loggedUser = [
+        'email' => $_COOKIE['LOGGED_USER'] ?? $_SESSION['LOGGED_USER'],
+    ];
 }
 
 use Application\Controllers\HomepageController\HomepageController;
@@ -27,15 +18,13 @@ use Application\Controllers\connexion\ConnexionController;
 
 // Config
 require_once(ROOT . '/app/config/config.php');
-
 // requires
 require_once(ROOT . '/app/config/required.php');
-
 // autoloader
 require_once(ROOT . '/vendor/autoload.php');  // /Users/Tanguy/Documents/sites/blog-omega/vendor/autoload.php" // the path is OK
 
 /**
- * $identifier is a string... but must be a integer
+ * $identifier is a string... but also integer like "3"
  */
 
 // todo use isInteger function

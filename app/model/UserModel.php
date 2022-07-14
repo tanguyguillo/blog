@@ -4,22 +4,6 @@ namespace Application\Model\UserModel;
 
 use Application\Core\Database\Database\DatabaseConnection;
 
-/**
- * class just to keep in mind the attribut's names of the bdd
- */
-// class UserNamingBase
-// {
-//     public $id;
-//     public $EmailUser;
-//     public $passWordUser;
-//     public $firstnNameUser;
-//     public $surNameUser;
-//     public $titleUser;
-//     public $telGsmUser;
-//     public $roleUser;
-//     public $pictureOrLogo;
-// }
-
 class User
 {
     /**
@@ -31,14 +15,14 @@ class User
     public function getUser(string $identifier): array
     {
         $statement = $this->connection->getConnection()->query(
-            //"SELECT id; EmailUser; passWordUser; firstNameUser; surNameUser; titleUser; telGsmUser; roleUser; pictureOrLogo;  FROM user where id = $identifier"
+            //"SELECT id; emailUser; passWordUser; firstNameUser; surNameUser; titleUser; telGsmUser; roleUser; pictureOrLogo;  FROM user where id = $identifier"
             "SELECT * FROM user where id = $identifier"
         );
         $statement->execute();
         $row = $statement->fetch();
         $user = new User();
         $user->idUser = $row['id'];
-        $user->emailUser = $row['EmailUser'];
+        $user->emailUser = $row['emailUser'];
         $user->passWordUser = $row['passWordUser'];
         $user->firstNameUser = $row['firstNameUser'];
         $user->surNameUser = $row['surNameUser'];
@@ -60,18 +44,6 @@ class UsersRepository
 {
     /**
      * function get all users with main informations
-    
-     * id
-     * EmailUser
-     * passWordUser
-     * firstNameUser
-     * surNameUser
-     * titleUser // not used yet, next improvement perhaps
-     * telGsmUser // not used, next improvement perhaps
-     * roleUser
-     * pictureOrLogo  // not used, next improvement perhaps
-     * 
-     * for EmailUser : todo : emailUser with a e
      *
      * 
      * @return array
@@ -79,13 +51,13 @@ class UsersRepository
     public function getUsers(): array
     {
         $statement = $this->connection->getConnection()->query(
-            "SELECT id, EmailUser, passWordUser, firstNameUser, surNameUser, roleUser FROM user"
+            "SELECT id, emailUser, passWordUser, firstNameUser, surNameUser, roleUser FROM user"
         );
         $users = [];
         while (($row = $statement->fetch())) {
             $user = new UsersRepository();
             $user->id = $row['id'];
-            $user->EmailUser = $row['EmailUser'];
+            $user->emailUser = $row['emailUser'];
             $user->passWordUser = $row['passWordUser'];
             $user->firstNameUser = $row['firstNameUser'];
             $user->surNameUse = $row['surNameUser'];

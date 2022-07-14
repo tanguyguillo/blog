@@ -15,16 +15,17 @@ use Application\Model\UserModel\UsersRepository;
 class DetailController extends Controller
 {
 
-    public $message;
+    // public $message;
     // public $hash;  // conflict with twig ?
     // public function __construct()
     // {
     //     $this->hash = '9DEFF146D808FFF8A263BDFA150C61F003C7B8B';
     // }
 
-
-
-
+    // public function __construct()
+    // {
+    //     $this->message['message'] = "";
+    // }
     /**
      * Function to show one blog post
      *
@@ -33,7 +34,6 @@ class DetailController extends Controller
      */
     public function Detail($identifier)
     {
-
         //verify is $identifier is a "string(integer)" if not display a message
         if ($this->isInteger($identifier) == false) {
             $message = "l'identifiant de la page doit être un chiffre";
@@ -72,13 +72,14 @@ class DetailController extends Controller
         $postComments = json_decode(json_encode($postComments), true);
         $baseUrl = BASE_URL; // used for return button
 
-
-        if (isset($this->message)) {
-        }
+        // if come from function DetailConnexion
+        // if ($this->message != "") {
+        //     $this->message = 'connected';
+        // }
 
         //$info = ['message' => "Veuillez entrer votre commentaire si vous êtes connecté puis valider"];
 
-        $this->twig->display('detail/detail.html.twig', compact('detail', 'user', 'postComments', 'baseUrl'));
+        $this->twig->display('detail/detail.html.twig', compact('detail', 'user', 'postComments', 'baseUrl', 'identifier'));
     }
 
 
@@ -102,7 +103,7 @@ class DetailController extends Controller
 
             // if correspondance email + password ( $_POST and DB )   // todo / see sha 512
             foreach ($users as $user) {
-                if ($user['EmailUser'] === $postData['user_login'] && $user['passWordUser'] === $postData['user_pass']) {
+                if ($user['emailUser'] === $postData['user_login'] && $user['passWordUser'] === $postData['user_pass']) {
 
                     setcookie(
                         'LOGGED_USER',
@@ -113,9 +114,10 @@ class DetailController extends Controller
                             'httponly' => true,
                         ]
                     );
-
                     $_SESSION['LOGGED_USER'] =  $user["firstNameUser"];
                     $_SESSION['LOGGED_EMAIL'] = $postData['user_login'];
+
+                    $this->message['message'] = "bla bla";
 
                     // we return to the page detail with the good id
                     $this->Detail($postData['postId']);
