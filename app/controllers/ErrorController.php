@@ -12,12 +12,12 @@ class ErrorController extends Controller
      * @param [string] $errorMessager
      * @return void
      */
-    public function execute($errorMessager)
+    public function execute($errorMessage)
     {
         $this->twig->display(
             'error/error.html.twig',
             [
-                'message' => $errorMessager
+                'message' => $errorMessage
             ]
         );
     }

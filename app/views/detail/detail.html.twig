@@ -58,25 +58,25 @@
                             <div class="row control-group">
                                 <div class="form-group col-xs-12 floating-label-form-group controls">
                                     <label>Votre commentaire</label>
-                                    
                                     <textarea rows="5" class="form-control" placeholder = "rédigez votre commentaire"  id="giveComment" required data-validation-required-message="Veuillez entrer un commentaire."></textarea>
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
                             <br>
 
-                            <div id="success"></div>
                             <div class="form-group">
-                                    <button type="submit" class="btn btn-primary btn-lg disabled">Envoyer le commentaire</button>
+                                    <button type="submit" class="btn btn-primary btn-lg disabled">Envoyer votre commentaire</button>
                                     {# <p><small><i>Votre commentaire sera soumis à une validation de nos modérateurs avant affichage</i></small></p> #}
                             </div>
                         </form>
+
                         <a href="{{ app.request.getBaseURL() }} index.php?owp=connexion&id={{detail.idPost}}"><button type="submit" class="btn btn-success btn-lg">Se connecter</button></a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <a  href="{{ app.request.getBaseURL() }} index.php?owp=inscription"><button type="submit" class="btn btn-success btn-lg">Créer son compte</button></a>
-                         {# <p><small><i>Pour écrire un commentaire</i></small></p> #}
-                    </div>
-</div>
+                        {# <p><small><i>Pour écrire un commentaire</i></small></p> #}
+            </div>
+    </div>
+
 </div>
 <br>
     {% endblock %}

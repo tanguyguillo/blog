@@ -3,14 +3,14 @@
 namespace Application\Controllers\DetailController;
 
 use Application\Core\Database\Database\DatabaseConnection;
-use Application\Controllers\Controller;
+use Application\Model\UserModel\UsersRepository;
 use Application\Model\DetailModel\Detail;
 use Application\Model\UserModel\User;
 use Application\Model\CommentModel\Comment;
-use Application\Model\UserModel\UsersRepository;
-
-
-
+//
+use Application\Controllers\Controller;
+use Application\Controllers\ErrorController\ErrorController;
+use Application\Controllers\connexion\ConnexionController;
 
 class DetailController extends Controller
 {
@@ -124,6 +124,10 @@ class DetailController extends Controller
                 }
             }
         }
+        // if i m here : there is an connection error
+        $messager = 'Les données de connection sont incorrectes';
+        // we go bach to connexion page
+        (new ConnexionController())->connexion($message)();
     }
 
 

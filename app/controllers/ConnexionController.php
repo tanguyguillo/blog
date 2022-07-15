@@ -12,10 +12,11 @@ class ConnexionController extends Controller
   public function connexion()
   {
     $baseUrl = BASE_URL;
+
     $this->twig->display('connexion/connexion.html.twig', compact('baseUrl'));
   }
 
-  public function userConnexion()
+  public function userConnexion($message = "")
   {
     // // Check for empty POST
     // if (

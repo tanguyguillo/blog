@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jul 12, 2022 at 11:55 AM
+-- Generation Time: Jul 15, 2022 at 10:06 AM
 -- Server version: 5.7.34
 -- PHP Version: 7.1.33
 
@@ -83,9 +83,9 @@ INSERT INTO `comment` (`id`, `CommentCreated`, `commentStatus`, `commentContent`
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
-  `EmailUser` varchar(255) DEFAULT NULL,
-  `passWordUser` varchar(42) DEFAULT NULL,
-  `nameUser` varchar(70) DEFAULT NULL,
+  `emailUser` varchar(255) DEFAULT NULL,
+  `passWordUser` varchar(60) DEFAULT NULL,
+  `firstNameUser` varchar(70) DEFAULT NULL,
   `surNameUser` varchar(70) DEFAULT NULL,
   `titleUser` enum('Madam','Miss','Mister') DEFAULT NULL,
   `telGsmUser` varchar(45) DEFAULT NULL,
@@ -97,12 +97,14 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `EmailUser`, `passWordUser`, `nameUser`, `surNameUser`, `titleUser`, `telGsmUser`, `roleUser`, `pictureOrLogo`) VALUES
-(1, 'gerard.lepage@example.fr', '*85DB26FD26834BCFA1ED73345A2153C2576A007A', 'Gérard', 'lepage', 'Mister', NULL, 'Admin', NULL),
-(2, 'tanguy.guillo@gmail.com', '*F9DEFF146D808FFF8A263BDFA150C61F003C7B8B', 'Tanguy', 'Guillo', 'Mister', NULL, 'Admin', NULL),
-(3, 'Lebeau@hotmail.fr', '*B262766771688C6A79483B83E6FBD851578C0ADF', 'René', 'Lebeau ', 'Mister', NULL, 'User', NULL),
-(4, 'i.marchand@example.fr', '*2F9130592FA1576C38A8EA7F6E5CCE8ADDE63CAD', 'Isabelle', 'Marchand', 'Miss', NULL, 'User', NULL),
-(5, 'Jeanne.delabas@example.fr', '*AAFFE227EBFA66E8FA7188B5D84082503967612D', 'Jeanne', 'delabas', 'Madam', NULL, 'User', NULL);
+INSERT INTO `user` (`id`, `emailUser`, `passWordUser`, `firstNameUser`, `surNameUser`, `titleUser`, `telGsmUser`, `roleUser`, `pictureOrLogo`) VALUES
+(1, 'gerard.lepage@example.fr', 'gerardesttresgentil', 'Gérard', 'lepage', 'Mister', NULL, 'Admin', NULL),
+(2, 'tanguy.guillo@gmail.com', 'lepetitchatestbeau', 'Tanguy', 'Guillo', 'Mister', NULL, 'Admin', NULL),
+(3, 'Lebeau@hotmail.fr', 'renenestpasgentil', 'René', 'Lebeau ', 'Mister', NULL, 'User', NULL),
+(4, 'i.marchand@example.fr', 'lisabelleestlaplusbelle', 'Isabelle', 'Marchand', 'Miss', NULL, 'User', NULL),
+(5, 'Jeanne.delabas@example.fr', 'lelionestgentil', 'Jeanne', 'delabas', 'Madam', NULL, 'User', NULL),
+(6, 't@t.fr', 'lelionestgentil', 'prenom', 'nom', 'Madam', NULL, 'User', NULL),
+(7, 'pa@pa.fr', 'lepetitchatestbeau', 'Paolo', 'SurName paolo', 'Mister', NULL, 'Admin', NULL);
 
 --
 -- Indexes for dumped tables
@@ -149,7 +151,7 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
