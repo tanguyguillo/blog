@@ -35,7 +35,7 @@ try {
     if (isset($_GET['owp']) && $_GET['owp'] !== '') {
         // from page connexion : redirection to comment
         if ($_GET['owp'] === 'detailconnexion') {
-            (new detailController())->detailconnexion($postData);
+            (new detailController())->detailconnexion($postData);  // strip_tags(htmlspecialchar ?
             exit; // to review
         }
 

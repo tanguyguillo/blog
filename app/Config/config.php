@@ -6,7 +6,7 @@ define('BASE', "blog");
 
 define('BASE_URL', 'http://blog-omega.local/');
 
-// ini_set("display_errors", 1);
+// ini_set("display_errors", 1);  // not necessary for me
 // error_reporting(E_ALL);
 
 // deactivationofmagic_quotes_gpc ?... see later

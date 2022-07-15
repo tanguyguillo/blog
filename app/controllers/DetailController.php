@@ -100,10 +100,6 @@ class DetailController extends Controller
             $UsersRepository->connection = $connection;
             $users = $UsersRepository->getUsers(); // return an array
 
-            // to avod a bug because the url can to not change
-            $messsageReadle = $messsage;
-            $messsageReadle = 'abort';
-
             // if correspondance email + password ( $_POST and DB )   // todo / see sha 512
             foreach ($users as $user) {
                 if ($user['emailUser'] === $postData['user_login'] && $user['passWordUser'] === $postData['user_pass']) {
@@ -117,6 +113,10 @@ class DetailController extends Controller
                             'httponly' => true,
                         ]
                     );
+
+                    // to avod a bug because the url can to not change
+                    $messsageReadle = $messsage;
+                    $messsageReadle = 'abort';
 
                     $_SESSION['LOGGED_USER'] =  $user["firstNameUser"];
                     $_SESSION['LOGGED_EMAIL'] = $postData['user_login'];
