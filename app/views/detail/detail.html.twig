@@ -1,18 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}<title>juste un article</title>{% endblock %}
+{% block title %}<title>Un article de OmegaWebProduct</title>{% endblock %}
 
 {% block header %}
 <header>
     <div class="container">
         <div class="row">
+
+            {% if arrayMessage.message != false  %}
+                <div class="alert alert-success alert-dismissible">
+                <strong>Bravo vous êtes connecté {{ arrayMessage.message}}</strong>
+                </div>
+            {% endif %}
+
             <div class="col-lg-12">
                 {% if detail.postStatus == 'Open' %}
                 <h1>{{detail.postTitle}}</h1>
                 <h4><i class="bi bi-person-fill">&nbsp;&nbsp;</i>auteur : {{user.firstNameUser}} {{user.surNameUser}}</h4>
                 <h6>Mise à jour le {{detail.postModified}}</h6>
                 <hr class="star-light">
-                {# todo : a condition post.postStatus = open # ... here not necessary the blogPost havebeen filtred
+                {# todo : a condition post.postStatus = open # ... here not necessary the blogPost have been filtred
                 before #}
                 <p>&nbsp;{{detail.postChapo}} </p>
                 <br>
@@ -79,4 +86,4 @@
 
 </div>
 <br>
-    {% endblock %}
+{% endblock %}

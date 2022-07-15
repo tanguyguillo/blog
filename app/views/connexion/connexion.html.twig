@@ -14,7 +14,13 @@
     <div class="container">
         <h4 class="text-center">Connectez vous</h4>
         <p><span class="text-center">Pour pouvoir écrire un commentaire, connectez vous</span></p>
-    
+
+    {% if arrayMessage.message != false  %}
+    <div class="alert alert-danger">
+        <strong> {{ arrayMessage.message}} </strong> 
+    </div>
+    {% endif %}
+
     <!-- Only HTTPS crypt POST data so DO use if -->
     <form action="{{ baseUrl }}index.php?owp=detailconnexion" method="post"> 
 

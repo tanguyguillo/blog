@@ -32,7 +32,7 @@ class DetailController extends Controller
      * @param string $identifier
      * @return void
      */
-    public function Detail($identifier)
+    public function Detail($identifier, $message = '')
     {
         //verify is $identifier is a "string(integer)" if not display a message
         if ($this->isInteger($identifier) == false) {
@@ -72,14 +72,13 @@ class DetailController extends Controller
         $postComments = json_decode(json_encode($postComments), true);
         $baseUrl = BASE_URL; // used for return button
 
-        // if come from function DetailConnexion
-        // if ($this->message != "") {
-        //     $this->message = 'connected';
-        // }
+        $messageReadle = $message; // come from DetailConnexion($postData)
+        // to make readeableby twig
+        $arrayMessage = array(
+            "message" => $messageReadle
+        );
 
-        //$info = ['message' => "Veuillez entrer votre commentaire si vous êtes connecté puis valider"];
-
-        $this->twig->display('detail/detail.html.twig', compact('detail', 'user', 'postComments', 'baseUrl', 'identifier'));
+        $this->twig->display('detail/detail.html.twig', compact('detail', 'user', 'postComments', 'baseUrl', 'identifier', 'arrayMessage'));
     }
 
 
@@ -114,18 +113,20 @@ class DetailController extends Controller
                             'httponly' => true,
                         ]
                     );
+
                     $_SESSION['LOGGED_USER'] =  $user["firstNameUser"];
                     $_SESSION['LOGGED_EMAIL'] = $postData['user_login'];
 
-                    $this->message['message'] = "bla bla";
+                    $message = $user["firstNameUser"];
 
                     // we return to the page detail with the good id
-                    $this->Detail($postData['postId']);
+                    $this->Detail($postData['postId'], $message);
                 }
             }
         }
         // if i m here : there is an connection error
-        $messager = 'Les données de connection sont incorrectes';
+        // $_SESSION['BOX'] = "";  // to review
+        $message = 'Désolé, les données de connection sont incorrectes';
         // we go bach to connexion page
         (new ConnexionController())->connexion($message)();
     }

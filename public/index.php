@@ -33,18 +33,18 @@ $postData = $_POST; // for user's
 try {
     // just for instance....
     if (isset($_GET['owp']) && $_GET['owp'] !== '') {
+        // from page connexion : redirection to comment
+        if ($_GET['owp'] === 'detailconnexion') {
+            (new detailController())->detailconnexion($postData);
+            exit; // to review
+        }
+
         if ($_GET['owp'] === 'inscription') {
             (new InscriptionController())->inscription();
             exit; // to review
         }
         if ($_GET['owp'] === 'connexion') {
             (new ConnexionController())->connexion();
-            exit; // to review
-        }
-
-        // from page connexion : redirection to comment
-        if ($_GET['owp'] === 'detailconnexion') {
-            (new detailController())->detailconnexion($postData);
             exit; // to review
         }
     }
