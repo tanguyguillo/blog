@@ -91,7 +91,7 @@ class DetailController extends Controller
      * @param [type] $postData
      * @return void
      */
-    public function DetailConnexion($postData)
+    public function DetailConnexion($postData, $messsage = '')
     {
         // if exist
         if (isset($postData['user_login']) &&  isset($postData['user_pass'])) {
@@ -99,6 +99,10 @@ class DetailController extends Controller
             $UsersRepository = new UsersRepository();
             $UsersRepository->connection = $connection;
             $users = $UsersRepository->getUsers(); // return an array
+
+            // to avod a bug because the url can to not change
+            $messsageReadle = $messsage;
+            $messsageReadle = 'abort';
 
             // if correspondance email + password ( $_POST and DB )   // todo / see sha 512
             foreach ($users as $user) {
@@ -124,11 +128,12 @@ class DetailController extends Controller
                 }
             }
         }
-        // if i m here : there is an connection error
-        // $_SESSION['BOX'] = "";  // to review
-        $message = 'Désolé, les données de connection sont incorrectes';
-        // we go bach to connexion page
-        (new ConnexionController())->connexion($message)();
+        // to avod a bug because the url can to not change
+        if ($messsageReadle != 'abort') {
+            $message = 'Désolé, les données de connection sont incorrectes';
+            // we go bach to connexion page
+            (new ConnexionController())->connexion($message)();
+        }
     }
 
 
