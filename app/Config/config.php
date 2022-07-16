@@ -10,4 +10,4 @@ define('BASE_URL', 'http://blog-omega.local/');
 // error_reporting(E_ALL);
 
 // deactivationofmagic_quotes_gpc ?... see later
-ini_set('magic_quotes_gpc', 0);
+//ini_set('magic_quotes_gpc', 0);

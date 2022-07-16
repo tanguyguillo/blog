@@ -112,7 +112,7 @@ class DetailController extends Controller
 
                     $message = $user["firstNameUser"];
 
-                    // we return to the page detail with the good id
+                    // we return to the page detail with the good id // not a good idee -> go back to posts
                     $this->Detail($postData['postId'], $message);
                 }
             }
@@ -125,20 +125,6 @@ class DetailController extends Controller
         }
     }
 
-    /**
-     * function to signOut
-     *
-     * @return void
-     */
-    public function signOut()
-    {
-        if ($_SESSION['LOGGED_USER'] = true) {
-            session_destroy();
-            // for this page a simple string...
-            $message = 'Vous êtes déconnecté';
-            $this->twig->display('info/info.html.twig', compact('message'));
-        }
-    }
 
     /**
      * function to make a string reable by twig

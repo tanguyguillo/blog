@@ -36,13 +36,13 @@ try {
     if (isset($_GET['owp']) && $_GET['owp'] !== '') {
         // from page connexion : redirection to comment
         if ($_GET['owp'] === 'detailconnexion') {
-            (new detailController())->detailconnexion($postData);  // strip_tags(htmlspecialchar ?
+            (new DetailController())->detailconnexion($postData);  // strip_tags(htmlspecialchar ?
             exit; // to review
         }
 
         //signout
         if ($_GET['owp'] === 'se-deconnectez') {
-            (new detailController())->signOut();  // strip_tags(htmlspecialchar ?
+            (new ConnexionController())->signOut();
             exit; // to review
         }
 
