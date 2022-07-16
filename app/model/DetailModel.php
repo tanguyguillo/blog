@@ -5,22 +5,6 @@ namespace Application\Model\DetailModel;
 // use Application\Core\Database\Database\DatabaseConnection; still in main controler
 
 
-/**
- * class just to keep in mind the attribut's names of the bdd
- */
-// class DetailNamingBase
-// {
-//     /// inside blogPost table
-//     public $idPost;
-//     public $postTitle;
-//     public $postChapo;
-//     public $postContent;
-//     public $postCreated;
-//     public $postStatus;
-//     public $postName;
-//     public $postModified;
-//     public $user_id;
-// }
 
 class Detail
 {

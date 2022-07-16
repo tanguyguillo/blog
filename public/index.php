@@ -34,9 +34,14 @@ $postData = $_POST; // for user's
 try {
     // just for instance....
     if (isset($_GET['owp']) && $_GET['owp'] !== '') {
+
         // from page connexion : redirection to comment
         if ($_GET['owp'] === 'detailconnexion') {
+
+            var_dump($postData);
+
             (new DetailController())->detailconnexion($postData);  // strip_tags(htmlspecialchar ?
+            // (new PostsController())->executePosts();
             exit; // to review
         }
 

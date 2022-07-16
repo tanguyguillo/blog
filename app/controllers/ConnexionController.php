@@ -9,7 +9,6 @@ use Application\Controllers\Controller;
  */
 class ConnexionController extends Controller
 {
-
   /**
    * function connexion page
    *
@@ -36,9 +35,14 @@ class ConnexionController extends Controller
   public function signOut()
   {
     if ($_SESSION['LOGGED_USER'] = true) {
+
+      // var_dump(json_encode($_SESSION . ['LOGGED_USER']));  // see later
+
+      $message = 'Voila, ' . "c'est fait, " . 'vous êtes déconnecté';
+
       session_destroy();
       // for this page a simple string...
-      $message = 'Voila, vous êtes déconnecté';
+      // $_SESSION['LOGGED_USER'] 0 or 1   $_SESSION['LOGGED_USER'] =  $user["firstNameUser"];
       $this->twig->display('info/info.html.twig', compact('message'));
     }
   }

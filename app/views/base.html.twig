@@ -53,7 +53,7 @@
     <meta name="theme-color" content="#fafafa">
 </head>
 
-<body class="backgroundNavyBlue">
+<body>
     
     <span id="home"></span>
 
@@ -68,7 +68,13 @@
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button> 
                 <a class = "navbar-brand"  href= "index.php#page-top-logo"><img class="owp-logo" src="img/logo-small.png" alt="visuel logo omegawebprod" ></a>
-                <a class="navbar-brand" href="index.php?owp=bloglist"> &lt; Bienvenue &gt;</a> 
+                <a class="navbar-brand" href="index.php?owp=bloglist"> &lt; Bienvenue &gt;
+                {# to know how is connected, show only if connected #}
+                    {% if session.LOGGED_USER != '' %}
+                        <small> {{ session.LOGGED_USER }} </small> 
+                    {% endif %}
+                </a> 
+
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -176,12 +182,13 @@
                         OmegaWebProd Copyright &copy;
                         {{ "now"|date("Y") }}
                     </span>
-                    <span class="col-lg-4 hidden">Connecté : {{session.LOGGED_USER }} </span>
-                    </span class="col-lg-4">
+                    
+                    {# to know how is connected, show only if connected #}
+                    {# {% if session.LOGGED_USER != '' %}
+                        <span >Connecté: {{ session.LOGGED_USER }} <span> | 
+                    {% endif %} #}
 
-                    {# <span class="small">Connecté: {{ session.LOGGED_USER }} <span> | #}
-
-                    <a href="index.php?owp=connexion#connexion">Se connecter</a>  |
+                    {# <a href="index.php?owp=connexion#connexion">Se connecter</a>  | posing issue with return #}
                     <a href="#confidential" class="portfolio-link" data-toggle="modal">Politique de confidentialité</a>
                     | <a href="#">Administration</a>
                     </span>

@@ -34,6 +34,9 @@ class DetailController extends Controller
      */
     public function Detail($identifier, $message = '')
     {
+
+        //var_dump("$identifier :" . $identifier);
+
         //verify is $identifier is a "string(integer)" if not display a message
         if ($this->isInteger($identifier) == false) {
             $message = "l'identifiant de la page doit être un chiffre";
@@ -63,7 +66,8 @@ class DetailController extends Controller
         $postComments  = $postComments->getComments($identifier); // return an array
         $postComments = json_decode(json_encode($postComments), true);
 
-        $baseUrl = BASE_URL; // used for return button
+        $baseUrl = BASE_URL; // used for return button after connexion
+        $_SESSION['LOGGED_PAGE_ID'] = $identifier; // used for return button button after connexion
 
         $arrayMessage = $this->readleByTwig($message);
 
@@ -109,11 +113,14 @@ class DetailController extends Controller
 
                     $_SESSION['LOGGED_USER'] =  $user["firstNameUser"];
                     $_SESSION['LOGGED_EMAIL'] = $postData['user_login'];
+                    $_SESSION['LOGGED_PAGE_ID'] = $postData['postId'];
 
                     $message = $user["firstNameUser"];
 
                     // we return to the page detail with the good id // not a good idee -> go back to posts
                     $this->Detail($postData['postId'], $message);
+
+                    //$this->twig->display('detail/detail.html.twig', compact('detail', 'user', 'postComments', 'baseUrl', 'identifier', 'arrayMessage'));
                 }
             }
         }
