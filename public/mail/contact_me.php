@@ -20,7 +20,7 @@ $message = strip_tags(htmlspecialchars($_POST['message']));
 // Create the email and send the message
 $to = 'blog-posts@omegawebprod.com'; // Add your email address inbetween the '' replacing yourname@yourdomain.com - This is where the form will send a message to.
 $email_subject = "Contact blog.omegawebprod.com:  $name";
-$email_body = "Une nouvelle demande d'info.\n\n" . "les details:\n\nName: $name\n\nEmail: $email_address\n\nPhone: $phone\n\nMessage:\n$message";
+$email_body = "Une nouvelle demande d'information utilisateur\n\n" . "les details:\n\nNom: $name\n\nEmail: $email_address\n\nTelephone: $phone\n\nMessage:\n$message";
 $headers = "From: noreply@blog.omegawebprod.com\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
 $headers .= "Reply-To: $email_address";
 mail($to, $email_subject, $email_body, $headers);
