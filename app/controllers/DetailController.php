@@ -40,23 +40,15 @@ class DetailController extends Controller
             $this->twig->display('error/error.html.twig', compact('message'));
             exit;
         }
-
         // verification .... to see   
         //$this->isInteger($identifier); // if not redirection on error page
-
         $connection = new DatabaseConnection();
 
         // 1 - Detail
         $identifier = htmlspecialchars($identifier);
         $postDetail = new Detail();
         $postDetail->connection = $connection;
-
-        //$max = $postDetail->getMaxAndOpen(); // todo later
-
         $detail =   $postDetail->getPost($identifier); // return an array
-        // turn in Array
-
-        //$blog_post_id = $detail['blog_post_id']; // here the id of the post : blog_post_id
 
         // 2 - user
         $connection = new DatabaseConnection();
@@ -70,13 +62,10 @@ class DetailController extends Controller
         $postComments->connection = $connection;
         $postComments  = $postComments->getComments($identifier); // return an array
         $postComments = json_decode(json_encode($postComments), true);
+
         $baseUrl = BASE_URL; // used for return button
 
-        $messageReadle = $message; // come from DetailConnexion($postData)
-        // to make readeableby twig
-        $arrayMessage = array(
-            "message" => $messageReadle
-        );
+        $arrayMessage = $this->readleByTwig($message);
 
         $this->twig->display('detail/detail.html.twig', compact('detail', 'user', 'postComments', 'baseUrl', 'identifier', 'arrayMessage'));
     }
@@ -136,6 +125,36 @@ class DetailController extends Controller
         }
     }
 
+    /**
+     * function to signOut
+     *
+     * @return void
+     */
+    public function signOut()
+    {
+        if ($_SESSION['LOGGED_USER'] = true) {
+            session_destroy();
+            // for this page a simple string...
+            $message = 'Vous êtes déconnecté';
+            $this->twig->display('info/info.html.twig', compact('message'));
+        }
+    }
+
+    /**
+     * function to make a string reable by twig
+     *
+     * @param string $message
+     * @return array
+     */
+    public function readleByTwig(string $message)
+    {
+        // to make readeableby twig
+        $messageReadle = $message;
+        $arrayMessage = array(
+            "message" => $messageReadle
+        );
+        return $arrayMessage;
+    }
 
     /**
      * function return true if number false otherwise

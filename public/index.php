@@ -16,6 +16,7 @@ use Application\Controllers\DetailController\DetailController;
 use Application\Controllers\InsscriptionController\InscriptionController;
 use Application\Controllers\connexion\ConnexionController;
 
+
 // Config
 require_once(ROOT . '/app/config/config.php');
 // requires
@@ -36,6 +37,12 @@ try {
         // from page connexion : redirection to comment
         if ($_GET['owp'] === 'detailconnexion') {
             (new detailController())->detailconnexion($postData);  // strip_tags(htmlspecialchar ?
+            exit; // to review
+        }
+
+        //signout
+        if ($_GET['owp'] === 'se-deconnectez') {
+            (new detailController())->signOut();  // strip_tags(htmlspecialchar ?
             exit; // to review
         }
 

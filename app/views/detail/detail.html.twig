@@ -37,8 +37,6 @@
 </header>
 {% endblock %}
 
-{# postComments
-{# id CommentCreated commentStatus commentContent user_id blog_post_id blog_post_user_id #}
 {% block myComments %}
 <div class="d-flex flex-column min-vh-100">
     <div class="container">
@@ -72,8 +70,9 @@
                             <br>
 
                             <div class="form-group">
-                                    <button type="submit" class="btn btn-primary btn-lg disabled">Envoyer votre commentaire</button>
-                                    {# <p><small><i>Votre commentaire sera soumis à une validation de nos modérateurs avant affichage</i></small></p> #}
+                                    {# <button type="submit" class="btn btn-primary btn-lg disabled">Envoyer votre commentaire</button> #}
+                                    <button type="submit" class="btn btn-primary btn-lg">Envoyer votre commentaire</button>
+                                    <p><small><i>Votre commentaire sera soumis à une validation de nos modérateurs avant affichage</i></small></p>
                             </div>
                         </form>
 

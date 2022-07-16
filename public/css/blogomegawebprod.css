@@ -1,4 +1,4 @@
-header {
+/* header {
   background: pink !;
 }
 
@@ -18,9 +18,20 @@ header {
 }
 
 .backgroundNavyBlue {
-  background-color: #233140 !important
+  background-color: #233140 !important;
 }
 
 .backgroundWhite {
-  background-color: white !important
+  background-color: white !important;
+} */
+
+.loggedWhite {
+  background-color: white !important;
+}
+
+.owp-logo {
+  margin-top: -10px;
+  width: 40px;
+  height: 40px;
+  /* border-radius: 50%; */
 }

@@ -1,21 +1,21 @@
 <?php
 
-namespace Application\Controllers\ErrorController;
+namespace Application\Controllers\InfoController;
 
 use Application\Controllers\Controller;
 
-class ErrorController extends Controller
+class InfoController extends Controller
 {
     /**
-     * error page
+     * error information
      *
-     * @param [string] $errorMessager
+     * @param [string] $message
      * @return void
      */
     public function execute(string $errorMessage)
     {
         $this->twig->display(
-            'error/error.html.twig',
+            'info/info.html.twig',
             [
                 'message' => $errorMessage
             ]
