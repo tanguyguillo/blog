@@ -55,7 +55,7 @@
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Numéro de téléphone</label>
-                                <input type="tel" class="form-control" placeholder="Numéro de téléphone" id="phone" required data-validation-required-message="Veuillez entrer votre numéro de téléphone.">
+                                <input type="text" pattern="^[0-9]{10}$" data-validation-pattern-message="10 chiffres nécessaire" class="form-control" placeholder="Numéro de téléphone" id="phone" required data-validation-required-message="Veuillez entrer votre numéro de téléphone.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
