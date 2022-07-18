@@ -74,17 +74,17 @@ class DetailController extends Controller
         $this->twig->display('detail/detail.html.twig', compact('detail', 'user', 'postComments', 'baseUrl', 'identifier', 'arrayMessage'));
     }
 
-
     /**
      *  function to get all data which is useful - EXAMPLE  string(10) "tsd@fqd.fr" string(21) "sffqddfdqfqdfdqsffdqs"
      * htmlspecialchars($_COOKIE["name"])
      * time() + 365 * 24 * 3600 : one year
      * time() + 3600 : one hour ?
      *
-     * @param [type] $postData
+     * @param [array] $postData
+     * @param [string] $messsage
      * @return void
      */
-    public function DetailConnexion($postData, $messsage = '')
+    public function DetailConnexion(array $postData, string $messsage = '')
     {
         // if exist
         if (isset($postData['user_login']) &&  isset($postData['user_pass'])) {
@@ -115,14 +115,11 @@ class DetailController extends Controller
                     $_SESSION['LOGGED_USER_ID'] = $user['id'];
 
                     $_SESSION['LOGGED_EMAIL'] = $postData['user_login'];
-                    $_SESSION['LOGGED_PAGE_ID'] = $postData['postId'];  // isuue....
-
+                    $_SESSION['LOGGED_PAGE_ID'] = $postData['postId'];
                     $message = $user["firstNameUser"];
 
                     // we return to the page detail with the good id // not a good idee -> go back to posts
                     $this->Detail($postData['postId'], $message);
-
-                    //$this->twig->display('detail/detail.html.twig', compact('detail', 'user', 'postComments', 'baseUrl', 'identifier', 'arrayMessage'));
                 }
             }
         }
@@ -154,10 +151,10 @@ class DetailController extends Controller
     /**
      * function return true if number otherwise false
      *
-     * @param [type] $identifier
+     * @param [string] $identifier
      * @return bool
      */
-    public function isInteger($identifier)
+    public function isInteger($identifier): string
     {
         $identifier = filter_var($identifier, FILTER_VALIDATE_INT);
         return ($identifier !== FALSE);
