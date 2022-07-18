@@ -3,11 +3,11 @@ define('USER', "blog");
 define('PASSWD', "blog");
 define('SERVER', "localhost");
 define('BASE', "blog");
-
 define('BASE_URL', 'http://blog-omega.local/');
 
-// ini_set("display_errors", 1);  // not necessary for me
-// error_reporting(E_ALL);
+// on production need to make it on 0
+// on production need to make DEBUG on 0
+ini_set('display_errors', '1');
 
-// deactivationofmagic_quotes_gpc ?... see later
-//ini_set('magic_quotes_gpc', 0);
+// deactivationofmagic_quotes_gpc
+ini_set('magic_quotes_gpc', 0);
