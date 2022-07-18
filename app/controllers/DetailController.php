@@ -15,7 +15,7 @@ use Application\Controllers\connexion\ConnexionController;
 class DetailController extends Controller
 {
 
-    // public $message;
+    //public $message;
     // public $hash;  // conflict with twig ?
     // public function __construct()
     // {
@@ -112,8 +112,10 @@ class DetailController extends Controller
                     $messsageReadle = 'abort';
 
                     $_SESSION['LOGGED_USER'] =  $user["firstNameUser"];
+                    $_SESSION['LOGGED_USER_ID'] = $user['id'];
+
                     $_SESSION['LOGGED_EMAIL'] = $postData['user_login'];
-                    $_SESSION['LOGGED_PAGE_ID'] = $postData['postId'];
+                    $_SESSION['LOGGED_PAGE_ID'] = $postData['postId'];  // isuue....
 
                     $message = $user["firstNameUser"];
 
@@ -150,7 +152,7 @@ class DetailController extends Controller
     }
 
     /**
-     * function return true if number false otherwise
+     * function return true if number otherwise false
      *
      * @param [type] $identifier
      * @return bool

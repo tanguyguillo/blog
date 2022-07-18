@@ -58,27 +58,34 @@
 <div class="d-flex flex-column min-vh-100">
             <div class="container">
                     <h4 class="text-center">Ajouter un commentaire</h4>
-                    <!-- form comment -->
-                        <form name="giveComment" id="giveCommentForm">
-                            <div class="row control-group">
-                                <div class="form-group col-xs-12 floating-label-form-group controls">
-                                    <label>Votre commentaire</label>
-                                    <textarea rows="5" class="form-control" placeholder = "rédigez votre commentaire"  id="giveComment" required data-validation-required-message="Veuillez entrer un commentaire."></textarea>
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                            </div>
-                            <br>
-
+                            {# form comment #}
+                            <form action="{{ baseUrl }}index.php?owp=faire-un-commentaire" method="post">    
+                                
+                            {# Comment input #}
                             <div class="form-group">
-                                    <button type="submit" class="btn btn-primary btn-lg">Envoyer votre commentaire</button>
-                                    <p><small><i>Votre commentaire sera soumis à une validation de nos modérateurs avant affichage</i></small></p>
+                                <label for="userComment">Votre commentaire sur cet article</label>
+                                <textarea id="commentPost" name="commentPost" rows="5" class="form-control" placeholder = "rédigez votre commentaire" required data-validation-required-message="Veuillez entrer un commentaire."></textarea>
+                                <br>
+                            </div>
+                            {# id current article #}
+                            <div class="form-group">
+                                <input id="postId" name="postId" type="hidden" value={{ session.LOGGED_PAGE_ID }}>
+                            </div>
+                             {# id current user #}
+                            <div class="form-group">
+                                <input id="idUser" name="idUser" type="hidden" value={{ session.LOGGED_USER_ID }}>
+                            </div> 
+                            {# Button #}
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success btn-lg btn-block">Envoyer votre commentaire</button>
+                                <p><small><i>Votre commentaire sera soumis à une validation de nos modérateurs avant affichage</i></small></p>
                             </div>
                         </form>
-
-                        <a href="{{ app.request.getBaseURL() }} index.php?owp=connexion&id={{detail.idPost}}"><button type="submit" class="btn btn-success btn-lg">Se connecter</button></a>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a  href="{{ app.request.getBaseURL() }} index.php?owp=inscription"><button type="submit" class="btn btn-success btn-lg">Créer son compte</button></a>
-                        {# <p><small><i>Pour écrire un commentaire</i></small></p> #}
+                        <br>
+                        {# other button #}
+                        <a href="{{ app.request.getBaseURL() }} index.php?owp=connexion&id={{detail.idPost}}"><button type="submit" class="btn btn-success btn-lg btn-block">Se connecter</button></a>
+                        <br>
+                        <a href="{{ app.request.getBaseURL() }} index.php?owp=inscription"><button type="submit" class="btn btn-success btn-lg btn-block">Créer son compte</button></a>
             </div>
     </div>
 

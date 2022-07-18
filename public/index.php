@@ -10,6 +10,7 @@ if (isset($_COOKIE['LOGGED_USER']) || isset($_SESSION['LOGGED_USER'])) {
     ];
 }
 
+use Application\Controllers\CommentController\CommentController;
 use Application\Controllers\HomepageController\HomepageController;
 use Application\Controllers\PostsController\PostsController;
 use Application\Controllers\DetailController\DetailController;
@@ -32,34 +33,34 @@ require_once(ROOT . '/vendor/autoload.php');  // /Users/Tanguy/Documents/sites/b
 
 $postData = $_POST; // for user's
 try {
-    // just for instance....
-    if (isset($_GET['owp']) && $_GET['owp'] !== '') {
 
+    if (isset($_GET['owp']) && $_GET['owp'] !== '') {
         // from page connexion : redirection to comment
         if ($_GET['owp'] === 'detailconnexion') {
-
-            var_dump($postData);
-
-            (new DetailController())->detailconnexion($postData);  // strip_tags(htmlspecialchar ?
-            // (new PostsController())->executePosts();
-            exit; // to review
+            (new DetailController())->detailconnexion($postData);
+            exit;
         }
-
         //signout
         if ($_GET['owp'] === 'se-deconnectez') {
             (new ConnexionController())->signOut();
-            exit; // to review
+            exit;
         }
-
+        //inscription
         if ($_GET['owp'] === 'inscription') {
             (new InscriptionController())->inscription();
-            exit; // to review
+            exit;
         }
+        // Connexion
         if ($_GET['owp'] === 'connexion') {
             (new ConnexionController())->connexion();
-            exit; // to review
+            exit;
         }
-    }
+        // setcomment from page detail
+        if ($_GET['owp'] === 'faire-un-commentaire') {
+            (new CommentController())->SetComment($postData);
+            exit;
+        }
+    } // end (isset($_GET['owp']) && $_GET['owp'] !== ''
 
     if (isset($_GET['owp']) && $_GET['owp'] !== '') {
         if ($_GET['owp'] === 'bloglist') {

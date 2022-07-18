@@ -61,4 +61,4 @@ class Comment
         }
         return $postComments;
     }
-}
+} // end class

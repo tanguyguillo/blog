@@ -1,8 +1,11 @@
 {
-    "name": "tanguy/blog-omega",
+    "name": "blog/omegawebproduct",
     "autoload": {
         "psr-4": {
-            "APP\\": "app/"
+            "Application\\": "app/",
+            "Application\\Controllers\\": "app/controllers/",
+            "Application\\Core\\Database\\": "app/core/Database/",
+            "Application\\Models\\": "app/models/"
         }
     },
     "authors": [
