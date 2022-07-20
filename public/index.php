@@ -40,7 +40,6 @@ foreach ($postData as $key => $value) {
 }
 
 try {
-
     if (isset($_GET['owp']) && $_GET['owp'] !== '') {
         // from page connexion : redirection to comment
         if ($_GET['owp'] === 'detailconnexion') {
