@@ -13,13 +13,17 @@ class InscriptionController extends Controller
 
   public function inscription()
   {
-    //$connection = new DatabaseConnection(); // from models
-
     $this->twig->display('inscription/inscription.html.twig');
   }
 
-
-  public function connexion()
+  /**
+   * Undocumented function
+   *
+   * @return void
+   */
+  public function CreateAccount()
   {
+    var_dump("CreateAccount");
+    exit;
   }
 }

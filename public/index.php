@@ -60,6 +60,11 @@ try {
             (new CommentController())->SetComment($postData);
             exit;
         }
+        // Create an user account
+        if ($_GET['owp'] === 'creation-d-un-compte') {
+            (new InscriptionController())->CreateAccount();
+            exit;
+        }
     } // end (isset($_GET['owp']) && $_GET['owp'] !== ''
 
     if (isset($_GET['owp']) && $_GET['owp'] !== '') {

@@ -15,29 +15,41 @@
     <div class="container">
         <h4 class="text-center">Inscrivez vous</h4>
         <p><span class="text-center">Pour pouvoir laisser un commentaire, inscrivez vous</span></p>
-        <form action="#" method="post">
+
+
+        <form action="{{ baseUrl }}index.php?owp=creation-d-un-compte" method="post">     
             <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
+            
+            <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Entrez votre Email">
+                <div class="form-text">Votre Email ne sera ni partagé ni vendu</div>
+            </div>
 
-
-            <input type="email" class="form-control" id="email" name="email" placeholder="Entrez votre Email">
-            <div class="form-text">Votre Email ne sera ni partagé ni vendu</div>
+            <div class="form-group">
+                <label for="pass" class="form-label">Mot de passe</label>
+                <input type="password" class="form-control" id="pass" name="password" minlength="12" required placeholder="Inventez votre mot de passe">
+                <div class="form-text">Au minimum 12 caractères par exemple : "c'est une belle journée aujoud'hui'. Facile à retenir et pas déja utilisé sur un autre site</div>
+            </div>
+            <br>
+            
+            <div class="form-group">
+                <label for="fname" class="form-label">Prénom</label>
+                <input type="fname" class="form-control" id="fname" Prenom="fname" placeholder="Votre prénom">
+                <div class="form-text">Votre Prénom</div>
+            </div>
             <br>
 
-            <label for="pass" class="form-label">Mot de passe</label>
-            <input type="password" class="form-control" id="pass" name="password" minlength="12" required placeholder="Inventez votre mot de passe">
-            <div class="form-text">Au minimum 12 caractères par exemple : "c'est une belle journée aujoud'hui'. Facile à retenir et pas déja utilisé sur un autre site</div>
+            <div class="form-group">
+                <label for="surName" class="form-label">Nom</label>
+                <input type="fname" class="form-control" id="fname" name="fname" placeholder="Votre nom">
+                <div class="form-text">Votre Nom</div>
+            </div>
             <br>
 
-            <label for="fname" class="form-label">Prénom</label>
-            <input type="fname" class="form-control" id="fname" Prenom="fname" placeholder="Votre prénom">
-            <div class="form-text">Votre Prénom</div>
-            <br>
-            <label for="surName" class="form-label">Nom</label>
-            <input type="fname" class="form-control" id="fname" name="fname" placeholder="Votre nom">
-            <div class="form-text">Votre Nom</div>
-            <br>
-            <button type="submit" class="btn btn-success btn-lg">Envoyer</button>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success btn-lg">Envoyer</button>
+            </div>
         </form>
         <br />
     </div>
@@ -46,5 +58,9 @@
 </div>
 <br>
 {% endblock %}
+
+
+
+
 
 

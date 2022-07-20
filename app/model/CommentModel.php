@@ -2,9 +2,6 @@
 
 namespace Application\Model\CommentModel;
 
-
-
-
 /**
  * class of blog's comments
  */
@@ -81,7 +78,8 @@ class Comment
         $blog_post_user_id = $postId;  // see the blog designer if question on DB
         var_dump($blog_post_user_id);
 
-        string(1) "3" string(19) "2022-07-18 05:19:58" string(22) "waiting for validation" string(9) "xcsqcccsq" string(1) "2" string(1) "3" string(1) "3"
+        echo "<br><br> Cette partie est en cours de développement....";
+
         exit;
 
         // var_dump($blog_post_user_id, $CommentCreated, $commentStatus, $user_id, $commentContent, $blog_post_id);

@@ -19,8 +19,8 @@
         <strong> {{ arrayMessage.message}} </strong> 
     </div>
     {% endif %}
-
-    <p>Article de retour après connection : ID :   {{ session.LOGGED_PAGE_ID }}  </p>  
+    
+    {# <p>Article de retour après connection : ID :   {{ session.LOGGED_PAGE_ID }}</p>   #}
     <!-- Only HTTPS crypt POST data so DO use it -->
             <form action="{{ baseUrl }}index.php?owp=detailconnexion" method="post">     
 
@@ -42,12 +42,14 @@
             </div>
             <button type="submit" class="btn btn-success btn-lg btn-block">Se connecter</button>
 
-            <div class="form-group" id="connexion"></div>
+            <div class="form-group" id="deconnexion"></div>
                 <a href="index.php?owp=se-deconnectez" class="btn btn-danger  btn-lg btn-block" role="button" aria-pressed="true">Se déconnecter</a>
             </div>
         </form>
         <br />
+
     </div>
+    
 </div>
 </div>
 </div>
