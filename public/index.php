@@ -35,6 +35,7 @@ foreach ($postData as $key => $value) {
     // to use it later...
     if ($key   === 'password') {
         $hashed = crypt($value, 'anythingyouwant_$' . SALT);
+        //$value = $hashed;  // reception  $hashed on connect
     }
     $postData[$key]  = strip_tags(htmlspecialchars($value));
 }

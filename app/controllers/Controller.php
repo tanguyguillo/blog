@@ -56,4 +56,17 @@ abstract class Controller
         }
         return true;
     }
+
+    /**
+     * 
+     */
+    public function disconnect()
+    {
+        if ($_SESSION['LOGGED_USER'] = true) {
+            session_destroy();
+            $_SESSION['LOGGED_USER'] = false; // for twig view
+            var_dump('yes');
+            exit;
+        }
+    }
 }

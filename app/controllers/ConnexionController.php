@@ -46,9 +46,7 @@ class ConnexionController extends Controller
    */
   public function signOutForInscription()
   {
-    if ($_SESSION['LOGGED_USER'] = true) {
-      session_destroy();
-      $_SESSION['LOGGED_USER'] = false; // for twig view
-    }
+    $_SESSION['LOGGED_USER']  = ''; // for twig view
+    session_destroy();
   }
 }

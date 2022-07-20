@@ -32,6 +32,8 @@ class InscriptionController extends Controller
     if (isset($postData['user_login']) &&  isset($postData['user_pass'])) {
       // you have to not be connected to inscript
       (new ConnexionController())->signOutForInscription();
+
+      //$this->disconnect(); // from main controller
     }
     $connection = new DatabaseConnection();
     $UserRepository = new UsersRepository();
