@@ -29,9 +29,16 @@ require_once(ROOT . '/vendor/autoload.php');  // /Users/Tanguy/Documents/sites/b
  * $identifier is a string... but also integer like "3"
  */
 
-// todo use isInteger function
+// verification $_POST : strip_tags(htmlspecialchars() + password $hashed
+$postData = $_POST;
+foreach ($postData as $key => $value) {
+    // to use it later...
+    if ($key   === 'password') {
+        $hashed = crypt($value, 'anythingyouwant_$' . SALT);
+    }
+    $postData[$key]  = strip_tags(htmlspecialchars($value));
+}
 
-$postData = $_POST; // for user's
 try {
 
     if (isset($_GET['owp']) && $_GET['owp'] !== '') {
@@ -45,7 +52,7 @@ try {
             (new ConnexionController())->signOut();
             exit;
         }
-        //inscription
+        //inscription : (not create an account just sign in)
         if ($_GET['owp'] === 'inscription') {
             (new InscriptionController())->inscription();
             exit;
@@ -62,10 +69,10 @@ try {
         }
         // Create an user account
         if ($_GET['owp'] === 'creation-d-un-compte') {
-            (new InscriptionController())->CreateAccount();
+            (new InscriptionController())->CreateAccount($postData);
             exit;
         }
-    } // end (isset($_GET['owp']) && $_GET['owp'] !== ''
+    }
 
     if (isset($_GET['owp']) && $_GET['owp'] !== '') {
         if ($_GET['owp'] === 'bloglist') {
