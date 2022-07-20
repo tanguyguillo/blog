@@ -34,9 +34,6 @@ class DetailController extends Controller
      */
     public function Detail($identifier, $message = '')
     {
-
-        //var_dump("$identifier :" . $identifier);
-
         //verify is $identifier is a "string(integer)" if not display a message
         if ($this->isInteger($identifier) == false) {
             $message = "l'identifiant de la page doit être un chiffre";
@@ -118,7 +115,7 @@ class DetailController extends Controller
                     $_SESSION['LOGGED_PAGE_ID'] = $postData['postId'];
                     $message = $user["firstNameUser"];
 
-                    // we return to the page detail with the good id // not a good idee -> go back to posts
+                    // we return to the page detail with the good id 
                     $this->Detail($postData['postId'], $message);
                 }
             }
@@ -130,7 +127,6 @@ class DetailController extends Controller
             (new ConnexionController())->connexion($message)();
         }
     }
-
 
     /**
      * function to make a string reable by twig

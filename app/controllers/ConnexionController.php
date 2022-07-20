@@ -38,4 +38,17 @@ class ConnexionController extends Controller
       $this->twig->display('info/info.html.twig', compact('message'));
     }
   }
+
+  /**
+   * signOut before insctiption
+   *
+   * @return void
+   */
+  public function signOutForInscription()
+  {
+    if ($_SESSION['LOGGED_USER'] = true) {
+      session_destroy();
+      $_SESSION['LOGGED_USER'] = false; // for twig view
+    }
+  }
 }

@@ -68,4 +68,30 @@ class UsersRepository
         $users = json_decode(json_encode($users), true);
         return $users;
     }
+
+    /**
+     * function to create a new user
+     *
+     * @param [array] $postData
+     * @return void
+     */
+    public function createUser(array $postData)
+    {
+        $emailUser = $postData["email"];
+        $passWordUser = $postData["password"];
+        $firstNameUser = $postData["fname"];
+        $surNameUser = $postData["lname"];
+        $roleUser = "User";
+
+        try {
+            $statement = $this->connection->getConnection()->query(
+                "INSERT INTO user (emailUser, passWordUser, firstNameUser, surNameUser, titleUser, telGsmUser, roleUser, pictureOrLogo)  VALUES ('$emailUser', '$passWordUser', '$firstNameUser', '$surNameUser', NULL, NULL, '$roleUser', NULL);"
+            );
+        } catch (Exception $e) {
+            $errorMessage = $e->getMessage();
+            require(ROOT . '/app/templatesError/error.php');
+            return false;
+        }
+        return true;
+    }
 }
