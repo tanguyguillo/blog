@@ -7,7 +7,7 @@ use Application\Controllers\Controller;
 class InfoController extends Controller
 {
     /**
-     * error information
+     * information
      *
      * @param [string] $message
      * @return void
