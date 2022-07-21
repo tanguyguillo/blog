@@ -26,17 +26,23 @@ abstract class Controller
         // where the twig views
         $this->loader = new FilesystemLoader(ROOT . '/app/Views');
         // env twig
-        //$this->twig = new Environment($this->loader);  // prod
+        // put true for debug // prod
         $this->twig = new Environment(
             $this->loader,
             [
-                'debug' => true
+                'debug' => false
             ]
         );
 
         $this->twig->addGlobal('session', $_SESSION);
     }
 
+    /**
+     * Undocumented function not used yet
+     *
+     * @param array $array
+     * @return void
+     */
     public function deletePostsIfNotValid(array $array)
     {
     }
@@ -65,7 +71,7 @@ abstract class Controller
         if ($_SESSION['LOGGED_USER'] = true) {
             session_destroy();
             $_SESSION['LOGGED_USER'] = false; // for twig view
-            var_dump('yes');
+            // var_dump('yes');
             exit;
         }
     }
