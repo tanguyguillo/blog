@@ -32,9 +32,10 @@ class ConnexionController extends Controller
    */
   public function signOut()
   {
-    if ($_SESSION['LOGGED_USER'] = true) {
+    if ($_SESSION['LOGGED_USER'] == true) {
       $message = 'Voila, ' . "c'est fait, " . 'vous êtes déconnecté';
       session_destroy();
+      $_SESSION['LOGGED_USER']  = false;
       $this->twig->display('info/info.html.twig', compact('message'));
     }
   }
@@ -46,7 +47,7 @@ class ConnexionController extends Controller
    */
   public function signOutForInscription()
   {
-    $_SESSION['LOGGED_USER']  = ''; // for twig view
+    $_SESSION['LOGGED_USER']  = false; // for twig view
     session_destroy();
   }
 }

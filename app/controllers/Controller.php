@@ -68,7 +68,7 @@ abstract class Controller
      */
     public function disconnect()
     {
-        if ($_SESSION['LOGGED_USER'] = true) {
+        if ($_SESSION['LOGGED_USER'] == true) {
             session_destroy();
             $_SESSION['LOGGED_USER'] = false; // for twig view
             // var_dump('yes');

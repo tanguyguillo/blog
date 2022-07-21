@@ -35,11 +35,14 @@ class DetailController extends Controller
     public function Detail($identifier, $message = '')
     {
         //verify is $identifier is a "string(integer)" if not display a message
-        if ($this->isInteger($identifier) == false) {
-            $message = "l'identifiant de la page doit être un chiffre";
-            $this->twig->display('error/error.html.twig', compact('message'));
-            exit;
-        }
+
+        $this->isInteger($identifier);
+
+        // if ($this->isInteger($identifier) == false) {
+        //     $message = "l'identifiant de la page doit être un chiffre";
+        //     $this->twig->display('error/error.html.twig', compact('message'));
+        //     exit;
+        // }
         // verification .... to see   
         //$this->isInteger($identifier); // if not redirection on error page
         $connection = new DatabaseConnection();
@@ -108,7 +111,8 @@ class DetailController extends Controller
                     $messsageReadle = $messsage;
                     $messsageReadle = 'abort';
 
-                    $_SESSION['LOGGED_USER'] =  $user["firstNameUser"];
+                    $_SESSION['LOGGED_USER'] =  true;
+                    $_SESSION['LOGGED_USER_NAME'] =  $user["firstNameUser"];
                     $_SESSION['LOGGED_USER_ID'] = $user['id'];
 
                     $_SESSION['LOGGED_EMAIL'] = $postData['user_login'];
