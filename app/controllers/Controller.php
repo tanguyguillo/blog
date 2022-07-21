@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Application\Controllers;
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
+use Application\Core\Database\Database\DatabaseConnection;
 
 /**
  * make working twig by heritage
@@ -14,55 +17,62 @@ abstract class Controller
     protected $twig;
 
     /**
-     * Undocumented function
+     * main controller
+     * integration twig
+     * 
      */
     public function __construct()
     {
-        $this->loader = new FilesystemLoader(ROOT . '/app/views');
+        // where the twig views
+        $this->loader = new FilesystemLoader(ROOT . '/app/Views');
         // env twig
-        $this->twig = new Environment($this->loader);
-        /* or if we want a cache for twig
-                *$this->twig = new \Twig\Environment(loader, [
-                        'cache' => ROOT . '/compilation_cache',
-                ]);*/
+        // put true for debug // prod
+        $this->twig = new Environment(
+            $this->loader,
+            [
+                'debug' => false
+            ]
+        );
+
+        $this->twig->addGlobal('session', $_SESSION);
+    }
+
+    /**
+     * Undocumented function not used yet
+     *
+     * @param array $array
+     * @return void
+     */
+    public function deletePostsIfNotValid(array $array)
+    {
+    }
+
+    /**
+     * function return true if number false otherwise
+     *
+     * @param [type] $identifier
+     * @return boll
+     */
+    public function isInteger($identifier)
+    {
+        if ($this->isInteger($identifier) == false) {
+            $message = "l'identifiant de la page doit être un chiffre";
+            $this->twig->display('error/error.html.twig', compact('message'));
+            exit;
+        }
+        return true;
     }
 
     /**
      * 
      */
-    /*  public function getClassList
-        [
-            $path = __DIR__;
-            $fqcns = array();
-
-            $allFiles = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path));
-            $phpFiles = new RegexIterator($allFiles, '/\.php$/');
-            foreach ($phpFiles as $phpFile) {
-                $content = file_get_contents($phpFile->getRealPath());
-                $tokens = token_get_all($content);
-                $namespace = '';
-                for ($index = 0; isset($tokens[$index]); $index++) {
-                    if (!isset($tokens[$index][0])) {
-                        continue;
-                    }
-                    if (T_NAMESPACE === $tokens[$index][0]) {
-                        $index += 2; //Skip namespace keyword and whitespace
-                        while (isset($tokens[$index]) && is_array($tokens[$index])) {
-                            $namespace .= $tokens[$index++][1];
-                        }
-                    }
-                    if (T_CLASS === $tokens[$index][0] && T_WHITESPACE === $tokens[$index + 1][0] && T_STRING === $tokens[$index + 2][0]) {
-                        $index += 2; //Skip class keyword and whitespace
-                        $fqcns[] = $namespace.'\\'.$tokens[$index][1];
-
-                        # break if you have one class per file (psr-4 compliant)
-                        # otherwise you'll need to handle class constants (Foo::class)
-                        break;
-                    }
-                }
-            }
-
-            var_dump($fqcns);
-
-        ]*/
+    public function disconnect()
+    {
+        if ($_SESSION['LOGGED_USER'] = true) {
+            session_destroy();
+            $_SESSION['LOGGED_USER'] = false; // for twig view
+            // var_dump('yes');
+            exit;
+        }
+    }
 }
