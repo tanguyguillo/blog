@@ -58,9 +58,9 @@
 <div class="d-flex flex-column min-vh-100">
             <div class="container">
                     <h4 class="text-center"> 
-                    {# {% if session.LOGGED_USER === true %}
+                    {% if session.LOGGED_USER == true %}
                         {{ session.LOGGED_USER_NAME }} -
-                    {% endif %}  #}
+                    {% endif %}  
                     Ajouter un commentaire</h4> 
                             {# form comment 
                             <form action="{{ baseUrl }}index.php?owp=faire-un-commentaire" method="post">    
