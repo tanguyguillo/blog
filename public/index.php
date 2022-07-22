@@ -16,14 +16,16 @@ use Application\Controllers\PostsController\PostsController;
 use Application\Controllers\DetailController\DetailController;
 use Application\Controllers\InsscriptionController\InscriptionController;
 use Application\Controllers\connexion\ConnexionController;
-
+use Application\Controllers\ErrorController\ErrorController;
 
 // Config
 require_once(ROOT . '/app/config/config.php');
 // requires
 require_once(ROOT . '/app/config/required.php');
+//require_once(ROOT . '/app/myAutoloader.php');  // not OK
+
 // autoloader
-require_once(ROOT . '/vendor/autoload.php');  // /Users/Tanguy/Documents/sites/blog-omega/vendor/autoload.php" // the path is OK
+require_once(ROOT . '/vendor/autoload.php');
 
 /**
  * $identifier is a string... but also integer like "3"
@@ -83,11 +85,12 @@ try {
             } else {
                 (new PostsController())->executePosts();
             }
-        } elseif ($_GET['owp'] === 'addComment') {
+        } elseif ($_GET['owp'] === 'creation-d-un-compte') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
-                $identifier = $_GET['id'];
-                $identifier = strip_tags(htmlspecialchars($identifier));
-                //  (new AddComment())->execute($identifier, $_POST);
+                // $identifier = $_GET['id'];
+                // $identifier = strip_tags(htmlspecialchars($identifier));
+                // (new InscriptionController())->CreateAccount($postData);
+
             } else {
             }
         } else {
@@ -98,9 +101,10 @@ try {
     }
 } catch (Exception $e) {
     // for instance
-    $errorMessage = $e->getMessage();
+    $errorMessage = $e->getMessage(); // string
     require(ROOT . '/app/templatesError/error.php');
-
+    // // to try : 
+    // change string in array to use twig
     // $errorMessage = $e->getMessage();
     // (new ErrorController())->execute($errorMessager);
 }

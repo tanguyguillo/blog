@@ -38,6 +38,9 @@ class Detail
         $post->user_id = $row['user_id'];
         $posts[] = $post;
         $posts = json_decode(json_encode($posts), true); // it's was an object
+
+        $_SESSION['LOGGED_PAGE_WRITER_ID'] = $row['user_id'];
+
         return $post;
     }
 

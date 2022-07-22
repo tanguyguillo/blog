@@ -23,12 +23,24 @@ class CommentController extends Controller
      */
     public function SetComment(array $arrayComment)
     {
-        $arrayComment = json_decode(json_encode($arrayComment), true);
+        if (isset($postData['user_login']) &&  !isset($postData['user_pass'])) {
+            $message = "Vous devez êtrec connecté pour pouvoir rédiger un commentaire";
+            $this->twig->display('info/info.html.twig', compact('message'));
+            exit;
+        }
 
+        $arrayComment = json_decode(json_encode($arrayComment), true);
         $arrayComment = $arrayComment;
         $connection = new DatabaseConnection();
         $Comment = new Comment();
         $Comment->connection = $connection;
-        $newcComment = $Comment->SetComments($arrayComment);
+
+        if ($Comment->SetComments($arrayComment)) {
+            $message = "Votre commentaire a été envoyé et est en attente de validation";
+            $this->twig->display('info/info.html.twig', compact('message'));
+        } else {
+            $message = "Il y a eu un problème avec la transmission de votre commentaire, vueillez reéssayer plus tard";
+            $this->twig->display('info/info.html.twig', compact('message'));
+        }
     }
 }

@@ -97,6 +97,7 @@ class DetailController extends Controller
             foreach ($users as $user) {
                 if ($user['emailUser'] === $postData['user_login'] && $user['passWordUser'] === $postData['user_pass']) {
 
+                    // for preferences only
                     setcookie(
                         'LOGGED_USER',
                         $postData['user_login'],
@@ -117,6 +118,7 @@ class DetailController extends Controller
 
                     $_SESSION['LOGGED_EMAIL'] = $postData['user_login'];
                     $_SESSION['LOGGED_PAGE_ID'] = $postData['postId'];
+
                     $message = $user["firstNameUser"];
 
                     // we return to the page detail with the good id 

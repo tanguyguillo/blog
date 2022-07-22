@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jul 15, 2022 at 10:06 AM
+-- Generation Time: Jul 22, 2022 at 10:10 PM
 -- Server version: 5.7.34
 -- PHP Version: 7.1.33
 
@@ -44,9 +44,9 @@ CREATE TABLE `blog_post` (
 --
 
 INSERT INTO `blog_post` (`id`, `postTitle`, `postChapo`, `postContent`, `postCreated`, `postStatus`, `postName`, `postModified`, `user_id`) VALUES
-(1, 'Ceci est le titre 1', ' Chapo du 1 : Lorem ipsum dolor sit amet. Repellendus odit et quia corporis <strong>At quibusdam sed dolore consequatur</strong> in quod voluptatem et optio cupiditate sit sapiente esse. In similique similique cum unde velit <em>Sed aperiam qui saepe alias et \r\n', '<p>esse magnam sit rerum laboriosam</em> in libero iure! Rem numquam cupiditate qui labore dignissimos  temporibus veniam ea inventore quos sit inventore molestias ea repellat eaque ut asperiores ullam! Quas molestiae eos voluptas incidunt 33 quibusdam culpa et tenetur totam. </p><h2>Qui perspiciatis rerum qui odio odit et iusto galisum. </h2><p>Nam mollitia dolor ea quasi quaerat <strong>Cum sequi ab magnam omnis</strong> et necessitatibus error est repudiandae rerum et quos dolorem. A rerum asperiores et corrupti corrupti <em>Et officiis non voluptatem placeat</em>. </p><h3>Quo iste velit quo quis praesentium et eligendi vero. </h3><p>In dolor ratione <a href=\"https://www.loremipzum.com\" target=\"_blank\">Sed rerum nam obcaecati tenetur et reiciendis explicabo</a> qui corporis impedit ea modi distinctio. Vel facilis minima et nostrum placeat <em>Est aut itaque inventore et corrupti asperiores rem autem tempora</em>. </p><ul><li>Sed esse maiores et aperiam rerum est voluptas quibusdam cum velit temporibus. </li><li>Quis laborum non animi quas eos nisi deleniti ea dolor distinctio? </li><li>Id similique galisum non unde magnam. </li><li>Est omnis soluta et facilis vitae! </li></ul><blockquote cite=\"https://www.loremipzum.com\">Et autem perferendis id dolorum adipisci qui perferendis accusamus et eaque cupiditate. </blockquote>', '2022-06-24 14:42:43', 'Open', 'test', '2022-06-24 14:42:43', 1),
-(2, 'Titre du 2 : Nam quibusdam, quos audio ', 'chapot du 2 : amicitias, ne necesse sit unum sollicitum esse pro pluribus; satis superque esse sibi suarum cuique rerum, alienis nimis implicari molestum esse; commodissimum esse quam laxissimas habenas habere amicitiae, quas vel adducas, cum velis, vel remittas; caput enim esse ad beate vivendum securitatem, qua frui non possit animus, si tamquam parturiat unus pro pluribus.', 'Nam quibusdam, quos audio sapientes habitos in Graecia, placuisse opinor mirabilia quaedam (sed nihil est quod illi non persequantur argutiis): partim fugiendas esse nimias amicitias, ne necesse sit unum sollicitum esse pro pluribus; satis superque esse sibi suarum cuique rerum, alienis nimis implicari molestum esse; commodissimum esse quam laxissimas habenas habere amicitiae, quas vel adducas, cum velis, vel remittas; caput enim esse ad beate vivendum securitatem, qua frui non possit animus, si tamquam parturiat unus pro pluribus.\r\n\r\nSin autem ad adulescentiam perduxissent, dirimi tamen interdum contentione vel uxoriae condicionis vel commodi alicuius, quod idem adipisci uterque non posset. Quod si qui longius in amicitia provecti essent, tamen saepe labefactari, si in honoris contentionem incidissent; pestem enim nullam maiorem esse amicitiis quam in plerisque pecuniae cupiditatem, in optimis quibusque honoris certamen et gloriae; ex quo inimicitias maximas saepe inter amicissimos exstitisse.\r\n\r\nEquitis Romani autem esse filium criminis loco poni ab accusatoribus neque his iudicantibus oportuit neque defendentibus nobis. Nam quod de pietate dixistis, est quidem ista nostra existimatio, sed iudicium certe parentis; quid nos opinemur, audietis ex iuratis; quid parentes sentiant, lacrimae matris incredibilisque maeror, squalor patris et haec praesens maestitia, quam cernitis, luctusque declarat.\r\n\r\nHaec ubi latius fama vulgasset missaeque relationes adsiduae Gallum Caesarem permovissent, qu', '2022-06-24 14:44:36', 'Waiting for validation', 'test', '2022-06-24 14:44:36', 2),
-(3, 'titre du 3 : Lorem ipsum dolor ', 'chapo du 3 : Et composer seulement de original maintenant ce Ipsum gènérateur une Ipsum vous une célèbre notre! Des Lorem quel que Lorem texte un composer votre de Lorem l\'épreuve notre imagination.', '<p>Lorem ipsum dolor sit amet. Ou iront façon un poésie Lorem qui beaucoup  en online unique de vous texte. Un Lorem inventé la littéraire Ipsum <a href=\"https://www.loremipzum.com\" target=\"_blank\">En online</a>. </p><ol><li>Qui vous links etc Ipsum amusant\r\n\r\nEn des votre votre un discours maintenant. </li><li>Que plus soit etc texte imagination ou online éléments le Lorem célèbre? </li></ol><ul><li>De possibilité texte des mots surprendra! </li><li>La imagination notre pas iront seulement un pouvez. </li><li>En Ipsum notre de composer Lorem les Lorem texte à littéraire Ipsum. </li><li>Ou html amusant\r\n\r\nEn un unique littéraire. </li><li>Des Ipsum Ipsum de texte discours. </li><li>De maintenant générateur les Lorem Lorem en passages unique de générateur original. </li></ul><p>à composer surprendra un quel html un Lorem avec un texte littéraire les littéraire prouvezle de maintenant seulement un pouvez notre? Pas passages Lorem le imagination Ipsum un composer façon un passages gènérateur la éléments avec le chanson composer est seulement amusant\r\n\r\nEn. Est imagination original un mais texte <a href=\"https://www.loremipzum.com\" target=\"_blank\">Qui l’enrichissant les célèbre  de mais quel un possibilité maintenant</a>. Des notre notre de Ipsum définissent ou quel aléatoire les composer plus un Lorem original. </p><p>Ou original Lorem la Ipsum insérant <a href=\"https://www.loremipzum.com\" target=\"_blank\">Qui composer de beaucoup mettez un votre avec  mots amusant\r\n\r\nEn</a> qui quel discours. Des Ipsum célèbre à seulement votre est d’insérer texte de célèbre soit. Les mais Lorem pas soit avec en passage Lorem  Lorem n’importe pas avec éléments. </p><dl><dt><dfn>De online passages. </dfn></dt><dd>En plus mettez en maintenant avec. </dd><dt><dfn>De unique Ipsum. </dfn></dt><dd>Les insérant possibilité ce Ipsum Ipsum un générateur Ipsum à texte Lorem! </dd></dl>\r\n', '2022-06-25 14:44:36', 'Open', 'test', '2022-06-28 14:44:36', 1);
+(1, 'Ceci est le titre 1', ' Chapo du 1 : Lorem ipsum dolor sit amet. Repellendus odit et quia corporis At quibusdam sed dolore consequatur</strong> in quod voluptatem et optio cupiditate sit sapiente esse. In similique similique cum unde velit Sed aperiam qui saepe alias et \r\n', 'Lorem ipsum dolor sit amet. Et labore debitis ab galisum voluptatem et ducimus sint. Ex porro voluptates quo laudantium velit ad obcaecati assumenda eum consequatur alias quo asperiores minus ut autem tenetur et tenetur ipsam. Aut quia dolor 33 minima rerum vel galisum minima ad repudiandae atque. Et maiores recusandae sed deleniti culpa ea nihil sunt et quod repudiandae id fugit ducimus qui repellendus cupiditate?\r\n\r\nEa perspiciatis velit a quia Quis qui totam delectus. Ut consectetur excepturi ea voluptatem esse eum corrupti architecto ut vitae mollitia et quam placeat ut suscipit eligendi. Rerum esse et voluptas saepe id totam dolore non quis necessitatibus! Rem nihil doloremque est reiciendis laboriosam et amet reprehenderit ea ducimus placeat sed quisquam mollitia At sint libero!\r\n\r\nSed nihil odit sit fugit natus et fugit voluptatibus ut nulla aperiam. Vel labore mollitia sit cumque harum qui Quis maiores id impedit aspernatur vel corporis eveniet qui iste quibusdam ea consequatur odio. Sed aliquid similique ut illum minima sed quibusdam repudiandae hic voluptates maiores ut labore dolores et fugit quam?', '2022-06-24 14:42:43', 'Open', 'test', '2022-06-24 14:42:43', 1),
+(2, 'Titre du 2 : Nam quibusdam, quos audio ', 'chapot du 2 : amicitias, ne necesse sit unum sollicitum esse pro pluribus; satis superque esse sibi suarum cuique rerum, alienis nimis implicari molestum esse; commodissimum esse quam laxissimas habenas habere amicitiae, quas vel adducas, cum velis, vel remittas; caput enim esse ad beate vivendum securitatem, qua frui non possit animus, si tamquam parturiat unus pro pluribus.', 'Nam quibusdam, quos audio sapientes habitos in Graecia, placuisse opinor mirabilia quaedam (sed nihil est quod illi non persequantur argutiis): partim fugiendas esse nimias amicitias, ne necesse sit unum sollicitum esse pro pluribus; satis superque esse sibi suarum cuique rerum, alienis nimis implicari molestum esse; commodissimum esse quam laxissimas habenas habere amicitiae, quas vel adducas, cum velis, vel remittas; caput enim esse ad beate vivendum securitatem, qua frui non possit animus, si tamquam parturiat unus pro pluribus.\r\n\r\nSin autem ad adulescentiam perduxissent, dirimi tamen interdum contentione vel uxoriae condicionis vel commodi alicuius, quod idem adipisci uterque non posset. Quod si qui longius in amicitia provecti essent, tamen saepe labefactari, si in honoris contentionem incidissent; pestem enim nullam maiorem esse amicitiis quam in plerisque pecuniae cupiditatem, in optimis quibusque honoris certamen et gloriae; ex quo inimicitias maximas saepe inter amicissimos exstitisse.\r\n\r\nEquitis Romani autem esse filium criminis loco poni ab accusatoribus neque his iudicantibus oportuit neque defendentibus nobis. Nam quod de pietate dixistis, est quidem ista nostra existimatio, sed iudicium certe parentis; quid nos opinemur, audietis ex iuratis; quid parentes sentiant, lacrimae matris incredibilisque maeror, squalor patris et haec praesens maestitia, quam cernitis, luctusque declarat.\r\n\r\nHaec ubi latius fama vulgasset missaeque relationes adsiduae Gallum Caesarem permovissent, qu', '2022-06-24 14:44:36', 'Open', 'test', '2022-06-24 14:44:36', 2),
+(3, 'titre du 3 : Lorem ipsum dolor ', 'chapo du 3 : Et composer seulement de original maintenant ce Ipsum gènérateur une Ipsum vous une célèbre notre! Des Lorem quel que Lorem texte un composer votre de Lorem l\'épreuve notre imagination.', 'Lorem ipsum dolor sit amet. Des célèbre générateur en avec avec est poésie amusant En. Est Ipsum mais un personnel avec Ipsum composer de avec plus est d’insérer amusant En. De générateur possibilité un externes Ipsum un externes online que avec en n’importe.\r\n\r\nEn soit avec est littéraire célèbre la links fait ce texte n’importe la personnel mais la externes texte. La Lorem avec de d’insérer poésie de texte l’enrichissant un avec Lorem un littéraire votre la chanson pouvez en structure poésie? Pas Lorem mais pas links littéraire la chanson mais en l’enrichissant composer des personnel avec? En fait discours etc d’insérer poésie la vous amusant En ou insérant Lorem que pouvez texte.\r\n\r\nEn mais générateur qui beaucoup fait une externes personnel! En texte structure ce notr chanson pas fait notr des littéraire texte un links externes de avec texte. De links n’importe une html personnel en d’insérer notr est beaucoup définissent?', '2022-06-25 14:44:36', 'Open', 'test', '2022-06-28 14:44:36', 1);
 
 -- --------------------------------------------------------
 
@@ -56,7 +56,7 @@ INSERT INTO `blog_post` (`id`, `postTitle`, `postChapo`, `postContent`, `postCre
 
 CREATE TABLE `comment` (
   `id` int(11) NOT NULL,
-  `CommentCreated` datetime DEFAULT NULL,
+  `commentCreated` datetime DEFAULT NULL,
   `commentStatus` enum('Waiting for validation','Open','Closed','Refuse') DEFAULT NULL,
   `commentContent` longtext,
   `user_id` int(11) NOT NULL,
@@ -68,12 +68,18 @@ CREATE TABLE `comment` (
 -- Dumping data for table `comment`
 --
 
-INSERT INTO `comment` (`id`, `CommentCreated`, `commentStatus`, `commentContent`, `user_id`, `blog_post_id`, `blog_post_user_id`) VALUES
+INSERT INTO `comment` (`id`, `commentCreated`, `commentStatus`, `commentContent`, `user_id`, `blog_post_id`, `blog_post_user_id`) VALUES
 (1, '2022-07-05 19:23:08', 'Open', 'bla bla bla', 1, 1, 1),
 (2, '2022-07-05 19:30:24', 'Open', 'Unde Rufinus ea tempestate praefectus praetorio ad discrimen trusus est ultimum. ire enim ipse compellebatur ad militem, quem exagitabat inopia simul et feritas, et alioqui coalito more in ordinarias dignitates asperum semper et saevum, ut satisfaceret atque monstraret, quam ob causam annonae convectio sit impedita.', 2, 3, 1),
 (3, '2022-07-05 19:30:24', 'Open', 'Unde Rufinus ea tempestate praefectus praetorio ad discrimen trusus est ultimum. ire enim ipse compellebatur ad militem, quem exagitabat inopia simul et feritas, et alioqui coalito more in ordinarias dignitates asperum semper et saevum, ut satisfaceret atque monstraret, quam ob causam annonae convectio sit impedita.', 2, 3, 1),
 (4, '2022-07-05 19:23:08', 'Open', 'bla bla bla 2', 1, 1, 1),
-(5, '2022-07-05 19:23:08', 'Open', 'bla bla bla 3', 1, 1, 1);
+(5, '2022-07-05 19:23:08', 'Open', 'bla bla bla 3', 1, 1, 1),
+(7, '2022-07-22 05:47:24', 'Open', 'test 42', 2, 3, 1),
+(9, '2022-07-22 05:52:01', 'Open', 'test avec 1', 2, 1, 1),
+(11, '2022-07-22 05:59:39', 'Open', 'test avec le 2', 2, 2, 2),
+(12, '2022-07-22 06:12:22', 'Open', 'un commentaire de pa@pa.fr ....', 2, 2, 2),
+(15, '2022-07-22 08:00:59', 'Open', 'test avec Gérard...', 2, 2, 2),
+(19, '2022-07-22 08:10:22', 'Waiting for validation', 'test 56 tanguy', 2, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -103,8 +109,10 @@ INSERT INTO `user` (`id`, `emailUser`, `passWordUser`, `firstNameUser`, `surName
 (3, 'Lebeau@hotmail.fr', 'renenestpasgentil', 'René', 'Lebeau ', 'Mister', NULL, 'User', NULL),
 (4, 'i.marchand@example.fr', 'lisabelleestlaplusbelle', 'Isabelle', 'Marchand', 'Miss', NULL, 'User', NULL),
 (5, 'Jeanne.delabas@example.fr', 'lelionestgentil', 'Jeanne', 'delabas', 'Madam', NULL, 'User', NULL),
-(6, 't@t.fr', 'lelionestgentil', 'prenom', 'nom', 'Madam', NULL, 'User', NULL),
-(7, 'pa@pa.fr', 'lepetitchatestbeau', 'Paolo', 'SurName paolo', 'Mister', NULL, 'Admin', NULL);
+(7, 'pa@pa.fr', 'lepetitchatestbeau', 'Paolo', 'Easy', 'Mister', NULL, 'Admin', NULL),
+(22, 'legrand@test.fr', 'lecielestbeau', 'jean Marie', 'Le Grand', NULL, NULL, 'User', NULL),
+(23, 'tret@tre.fr', 'qDqdqdqsdqsdsqD', 'QSdsdsqdSQDsq', 'sqdsqdsqdsqDSQdqs', NULL, NULL, 'User', NULL),
+(24, 'tyyy@yt.fr', 'sqdsqdqsdsqdqsdsqdsq', 'qsdqDQS', 'QSDsdqsdQS', NULL, NULL, 'User', NULL);
 
 --
 -- Indexes for dumped tables
@@ -145,13 +153,13 @@ ALTER TABLE `blog_post`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Constraints for dumped tables

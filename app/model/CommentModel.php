@@ -23,7 +23,7 @@ class Comment
     public function getComments($identifier): array
     {
         $statement = $this->connection->getConnection()->query(
-            // id	CommentCreated	commentStatus	commentContent	user_id	blog_post_id	blog_post_user_id
+            // id	commentCreated	commentStatus	commentContent	user_id	blog_post_id	blog_post_user_id
             //"SELECT id; EmailUser; passWordUser; firstnNameUser; surNameUser; titleUser; telGsmUser; roleUser; pictureOrLogo;  FROM user where  blog_post_id = $identifier"
             "SELECT * FROM comment where blog_post_id = $identifier" // blog_post_id is the id of the post
         );
@@ -52,71 +52,32 @@ class Comment
     /**
      * function to write a comment
      *
-     * @param array $Array // Ex:  //array(3) { ["commentPost"]=> string(4) "test" ["postId"]=> string(1) "3" ["idUser"]=> string(1) "2" }
+     * @param array
      * @return void
      */
     public function SetComments(array $Array)
     {
-        $postId = $Array['postId'];
-        var_dump($postId);
+        if ($_SESSION['LOGGED_USER']) {
+            $user_id = intval($Array['idUser']);
+            $CommentCreated = date('Y-m-d h:i:s');
+            $commentStatus = "Waiting for validation";
+            $commentContent = $Array['commentPost'];
+            $blog_post_id = intval($_SESSION['LOGGED_PAGE_ID']);
 
-        $CommentCreated = date('Y-m-d h:i:s');
-        var_dump($CommentCreated);
-
-        $commentStatus = "waiting for validation";
-        var_dump($commentStatus);
-
-        $commentContent = $Array['commentPost'];
-        var_dump($commentContent);
-
-        $user_id = $Array['idUser'];
-        var_dump($user_id);
-
-        $blog_post_id = $_SESSION['LOGGED_PAGE_ID'];
-        var_dump($_SESSION['LOGGED_PAGE_ID']);
-
-        $blog_post_user_id = $postId;  // see the blog designer if question on DB
-        var_dump($blog_post_user_id);
-
-        echo "<br><br> Cette partie est en cours de développement....";
-
-        exit;
-
-        // var_dump($blog_post_user_id, $CommentCreated, $commentStatus, $user_id, $commentContent, $blog_post_id);
-        // string(1) "3" string(19) "2022-07-18 04:55:21" string(22) "waiting for validation" string(1) "2" string(50) "test de commentaire sur titre du 3 18 juillet 2022" string(1) "3"
-        // exit;
-
-        // try {
-
-        // $statement = $this->connection->getConnection()->query(
-        //     "INSERT INTO comment VALUES ($blog_post_user_id, $CommentCreated, $commentStatus, $user_id, $commentContent, $blog_post_id"
-        // );
-
-        //waiting for validation, 2, test de commentaire sur titre du 3 18 juil' at line 1
-
-        // catch (Exception $e) {
-        //     //echo 'Exception reçue : ',  $e->getMessage(), "\n";
-        //     // for instance
-        //     $errorMessage = $e->getMessage();
-        //     require(ROOT . '/app/templatesError/error.php');
-        // }
-
-    }
-
-
-    /**
-     * Undocumented function
-     *
-     * @param [type] $numberToTest
-     * @return boolean
-     */
-    public function isInteger($numberToTest)
-    {
-        if (is_integer($numberToTest)) {
-            return true; //// 0-9
+            $blog_post_user_id = $_SESSION['LOGGED_PAGE_WRITER_ID']; // the writter'id of the article
+            var_dump($blog_post_user_id);
+            try {
+                $statement = $this->connection->getConnection()->query(
+                    "INSERT INTO comment (commentCreated, commentStatus, commentContent, user_id, blog_post_id, blog_post_user_id)  VALUES ('$CommentCreated ', '$commentStatus', '$commentContent', '$user_id ', '$blog_post_id', '$blog_post_user_id');"
+                );
+                return true;
+            } catch (Exception $e) {
+                $errorMessage = $e->getMessage();
+                require(ROOT . '/app/templatesError/error.php');
+                return false;
+            }
         } else {
-            echo "Wrong number";
-            return false;
+            return true;
         }
     }
 }

@@ -94,4 +94,22 @@ class UsersRepository
         }
         return true;
     }
+
+    /**
+     * function to know if this email is already inDB
+     *
+     * @param array $postData
+     * @return string 
+     */
+    public function findEmail(array $postData)
+    {
+        $emailUser = $postData["email"]; // string 
+        $statement = $this->connection->getConnection()->query(
+            "SELECT emailUser,count(*) FROM user WHERE emailUser ='$emailUser' GROUP BY emailUser"
+        );
+        $statement->execute();
+        $row = $statement->fetch();
+        $count = (int)$row['count(*)'];
+        return  $count;
+    }
 }
