@@ -31,10 +31,12 @@ class InscriptionController extends Controller
    */
   public function CreateAccount(array $postData)
   {
-    if (isset($postData['user_login']) &&  isset($postData['user_pass'])) {
-      // you have to not be connected to inscript
-      (new ConnexionController())->signOutForInscription();
-    }
+    // if (isset($postData['user_login']) &&  isset($postData['user_pass'])) {
+    //   // you have to not be connected to inscript
+    //   (new ConnexionController())->signOutForInscription();
+    // }
+
+    (new ConnexionController())->signOutForInscription();
 
     $connection = new DatabaseConnection();
     $UserRepository = new UsersRepository();

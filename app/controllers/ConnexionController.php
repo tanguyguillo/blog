@@ -42,6 +42,8 @@ class ConnexionController extends Controller
     $message = 'Voila, ' . "c'est fait, " . 'vous êtes déconnecté';
     $_SESSION['LOGGED_USER']  = false;
     $_SESSION['LOGGED_USER_NAME']  = '';
+    $_SESSION['LOGGED_USER_ID']  = '';
+
     session_destroy();
     $this->twig->display('info/info.html.twig', compact('message'));
   }
@@ -55,6 +57,8 @@ class ConnexionController extends Controller
   {
     $_SESSION['LOGGED_USER']  = false; // for twig view
     $_SESSION['LOGGED_USER_NAME']  = '';
+    $_SESSION['LOGGED_USER_ID']  = '';
+
     session_destroy();
   }
 }

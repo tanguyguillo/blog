@@ -18,19 +18,22 @@ class CommentController extends Controller
      *
      * @param sarray $arrayComment 
      * ex : array(3) { ["commentPost"]=> string(7) "qSsqsqs" ["postId"]=> string(1) "3" ["idUser"]=> string(1) "2" }
+     * or : array(3) { ["commentPost"]=> string(12) "SDsqdsqdqsdq" ["postId"]=> string(0) "" ["idUser"]=> string(0) "" }
      * 
      * @return void
      */
     public function SetComment(array $arrayComment)
     {
-        if (isset($postData['user_login']) &&  !isset($postData['user_pass'])) {
-            $message = "Vous devez êtrec connecté pour pouvoir rédiger un commentaire";
+        $arrayComment = json_decode(json_encode($arrayComment), true);
+
+        // // if your not connected you can't send a comment
+        if (($_SESSION['LOGGED_USER_NAME'] == "")) {
+            $message = "Vous devez être connecté pour pouvoir rédiger un commentaire";
             $this->twig->display('info/info.html.twig', compact('message'));
             exit;
         }
 
-        $arrayComment = json_decode(json_encode($arrayComment), true);
-        $arrayComment = $arrayComment;
+        //$arrayComment = $arrayComment;
         $connection = new DatabaseConnection();
         $Comment = new Comment();
         $Comment->connection = $connection;

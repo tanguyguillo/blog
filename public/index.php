@@ -1,7 +1,7 @@
 
 <?php session_start();
 
-define('ROOT', dirname(__DIR__));  // in local : "/Users/Tanguy/Documents/sites/blog-omega"
+define('ROOT', dirname(__DIR__));
 
 // if cookie or session present
 if (isset($_COOKIE['LOGGED_USER']) || isset($_SESSION['LOGGED_USER'])) {
@@ -90,7 +90,6 @@ try {
                 // $identifier = $_GET['id'];
                 // $identifier = strip_tags(htmlspecialchars($identifier));
                 // (new InscriptionController())->CreateAccount($postData);
-
             } else {
             }
         } else {

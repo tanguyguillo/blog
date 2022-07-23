@@ -59,13 +59,19 @@ class Comment
     {
         if ($_SESSION['LOGGED_USER']) {
             $user_id = intval($Array['idUser']);
+
+            // sometimes it's happens ...
+            if ($user_id == 0) {
+                $user_id = $_SESSION['LOGGED_USER_ID'];
+                // return false;
+            }
+
             $CommentCreated = date('Y-m-d h:i:s');
             $commentStatus = "Waiting for validation";
             $commentContent = $Array['commentPost'];
             $blog_post_id = intval($_SESSION['LOGGED_PAGE_ID']);
+            $blog_post_user_id = intval($_SESSION['LOGGED_PAGE_WRITER_ID']); // the writter'id of the article
 
-            $blog_post_user_id = $_SESSION['LOGGED_PAGE_WRITER_ID']; // the writter'id of the article
-            var_dump($blog_post_user_id);
             try {
                 $statement = $this->connection->getConnection()->query(
                     "INSERT INTO comment (commentCreated, commentStatus, commentContent, user_id, blog_post_id, blog_post_user_id)  VALUES ('$CommentCreated ', '$commentStatus', '$commentContent', '$user_id ', '$blog_post_id', '$blog_post_user_id');"

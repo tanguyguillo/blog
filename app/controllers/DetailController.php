@@ -96,7 +96,6 @@ class DetailController extends Controller
             // if correspondance email + password ( $_POST and DB )   // todo / see sha 512
             foreach ($users as $user) {
                 if ($user['emailUser'] === $postData['user_login'] && $user['passWordUser'] === $postData['user_pass']) {
-
                     // for preferences only
                     setcookie(
                         'LOGGED_USER',
@@ -108,18 +107,18 @@ class DetailController extends Controller
                         ]
                     );
 
-                    // to avod a bug because the url can to not change
+                    // to avoi a bug because the url can to not change
                     $messsageReadle = $messsage;
                     $messsageReadle = 'abort';
 
                     $_SESSION['LOGGED_USER'] =  true;
-                    $_SESSION['LOGGED_USER_NAME'] =  $user["firstNameUser"];
                     $_SESSION['LOGGED_USER_ID'] = $user['id'];
 
                     $_SESSION['LOGGED_EMAIL'] = $postData['user_login'];
                     $_SESSION['LOGGED_PAGE_ID'] = $postData['postId'];
 
                     $message = $user["firstNameUser"];
+                    $_SESSION['LOGGED_USER_NAME'] =  $message;
 
                     // we return to the page detail with the good id 
                     $this->Detail($postData['postId'], $message);
