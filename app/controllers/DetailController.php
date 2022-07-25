@@ -35,23 +35,31 @@ class DetailController extends Controller
     public function Detail($identifier, $message = '')
     {
         //verify is $identifier is a "string(integer)" if not display a message
-
         $this->isInteger($identifier);
-
-        // if ($this->isInteger($identifier) == false) {
-        //     $message = "l'identifiant de la page doit être un chiffre";
-        //     $this->twig->display('error/error.html.twig', compact('message'));
-        //     exit;
-        // }
+        if ($this->isInteger($identifier) == false) {
+            $message = "l'identifiant de la page doit être un chiffre";
+            $this->twig->display('error/error.html.twig', compact('message'));
+            exit;
+        }
         // verification .... to see   
         //$this->isInteger($identifier); // if not redirection on error page
+
         $connection = new DatabaseConnection();
 
         // 1 - Detail
         $identifier = htmlspecialchars($identifier);
         $postDetail = new Detail();
         $postDetail->connection = $connection;
-        $detail =   $postDetail->getPost($identifier); // return an array
+
+        // test (getMaxAndOpen) to se the user tape by hand on the url 10000 for exemple for the article id
+        if ($postDetail->getMaxAndOpen($identifier)) {
+            $detail =  $postDetail->getPost($identifier); // return an array
+        } else {
+            $message = "l'identifiant de la page est inexact";
+            $this->twig->display('error/error.html.twig', compact('message'));
+            exit;
+        };
+
 
         // 2 - user
         $connection = new DatabaseConnection();

@@ -14,7 +14,7 @@ use Application\Controllers\CommentController\CommentController;
 use Application\Controllers\HomepageController\HomepageController;
 use Application\Controllers\PostsController\PostsController;
 use Application\Controllers\DetailController\DetailController;
-use Application\Controllers\InsscriptionController\InscriptionController;
+use Application\Controllers\InscriptionController\InscriptionController;
 use Application\Controllers\connexion\ConnexionController;
 use Application\Controllers\ErrorController\ErrorController;
 
@@ -100,10 +100,10 @@ try {
     }
 } catch (Exception $e) {
     // for instance
-    $errorMessage = $e->getMessage(); // string
-    require(ROOT . '/app/templatesError/error.php');
+    // $errorMessage = $e->getMessage(); // string
+    // require(ROOT . '/app/templatesError/error.php');
     // // to try : 
     // change string in array to use twig
-    // $errorMessage = $e->getMessage();
-    // (new ErrorController())->execute($errorMessager);
+    $errorMessage = $e->getMessage();
+    (new ErrorController())->execute($errorMessage);
 }

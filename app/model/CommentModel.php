@@ -60,10 +60,12 @@ class Comment
         if ($_SESSION['LOGGED_USER']) {
             $user_id = intval($Array['idUser']);
 
-            // sometimes it's happens ...
+            // sometimes it's happens ... isuue with data refreshed page
             if ($user_id == 0) {
                 $user_id = $_SESSION['LOGGED_USER_ID'];
-                // return false;
+                if ($user_id == 0) {
+                    return false;
+                }
             }
 
             $CommentCreated = date('Y-m-d h:i:s');

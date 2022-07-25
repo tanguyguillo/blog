@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Controllers\InsscriptionController;
+namespace Application\Controllers\InscriptionController;
 
 use Application\Core\Database\Database\DatabaseConnection;
 use Application\Model\UserModel;
