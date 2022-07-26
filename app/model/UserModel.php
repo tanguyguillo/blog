@@ -96,7 +96,7 @@ class UsersRepository
             $statement = $this->connection->getConnection()->query(
                 "INSERT INTO user (emailUser, passWordUser, firstNameUser, surNameUser, titleUser, telGsmUser, roleUser, pictureOrLogo)  VALUES ('$emailUser', '$passWordUser', '$firstNameUser', '$surNameUser', NULL, NULL, '$roleUser', NULL);"
             );
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $errorMessage = $e->getMessage();
             require(ROOT . '/app/templatesError/error.php');
             return false;

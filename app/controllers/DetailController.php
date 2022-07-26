@@ -10,7 +10,7 @@ use Application\Model\CommentModel\Comment;
 //
 use Application\Controllers\Controller;
 use Application\Controllers\ErrorController\ErrorController;
-use Application\Controllers\connexion\ConnexionController;
+use Application\Controllers\ConnexionController\ConnexionController;
 
 class DetailController extends Controller
 {
