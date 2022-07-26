@@ -15,30 +15,22 @@ use Application\Controllers\HomepageController\HomepageController;
 use Application\Controllers\PostsController\PostsController;
 use Application\Controllers\DetailController\DetailController;
 use Application\Controllers\InscriptionController\InscriptionController;
-use Application\Controllers\connexion\ConnexionController;
 use Application\Controllers\ErrorController\ErrorController;
+use Application\Controllers\AdminController\AdminController;
+use Application\Controllers\ConnexionController\ConnexionController;
 
 // Config
 require_once(ROOT . '/app/config/config.php');
-// requires
-require_once(ROOT . '/app/config/required.php');
-//require_once(ROOT . '/app/myAutoloader.php');  // not OK
 
 // autoloader
 require_once(ROOT . '/vendor/autoload.php');
 
-/**
- * checking is a string... but also integer like "3"
- */
+// builf my own autoloader  :
+require_once(ROOT . '/app/myAutoloader.php');
 
-// verification $_POST : strip_tags(htmlspecialchars() + password $hashed
+// check $_POST : strip_tags(htmlspecialchars() + password $hashed
 $postData = $_POST;
 foreach ($postData as $key => $value) {
-    // to use it later...
-    // if ($key   === 'password') {
-    //     $hashed = crypt($value, 'anythingyouwant_$' . SALT);
-    //     $value = $hashed;
-    // }
     $postData[$key]  = strip_tags(htmlspecialchars($value));
 }
 
@@ -76,6 +68,12 @@ try {
         }
     }
 
+    // Admin aera
+    if ($_GET['owp'] === 'administration') {
+        (new AdminController())->ConnectAdmin();
+        exit;
+    }
+
     if (isset($_GET['owp']) && $_GET['owp'] !== '') {
         if ($_GET['owp'] === 'bloglist') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
@@ -85,7 +83,7 @@ try {
             } else {
                 (new PostsController())->executePosts();
             }
-        } elseif ($_GET['owp'] === 'creation-d-un-compte') {
+        } elseif ($_GET['owp'] === '---creation-d-un-compte') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 // $identifier = $_GET['id'];
                 // $identifier = strip_tags(htmlspecialchars($identifier));

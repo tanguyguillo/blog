@@ -15,3 +15,4 @@ require_once(ROOT . '/app/controllers/ConnexionController.php');
 require_once(ROOT . '/app/controllers/ErrorController.php');
 require_once(ROOT . '/app/controllers/InfoController.php');
 require_once(ROOT . '/app/controllers/CommentController.php');
+require_once(ROOT . '/app/controllers/AdminController.php');

@@ -1,6 +1,12 @@
 <?php
-// anonym function... not resolve my issue
-function my_autoloader($class) // see later
+
+/**
+ *  function making working classes
+ *
+ * @param [type] $class
+ * @return void
+ */
+function my_autoloader($class)
 {
     $delim = '\\';
     $myArray = explode($delim, $class);
@@ -8,6 +14,10 @@ function my_autoloader($class) // see later
     $delim = "/";
     $class2 = implode($delim, $newarray);
     $path = (ROOT . "/app/" . $class2 . ".php");
-    include $path;
+
+    if (file_exists($path)) {
+        $found = true;
+        require $path;
+    }
 }
-//spl_autoload_register('my_autoloader');
+spl_autoload_register('my_autoloader');
