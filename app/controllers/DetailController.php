@@ -14,18 +14,13 @@ use Application\Controllers\connexion\ConnexionController;
 
 class DetailController extends Controller
 {
-
-    //public $message;
-    // public $hash;  // conflict with twig ?
-    // public function __construct()
-    // {
-    //     $this->hash = '9DEFF146D808FFF8A263BDFA150C61F003C7B8B';
-    // }
+    // public $test; // string
 
     // public function __construct()
     // {
-    //     $this->message['message'] = "";
+    //     $this->test = 22;
     // }
+
     /**
      * Function to show one blog post
      *
@@ -59,7 +54,6 @@ class DetailController extends Controller
             $this->twig->display('error/error.html.twig', compact('message'));
             exit;
         };
-
 
         // 2 - user
         $connection = new DatabaseConnection();
@@ -96,14 +90,17 @@ class DetailController extends Controller
     {
         // if exist
         if (isset($postData['user_login']) &&  isset($postData['user_pass'])) {
+            $messsageReadle = ""; // for no data message
+
             $connection = new DatabaseConnection();
             $UsersRepository = new UsersRepository();
             $UsersRepository->connection = $connection;
             $users = $UsersRepository->getUsers(); // return an array
 
-            // if correspondance email + password ( $_POST and DB )   // todo / see sha 512
+            // if correspondance email + password ( $_POST and DB )   // todo / see sha 512   crypt($value, 'anythingyouwant_$' . SALT);
             foreach ($users as $user) {
-                if ($user['emailUser'] === $postData['user_login'] && $user['passWordUser'] === $postData['user_pass']) {
+
+                if (($user['emailUser'] === $postData['user_login']) && ($user['passWordUser']  === crypt($postData['user_pass'], SALT))) {
                     // for preferences only
                     setcookie(
                         'LOGGED_USER',
@@ -116,7 +113,7 @@ class DetailController extends Controller
                     );
 
                     // to avoi a bug because the url can to not change
-                    $messsageReadle = $messsage;
+                    //$messsageReadle = $messsage;
                     $messsageReadle = 'abort';
 
                     $_SESSION['LOGGED_USER'] =  true;
@@ -133,7 +130,7 @@ class DetailController extends Controller
                 }
             }
         }
-        // to avod a bug because the url can to not change
+        // to avoid a bug because the url can to not change
         if ($messsageReadle != 'abort') {
             $message = 'Désolé, les données de connection sont incorrectes';
             // we go bach to connexion page
@@ -168,4 +165,42 @@ class DetailController extends Controller
         $identifier = filter_var($identifier, FILTER_VALIDATE_INT);
         return ($identifier !== FALSE);
     }
+
+    /**
+     * Undocumented function
+     *
+     * @param [type] $user_input
+     * @param [type] $hashed_password
+     * @return boll
+     */
+    private function verifyHashPassword($user_input, $hashed_password)
+    {
+        if (hash_equals($hashed_password, crypt($user_input, $hashed_password))) {
+            var_dump("Password verified! and ok");
+            return true;
+        } else {
+            return false;
+        }
+    }
+    /**
+     * function info
+     *
+     * @param Array
+     * @return void
+     */
+    // private function makeCryptPassword( $user['passWordUser'], $postData['user_pass'])
+    // {
+    //     var_dump("user['passWordUser'] :" . $user['passWordUser']);
+    //     if (($user['passWordUser']) === (crypt($postData['user_pass'], SALT))) {
+    //         var_dump("trouvé" . ($postData["user_login"]));
+    //         $cypt = crypt($postData['user_pass'], SALT);
+    //         var_dump($cypt);
+    //         exit;
+    //     } else {
+    //         var_dump('pas trouvé  :    ' . ($postData["user_login"]));
+    //         $cypt = crypt($postData['user_pass'], SALT);
+    //         var_dump($cypt);
+    //         exit;
+    //     }
+    // }
 }

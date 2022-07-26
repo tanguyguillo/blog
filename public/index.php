@@ -28,17 +28,17 @@ require_once(ROOT . '/app/config/required.php');
 require_once(ROOT . '/vendor/autoload.php');
 
 /**
- * $identifier is a string... but also integer like "3"
+ * checking is a string... but also integer like "3"
  */
 
 // verification $_POST : strip_tags(htmlspecialchars() + password $hashed
 $postData = $_POST;
 foreach ($postData as $key => $value) {
     // to use it later...
-    if ($key   === 'password') {
-        $hashed = crypt($value, 'anythingyouwant_$' . SALT);
-        //$value = $hashed;  // reception  $hashed on connect
-    }
+    // if ($key   === 'password') {
+    //     $hashed = crypt($value, 'anythingyouwant_$' . SALT);
+    //     $value = $hashed;
+    // }
     $postData[$key]  = strip_tags(htmlspecialchars($value));
 }
 

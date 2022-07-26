@@ -25,28 +25,23 @@ class InscriptionController extends Controller
   }
 
   /**
-   * function to create a user account 
+   * function to create a user account (with crypt password)
    *
    * @return void
    */
   public function CreateAccount(array $postData)
   {
-    // if (isset($postData['user_login']) &&  isset($postData['user_pass'])) {
-    //   // you have to not be connected to inscript
-    //   (new ConnexionController())->signOutForInscription();
-    // }
-
     (new ConnexionController())->signOutForInscription();
-
     $connection = new DatabaseConnection();
     $UserRepository = new UsersRepository();
     $UserRepository->connection = $connection;
 
-    // verify Email if not allready use in the DB before create new user
+    // verify Email if not allready use in the DB before by created user
     if ($UserRepository->findEmail($postData) >= 1) {
       $message = "Cet email est déja utilisé, vueillez en choisir un autre";
       $this->twig->display('info/info.html.twig', compact('message'));
     } else {
+      $postData['password'] = crypt($postData['password'], SALT);
       if ($UserRepository->createUser($postData)) {
         $message = "Bravo vous avez crée votre compte, connectez vous pour laisser un commentaire sur un article";
         $this->twig->display('info/info.html.twig', compact('message'));

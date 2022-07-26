@@ -78,7 +78,11 @@ class UsersRepository
     public function createUser(array $postData)
     {
         $emailUser = $postData["email"];
+
         $passWordUser = $postData["password"];
+        // Crypt the password
+        $this->cryptPassword($passWordUser);
+
         $firstNameUser = $postData["fname"];
         $surNameUser = $postData["lname"];
         $roleUser = "User";
@@ -111,5 +115,17 @@ class UsersRepository
         $row = $statement->fetch();
         $count = (int)$row['count(*)'];
         return  $count;
+    }
+
+    /**
+     * function for hashage of the user password
+     *
+     * @param [string] $password
+     * @return hashed password
+     */
+    private function cryptPassword($password)
+    {
+        $hashed = crypt($password, 'anythingyouwant_$' . SALT);
+        return $hashed;
     }
 }
