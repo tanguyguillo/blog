@@ -15,26 +15,31 @@ class User
     public function getUser(string $identifier): array
     {
         $statement = $this->connection->getConnection()->query(
-            //"SELECT id; emailUser; passWordUser; firstNameUser; surNameUser; titleUser; telGsmUser; roleUser; pictureOrLogo;  FROM user where id = $identifier"
             "SELECT * FROM user where id = $identifier"
         );
         $statement->execute();
         $row = $statement->fetch();
-        $user = new User();
-        $user->idUser = $row['id'];
-        $user->emailUser = $row['emailUser'];
-        $user->passWordUser = $row['passWordUser'];
-        $user->firstNameUser = $row['firstNameUser'];
-        $user->surNameUser = $row['surNameUser'];
-        $user->titleUser = $row['titleUser'];
-        $user->telGsmUser = $row['telGsmUser'];
-        $user->roleUser = $row['roleUser'];
-        $user->pictureOrLogo = $row['pictureOrLogo'];
+        // when user have been drop
+        if ($row) {
+            $user = new User();
+            $user->idUser = $row['id'];
+            $user->emailUser = $row['emailUser'];
+            $user->passWordUser = $row['passWordUser'];
+            $user->firstNameUser = $row['firstNameUser'];
+            $user->surNameUser = $row['surNameUser'];
+            $user->titleUser = $row['titleUser'];
+            $user->telGsmUser = $row['telGsmUser'];
+            $user->roleUser = $row['roleUser'];
+            $user->pictureOrLogo = $row['pictureOrLogo'];
 
-        // to convert the objet in array (warning if property private ?)
-        // perhaps an function will be better....
-        $user = json_decode(json_encode($user), true);
-        return $user;
+            // to convert the objet in array (warning if property private ?)
+            // perhaps an function will be better....
+            $user = json_decode(json_encode($user), true);
+            return $user;
+        } else {
+            // when user have been drop
+            return array('id->Null');
+        }
     }
 }
 /**
