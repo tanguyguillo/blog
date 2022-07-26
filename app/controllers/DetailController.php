@@ -97,7 +97,7 @@ class DetailController extends Controller
             $UsersRepository->connection = $connection;
             $users = $UsersRepository->getUsers(); // return an array
 
-            // if correspondance email + password ( $_POST and DB )   // todo / see sha 512   crypt($value, 'anythingyouwant_$' . SALT);
+            // if correspondance email + password + crypt
             foreach ($users as $user) {
 
                 if (($user['emailUser'] === $postData['user_login']) && ($user['passWordUser']  === crypt($postData['user_pass'], SALT))) {
@@ -182,25 +182,4 @@ class DetailController extends Controller
             return false;
         }
     }
-    /**
-     * function info
-     *
-     * @param Array
-     * @return void
-     */
-    // private function makeCryptPassword( $user['passWordUser'], $postData['user_pass'])
-    // {
-    //     var_dump("user['passWordUser'] :" . $user['passWordUser']);
-    //     if (($user['passWordUser']) === (crypt($postData['user_pass'], SALT))) {
-    //         var_dump("trouvé" . ($postData["user_login"]));
-    //         $cypt = crypt($postData['user_pass'], SALT);
-    //         var_dump($cypt);
-    //         exit;
-    //     } else {
-    //         var_dump('pas trouvé  :    ' . ($postData["user_login"]));
-    //         $cypt = crypt($postData['user_pass'], SALT);
-    //         var_dump($cypt);
-    //         exit;
-    //     }
-    // }
 }

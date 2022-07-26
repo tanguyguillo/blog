@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jul 22, 2022 at 10:10 PM
+-- Generation Time: Jul 26, 2022 at 10:02 AM
 -- Server version: 5.7.34
 -- PHP Version: 7.1.33
 
@@ -59,9 +59,9 @@ CREATE TABLE `comment` (
   `commentCreated` datetime DEFAULT NULL,
   `commentStatus` enum('Waiting for validation','Open','Closed','Refuse') DEFAULT NULL,
   `commentContent` longtext,
-  `user_id` int(11) NOT NULL,
-  `blog_post_id` int(11) NOT NULL,
-  `blog_post_user_id` int(11) NOT NULL COMMENT 'here the differents post of a user (blig_post_user-id)'
+  `user_id` int(11) NOT NULL COMMENT 'id of the writer of the comment',
+  `blog_post_id` int(11) NOT NULL COMMENT 'the id of the article',
+  `blog_post_user_id` int(11) NOT NULL COMMENT 'the writer''s id of the article'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -79,7 +79,18 @@ INSERT INTO `comment` (`id`, `commentCreated`, `commentStatus`, `commentContent`
 (11, '2022-07-22 05:59:39', 'Open', 'test avec le 2', 2, 2, 2),
 (12, '2022-07-22 06:12:22', 'Open', 'un commentaire de pa@pa.fr ....', 2, 2, 2),
 (15, '2022-07-22 08:00:59', 'Open', 'test avec Gérard...', 2, 2, 2),
-(19, '2022-07-22 08:10:22', 'Waiting for validation', 'test 56 tanguy', 2, 2, 2);
+(19, '2022-07-22 08:10:22', 'Waiting for validation', 'test 56 tanguy', 2, 2, 2),
+(21, '2022-07-22 08:50:00', 'Waiting for validation', 'test a 22H49 tanguy', 2, 3, 1),
+(27, '2022-07-22 09:01:24', 'Open', 'test avec rené id : 3', 3, 3, 1),
+(28, '2022-07-22 09:04:59', 'Open', 'test avec rené id  writer: 3', 3, 1, 1),
+(29, '2022-07-22 09:07:32', 'Open', 'test avec jeanne id : 5  ', 3, 2, 2),
+(39, '2022-07-23 06:16:21', 'Waiting for validation', 'test 56', 2, 3, 1),
+(40, '2022-07-23 06:17:20', 'Waiting for validation', 'test 56 --2', 2, 3, 1),
+(41, '2022-07-23 06:54:37', 'Waiting for validation', 'test 57', 2, 3, 1),
+(42, '2022-07-25 09:11:27', 'Open', 'test commentaire tanguy 25 juillet 2022 11h11', 2, 3, 1),
+(43, '2022-07-25 02:59:39', 'Waiting for validation', 'qdqDqd', 28, 3, 1),
+(44, '2022-07-25 03:00:30', 'Waiting for validation', 'test encrypt 2', 28, 3, 1),
+(45, '2022-07-25 04:56:30', 'Waiting for validation', 'test avec test.fr', 32, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -104,15 +115,14 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `emailUser`, `passWordUser`, `firstNameUser`, `surNameUser`, `titleUser`, `telGsmUser`, `roleUser`, `pictureOrLogo`) VALUES
-(1, 'gerard.lepage@example.fr', 'gerardesttresgentil', 'Gérard', 'lepage', 'Mister', NULL, 'Admin', NULL),
-(2, 'tanguy.guillo@gmail.com', 'lepetitchatestbeau', 'Tanguy', 'Guillo', 'Mister', NULL, 'Admin', NULL),
-(3, 'Lebeau@hotmail.fr', 'renenestpasgentil', 'René', 'Lebeau ', 'Mister', NULL, 'User', NULL),
-(4, 'i.marchand@example.fr', 'lisabelleestlaplusbelle', 'Isabelle', 'Marchand', 'Miss', NULL, 'User', NULL),
-(5, 'Jeanne.delabas@example.fr', 'lelionestgentil', 'Jeanne', 'delabas', 'Madam', NULL, 'User', NULL),
-(7, 'pa@pa.fr', 'lepetitchatestbeau', 'Paolo', 'Easy', 'Mister', NULL, 'Admin', NULL),
-(22, 'legrand@test.fr', 'lecielestbeau', 'jean Marie', 'Le Grand', NULL, NULL, 'User', NULL),
-(23, 'tret@tre.fr', 'qDqdqdqsdqsdsqD', 'QSdsdsqdSQDsq', 'sqdsqdsqdsqDSQdqs', NULL, NULL, 'User', NULL),
-(24, 'tyyy@yt.fr', 'sqdsqdqsdsqdqsdsqdsq', 'qsdqDQS', 'QSDsdqsdQS', NULL, NULL, 'User', NULL);
+(1, 'gerard.lepage@example.fr', '$1$thexkyis$qhLnFid8IDRHoOnZrAomH0', 'Gérard', 'lepage', 'Mister', NULL, 'Admin', NULL),
+(2, 'tanguy.guillo@gmail.com', '$1$thexkyis$ubEukNiISWiDZgoOqM6zd', 'Tanguy', 'Guillo', 'Mister', NULL, 'Admin', NULL),
+(3, 'Lebeau@exemple.fr', '$1$thexkyis$YLrLuFK598r8RRKoKBLKW0', 'René', 'Lebeau ', 'Mister', NULL, 'User', NULL),
+(4, 'i.marchand@example.fr', '$1$thexkyis$uDIqgNhVSZYUigXjJ9o7K0', 'Isabelle', 'Marchand', 'Miss', NULL, 'User', NULL),
+(5, 'Jeanne.delabas@example.fr', '$1$thexkyis$4bouVMEF2Wz9SwyCd/4Xb1', 'Jeanne', 'delabas', 'Madam', NULL, 'User', NULL),
+(7, 'pa@pa.fr', '$1$thexkyis$ubEukNiISWiDZgoOqM6zd.', 'Paolo', 'Easy', 'Mister', NULL, 'Admin', NULL),
+(22, 'legrand@test.fr', '$1$thexkyis$Jg3YE53nNcraRQjHLMudV0', 'jean Marie', 'Le Grand', NULL, NULL, 'User', NULL),
+(40, 'test@test.fr', '$1$thexkyis$hNvuAeGdrf02qoassydzQ.', 'test@test.fr', 'test@test.fr', NULL, NULL, 'User', NULL);
 
 --
 -- Indexes for dumped tables
@@ -153,13 +163,13 @@ ALTER TABLE `blog_post`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- Constraints for dumped tables

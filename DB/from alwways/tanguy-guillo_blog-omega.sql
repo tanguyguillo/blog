@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:8889
--- Generation Time: Jul 25, 2022 at 08:58 PM
--- Server version: 5.7.34
--- PHP Version: 7.1.33
+-- Host: mysql-tanguy-guillo.alwaysdata.net
+-- Generation Time: Jul 26, 2022 at 10:59 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 7.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `blog`
+-- Database: `tanguy-guillo_blog-omega`
 --
 
 -- --------------------------------------------------------
@@ -30,8 +30,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `blog_post` (
   `id` int(11) NOT NULL,
   `postTitle` varchar(255) DEFAULT NULL,
-  `postChapo` longtext,
-  `postContent` longtext,
+  `postChapo` longtext DEFAULT NULL,
+  `postContent` longtext DEFAULT NULL,
   `postCreated` datetime NOT NULL,
   `postStatus` enum('Waiting for validation','Open','Closed') DEFAULT NULL,
   `postName` varchar(255) DEFAULT NULL,
@@ -58,7 +58,7 @@ CREATE TABLE `comment` (
   `id` int(11) NOT NULL,
   `commentCreated` datetime DEFAULT NULL,
   `commentStatus` enum('Waiting for validation','Open','Closed','Refuse') DEFAULT NULL,
-  `commentContent` longtext,
+  `commentContent` longtext DEFAULT NULL,
   `user_id` int(11) NOT NULL COMMENT 'id of the writer of the comment',
   `blog_post_id` int(11) NOT NULL COMMENT 'the id of the article',
   `blog_post_user_id` int(11) NOT NULL COMMENT 'the writer''s id of the article'
@@ -90,7 +90,9 @@ INSERT INTO `comment` (`id`, `commentCreated`, `commentStatus`, `commentContent`
 (42, '2022-07-25 09:11:27', 'Open', 'test commentaire tanguy 25 juillet 2022 11h11', 2, 3, 1),
 (43, '2022-07-25 02:59:39', 'Waiting for validation', 'qdqDqd', 28, 3, 1),
 (44, '2022-07-25 03:00:30', 'Waiting for validation', 'test encrypt 2', 28, 3, 1),
-(45, '2022-07-25 04:56:30', 'Waiting for validation', 'test avec test.fr', 32, 2, 2);
+(45, '2022-07-25 04:56:30', 'Waiting for validation', 'test avec test.fr', 32, 2, 2),
+(46, '2022-07-26 10:19:44', 'Waiting for validation', 'test de moi', 41, 1, 1),
+(47, '2022-07-26 10:24:02', 'Waiting for validation', 'moi 2', 42, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -116,13 +118,14 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `emailUser`, `passWordUser`, `firstNameUser`, `surNameUser`, `titleUser`, `telGsmUser`, `roleUser`, `pictureOrLogo`) VALUES
 (1, 'gerard.lepage@example.fr', '$1$thexkyis$qhLnFid8IDRHoOnZrAomH0', 'Gérard', 'lepage', 'Mister', NULL, 'Admin', NULL),
-(2, 'tanguy.guillo@gmail.com', '$1$thexkyis$ubEukNiISWiDZgoOqM6zd', 'Tanguy', 'Guillo', 'Mister', NULL, 'Admin', NULL),
 (3, 'Lebeau@exemple.fr', '$1$thexkyis$YLrLuFK598r8RRKoKBLKW0', 'René', 'Lebeau ', 'Mister', NULL, 'User', NULL),
 (4, 'i.marchand@example.fr', '$1$thexkyis$uDIqgNhVSZYUigXjJ9o7K0', 'Isabelle', 'Marchand', 'Miss', NULL, 'User', NULL),
 (5, 'Jeanne.delabas@example.fr', '$1$thexkyis$4bouVMEF2Wz9SwyCd/4Xb1', 'Jeanne', 'delabas', 'Madam', NULL, 'User', NULL),
-(7, 'pa@pa.fr', '$1$thexkyis$ubEukNiISWiDZgoOqM6zd.', 'Paolo', 'Easy', 'Mister', NULL, 'Admin', NULL),
 (22, 'legrand@test.fr', '$1$thexkyis$Jg3YE53nNcraRQjHLMudV0', 'jean Marie', 'Le Grand', NULL, NULL, 'User', NULL),
-(34, 'test@test.fr', '$1$thexkyis$MOBivDICtDKz69pGxhSps.', 'test@test.fr', 'test@test.fr', NULL, NULL, 'User', NULL);
+(44, 'test@test.fr', '$1$thexkyis$hNvuAeGdrf02qoassydzQ.', 'test', 'test@test.fr', NULL, NULL, 'User', NULL),
+(45, 'moi@moi.fr', '$1$thexkyis$yKeHnn/qP4J6TKbeyvlxJ.', 'moi@moi.fr', 'moi@moi.fr', NULL, NULL, 'User', NULL),
+(46, 'pa@pa.fr', '$1$thexkyis$hRj4r1NEzyIJUY1cyGNWU/', 'Paolo', 'easy', NULL, NULL, 'Admin', NULL),
+(47, 'tanguy.guillo@gmail.com', '$1$thexkyis$U05YXCCvhX49vidDiXV.Q/', 'Tanguy', 'Guillo', NULL, NULL, 'Admin', NULL);
 
 --
 -- Indexes for dumped tables
@@ -163,13 +166,13 @@ ALTER TABLE `blog_post`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- Constraints for dumped tables
@@ -180,13 +183,6 @@ ALTER TABLE `user`
 --
 ALTER TABLE `blog_post`
   ADD CONSTRAINT `fk_blog_post_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `comment`
---
-ALTER TABLE `comment`
-  ADD CONSTRAINT `fk_comment_blog_post1` FOREIGN KEY (`blog_post_id`,`blog_post_user_id`) REFERENCES `blog_post` (`id`, `user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_comment_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
