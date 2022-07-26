@@ -77,25 +77,23 @@
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            {# <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            {<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="hidden">
                         <a href="#page-top"></a>
                     </li>
+                    
                     <li class="page-scroll">
-                        <a href="index.php#home">Accueil</a>
+                        <a href="#">Nouveau Post</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="index.php?owp=bloglist">Blog</a>
+                        <a href="#">Modifier Post</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="index.php#contact">Contact</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="index.php#about">A propos</a>
+                        <a href="#">Validation Nouveaus comentaires</a>
                     </li>
                 </ul>
-            </div> #}
+            </div> 
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container-fluid -->
@@ -110,7 +108,38 @@
     {% endblock %}
 
 
+ {% block footer %}
+    <footer class="text-center">
+        
 
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <span class="col-lg-4">
+                        OmegaWebProd Copyright &copy; {{ "now"|date("Y") }}
+                    </span>
+                    
+                    {# to know how is connected, show only if connected #}
+                    {# {% if session.LOGGED_USER != '' %}
+                        <span >Connecté: {{ session.LOGGED_USER }} <span> | 
+                    {% endif %} #}
+
+                    {# <a href="index.php?owp=connexion#connexion">Se connecter</a>  | posing issue with return #}
+                    <a href="#confidential" class="portfolio-link" data-toggle="modal">Politique de confidentialité</a> | 
+                    <a href="index.php">Retour au site</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+    {% endblock %}
     
 
     <!-- <script src="js/vendor/modernizr-3.11.2.min.js"></script>-->

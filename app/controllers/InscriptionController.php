@@ -7,7 +7,8 @@ use Application\Model\UserModel;
 use Application\Model\UserModel\UsersRepository;
 
 use Application\Controllers\Controller;
-use Application\Controllers\connexion\ConnexionController;
+use Application\Controllers\ConnexionController;
+use Application\Controllers\ConnexionController\ConnexionController as ConnexionControllerConnexionController;
 
 /**
  * Class of user inscription
@@ -31,7 +32,7 @@ class InscriptionController extends Controller
    */
   public function CreateAccount(array $postData)
   {
-    (new ConnexionController())->signOutForInscription();
+    (new ConnexionControllerConnexionController())->signOutForInscription();
     $connection = new DatabaseConnection();
     $UserRepository = new UsersRepository();
     $UserRepository->connection = $connection;

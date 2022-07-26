@@ -33,7 +33,7 @@ $postData = $_POST;
 foreach ($postData as $key => $value) {
     $postData[$key]  = strip_tags(htmlspecialchars($value));
 }
-
+// first router
 try {
     if (isset($_GET['owp']) && $_GET['owp'] !== '') {
         // from page connexion : redirection to comment
@@ -66,14 +66,18 @@ try {
             (new InscriptionController())->CreateAccount($postData);
             exit;
         }
+        // Admin aera
+        if ($_GET['owp'] === 'administration') {
+            (new AdminController())->ConnectAdmin();
+            exit;
+        }
+        if ($_GET['owp'] === 'blocPostAdmin') {
+            (new AdminController())->BlocPostadmin();
+            exit;
+        }
     }
 
-    // Admin aera
-    if ($_GET['owp'] === 'administration') {
-        (new AdminController())->ConnectAdmin();
-        exit;
-    }
-
+    // second router
     if (isset($_GET['owp']) && $_GET['owp'] !== '') {
         if ($_GET['owp'] === 'bloglist') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
@@ -83,11 +87,8 @@ try {
             } else {
                 (new PostsController())->executePosts();
             }
-        } elseif ($_GET['owp'] === '---creation-d-un-compte') {
+        } elseif ($_GET['owp'] === 'tosee') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
-                // $identifier = $_GET['id'];
-                // $identifier = strip_tags(htmlspecialchars($identifier));
-                // (new InscriptionController())->CreateAccount($postData);
             } else {
             }
         } else {
