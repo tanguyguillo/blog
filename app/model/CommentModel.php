@@ -79,7 +79,7 @@ class Comment
                     "INSERT INTO comment (commentCreated, commentStatus, commentContent, user_id, blog_post_id, blog_post_user_id)  VALUES ('$CommentCreated ', '$commentStatus', '$commentContent', '$user_id ', '$blog_post_id', '$blog_post_user_id');"
                 );
                 return true;
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 $errorMessage = $e->getMessage();
                 require(ROOT . '/app/templatesError/error.php');
                 return false;

@@ -38,11 +38,7 @@ class ConnexionController extends Controller
   public function signOut()
   {
     $message = 'Voila, ' . "c'est fait, " . 'vous êtes déconnecté';
-    $_SESSION['LOGGED_USER']  = false;
-    $_SESSION['LOGGED_USER_NAME']  = '';
-    $_SESSION['LOGGED_USER_ID']  = '';
-
-    session_destroy();
+    $this->InitSession;
     $this->twig->display('info/info.html.twig', compact('message'));
   }
 
@@ -53,10 +49,28 @@ class ConnexionController extends Controller
    */
   public function signOutForInscription()
   {
-    $_SESSION['LOGGED_USER']  = false; // for twig view
-    $_SESSION['LOGGED_USER_NAME']  = '';
-    $_SESSION['LOGGED_USER_ID']  = '';
+    $this->InitSession;
+  }
 
+  /**
+   * function Unset all of the session variables and Finally, destroy the session.
+   *
+   * @return void
+   */
+  public function InitSession()
+  {
+    // session_start();
+    // // Unset all of the session variables.
+    $_SESSION = array();
+
+    // $_SESSION['LOGGED_USER']  = false; // for twig view
+    // $_SESSION['LOGGED_USER_NAME']  = '';
+    // $_SESSION['LOGGED_USER_ID']  = '';
+
+    unset($_SESSION['LOGGED_USER']);
+    unset($_SESSION['LOGGED_USER_NAME']);
+    unset($_SESSION['LOGGED_USER_ID']);
+    unset($_SESSION);
     session_destroy();
   }
 }

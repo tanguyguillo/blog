@@ -53,26 +53,14 @@ abstract class Controller
      * @param [type] $identifier
      * @return boll
      */
-    public function isInteger($identifier)
-    {
-        if ($this->isInteger($identifier) == false) {
-            $message = "l'identifiant de la page doit être un chiffre";
-            $this->twig->display('error/error.html.twig', compact('message'));
-            exit;
-        }
-        return true;
-    }
+    // public function isInteger($identifier)
+    // {
+    //     if ($this->isInteger($identifier) == false) {
+    //         $message = "l'identifiant de la page doit être un chiffre";
+    //         $this->twig->display('error/error.html.twig', compact('message'));
+    //         exit;
+    //     }
+    //     return true;
+    // }
 
-    /**
-     * 
-     */
-    public function disconnect()
-    {
-        if ($_SESSION['LOGGED_USER'] == true) {
-            session_destroy();
-            $_SESSION['LOGGED_USER'] = false; // for twig view
-            // var_dump('yes');
-            exit;
-        }
-    }
 }

@@ -5,9 +5,9 @@
  * 
  * autododer of composer do for exemple : Application\Controllers\DetailController\DetailController (DetailController\DetailController : X2) 
  * 
- * function abstraite
+ * function 
  *
- * @param [type] $class
+ * @param [string] $class
  * @return void
  */
 function my_autoloader($class)

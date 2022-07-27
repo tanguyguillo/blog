@@ -51,7 +51,7 @@ try {
             (new InscriptionController())->inscription();
             exit;
         }
-        // Connexion
+
         if ($_GET['owp'] === 'connexion') {
             (new ConnexionController())->connexion();
             exit;

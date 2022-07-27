@@ -88,12 +88,18 @@
             </div>
         </form>
         <br>
-        {# other button #}
+
+        {# connexion #}
         <a href="{{ app.request.getBaseURL() }} index.php?owp=connexion&id={{detail.idPost}}"><button type="submit"
                 class="btn btn-success btn-lg btn-block">Se connecter</button></a>
         <br>
         <a href="{{ app.request.getBaseURL() }} index.php?owp=inscription"><button type="submit"
                 class="btn btn-success btn-lg btn-block">Créer son compte</button></a>
+
+        {# sign down #}
+            <div class="form-group" id="deconnexion"></div>
+                <a href="index.php?owp=se-deconnectez" class="btn btn-danger  btn-lg btn-block" role="button" aria-pressed="true">Se déconnecter</a>
+            </div>
     </div>
 </div>
 

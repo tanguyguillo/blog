@@ -29,10 +29,17 @@ class DetailController extends Controller
      */
     public function Detail($identifier, $message = '')
     {
-        // for intance when inscription
+
+        // $this->ConnexioController->InitSession; to try when i will know how to do
+        // IndexController::indexAction();
+        //$this->$ConnexionController::InitSession();
+
+        // // for intance when inscription
         if ($identifier === "") {
+            //$identifier = $_SESSION['LOGGED_PAGE_ID']; // article id
             $identifier = "3";
         }
+
         //verify is $identifier is a "string(integer)" if not display a message
         $this->isInteger($identifier);
         if ($this->isInteger($identifier) == false) {
@@ -59,11 +66,14 @@ class DetailController extends Controller
             exit;
         };
 
-        // 2 - user
+        // 2 - user  
         $connection = new DatabaseConnection();
         $user = new User();
         $user->connection = $connection;
+
         $user  = $user->getUser($identifier); // return an array
+
+        // var_dump($user);
 
         // 3 - Comment
         $connection = new DatabaseConnection();
@@ -74,6 +84,9 @@ class DetailController extends Controller
 
         $baseUrl = BASE_URL; // used for return button after connexion
         $_SESSION['LOGGED_PAGE_ID'] = $identifier; // used article read for return button button after connexion
+
+
+        // var_dump($_SESSION['ROLE_USER']);
 
         $arrayMessage = $this->readleByTwig($message);
 
@@ -92,10 +105,9 @@ class DetailController extends Controller
      */
     public function DetailConnexion(array $postData, string $messsage = '')
     {
+        $messsageReadle = ""; // for no data message
         // if exist
         if (isset($postData['user_login']) &&  isset($postData['user_pass'])) {
-            $messsageReadle = ""; // for no data message
-
             $connection = new DatabaseConnection();
             $UsersRepository = new UsersRepository();
             $UsersRepository->connection = $connection;
@@ -103,7 +115,6 @@ class DetailController extends Controller
 
             // if correspondance email + password + crypt
             foreach ($users as $user) {
-
                 if (($user['emailUser'] === $postData['user_login']) && ($user['passWordUser']  === crypt($postData['user_pass'], SALT))) {
                     // for preferences only
                     setcookie(
@@ -129,7 +140,9 @@ class DetailController extends Controller
                     $message = $user["firstNameUser"];
                     $_SESSION['LOGGED_USER_NAME'] =  $message;
 
-                    // we return to the page detail with the good id 
+                    $_SESSION['ROLE_USER'] = $user["roleUser"]; // is User or Admin
+
+                    // we return to the page detail with the good id ... ? add block showing unrefesh thing ?
                     $this->Detail($postData['postId'], $message);
                 }
             }
