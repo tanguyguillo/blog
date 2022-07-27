@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>Blog de OmegaWebProd</title>{% endblock %}
+
+{% block header %}
+<header>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <a href="index.php?owp=bloglist" title="Lien vers la liste des article du blog">
+	<img class="img-responsive" src="img/qrcode.png" alt="Visuel logo OmegaWebProd">
+                </a>
+                <div class="intro-text">
+                    <span class="name">Blog.OmegaWebProd</span>
+                    <h3>François Tanguy Guillo</h3>
+                    <hr class="star-light">
+                    <span class="skills">Seul on va plus vite<br>
+                        <span class="teaser">ensemble on va plus loin</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock %}
+
+{% block contact %}
+
+<!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Contactez nous</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+                    <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
+                    <form name="sentMessage" id="contactForm" novalidate>
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Nom Prénom</label>
+                                <input type="text" class="form-control" placeholder="Nom / Prénom" id="name" required data-validation-required-message="S'il vous plaît entrez votre nom et prénom">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Email</label>
+                                <input type="email" class="form-control" placeholder="Email" id="email" required data-validation-required-message="Veuillez saisir votre adresse e-mail.">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="row control-group hidden">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Numéro de téléphone</label>
+                                <input type="text" pattern="^[0-9]{10}$" data-validation-pattern-message="10 chiffres nécessaire" class="form-control" placeholder="Numéro de téléphone" id="phone" value="0000000000" required data-validation-required-message="Veuillez entrer votre numéro de téléphone.">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div> 
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Votre message</label>
+                                <textarea rows="5" class="form-control" placeholder="Message" id="message" required data-validation-required-message="Veuillez entrer un message."></textarea>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <br>
+                        <div id="success"></div>
+                        <div class="row">
+                            <div class="form-group col-xs-12">
+                                <button type="submit" class="btn btn-success btn-lg">Envoyer</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
