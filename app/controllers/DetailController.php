@@ -29,6 +29,10 @@ class DetailController extends Controller
      */
     public function Detail($identifier, $message = '')
     {
+        // for intance when inscription
+        if ($identifier === "") {
+            $identifier = "3";
+        }
         //verify is $identifier is a "string(integer)" if not display a message
         $this->isInteger($identifier);
         if ($this->isInteger($identifier) == false) {
@@ -69,7 +73,7 @@ class DetailController extends Controller
         $postComments = json_decode(json_encode($postComments), true);
 
         $baseUrl = BASE_URL; // used for return button after connexion
-        $_SESSION['LOGGED_PAGE_ID'] = $identifier; // used for return button button after connexion
+        $_SESSION['LOGGED_PAGE_ID'] = $identifier; // used article read for return button button after connexion
 
         $arrayMessage = $this->readleByTwig($message);
 

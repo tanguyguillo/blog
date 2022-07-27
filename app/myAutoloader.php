@@ -1,10 +1,11 @@
 <?php
 
 /**
- *  function making working autoload
+ *  function making working autoload using $class provided by composer
  * 
- * autododer of composer do for exemple : Application\Controllers\DetailController\DetailController (X2) 
- * if 's constrain me to use require before this function my_autoloader($class)
+ * autododer of composer do for exemple : Application\Controllers\DetailController\DetailController (DetailController\DetailController : X2) 
+ * 
+ * function abstraite
  *
  * @param [type] $class
  * @return void
