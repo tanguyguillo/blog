@@ -19,7 +19,7 @@ class DatabaseConnection
   {
     if ($this->database === null) {
       //Synthaxe for exeample: new PDO('mysql:host=localhost;dbname=test', $user, $pass);
-      // mettre un try ?
+      // todo : write a try ?
       $this->database = new \PDO('mysql:host=' . SERVER . ';dbname=' . BASE . ';charset=utf8', USER, PASSWD);
     }
     return $this->database;

@@ -30,7 +30,7 @@ class InscriptionController extends Controller
    *
    * @return void
    */
-  public function CreateAccount(array $postData)
+  public function createAccount(array $postData)
   {
     (new ConnexionControllerConnexionController())->signOutForInscription();
     $connection = new DatabaseConnection();

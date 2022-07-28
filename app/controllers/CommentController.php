@@ -22,7 +22,7 @@ class CommentController extends Controller
      * 
      * @return void
      */
-    public function SetComment(array $arrayComment)
+    public function setComment(array $arrayComment)
     {
         $arrayComment = json_decode(json_encode($arrayComment), true);
 
@@ -33,12 +33,11 @@ class CommentController extends Controller
             exit;
         }
 
-        //$arrayComment = $arrayComment;
         $connection = new DatabaseConnection();
-        $Comment = new Comment();
-        $Comment->connection = $connection;
+        $comment = new Comment();
+        $comment->connection = $connection;
 
-        if ($Comment->SetComments($arrayComment)) {
+        if ($comment->setComments($arrayComment)) {
             $message = "Votre commentaire a été envoyé et est en attente de validation";
             $this->twig->display('info/info.html.twig', compact('message'));
         } else {

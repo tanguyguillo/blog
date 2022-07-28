@@ -27,7 +27,7 @@ class DetailController extends Controller
      * @param string $identifier
      * @return void
      */
-    public function Detail($identifier, $message = '')
+    public function detail($identifier, $message = '')
     {
 
         // $this->ConnexioController->InitSession; to try when i will know how to do
@@ -73,8 +73,6 @@ class DetailController extends Controller
 
         $user  = $user->getUser($identifier); // return an array
 
-        // var_dump($user);
-
         // 3 - Comment
         $connection = new DatabaseConnection();
         $postComments = new Comment();
@@ -103,15 +101,15 @@ class DetailController extends Controller
      * @param [string] $messsage
      * @return void
      */
-    public function DetailConnexion(array $postData, string $messsage = '')
+    public function detailConnexion(array $postData, string $messsage = '')
     {
         $messsageReadle = ""; // for no data message
         // if exist
         if (isset($postData['user_login']) &&  isset($postData['user_pass'])) {
             $connection = new DatabaseConnection();
-            $UsersRepository = new UsersRepository();
-            $UsersRepository->connection = $connection;
-            $users = $UsersRepository->getUsers(); // return an array
+            $usersRepository = new UsersRepository();
+            $usersRepository->connection = $connection;
+            $users = $usersRepository->getUsers(); // return an array
 
             // if correspondance email + password + crypt
             foreach ($users as $user) {
