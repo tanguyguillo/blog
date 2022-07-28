@@ -4,6 +4,7 @@ namespace Application\Controllers\PostsController;
 
 use Application\Controllers\Controller;
 use Application\Model\PostModel\PostsRepository;
+//use Application\Core\Database\Database\DatabaseConnection;
 use Application\Core\Database\Database\DatabaseConnection;
 
 /**

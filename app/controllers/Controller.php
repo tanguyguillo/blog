@@ -33,7 +33,6 @@ abstract class Controller
                 'debug' => false
             ]
         );
-
         $this->twig->addGlobal('session', $_SESSION);
     }
 
@@ -45,6 +44,13 @@ abstract class Controller
      */
     public function deletePostsIfNotValid(array $array)
     {
+    }
+
+
+
+    public function myTest()
+    {
+        return "yessss";
     }
 
     /**

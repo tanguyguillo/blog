@@ -62,10 +62,13 @@
                 </button> 
                 <a class = "navbar-brand"  href= "index.php#page-top-logo"><img class="owp-logo" src="img/logo-small.png" alt="visuel logo omegawebprod" ></a>
                 <a class="navbar-brand" href="index.php?owp=bloglist"> &lt; Bienvenue &gt;
-                {# to know how is connected, show only if connected #}
+                
+                {# to know how is connected, show only if connected but not on the first connexion there is arrayMessage.message for that#}
                 {% if session.LOGGED_USER == true  %}
-                        <small> {{ session.LOGGED_USER_NAME }} </small> 
+                    {% if arrayMessage.message == false %}
+                            <small> {{ session.LOGGED_USER_NAME }} </small> 
                     {% endif %} 
+                {% endif %} 
                 </a> 
             </div>
 
@@ -174,18 +177,21 @@
                         OmegaWebProd Copyright &copy; {{ "now"|date("Y") }}
                     </span>
                     
-                    {# to know how is connected, show only if connected #}
-                    {% if session.LOGGED_USER != '' %}
-                        <span >Connecté: {{ session.LOGGED_USER_NAME }} : {{ session.ROLE_USER }} <span> | 
-                    {% endif %} 
+                    {# to know how is connected, show only if connected but not just after a connenxion#}
+                    {# {% if session.LOGGED_USER != '' %}
+                        {% if arrayMessage.message == false %}
+                            <span >Connecté: {{ session.LOGGED_USER_NAME }} : {{ session.ROLE_USER }} <span> | 
+                        {% endif %} 
+                    {% endif %}  #}
 
                     {# <a href="index.php?owp=connexion#connexion">Se connecter</a>  | posing issue with return #}
                     <a href="#confidential" class="portfolio-link" data-toggle="modal">Politique de confidentialité</a>
-
-                    {# <p>test : {{ session.ROLE_USER }}</p>  #}
-
-                    {% if session.ROLE_USER =="Admin"  %} 
-                        | <a href="index.php?owp=administration">Administration</a>
+                    
+                    {# show the link admin only for people which have the role Admin (not only User) #}
+                    {% if arrayMessage.message == false %}
+                        {% if session.ROLE_USER =="Admin"  %} 
+                            | <a href="index.php?owp=administration">Administration</a>
+                        {% endif %}
                     {% endif %}
 
                     </span>
