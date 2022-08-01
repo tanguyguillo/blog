@@ -2,7 +2,7 @@
 
 namespace Application\Model\UserModel;
 
-use Application\Core\Database\Database\DatabaseConnection;
+use Application\Core\Database\DatabaseConnection;
 
 class User
 {

@@ -2,9 +2,6 @@
 
 namespace Application\Controllers\ConnexionController;
 
-// use Application\Core\Database\Database\DatabaseConnection;
-// use Application\Model\UserModel\UsersRepository;
-// use Application\Model\UserModel\User;
 
 use Application\Controllers\Controller;
 
@@ -49,7 +46,7 @@ class ConnexionController extends Controller
    */
   public function signOutForInscription()
   {
-    $this->InitSession;
+    $this->InitSession();
   }
 
   /**

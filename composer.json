@@ -4,7 +4,7 @@
         "psr-4": {
             "Application\\": "app/",
             "Application\\Controllers\\": "app/controllers/",
-            "Application\\Core\\Database\\": "app/core/Database/",
+            "Application\\Core\\Database\\": "app/core/database/",
             "Application\\Models\\": "app/models/"
         }
     },

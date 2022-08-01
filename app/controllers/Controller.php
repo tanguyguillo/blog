@@ -6,7 +6,6 @@ namespace Application\Controllers;
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
-use Application\Core\Database\Database\DatabaseConnection;
 
 /**
  * make working twig by heritage

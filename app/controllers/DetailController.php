@@ -2,15 +2,15 @@
 
 namespace Application\Controllers\DetailController;
 
-use Application\Core\Database\Database\DatabaseConnection;
+use Application\Core\Database\DatababaseConnexion;
 use Application\Model\UserModel\UsersRepository;
 use Application\Model\DetailModel\Detail;
 use Application\Model\UserModel\User;
 use Application\Model\CommentModel\Comment;
 //
 use Application\Controllers\Controller;
-use Application\Controllers\ErrorController\ErrorController;
 use Application\Controllers\ConnexionController\ConnexionController;
+use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
 
 class DetailController extends Controller
 {
@@ -50,7 +50,7 @@ class DetailController extends Controller
         // verification .... to see   
         //$this->isInteger($identifier); // if not redirection on error page
 
-        $connection = new DatabaseConnection();
+        $connection = new DatabaseConnexion();
 
         // 1 - Detail
         $identifier = htmlspecialchars($identifier);
@@ -67,14 +67,14 @@ class DetailController extends Controller
         };
 
         // 2 - user  
-        $connection = new DatabaseConnection();
+        $connection = new DatabaseConnexion();
         $user = new User();
         $user->connection = $connection;
 
         $user  = $user->getUser($identifier); // return an array
 
         // 3 - Comment
-        $connection = new DatabaseConnection();
+        $connection = new DatabaseConnexion();
         $postComments = new Comment();
         $postComments->connection = $connection;
         $postComments  = $postComments->getComments($identifier); // return an array
@@ -107,7 +107,7 @@ class DetailController extends Controller
 
         // if exist
         if (isset($postData['user_login']) &&  isset($postData['user_pass'])) {
-            $connection = new DatabaseConnection();
+            $connection = new DatabaseConnexion();
             $usersRepository = new UsersRepository();
             $usersRepository->connection = $connection;
             $users = $usersRepository->getUsers(); // return an array

@@ -2,13 +2,11 @@
 
 namespace Application\Controllers\InscriptionController;
 
-use Application\Core\Database\Database\DatabaseConnection;
-use Application\Model\UserModel;
-use Application\Model\UserModel\UsersRepository;
 
+use Application\Model\UserModel\UsersRepository;
 use Application\Controllers\Controller;
-use Application\Controllers\ConnexionController;
-use Application\Controllers\ConnexionController\ConnexionController as ConnexionControllerConnexionController;
+use Application\Controllers\ConnexionController\ConnexionController;
+use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
 
 /**
  * Class of user inscription
@@ -32,8 +30,8 @@ class InscriptionController extends Controller
    */
   public function createAccount(array $postData)
   {
-    (new ConnexionControllerConnexionController())->signOutForInscription();
-    $connection = new DatabaseConnection();
+    (new ConnexionController())->signOutForInscription();
+    $connection = new DatabaseConnexion();
     $UserRepository = new UsersRepository();
     $UserRepository->connection = $connection;
 

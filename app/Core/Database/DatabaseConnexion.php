@@ -1,11 +1,11 @@
 <?php
 
-namespace Application\Core\Database\Database;
+namespace Application\Core\Database\DatabaseConnexion;
 
 // Loading the config
 require_once(ROOT . '/app/config/config.php');
 
-class DatabaseConnection
+class DatabaseConnexion
 {
   public ?\PDO $database = null;  // if PDO .... ok otherwise = null 
 

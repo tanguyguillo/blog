@@ -4,7 +4,7 @@ namespace Application\Controllers\AdminController;
 
 use Application\Controllers\Controller;
 
-use Application\Core\Database\Database\DatabaseConnection;
+use Application\Core\Database\\DatabaseConnection;
 use Application\Model\CommentModel\Comment;
 
 

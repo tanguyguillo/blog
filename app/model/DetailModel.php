@@ -2,10 +2,10 @@
 
 namespace Application\Model\DetailModel;
 
-// use Application\Core\Database\Database\DatabaseConnection; still in main controler
 
-
-
+/**
+ * Undocumented class
+ */
 class Detail
 {
     function __construct()

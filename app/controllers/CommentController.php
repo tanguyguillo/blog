@@ -3,8 +3,8 @@
 namespace Application\Controllers\CommentController;
 
 use Application\Controllers\Controller;
-
-use Application\Core\Database\Database\DatabaseConnection;
+use Application\Core\Database\DatababaseConnexion;
+use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
 use Application\Model\CommentModel\Comment;
 
 
@@ -33,7 +33,7 @@ class CommentController extends Controller
             exit;
         }
 
-        $connection = new DatabaseConnection();
+        $connection = new DatabaseConnexion();
         $comment = new Comment();
         $comment->connection = $connection;
 
