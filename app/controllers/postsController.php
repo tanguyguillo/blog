@@ -3,8 +3,7 @@
 namespace Application\Controllers\PostsController;
 
 use Application\Controllers\Controller;
-use Application\Core\Database\DatabaseConnexion;
-use Application\Core\Database\DatabaseConnexion\DatabaseConnexion as DatabaseConnexionDatabaseConnexion;
+use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
 use Application\Model\PostModel\PostsRepository;
 
 /**
@@ -19,7 +18,7 @@ class PostsController extends Controller
    */
   public function executePosts()
   {
-    $connection = new DatabaseConnexionDatabaseConnexion(); // from models
+    $connection = new DatabaseConnexion(); // from models
 
     //then we will use this connexion to get what we want ; here posts
     $postsRepository = new PostsRepository();

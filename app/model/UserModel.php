@@ -2,7 +2,7 @@
 
 namespace Application\Model\UserModel;
 
-use Application\Core\Database\DatabaseConnection;
+use Application\Core\Database\DatababaseConnexion;
 
 class User
 {
@@ -132,5 +132,43 @@ class UsersRepository
     {
         $hashed = crypt($password, 'anythingyouwant_$' . SALT);
         return $hashed;
+    }
+
+    /**
+     * get the listing for admin part to modify a post : you DO have admin role to acces to this Aera
+     *
+     * @return array
+     */
+    public function getPostAndUser()
+    {
+        if ($_SESSION['LOGGED_USER'] and ($_SESSION['ROLE_USER'] == 'Admin')) {
+            $errorMessage = "you DO have admin role to acces to this Aera";
+            try {
+                $statement = $this->connection->getConnection()->query(
+                    "SELECT  ud.id, postTitle, postChapo, postContent, firstNameUser, surNameUser,emailUser, roleUser
+                    FROM blog_post AS b
+                    LEFT JOIN user as ud
+                    ON(b.user_id = ud.id)"
+                );
+                $datas = [];
+                $statement->execute();
+                while (($row = $statement->fetch())) {
+                    $data = new UsersRepository();
+                    $data->postTitle = $row['postTitle'];
+                    $data->postChapo = $row['postChapo'];
+                    $data->postContent = $row['postContent'];
+                    $data->postContent = $row['firstNameUser'];
+                    $data->postContent = $row['surNameUser'];
+                    $data->postContent = $row['emailUser'];
+                    $data->roleUser = $row['roleUser'];
+                    $datas[] = $data;
+                }
+                return $datas;
+            } catch (\Exception $e) {
+                $errorMessage = $e->getMessage();
+                require(ROOT . '/app/templatesError/error.php');
+                return false;
+            }
+        }
     }
 }

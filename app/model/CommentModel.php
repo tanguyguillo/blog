@@ -88,4 +88,5 @@ class Comment
             return true;
         }
     }
+
 }
