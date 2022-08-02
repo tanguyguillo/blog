@@ -35,7 +35,7 @@ class AdminController extends Controller
     }
 
     /**
-     * function to get data to fild the table to modify in admin aera
+     * function to get data to fill the table to modify in admin aera
      *
      * @return an Array or display error
      */
@@ -46,6 +46,10 @@ class AdminController extends Controller
         $adminUserAndData->connection = $connection;
         $adminUserAndData = $adminUserAndData->getPostAndUser();
         $adminUserAndData = json_decode(json_encode($adminUserAndData), true);
+
+        // var_dump($adminUserAndData);
+        // exit;
+
         if (is_array($adminUserAndData)) {
             return $adminUserAndData;
         } else {

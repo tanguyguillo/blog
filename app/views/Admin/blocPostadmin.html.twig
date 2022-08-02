@@ -20,10 +20,11 @@
 <table class="table d-flex flex-column min-vh-100">
 <thead>
     <tr>
-    <th scope="col">#</th>
+    <th scope="col">id_Post</th>
     <th scope="col">Titre</th>
     <th scope="col">Chapo</th>
     <th scope="col">Contenu</th>
+    <th scope="col">id User</th>
     <th scope="col">Prénom</th>
     <th scope="col">Nom</th>
     <th scope="col">Email</th>
@@ -33,86 +34,54 @@
 </thead>
 
 <tbody class="">
-{# n1 #}
+
+    {% for array in arrayTableModify %}
 <tr>
-    <th scope="row">1</th>
+    <th scope="row"> {{ array.postId }} </th>
 <td>
-    <textarea id="titre">
-        Ceci est le titre 1
+    <textarea id="title">
+    {{ array.postTitle }} 
     </textarea> 
 </td>
 <td>
     <textarea id="chapo">
-        Chapo du 1 : Lorem ipsum dolor sit amet. Repellendus odit et quia corporis At quibusdam sed dolore consequatur in quod voluptatem et optio cupiditate sit sapiente esse. In similique similique cum unde velit Sed aperiam qui saepe alias et 
+        {{ array.postChapo }} 
     </textarea>    
 </td>
 <td>
     <textarea id="Contenu">
-    Lorem ipsum dolor sit amet. Et labore debitis ab galisum voluptatem et ducimus sint. Ex porro voluptates quo laudantium velit ad obcaecati assumenda eum consequatur alias quo asperiores minus ut autem tenetur et tenetur ipsam. Aut quia dolor 33 minima rerum vel galisum minima ad repudiandae atque. Et maiores recusandae sed deleniti culpa ea nihil sunt et quod repudiandae id fugit ducimus qui repellendus cupiditate?
-    Ea perspiciatis velit a quia Quis qui totam delectus. Ut consectetur excepturi ea voluptatem esse eum corrupti architecto ut vitae mollitia et quam placeat ut suscipit eligendi. Rerum esse et voluptas saepe id totam dolore non quis necessitatibus! Rem nihil doloremque est reiciendis laboriosam et amet reprehenderit ea ducimus placeat sed quisquam mollitia At sint libero!
-    Sed nihil odit sit fugit natus et fugit voluptatibus ut nulla aperiam. Vel labore mollitia sit cumque harum qui Quis maiores id impedit aspernatur vel corporis eveniet qui iste quibusdam ea consequatur odio. Sed aliquid similique ut illum minima sed quibusdam repudiandae hic voluptates maiores ut labore dolores et fugit quam?
+        {{ array.postContent }} 
     </textarea>
 </td>
 <td>
-    <textarea id="prénom">Gérard</textarea>
+    <span>{{ array.userId }}</span>  
+</td>
 <td>
-    <textarea id="Nom">lepage</textarea>
+        {{ array.firstNameUser }} 
+ 
+<td>
+        {{ array.surNameUser }} 
 </th>
 <td>
-    <textarea id="email">gerard.lepage@example.fr</textarea>
-<td>
-    <select>
-        <option value="">&nbsp;</option>
-        <option value="Admin" selected="">Admin</option>
-        <option value="User">User</option>
-    </select>
+    {{ array.emailUser }} 
+<td> 
+    {{ array.roleUser }}
+
+</th>
 </th>
 <td>
     Enregister
 </td>
-{# n2 #}
-<tr>
-    <th scope="row">1</th>
-<td>
-    <textarea id="titre">
-        Ceci est le titre 1
-    </textarea> 
-</td>
-<td>
-    <textarea id="chapo">
-        Chapo du 1 : Lorem ipsum dolor sit amet. Repellendus odit et quia corporis At quibusdam sed dolore consequatur in quod voluptatem et optio cupiditate sit sapiente esse. In similique similique cum unde velit Sed aperiam qui saepe alias et 
-    </textarea>    
-</td>
-<td>
-    <textarea id="Contenu">
-    Lorem ipsum dolor sit amet. Et labore debitis ab galisum voluptatem et ducimus sint. Ex porro voluptates quo laudantium velit ad obcaecati assumenda eum consequatur alias quo asperiores minus ut autem tenetur et tenetur ipsam. Aut quia dolor 33 minima rerum vel galisum minima ad repudiandae atque. Et maiores recusandae sed deleniti culpa ea nihil sunt et quod repudiandae id fugit ducimus qui repellendus cupiditate?
-    Ea perspiciatis velit a quia Quis qui totam delectus. Ut consectetur excepturi ea voluptatem esse eum corrupti architecto ut vitae mollitia et quam placeat ut suscipit eligendi. Rerum esse et voluptas saepe id totam dolore non quis necessitatibus! Rem nihil doloremque est reiciendis laboriosam et amet reprehenderit ea ducimus placeat sed quisquam mollitia At sint libero!
-    Sed nihil odit sit fugit natus et fugit voluptatibus ut nulla aperiam. Vel labore mollitia sit cumque harum qui Quis maiores id impedit aspernatur vel corporis eveniet qui iste quibusdam ea consequatur odio. Sed aliquid similique ut illum minima sed quibusdam repudiandae hic voluptates maiores ut labore dolores et fugit quam?
-    </textarea>
-</td>
-<td>
-    <textarea id="prénom">Gérard</textarea>
-<td>
-    <textarea id="Nom">lepage</textarea>
-</th>
-<td>
-    <textarea id="email">gerard.lepage@example.fr</textarea>
-<td>
-    <select>
-        <option value="">&nbsp;</option>
-        <option value="Admin" selected="">Admin</option>
-        <option value="User">User</option>
-    </select>
-</th>
-<td>
-    Enregister
-</td>
+
+{% endfor %}
+
+
+
 </tbody>
 </table>
 
 </div></div>
 
-<hr>
 
 <h4 class="text-center">Nouveau Post</h4> 
 

@@ -136,6 +136,7 @@ class UsersRepository
 
     /**
      * get the listing for admin part to modify a post : you DO have admin role to acces to this Aera
+     *   b.id, postTitle, postChapo, postContent, firstNameUser, surNameUser,emailUser, roleUser, 'user_id'
      *
      * @return array
      */
@@ -145,24 +146,30 @@ class UsersRepository
             $errorMessage = "you DO have admin role to acces to this Aera";
             try {
                 $statement = $this->connection->getConnection()->query(
-                    "SELECT  ud.id, postTitle, postChapo, postContent, firstNameUser, surNameUser,emailUser, roleUser
+                    "SELECT b.id, postTitle, postChapo, postContent, firstNameUser, surNameUser,emailUser, roleUser, b.user_id
                     FROM blog_post AS b
-                    LEFT JOIN user as ud
+                    JOIN user as ud
                     ON(b.user_id = ud.id)"
                 );
                 $datas = [];
                 $statement->execute();
                 while (($row = $statement->fetch())) {
                     $data = new UsersRepository();
+                    $data->postId = $row['id'];
                     $data->postTitle = $row['postTitle'];
                     $data->postChapo = $row['postChapo'];
                     $data->postContent = $row['postContent'];
-                    $data->postContent = $row['firstNameUser'];
-                    $data->postContent = $row['surNameUser'];
-                    $data->postContent = $row['emailUser'];
+                    $data->userId = $row['user_id'];
+                    $data->firstNameUser = $row['firstNameUser'];
+                    $data->surNameUser = $row['surNameUser'];
+                    $data->emailUser = $row['emailUser'];
                     $data->roleUser = $row['roleUser'];
                     $datas[] = $data;
                 }
+
+                // var_dump($datas);
+                // exit;
+
                 return $datas;
             } catch (\Exception $e) {
                 $errorMessage = $e->getMessage();
