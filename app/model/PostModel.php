@@ -26,7 +26,7 @@ class PostsRepository
      */
     public function getPosts(): array
     {
-        $statement = $this->connection->getConnection()->query(
+        $statement = $this->connection->getConnexion()->query(
             "SELECT id, postTitle, postChapo, postStatus, DATE_FORMAT(postModified, '%d/%m/%Y à %Hh%imin') AS french_modified_date FROM blog_post ORDER BY postModified DESC LIMIT 0, 5"
         );
         $posts = [];

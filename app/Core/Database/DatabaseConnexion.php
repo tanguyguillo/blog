@@ -15,7 +15,7 @@ class DatabaseConnexion
    * 
    * @var \PDO|null
    */
-  public function getConnection(): \PDO
+  public function getConnexion(): \PDO
   {
     if ($this->database === null) {
       // todo : write a try ?

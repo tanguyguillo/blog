@@ -22,7 +22,7 @@ class Comment
      */
     public function getComments($identifier): array
     {
-        $statement = $this->connection->getConnection()->query(
+        $statement = $this->connection->getConnexion()->query(
             // id	commentCreated	commentStatus	commentContent	user_id	blog_post_id	blog_post_user_id
             //"SELECT id; EmailUser; passWordUser; firstnNameUser; surNameUser; titleUser; telGsmUser; roleUser; pictureOrLogo;  FROM user where  blog_post_id = $identifier"
             "SELECT * FROM comment where blog_post_id = $identifier" // blog_post_id is the id of the post
@@ -88,5 +88,4 @@ class Comment
             return true;
         }
     }
-
 }

@@ -15,7 +15,7 @@ class User
      */
     public function getUser(string $identifier): array
     {
-        $statement = $this->connection->getConnection()->query(
+        $statement = $this->connection->getConnexion()->query(
             "SELECT * FROM user where id = $identifier"
         );
         $statement->execute();
@@ -56,7 +56,7 @@ class UsersRepository
      */
     public function getUsers(): array
     {
-        $statement = $this->connection->getConnection()->query(
+        $statement = $this->connection->getConnexion()->query(
             "SELECT id, emailUser, passWordUser, firstNameUser, surNameUser, roleUser FROM user"
         );
         $users = [];
@@ -94,7 +94,7 @@ class UsersRepository
         $roleUser = "User";
 
         try {
-            $statement = $this->connection->getConnection()->query(
+            $statement = $this->connection->getConnexion()->query(
                 "INSERT INTO user (emailUser, passWordUser, firstNameUser, surNameUser, titleUser, telGsmUser, roleUser, pictureOrLogo)  VALUES ('$emailUser', '$passWordUser', '$firstNameUser', '$surNameUser', NULL, NULL, '$roleUser', NULL);"
             );
         } catch (\Exception $e) {
@@ -114,7 +114,7 @@ class UsersRepository
     public function findEmail(array $postData)
     {
         $emailUser = $postData["email"]; // string 
-        $statement = $this->connection->getConnection()->query(
+        $statement = $this->connection->getConnexion()->query(
             "SELECT emailUser,count(*) FROM user WHERE emailUser ='$emailUser' GROUP BY emailUser"
         );
         $statement->execute();
@@ -146,11 +146,11 @@ class UsersRepository
         if ($_SESSION['LOGGED_USER'] and ($_SESSION['ROLE_USER'] == 'Admin')) {
             $errorMessage = "you DO have admin role to acces to this Aera";
             try {
-                $statement = $this->connection->getConnection()->query(
-                    "SELECT b.id, postTitle, postChapo, postContent, postName, postStatus, firstNameUser, surNameUser,emailUser, roleUser, b.user_id
-                    FROM blog_post AS b
-                    JOIN user as ud
-                    ON(b.user_id = ud.id)"
+                $statement = $this->connection->getConnexion()->query(
+                    "SELECT b.id, postTitle, postChapo, postContent, postName, postModified, postStatus, firstNameUser, surNameUser,emailUser, roleUser, b.user_id
+                FROM blog_post AS b
+                JOIN user as ud
+                ON(b.user_id = ud.id)"
                 );
                 $datas = [];
                 $statement->execute();
@@ -161,6 +161,8 @@ class UsersRepository
                     $data->postChapo = $row['postChapo'];
                     $data->postContent = $row['postContent'];
                     $data->postStatus = $row['postStatus'];
+                    $data->postAuthor = $row['postName'];
+                    $data->postModified = $row['postModified'];
                     $data->userId = $row['user_id'];
                     $data->firstNameUser = $row['firstNameUser'];
                     $data->surNameUser = $row['surNameUser'];
@@ -168,7 +170,6 @@ class UsersRepository
                     $data->roleUser = $row['roleUser'];
                     $datas[] = $data;
                 }
-
                 // var_dump($datas);
                 // exit;
 

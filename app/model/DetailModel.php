@@ -19,7 +19,7 @@ class Detail
     public function getPost(string $identifier): Detail
     {
         $identifier = htmlspecialchars($identifier);
-        $statement = $this->connection->getConnection()->query(
+        $statement = $this->connection->getConnexion()->query(
             "SELECT id, postTitle, postChapo, postContent, DATE_FORMAT(postCreated, '%d/%m/%Y à %Hh%imin') AS french_created_date, postStatus, postName, DATE_FORMAT(postModified, '%d/%m/%Y à %Hh%imin') AS french_modified_date, user_id  FROM blog_post where id = $identifier"
         );
         $statement->execute();
@@ -48,7 +48,7 @@ class Detail
     public function getMaxAndOpen(int $identifier)
     {
         $identifier = htmlspecialchars($identifier);
-        $statement = $this->connection->getConnection()->query("SELECT COUNT(*) FROM blog_post where postStatus = 'Open'");  // only if open
+        $statement = $this->connection->getConnexion()->query("SELECT COUNT(*) FROM blog_post where postStatus = 'Open'");  // only if open
         $statement->execute();
         $row = $statement->fetch();
         $max = intval($row["COUNT(*)"]);
