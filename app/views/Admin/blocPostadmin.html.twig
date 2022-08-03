@@ -12,76 +12,117 @@
 <hr class="star-primary">
     <div class="container">
         <h4 class="text-center">Modifier un Post</h4> 
-<hr>
 
+{# <form class="form-horizontal"> #}
+<div class="table-responsive">
+    <table class="table table-bordered table-striped table-highlight">
+    <thead>
+        <tr>
+        <th scope="col">id Post</th>
+        <th scope="col">Titre</th>
+        <th scope="col">Chapo</th>
+        <th scope="col">Contenu</th>
+        <th scope="col">Auteur</th>
+        <th scope="col">Post Status</th>
+        <th scope="col">id User</th>
+        <th scope="col">Prénom</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Email</th>
+        <th scope="col">Role</th>
+        <th scope="col">Enregistrer</th>
+        </tr>
+    </thead>
 
-<div>
-<div>
-<table class="table d-flex flex-column min-vh-100">
-<thead>
-    <tr>
-    <th scope="col">id_Post</th>
-    <th scope="col">Titre</th>
-    <th scope="col">Chapo</th>
-    <th scope="col">Contenu</th>
-    <th scope="col">id User</th>
-    <th scope="col">Prénom</th>
-    <th scope="col">Nom</th>
-    <th scope="col">Email</th>
-    <th scope="col">Role</th>
-    <th scope="col">Enregistrer</th>
-    </tr>
-</thead>
+    {# <form action="{{ baseUrl }}index.php?owp=detailconnexion" method="post">     #}
+        {# <a href="{{ app.request.getBaseURL() }} index.php?owp=connexion&id={{detail.idPost}}"><button type="submit" #}
 
-<tbody class="">
+    {# <form action="{{ baseUrl }}index.php?owp=record&id="." {{array.postId}} " method="post">   #}
 
-    {% for array in arrayTableModify %}
-<tr>
-    <th scope="row"> {{ array.postId }} </th>
-<td>
-    <textarea id="title">
-    {{ array.postTitle }} 
-    </textarea> 
-</td>
-<td>
-    <textarea id="chapo">
-        {{ array.postChapo }} 
-    </textarea>    
-</td>
-<td>
-    <textarea id="Contenu">
-        {{ array.postContent }} 
-    </textarea>
-</td>
-<td>
-    <span>{{ array.userId }}</span>  
-</td>
-<td>
-        {{ array.firstNameUser }} 
+{% for array in arrayTableModify %}
+ <form id="idForm-{{array.postId}}">
+    
+    <tbody class="">
  
-<td>
-        {{ array.surNameUser }} 
-</th>
-<td>
-    {{ array.emailUser }} 
-<td> 
-    {{ array.roleUser }}
+    <tr>
+    
+    <td> 
+        <input type = "text" id= "postId" class="form-control" type="text" value=" {{array.postId}}" aria-label="readonly" readonly></input>
+    </td>
 
-</th>
-</th>
-<td>
-    Enregister
-</td>
+    <td> 
+        <div class="w-auto control-group">
+            <textarea  class="form-control"  id="postChapo" required data-validation-required-message="Veuillez entrer votre chapo.">{{array.postTitle}} </textarea>
+            {# <input type = "textarea" class="form-control"  id="postTitle" required data-validation-required-message="Veuillez entrer votre titre." <valeur>{{array.postTitle}}</input> #}
+        </div>
+    </td>
+
+    <td> 
+        <div class="w-auto control-group">
+            <textarea  class="form-control"  id="postChapo" required data-validation-required-message="Veuillez entrer votre chapo.">{{array.postChapo}} </textarea>
+        </div>
+    </td>
+
+    <td> 
+        <div class="w-auto control-group">
+            <textarea  class="form-control"  id="postContent" required data-validation-required-message="Veuillez entrer votre contenu.">{{array.postContent}} </textarea>
+        </div>
+    </td>
+
+    <td> 
+        <div class="w-auto control-group">
+            <textarea  class="form-control"  id="postAuthor">{{array.postAuthor}} </textarea>
+        </div>
+    </td>
+
+    <td> 
+        <select id = "postStatus" class="form-select">
+        <option selected>{{array.postStatus}}</option>
+        <option>Waiting for validation</option>
+        <option>Open</option>
+        <option>Closed</option>
+        </select>
+    </td>
+
+    <td>
+        <input id= "userId" class="form-control" type="text" value="{{array.userId}}" aria-label="readonly" readonly>
+    </td>
+
+    <td>
+        <input id= "firstNameUser" class="form-control" type="text" value="{{array.firstNameUser}}" aria-label="readonly" readonly>
+    </td>
+
+    <td>
+        <input id= "surNameUser" class="form-control" type="text" value="{{array.surNameUser}}" aria-label="readonly" readonly>
+    </td>
+
+    <td>
+        <input id= "emailUser" class="form-control" type="text" value="{{array.emailUser}}" aria-label="readonly" readonly>
+    </td>
+
+    <td>
+        <select id = "roleUser" class="form-select">
+        <option selected>{{array.roleUser}}</option>
+        <option>Admin</option>
+        <option>User</option>
+        </select>
+    </td>
+
+    <td>
+    {# <button type="submit" class="btn btn-success">Enregister</button></a>  http://blog-omega.local/index.php?owp=bloglist&id=3 #}
+
+        <a href="{{ app.request.getBaseURL() }}index.php?owp=record&id={{array.postId}}"><button type="submit" class="btn btn-success">Enregistrer</button></a> 
+        <br>
+        <br>
+        {# <a href="{{ app.request.getBaseURL() }}index.php?owp=delete&id={{array.postId}}"><button type="submit" class="btn btn-danger">Supprimer</button></a>  #}
+    </td>
+</form>
 
 {% endfor %}
-
-
 
 </tbody>
 </table>
 
 </div></div>
-
 
 <h4 class="text-center">Nouveau Post</h4> 
 
@@ -100,7 +141,7 @@
     </tr>
 </thead>
 
-{# New post #}
+
 <tr>
     <th scope="row">1</th>
 <td>

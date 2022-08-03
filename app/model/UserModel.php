@@ -3,6 +3,7 @@
 namespace Application\Model\UserModel;
 
 use Application\Core\Database\DatababaseConnexion;
+use Application\Controllers\Controller;
 
 class User
 {
@@ -146,7 +147,7 @@ class UsersRepository
             $errorMessage = "you DO have admin role to acces to this Aera";
             try {
                 $statement = $this->connection->getConnection()->query(
-                    "SELECT b.id, postTitle, postChapo, postContent, firstNameUser, surNameUser,emailUser, roleUser, b.user_id
+                    "SELECT b.id, postTitle, postChapo, postContent, postName, postStatus, firstNameUser, surNameUser,emailUser, roleUser, b.user_id
                     FROM blog_post AS b
                     JOIN user as ud
                     ON(b.user_id = ud.id)"
@@ -159,6 +160,7 @@ class UsersRepository
                     $data->postTitle = $row['postTitle'];
                     $data->postChapo = $row['postChapo'];
                     $data->postContent = $row['postContent'];
+                    $data->postStatus = $row['postStatus'];
                     $data->userId = $row['user_id'];
                     $data->firstNameUser = $row['firstNameUser'];
                     $data->surNameUser = $row['surNameUser'];

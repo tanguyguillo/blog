@@ -30,9 +30,13 @@ require_once(ROOT . '/app/myAutoloader.php');
 
 // check $_POST : strip_tags(htmlspecialchars() + password $hashed
 $postData = $_POST;
+
+// var_dump($postData); //Undefined array key "owp"
+
 foreach ($postData as $key => $value) {
     $postData[$key]  = strip_tags(htmlspecialchars($value));
 }
+
 // first router
 try {
     if (isset($_GET['owp']) && $_GET['owp'] !== '') {
@@ -87,8 +91,12 @@ try {
             } else {
                 (new PostsController())->executePosts();
             }
-        } elseif ($_GET['owp'] === 'tosee') {
+        } elseif ($_GET['owp'] === 'record') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
+                $identifier = $_GET['id'];
+                $identifier = strip_tags(htmlspecialchars($identifier));
+                echo "yep";
+                exit;
             } else {
             }
         } else {
