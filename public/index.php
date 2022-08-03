@@ -28,10 +28,10 @@ require_once(ROOT . '/vendor/autoload.php');
 // builf my own autoloader  :
 require_once(ROOT . '/app/myAutoloader.php');
 
-// check $_POST : strip_tags(htmlspecialchars() + password $hashed
-$postData = $_POST;
+var_dump($_POST);
 
-// var_dump($postData); //Undefined array key "owp"
+// check $_POST : strip_tags(htmlspecialchars()
+$postData = $_POST;
 
 foreach ($postData as $key => $value) {
     $postData[$key]  = strip_tags(htmlspecialchars($value));
@@ -81,7 +81,17 @@ try {
         }
     }
 
-    // second router
+    // admin router
+    if ($_GET['owp'] === 'record') {
+        // if (isset($_GET['id']) && $_GET['id'] > 0) {
+        $identifier = $_POST['postId'];
+        $identifier = strip_tags(htmlspecialchars($identifier));
+        echo "yep";
+        exit;
+        // }
+    }
+
+    // Last router
     if (isset($_GET['owp']) && $_GET['owp'] !== '') {
         if ($_GET['owp'] === 'bloglist') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
@@ -91,12 +101,12 @@ try {
             } else {
                 (new PostsController())->executePosts();
             }
-        } elseif ($_GET['owp'] === 'record') {
+        } elseif ($_GET['owp'] === 'tosee') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
-                $identifier = $_GET['id'];
-                $identifier = strip_tags(htmlspecialchars($identifier));
-                echo "yep";
-                exit;
+                // $identifier = $_GET['id'];
+                // $identifier = strip_tags(htmlspecialchars($identifier));
+                // echo "yep";
+                // exit;
             } else {
             }
         } else {
