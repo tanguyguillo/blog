@@ -3,7 +3,6 @@
 namespace Application\Controllers\CommentController;
 
 use Application\Controllers\Controller;
-use Application\Core\Database\DatababaseConnexion;
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
 use Application\Model\CommentModel\Comment;
 

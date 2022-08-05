@@ -75,7 +75,7 @@ class Comment
             $blog_post_user_id = intval($_SESSION['LOGGED_PAGE_WRITER_ID']); // the writter'id of the article
 
             try {
-                $statement = $this->connection->getConnection()->query(
+                $statement = $this->connection->getConnexion()->query(
                     "INSERT INTO comment (commentCreated, commentStatus, commentContent, user_id, blog_post_id, blog_post_user_id)  VALUES ('$commentCreated ', '$commentStatus', '$commentContent', '$user_id ', '$blog_post_id', '$blog_post_user_id');"
                 );
                 return true;

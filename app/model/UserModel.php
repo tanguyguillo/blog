@@ -138,6 +138,7 @@ class UsersRepository
     /**
      * get the listing for admin part to modify a post : you DO have admin role to acces to this Aera
      *   b.id, postTitle, postChapo, postContent, firstNameUser, surNameUser,emailUser, roleUser, 'user_id'
+     * du plus récent au plus ancien?  postName for author
      *
      * @return array
      */
@@ -170,10 +171,38 @@ class UsersRepository
                     $data->roleUser = $row['roleUser'];
                     $datas[] = $data;
                 }
-                // var_dump($datas);
-                // exit;
-
                 return $datas;
+            } catch (\Exception $e) {
+                $errorMessage = $e->getMessage();
+                require(ROOT . '/app/templatesError/error.php');
+                return false;
+            }
+        }
+    }
+
+    /**
+     *
+     * @return array
+     * 
+     *  for admin
+     * $role Admin or User
+     */
+    public function getEmailUser(string $role)
+    {
+        if ($_SESSION['LOGGED_USER'] and ($_SESSION['ROLE_USER'] == 'Admin')) {
+            $errorMessage = "you DO have admin role to acces to this Aera";
+            try {
+                $statement = $this->connection->getConnexion()->query(
+                    "SELECT emailUser FROM user WHERE roleUser ='$role' GROUP BY emailUser"
+                );
+                $Emails = [];
+                $statement->execute();
+                while (($row = $statement->fetch())) {
+                    $email = new UsersRepository();
+                    $email->emailUser = $row['emailUser'];
+                    $Emails[] = $email;
+                }
+                return $email;
             } catch (\Exception $e) {
                 $errorMessage = $e->getMessage();
                 require(ROOT . '/app/templatesError/error.php');

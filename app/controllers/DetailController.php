@@ -183,7 +183,7 @@ class DetailController extends Controller
     }
 
     /**
-     * Undocumented function
+     * function to verify crypt password
      *
      * @param [type] $user_input
      * @param [type] $hashed_password
@@ -192,7 +192,6 @@ class DetailController extends Controller
     private function verifyHashPassword($user_input, $hashed_password)
     {
         if (hash_equals($hashed_password, crypt($user_input, $hashed_password))) {
-            var_dump("Password verified! and ok");
             return true;
         } else {
             return false;

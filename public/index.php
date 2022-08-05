@@ -28,8 +28,6 @@ require_once(ROOT . '/vendor/autoload.php');
 // builf my own autoloader  :
 require_once(ROOT . '/app/myAutoloader.php');
 
-var_dump($_POST);
-
 // check $_POST : strip_tags(htmlspecialchars()
 $postData = $_POST;
 
@@ -81,14 +79,19 @@ try {
         }
     }
 
+
     // admin router
     if ($_GET['owp'] === 'record') {
-        // if (isset($_GET['id']) && $_GET['id'] > 0) {
-        $identifier = $_POST['postId'];
-        $identifier = strip_tags(htmlspecialchars($identifier));
-        echo "yep";
-        exit;
-        // }
+        if (isset($_GET['id']) && $_GET['id'] > 0) {
+            // $identifier = $_GET['id'];
+            // $identifier = strip_tags(htmlspecialchars($identifier));
+
+            // infact here we get the POST data
+
+            var_dump($_POST);
+            // if array(0) { }
+            exit;
+        }
     }
 
     // Last router

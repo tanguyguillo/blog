@@ -13,69 +13,44 @@
     <div class="container">
         <h4 class="text-center">Modifier un Post</h4> 
 
-{# <form class="form-horizontal"> #}
 <div class="table-responsive">
     <table class="table table-bordered table-striped table-highlight">
     <thead>
         <tr>
-        <th scope="col">id Post</th>
         <th scope="col">Titre</th>
         <th scope="col">Chapo</th>
         <th scope="col">Contenu</th>
-        <th scope="col">Auteur</th>
         <th scope="col">Post Status</th>
-        <th scope="col">id User</th>
-        <th scope="col">Prénom</th>
-        <th scope="col">Nom</th>
-        <th scope="col">Email</th>
-        <th scope="col">Role</th>
+        <th scope="col">Auteur / Email *</th>
         <th scope="col">Enregistrer</th>
         </tr>
     </thead>
 
-    
-
-    {# <form action="{{ baseUrl }}index.php?owp=record&id="." {{array.postId}} " method="post">   #}
-
 {% for array in arrayTableModify %}
-
-    <form action="{{ baseUrl }}index.php?owp=record" method="post">    
-    
+    <form action="{{ baseUrl }}index.php?owp=record&id={{array.postId}}" method="post">    
     <tbody class="">
-
-    <tr>
-    
-    <td> 
-        <input type = "text" name ="postId" id="postId" class="form-control" type="text" value=" {{array.postId}}" aria-label="readonly" readonly></input>
-    </td>
-
+        <input type="hidden" name ="id" id="postId-{{array.postId}}" class="form-control postId" type="text" value="{{array.postId}}" aria-label="readonly" readonly></input>
     <td>
         <div class="w-auto control-group">
-            <textarea name="postChapo" class="form-control"  id="postChapo{{array.postId}}" required data-validation-required-message="Veuillez entrer votre chapo.">{{array.postTitle}} </textarea> {# <input type = "text"  class="form-control"  id="postTitle" required data-validation-required-message="Veuillez entrer votre titre." <valeur>{{array.postTitle}}</input>  #}
+            <textarea name="postTitle" class="form-control" id="postTitle-{{array.postId}}" required data-validation-required-message="Veuillez entrer votre chapo.">{{array.postTitle}} </textarea>
         </div>
     </td>
 
     <td> 
         <div class="w-auto control-group">
-            <textarea  name="postAera" class="form-control"  id="postChapo" required data-validation-required-message="Veuillez entrer votre chapo.">{{array.postChapo}} </textarea>
+            <textarea  name="postAera" class="form-control" id="postChapo-{{array.postId}}" required data-validation-required-message="Veuillez entrer votre chapo.">{{array.postChapo}} </textarea>
         </div>
     </td>
 
     <td> 
         <div class="w-auto control-group">
-            <textarea  class="form-control"  id="postContent" required data-validation-required-message="Veuillez entrer votre contenu.">{{array.postContent}} </textarea>
+            <textarea name="postId" class="form-control" id="postContent-{{array.postId}}" required data-validation-required-message="Veuillez entrer votre contenu.">{{array.postContent}} </textarea>
         </div>
     </td>
 
     <td> 
-        <div class="w-auto control-group">
-            <textarea  class="form-control"  id="postAuthor">{{array.postAuthor}} </textarea>
-        </div>
-    </td>
-
-    <td> 
-        <select id = "postStatus" class="form-select">
-        <option selected>{{array.postStatus}}</option>
+        <select name ="postStatus" id="postStatus-{{array.postId}}" class="form-select">
+        <option selected>{{array.postStatus}}</option>  
         <option>Waiting for validation</option>
         <option>Open</option>
         <option>Closed</option>
@@ -83,98 +58,23 @@
     </td>
 
     <td>
-        <input id= "userId" class="form-control" type="text" value="{{array.userId}}" aria-label="readonly" readonly>
-    </td>
-
-    <td>
-        <input id= "firstNameUser" class="form-control" type="text" value="{{array.firstNameUser}}" aria-label="readonly" readonly>
-    </td>
-
-    <td>
-        <input id= "surNameUser" class="form-control" type="text" value="{{array.surNameUser}}" aria-label="readonly" readonly>
-    </td>
-
-    <td>
-        <input id= "emailUser" class="form-control" type="text" value="{{array.emailUser}}" aria-label="readonly" readonly>
-    </td>
-
-    <td>
-        <select id = "roleUser" class="form-select">
-        <option selected>{{array.roleUser}}</option>
-        <option>Admin</option>
-        <option>User</option>
+        <select name="emailUser" id="emailUser-{{array.emailUser}}" class="form-select">
+        <option selected>{{array.emailUser}}</option>
+        {# arrayEmails is an other array #}
+        {% for email in arrayEmails %}
+            <option>{{ arrayEmails.email}}</option>
+        {% endfor %}
         </select>
-    </td>
+
+    </td> 
 
     <td>
-    <button type="submit" class="btn btn-success">Enregister</button> {# </a> http://blog-omega.local/index.php?owp=bloglist&id=3 #}
-
-        {# <a href="{{ app.request.getBaseURL() }}index.php?owp=record&id={{array.postId}}"><button type="submit" class="btn btn-success">Enregistrer</button></a> 
-        <br>
-        <br> #}
-        {# <a href="{{ app.request.getBaseURL() }}index.php?owp=delete&id={{array.postId}}"><button type="submit" class="btn btn-danger">Supprimer</button></a>  #}
+    <button type="submit" class="btn btn-success">Enregister</button> 
     </td>
 </form>
 
 {% endfor %}
-
-<hr>
-
-{# <br><br>
-
-<div class="container-fluid py-4">
-<div class="row">
-<div class="col-12">
-<div class="card my-4">
-<div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-<div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-<h6 class="text-white text-capitalize ps-3">Authors table</h6>
-</div>
-</div>
-<div class="card-body px-0 pb-2">
-<div class="table-responsive p-0">
-<table class="table align-items-center mb-0">
-<thead>
-<tr>
-<th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Author</th>
-<th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Function</th>
-<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employed</th>
-<th class="text-secondary opacity-7"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<div class="d-flex px-2 py-1">
-<div>
-<img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
-</div>
-<div class="d-flex flex-column justify-content-center">
-<h6 class="mb-0 text-sm">John Michael</h6>
-<p class="text-xs text-secondary mb-0"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="13797c7b7d5370617672677a65763e677a7e3d707c7e">[email&#160;protected]</a></p>
-</div>
-</div>
-</td>
-<td>
-<p class="text-xs font-weight-bold mb-0">Manager</p>
-<p class="text-xs text-secondary mb-0">Organization</p>
-</td>
-<td class="align-middle text-center text-sm">
-<span class="badge badge-sm bg-gradient-success">Online</span>
-</td>
-<td class="align-middle text-center">
-<span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-</td>
-<td class="align-middle">
-<a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-Edit
-</a>
-</td>
-</tr> #}
-
-
-<hr>
+<p>* Tous les Auteurs sont des administrateurs</p>
 
 </tbody>
 </table>
