@@ -5,6 +5,8 @@ namespace Application\Controllers\AdminController;
 use Application\Controllers\Controller;
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
 use Application\Model\UserModel\UsersRepository;
+use Application\model\PostModel\PostsRepository;
+use Application\Controllers\PostsController;
 
 class AdminController extends Controller
 {
@@ -20,20 +22,48 @@ class AdminController extends Controller
     }
 
     /**
+     * to verify user is an admin   
+     */
+    public function isAdmin()
+    {
+        if (isset($_SESSION['ROLE_USER'])) {
+            if ($_SESSION['ROLE_USER'] == "Admin") {
+                return true;
+            } else {
+                return false;
+            }
+            return false;
+        }
+    }
+
+    /**
+     * function to redirect user who are not admin
+     *
+     * @return void
+     */
+    public function redirectionNotAdmin()
+    {
+        $message = 'Désolé cette partie du site est réservé aux administrateurs';
+        $this->twig->display('info/info.html.twig', compact('message'));
+    }
+
+    /**
      * function to display admin modify aera posts
      *
      * @return void
      */
     public function BlocPostadmin()
     {
-        // get the data to modify
-        $arrayTableModify = $this->getAdminUserAndData();
-        // authors
-        $arrayEmail = $this->getAdminEmail(); // bug
-        var_dump($arrayEmail);
-
-        $message = '';
-        $this->twig->display('Admin/blocPostAdmin.html.twig', compact('message', 'arrayTableModify'));
+        if ($this->isAdmin()) {
+            // get the data to modify all the data of a post and this author (admin)
+            $arrayTableModify = $this->getAdminUserAndData();
+            // authors id + emails
+            $arrayEmails = $this->getAdminEmails();
+            $message = '';
+            $this->twig->display('Admin/blocPostAdmin.html.twig', compact('message', 'arrayTableModify', 'arrayEmails'));
+        } else {
+            $this->redirectionNotAdmin();
+        }
     }
 
     /**
@@ -44,16 +74,20 @@ class AdminController extends Controller
      */
     public function getAdminUserAndData()
     {
-        $connection = new DatabaseConnexion();
-        $adminUserAndData = new UsersRepository();
-        $adminUserAndData->connection = $connection;
-        $adminUserAndData = $adminUserAndData->getPostAndUser();
+        if ($this->isAdmin()) {
+            $connection = new DatabaseConnexion();
+            $adminUserAndData = new UsersRepository();
+            $adminUserAndData->connection = $connection;
+            $adminUserAndData = $adminUserAndData->getPostAndUser();
 
-        if (is_array($adminUserAndData)) {
-            return $adminUserAndData;
+            if (is_array($adminUserAndData)) {
+                return $adminUserAndData;
+            } else {
+                $message = "Il y a eu un problème avec la transmission des données, vueillez reéssayer plus tard";
+                $this->twig->display('info/info.html.twig', compact('message'));
+            }
         } else {
-            $message = "Il y a eu un problème avec la transmission des données, vueillez reéssayer plus tard";
-            $this->twig->display('info/info.html.twig', compact('message'));
+            $this->redirectionNotAdmin();
         }
     }
 
@@ -64,18 +98,22 @@ class AdminController extends Controller
      *
      * @return array
      */
-    public function getAdminEmail()
+    public function getAdminEmails()
     {
-        $connection = new DatabaseConnexion();
-        $adminUserEmail = new UsersRepository();
-        $adminUserEmail->connection = $connection;
-        $adminUserEmail = $adminUserEmail->getEmailUser('Admin');
+        if ($this->isAdmin()) {
+            $connection = new DatabaseConnexion();
+            $adminUserEmails = new UsersRepository();
+            $adminUserEmails->connection = $connection;
+            $adminUserEmails = $adminUserEmails->getEmailUser('Admin');
 
-        if (is_array($adminUserEmail)) {
-            return  $adminUserEmail;
+            if (is_array($adminUserEmails)) {
+                return  $adminUserEmails;
+            } else {
+                $message = "Il y a eu un problème avec la transmission des données, vueillez reessayer plus tard...";
+                $this->twig->display('info/info.html.twig', compact('message'));
+            }
         } else {
-            $message = "Il y a eu un problème avec la transmission des données, vueillez reéssayer plus tard";
-            $this->twig->display('info/info.html.twig', compact('message'));
+            $this->redirectionNotAdmin();
         }
     }
 }

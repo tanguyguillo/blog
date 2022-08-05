@@ -77,22 +77,18 @@ try {
             (new AdminController())->BlocPostadmin();
             exit;
         }
-    }
+        // admin router
+        if ($_GET['owp'] === 'record') {
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
 
-
-    // admin router
-    if ($_GET['owp'] === 'record') {
-        if (isset($_GET['id']) && $_GET['id'] > 0) {
-            // $identifier = $_GET['id'];
-            // $identifier = strip_tags(htmlspecialchars($identifier));
-
-            // infact here we get the POST data
-
-            var_dump($_POST);
-            // if array(0) { }
-            exit;
+                //Here we get the POST data
+                (new PostsController())->update($_POST);
+                exit;
+            }
         }
     }
+
+
 
     // Last router
     if (isset($_GET['owp']) && $_GET['owp'] !== '') {

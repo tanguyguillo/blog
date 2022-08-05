@@ -6,6 +6,7 @@ use Application\Controllers\Controller;
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
 use Application\Model\PostModel\PostsRepository;
 
+
 /**
  * Class of the blog listing
  */
@@ -26,5 +27,20 @@ class PostsController extends Controller
     $posts = $postsRepository->getPosts(); // return an array
 
     $this->twig->display('posts/posts.html.twig', compact('posts'));
+  }
+
+  /**
+   * function to update from admin
+   * 
+   *
+   * @param array $arrayPost 
+   * @return void
+   */
+  public function update(array $arrayPost)
+  {
+    $arrayPost = json_decode(json_encode($arrayPost), true);
+    $postsRepository = new PostsRepository();
+    $postsRepository->connection = $postsRepository;
+    $postsRepository->updatePost($arrayPost);
   }
 }

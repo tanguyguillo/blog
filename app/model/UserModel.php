@@ -2,8 +2,8 @@
 
 namespace Application\Model\UserModel;
 
-use Application\Core\Database\DatababaseConnexion;
-use Application\Controllers\Controller;
+// use Application\Core\Database\DatababaseConnexion;
+// use Application\Controllers\Controller;
 
 class User
 {
@@ -185,24 +185,26 @@ class UsersRepository
      * @return array
      * 
      *  for admin
-     * $role Admin or User
+     * $role Admin or User  // GROUP BY emailUser
+     * 
      */
     public function getEmailUser(string $role)
     {
         if ($_SESSION['LOGGED_USER'] and ($_SESSION['ROLE_USER'] == 'Admin')) {
             $errorMessage = "you DO have admin role to acces to this Aera";
+            $Emails = [];
             try {
                 $statement = $this->connection->getConnexion()->query(
-                    "SELECT emailUser FROM user WHERE roleUser ='$role' GROUP BY emailUser"
+                    "SELECT id, emailUser FROM user WHERE roleUser ='$role'"
                 );
-                $Emails = [];
                 $statement->execute();
                 while (($row = $statement->fetch())) {
                     $email = new UsersRepository();
+                    $email->idlUser = $row['id'];
                     $email->emailUser = $row['emailUser'];
                     $Emails[] = $email;
                 }
-                return $email;
+                return $Emails;
             } catch (\Exception $e) {
                 $errorMessage = $e->getMessage();
                 require(ROOT . '/app/templatesError/error.php');

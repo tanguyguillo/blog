@@ -3,18 +3,6 @@ header {
   min-height: 800px;
 }
 
-/* .heigttAdmin {
-  min-height: 1000px;
-} */
-
-
-/* Class */
-
-/* Button connexion  */
-/* .btsign {
-  width: 300px !;
-} */
-
 .owp-logo {
   margin-top: -10px;
   width: 40px;
@@ -22,12 +10,10 @@ header {
   /* border-radius: 50%; */
 }
 
-/* 
-.navbar-custom {
-  background-color: brown;
-}
-
+/* footer and footer-below allways on the bottom of the page */
 footer .footer-below {
+  position: fixed;
   padding: 25px 0;
-  background-color: brown;
-} */
+  bottom: 0;
+  width: 100%;
+}

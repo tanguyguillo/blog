@@ -15,7 +15,6 @@
 
             <main class="d-flex flex-nowrap">
 
-                <!-- Only HTTPS crypt POST data so DO use it -->
                 <form action="{{ baseUrl }}index.php?owp=blocPostAdmin" method="post">     
 
                 <div class="form-group">
@@ -36,15 +35,7 @@
                 <button type="submit" class="btn btn-success btn-lg btn-block">Se connecter</button>
             </form>
             <br />
-                {# another button #}
-                <div class="form-group" id="deconnexion"></div>
-                    <a href="index.php?owp=se-deconnectez" class="btn btn-danger  btn-lg btn-block" role="button" aria-pressed="true">Se déconnecter</a>
-                </div>
         </div>
-
-
-        <hr>
-
         {# {% include "includes/article_form.html.twig" %} #}
     
 </div>

@@ -38,13 +38,13 @@
 
     <td> 
         <div class="w-auto control-group">
-            <textarea  name="postAera" class="form-control" id="postChapo-{{array.postId}}" required data-validation-required-message="Veuillez entrer votre chapo.">{{array.postChapo}} </textarea>
+            <textarea  name="postChapo" class="form-control" id="postChapo-{{array.postId}}" required data-validation-required-message="Veuillez entrer votre chapo.">{{array.postChapo}} </textarea>
         </div>
     </td>
 
     <td> 
         <div class="w-auto control-group">
-            <textarea name="postId" class="form-control" id="postContent-{{array.postId}}" required data-validation-required-message="Veuillez entrer votre contenu.">{{array.postContent}} </textarea>
+            <textarea name="postContent" class="form-control" id="postContent-{{array.postId}}" required data-validation-required-message="Veuillez entrer votre contenu.">{{array.postContent}} </textarea>
         </div>
     </td>
 
@@ -58,11 +58,11 @@
     </td>
 
     <td>
-        <select name="emailUser" id="emailUser-{{array.emailUser}}" class="form-select">
-        <option selected>{{array.emailUser}}</option>
+        <select name="user_id" id="emailUser-{{array.emailUser}}" class="form-select">
+        <option value = "{{array.userId}}" selected>{{array.emailUser}}</option>
         {# arrayEmails is an other array #}
-        {% for email in arrayEmails %}
-            <option>{{ arrayEmails.email}}</option>
+        {% for data in arrayEmails %}
+        <option value="{{data.idlUser}}">{{data.emailUser}}</option>
         {% endfor %}
         </select>
 

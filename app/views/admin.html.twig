@@ -42,6 +42,7 @@
 
     <!-- Theme CSS blog.omegawebprod -->
     <link  rel="stylesheet" href="css/blogomegawebprod.css">
+    <link  rel="stylesheet" href="css/blogomegawebprodAdmin.css">
 
     <meta name="theme-color" content="#fafafa">
 </head>
@@ -77,14 +78,14 @@
                     </li>
 
                     <li class="page-scroll">
-                        <a href="index.php?owp=blocPostAdmin">Modifier Post</a>
+                        <a href="index.php?owp=blocPostAdmin">Modifier Posts</a>
                     </li>
                     
                     <li class="page-scroll">
                         <a href="#">Nouveau Post</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#">Validation Nouveaux commentaires</a>
+                        <a href="#">Commentaires</a>
                     </li>
                 </ul>
             </div> 
@@ -103,7 +104,6 @@
     {% block modifyPost %}
     {% endblock %}
 
-
     {% block newPost %}
     {% endblock %}
 
@@ -121,7 +121,7 @@
                     {# {% if session.LOGGED_USER != '' %}
                         <span >Connecté: {{ session.LOGGED_USER }} <span> | 
                     {% endif %} #}
-                    <a href="index.php">Retour au blog</a>
+                    <a href="index.php">Retour au blog</a> | <a href="index.php?owp=se-deconnectez">Se déconnecter</a>
                     </span>
                 </div>
             </div>
