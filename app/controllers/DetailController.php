@@ -29,11 +29,6 @@ class DetailController extends Controller
      */
     public function detail($identifier, $message = '')
     {
-
-        // $this->ConnexioController->InitSession; to try when i will know how to do
-        // IndexController::indexAction();
-        //$this->$ConnexionController::InitSession();
-
         // // for intance when inscription
         if ($identifier === "") {
             //$identifier = $_SESSION['LOGGED_PAGE_ID']; // article id
@@ -47,8 +42,6 @@ class DetailController extends Controller
             $this->twig->display('error/error.html.twig', compact('message'));
             exit;
         }
-        // verification .... to see   
-        //$this->isInteger($identifier); // if not redirection on error page
 
         $connection = new DatabaseConnexion();
 
@@ -59,7 +52,10 @@ class DetailController extends Controller
 
         // test (getMaxAndOpen) to se the user tape by hand on the url 10000 for exemple for the article id
         if ($postDetail->getMaxAndOpen($identifier)) {
+            // $detail  :  ["postStatus"] - ["postName"] (not used ) -  ["postModified"] - ["user_id"] (author) etc...
             $detail =  $postDetail->getPost($identifier); // return an array
+            $detailForAurhor = json_decode(json_encode($detail), true);
+            $AuthorId = $detailForAurhor["user_id"];
         } else {
             $message = "l'identifiant de la page est inexact";
             $this->twig->display('error/error.html.twig', compact('message'));
@@ -70,8 +66,7 @@ class DetailController extends Controller
         $connection = new DatabaseConnexion();
         $user = new User();
         $user->connection = $connection;
-
-        $user  = $user->getUser($identifier); // return an array
+        $user  = $user->getUser($AuthorId); // return an array
 
         // 3 - Comment
         $connection = new DatabaseConnexion();
@@ -83,11 +78,7 @@ class DetailController extends Controller
         $baseUrl = BASE_URL; // used for return button after connexion
         $_SESSION['LOGGED_PAGE_ID'] = $identifier; // used article read for return button button after connexion
 
-
-        // var_dump($_SESSION['ROLE_USER']);
-
         $arrayMessage = $this->readleByTwig($message);
-
         $this->twig->display('detail/detail.html.twig', compact('detail', 'user', 'postComments', 'baseUrl', 'identifier', 'arrayMessage'));
     }
 

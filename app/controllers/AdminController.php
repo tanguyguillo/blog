@@ -5,8 +5,8 @@ namespace Application\Controllers\AdminController;
 use Application\Controllers\Controller;
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
 use Application\Model\UserModel\UsersRepository;
-use Application\model\PostModel\PostsRepository;
-use Application\Controllers\PostsController;
+// use Application\model\PostModel\PostsRepository;
+// use Application\Controllers\PostsController;
 
 class AdminController extends Controller
 {
@@ -52,14 +52,18 @@ class AdminController extends Controller
      *
      * @return void
      */
-    public function BlocPostadmin()
+    public function BlocPostadmin(string $message)
     {
         if ($this->isAdmin()) {
             // get the data to modify all the data of a post and this author (admin)
             $arrayTableModify = $this->getAdminUserAndData();
             // authors id + emails
             $arrayEmails = $this->getAdminEmails();
-            $message = '';
+
+            if (isset($message)) {
+                $message = "";
+            }
+
             $this->twig->display('Admin/blocPostAdmin.html.twig', compact('message', 'arrayTableModify', 'arrayEmails'));
         } else {
             $this->redirectionNotAdmin();
@@ -92,9 +96,9 @@ class AdminController extends Controller
     }
 
     /**
-     * function to get the user's Emal
+     * function to get the user's Email (for popup)
      * 
-     * string $role Admin or User
+     * string $role ( Admin or User )
      *
      * @return array
      */

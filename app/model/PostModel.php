@@ -3,7 +3,7 @@
 namespace Application\Model\PostModel;
 
 use Application\Controllers\Controller;
-use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
+//use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
 
 
 /**
@@ -19,8 +19,6 @@ class PostController extends Controller
     // public $postStatus;
     // public $postName;
     // public $postModified;
-
-
 }
 class PostsRepository
 {
@@ -48,10 +46,9 @@ class PostsRepository
 
     /**
      * function to update a post from admin
-     * 
      *
      * @param [type] $arrayPost
-     * @return void
+     * @return bool
      */
     public function updatePost(array $arrayPost)
     {
@@ -59,30 +56,38 @@ class PostsRepository
         foreach ($arrayPost as $key => $value) {
             $postData[$key]  = strip_tags(htmlspecialchars($value));
         }
-
         $id = ($arrayPost["id"]);
         $postTitle = ($arrayPost["postTitle"]);
         $postChapo = ($arrayPost["postChapo"]);
         $postContent = ($arrayPost["postContent"]);
         $postStatus = ($arrayPost["postStatus"]);
-        $postModified = date("Y-m-d H:i:s");    // not in the post
+        $postModified = date("Y-m-d H:i:s");    // not in the POST
         $postStatus = ($arrayPost["postStatus"]);
         $user_id = ($arrayPost["user_id"]); // pop up admin Author
 
+        // posttName of the DB is not used for now, 
+        // in the futur, can be used for "article namee in the url for the referencement
+        $query = "UPDATE blog_post SET 
+        postTitle = '$postTitle',
+        postChapo = '$postChapo',
+        postContent = '$postContent',
+        postStatus = '$postStatus',
+        postModified = '$postModified',
+        user_id = '$user_id'
+        WHERE id = '$id' ";
+
         try {
-            $statement = $this->connection->getConnexion()->query("
-            UPDATE blog_post
-            SET
-            postTitle = $postTitle;
-            postChapo =  $postChapo;
-            postContent = $postContent;
-            postStatus = $postStatus;
-            postModified =  $postModified;
-            user_id = $user_id;
-            WHERE id = $id;
-        ");
+            $statement = $this->connection->getConnexion()->query($query);
             // have update also blo_post_user_id of 
+            return true;
         } catch (\Exception $e) {
+            // have to redirect own
+
+            // $errorMessage = $e->getMessage();
+            // (new ErrorController())->execute($errorMessage);
+
+            // $this->twig->display('error/error.html.twig', compact('message'));
+
             $errorMessage = $e->getMessage();
             require(ROOT . '/app/templatesError/error.php');
             return false;

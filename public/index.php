@@ -29,11 +29,16 @@ require_once(ROOT . '/vendor/autoload.php');
 require_once(ROOT . '/app/myAutoloader.php');
 
 // check $_POST : strip_tags(htmlspecialchars()
+// if isset($_POST)....
 $postData = $_POST;
-
 foreach ($postData as $key => $value) {
     $postData[$key]  = strip_tags(htmlspecialchars($value));
 }
+
+// $postData = $_GET;
+// foreach ($postData as $key => $value) {
+//     $postData[$key]  = strip_tags(htmlspecialchars($value));
+// }
 
 // first router
 try {
@@ -74,21 +79,20 @@ try {
             exit;
         }
         if ($_GET['owp'] === 'blocPostAdmin') {
-            (new AdminController())->BlocPostadmin();
+            $message = ""; // $message is used for message after recording
+            (new AdminController())->BlocPostadmin($message);
             exit;
         }
-        // admin router
+
+        // Admin aera
         if ($_GET['owp'] === 'record') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
-
-                //Here we get the POST data
+                //Here we get the POST data (and not $_GE)
                 (new PostsController())->update($_POST);
                 exit;
             }
         }
     }
-
-
 
     // Last router
     if (isset($_GET['owp']) && $_GET['owp'] !== '') {
@@ -115,11 +119,6 @@ try {
         (new HomepageController())->execute();
     }
 } catch (Exception $e) {
-    // for instance
-    // $errorMessage = $e->getMessage(); // string
-    // require(ROOT . '/app/templatesError/error.php');
-    // // to try : 
-    // change string in array to use twig
     $errorMessage = $e->getMessage();
     (new ErrorController())->execute($errorMessage);
 }
