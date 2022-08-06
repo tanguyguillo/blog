@@ -42,7 +42,7 @@ class PostsController extends Controller
     $postsRepository->connection = $connection;  // connection ???
     if ($postsRepository->updatePost($arrayPost)) {
       // now have to redirect with message
-      $message = "l'enregistrement a été fait";
+      $message = "l'enregistrement a été fait update ";
 
       var_dump($message);
 

@@ -57,9 +57,16 @@ class PostsRepository
             $postData[$key]  = strip_tags(htmlspecialchars($value));
         }
         $id = ($arrayPost["id"]);
+
         $postTitle = ($arrayPost["postTitle"]);
+        $postTitle =  addcslashes($postTitle, "'");
+
         $postChapo = ($arrayPost["postChapo"]);
+        $postTitle =  addcslashes($postTitle, "'");
+
         $postContent = ($arrayPost["postContent"]);
+        $postTitle =  addcslashes($postTitle, "'");
+
         $postStatus = ($arrayPost["postStatus"]);
         $postModified = date("Y-m-d H:i:s");    // not in the POST
         $postStatus = ($arrayPost["postStatus"]);
@@ -67,6 +74,7 @@ class PostsRepository
 
         // posttName of the DB is not used for now, 
         // in the futur, can be used for "article namee in the url for the referencement
+        // addcslashes(string $string, string $characters): string
         $query = "UPDATE blog_post SET 
         postTitle = '$postTitle',
         postChapo = '$postChapo',
@@ -76,9 +84,18 @@ class PostsRepository
         user_id = '$user_id'
         WHERE id = '$id' ";
 
+        var_dump($query);
+
         try {
             $statement = $this->connection->getConnexion()->query($query);
-            // have update also blo_post_user_id of 
+
+            // // have update also blo_post_user_id of
+            // $statement2 = $this->connection->getConnexion()->query(
+            //     "UPDATE comment
+            //         SET blog_post_user_id = '$user_id',
+            //      WHERE blog_post_id ='$id'"
+            // );
+
             return true;
         } catch (\Exception $e) {
             // have to redirect own

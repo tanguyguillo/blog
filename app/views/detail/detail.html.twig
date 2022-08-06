@@ -9,8 +9,8 @@
 
             {% if arrayMessage.message != false %}
             <div class="alert alert-success alert-dismissible">
-                <strong>Bravo vous êtes connecté {{ arrayMessage.message}}</strong>   
-                </div>    
+                <strong>Bravo vous êtes connecté {{ arrayMessage.message}}</strong>
+            </div>
             {% endif %}
 
             <div class="col-lg-12">
@@ -22,7 +22,8 @@
                 <hr class="star-light">
                 {# todo : a condition post.postStatus = open # ... here not necessary the blogPost have been filtred
                 before #}
-                <p>&nbsp;{{detail.postChapo}} </p>
+
+                <p>&nbsp;{{detail.postChapo|replace({'\'': ""}) }} </p>
                 <br>
                 <p>{{detail.postContent}}</p>
                 <a href="{{ baseUrl }}index.php?owp=bloglist#{{detail.idPost}}" class="btn btn-primary btn-small"
@@ -97,10 +98,11 @@
                 class="btn btn-success btn-lg btn-block">Créer son compte</button></a>
 
         {# sign down #}
-            <div class="form-group" id="deconnexion"></div>
-                <a href="index.php?owp=se-deconnectez" class="btn btn-danger  btn-lg btn-block" role="button" aria-pressed="true">Se déconnecter</a>
-            </div>
+        <div class="form-group" id="deconnexion"></div>
+        <a href="index.php?owp=se-deconnectez" class="btn btn-danger  btn-lg btn-block" role="button"
+            aria-pressed="true">Se déconnecter</a>
     </div>
+</div>
 </div>
 
 </div>

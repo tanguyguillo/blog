@@ -13,6 +13,8 @@ class Detail
     }
     /**
      *  put in an array one post // use of htmlspecialchars for id (XSS)
+     * 
+     * todo : $str = str_replace("\", "", $str);
      *
      * return an Array
      */
@@ -37,6 +39,7 @@ class Detail
         $posts[] = $post;
         $posts = json_decode(json_encode($posts), true); // it's was an object
         $_SESSION['LOGGED_PAGE_WRITER_ID'] = $row['user_id'];
+
         return $post;
     }
 
