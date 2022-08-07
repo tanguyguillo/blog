@@ -6,12 +6,12 @@ use Application\Controllers\Controller;
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
 use Application\Model\PostModel\PostsRepository;
 use Application\Controllers\AdminController;
-
+use Application\Controllers\AdminController\AdminController as AdminControllerAdminController;
 
 /**
  * Class of the blog listing
  */
-class PostsController extends Controller
+class PostsController extends AdminControllerAdminController
 {
   /**
    * Only showing post with all posts with new date and teaser
@@ -23,7 +23,7 @@ class PostsController extends Controller
     $connection = new DatabaseConnexion();
     //then we will use this connexion to get what we want ; here posts
     $postsRepository = new PostsRepository();
-    $postsRepository->connection = $connection;  // connection ???
+    $postsRepository->connection = $connection;
     $posts = $postsRepository->getPosts(); // return an array
     $this->twig->display('posts/posts.html.twig', compact('posts'));
   }
@@ -42,12 +42,12 @@ class PostsController extends Controller
     $postsRepository->connection = $connection;  // connection ???
     if ($postsRepository->updatePost($arrayPost)) {
       // now have to redirect with message
-      $message = "l'enregistrement a été fait update ";
+      $message = "Enregistrement effectué";
 
-      var_dump($message);
-
-      // $this->load->library('AdminController');
-      // $this->AdminController->BlocPostadmin($message);
+      // we use the parent's function from AdminController
+      $this->BlocPostadmin($message);
+    } else {
+      // not OK
     }
   }
 }

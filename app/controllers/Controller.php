@@ -12,8 +12,9 @@ use Twig\Loader\FilesystemLoader;
  */
 abstract class Controller
 {
-    private $Loader;
     protected $twig;
+
+    public static $nbr = 10;
 
     /**
      * main controller
@@ -35,37 +36,20 @@ abstract class Controller
         $this->twig->addGlobal('session', $_SESSION);
     }
 
-    /**
-     * Undocumented function not used yet
-     *
-     * @param array $array
-     * @return void
-     */
-    public function deletePostsIfNotValid(array $array)
-    {
-    }
 
-
-
-    public function myTest()
-    {
-        return "yessss";
-    }
 
     /**
-     * function return true if number false otherwise
+     * function to make message readeableby twig
      *
-     * @param [type] $identifier
-     * @return boll
+     * @param string $message
+     * @return Array
      */
-    // public function isInteger($identifier)
-    // {
-    //     if ($this->isInteger($identifier) == false) {
-    //         $message = "l'identifiant de la page doit être un chiffre";
-    //         $this->twig->display('error/error.html.twig', compact('message'));
-    //         exit;
-    //     }
-    //     return true;
-    // }
-
+    public function setMessageForTwig(string $message)
+    {
+        $messageReadle = $message;
+        $arrayMessage = array(
+            "message" => $messageReadle
+        );
+        return $arrayMessage;
+    }
 }

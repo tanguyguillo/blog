@@ -14,13 +14,6 @@ use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
 
 class DetailController extends Controller
 {
-    // public $test; // string
-
-    // public function __construct()
-    // {
-    //     $this->test = 22;
-    // }
-
     /**
      * Function to show one blog post
      *

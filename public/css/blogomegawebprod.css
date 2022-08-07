@@ -12,7 +12,7 @@ header {
 
 /* footer and footer-below allways on the bottom of the page */
 footer .footer-below {
-  z-index: 2;
+  z-index: 2; 
   position: fixed;
   padding: 25px 0;
   bottom: 0;

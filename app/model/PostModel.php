@@ -75,6 +75,7 @@ class PostsRepository
         // posttName of the DB is not used for now, 
         // in the futur, can be used for "article namee in the url for the referencement
         // addcslashes(string $string, string $characters): string
+
         $query = "UPDATE blog_post SET 
         postTitle = '$postTitle',
         postChapo = '$postChapo',
@@ -83,8 +84,6 @@ class PostsRepository
         postModified = '$postModified',
         user_id = '$user_id'
         WHERE id = '$id' ";
-
-        var_dump($query);
 
         try {
             $statement = $this->connection->getConnexion()->query($query);

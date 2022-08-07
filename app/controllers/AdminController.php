@@ -57,14 +57,18 @@ class AdminController extends Controller
         if ($this->isAdmin()) {
             // get the data to modify all the data of a post and this author (admin)
             $arrayTableModify = $this->getAdminUserAndData();
+
             // authors id + emails
             $arrayEmails = $this->getAdminEmails();
 
-            if (isset($message)) {
+            if (!isset($message)) {
                 $message = "";
+            } else {
+                $arrayMessage =  $this->setMessageForTwig($message); // setMessageForTwig : heritage from Controller
             }
 
-            $this->twig->display('Admin/blocPostAdmin.html.twig', compact('message', 'arrayTableModify', 'arrayEmails'));
+
+            $this->twig->display('Admin/blocPostAdmin.html.twig', compact('arrayMessage', 'arrayTableModify', 'arrayEmails'));
         } else {
             $this->redirectionNotAdmin();
         }

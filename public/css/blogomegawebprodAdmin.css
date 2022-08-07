@@ -21,13 +21,3 @@ a:hover {
 }
 
 
-/* footer .footer-below allways on the bottom of the page */
-
-footer .footer-below {
-  position: fixed;
-  padding: 25px 0;
-  bottom: 0;
-  width: 100%;
-  /* Height of the footer*/
-
-}

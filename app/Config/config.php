@@ -12,4 +12,4 @@ define('SALT', '$1$thexkyissobeautifull$');
 //define('SALT', '$5$rounds=5000$thexkyissobeautifull$');
 
 // on production need to make it on 0
-ini_set('display_errors', '0');
+ini_set('display_errors', '1');

@@ -206,6 +206,7 @@ class UsersRepository
                 }
                 return $Emails;
             } catch (\Exception $e) {
+                // to redirect hown page
                 $errorMessage = $e->getMessage();
                 require(ROOT . '/app/templatesError/error.php');
                 return false;
