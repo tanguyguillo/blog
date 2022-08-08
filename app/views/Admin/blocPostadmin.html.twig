@@ -11,8 +11,6 @@
 <h3 class="text-center">BlogPost Admin</h3>
 <hr class="star-primary">
     <div class="container">
-        <h4 class="text-center">Modifier un Post</h4> 
-
         {% if arrayMessage.message != "false" %}
             <div class="alert alert-success alert-dismissible" role="alert">
                 <strong>{{ arrayMessage.message }}</strong>
@@ -22,6 +20,80 @@
             </div>
         {% endif %}
 
+
+        <br>
+<!--  **************************************************************** -->
+<br>
+<h4 class="text-center">Nouveau Post</h4> 
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped table-highlight">
+    <thead>
+        <tr>
+        <th scope="col">Titre</th>
+        <th scope="col">Chapo</th>
+        <th scope="col">Contenu</th>
+        <th scope="col">Post Status</th>
+        <th scope="col">Auteur / Email *</th>
+        <th scope="col">Enregistrer</th>
+        </tr>
+    </thead>
+
+
+    <form action="{{ baseUrl }}index.php?owp=newrpostecord" method="post">    
+    <tbody class="">
+        <input type="hidden" name ="id" id="postId-new" class="form-control postId" type="text" value="{{array.postId}}" aria-label="readonly" readonly></input>
+    <td>
+        <div class="w-auto control-group">
+            <textarea name="postTitle" class="form-control" id="postTitle-new" required data-validation-required-message="Veuillez entrer votre chapo.">{{array.postTitle}} </textarea>
+        </div>
+    </td>
+
+    <td> 
+        <div class="w-auto control-group">
+            <textarea  name="postChapo" class="form-control" id="postChapo-new" required data-validation-required-message="Veuillez entrer votre chapo.">{{array.postChapo}} </textarea>
+        </div>
+    </td>
+
+    <td> 
+        <div class="w-auto control-group">
+            <textarea name="postContent" class="form-control" id="postContent-new" required data-validation-required-message="Veuillez entrer votre contenu.">{{array.postContent}} </textarea>
+        </div>
+    </td>
+
+    <td> 
+        <select name ="postStatus" id="postStatus-new" class="form-select">
+        <option selected>{{array.postStatus}}</option>  
+        <option>Waiting for validation</option>
+        <option>Open</option>
+        {# <option>Closed</option> #}
+        </select>
+    </td>
+
+    <td>
+        <select name="user_id" id="emailUser-{{array.emailUser}}" class="form-select">
+        <option value = "{{array.userId}}" selected>{{array.emailUser}}</option>
+        {# arrayEmails is an other array #}
+        {% for data in arrayEmails %}
+        <option value="{{data.idlUser}}">{{data.emailUser}}</option>
+        {% endfor %}
+        </select>
+
+    </td> 
+
+    <td>
+    <button type="submit" class="btn btn-success">Enregister</button> 
+    </td>
+</form>
+</tbody>
+</table>
+</div>
+</div>  
+</div>   
+<br>
+<!--  **************************************************************** -->
+<br>
+<h4 class="text-center">Modifier un Post</h4> 
 <div class="table-responsive">
     <table class="table table-bordered table-striped table-highlight">
     <thead>
@@ -92,78 +164,6 @@
 </div>   
 
 <br>
-<!--  **************************************************************** -->
-<br>
-<h4 class="text-center">Nouveau Post</h4> 
-
-<div class="table-responsive">
-    <table class="table table-bordered table-striped table-highlight">
-    <thead>
-        <tr>
-        <th scope="col">Titre</th>
-        <th scope="col">Chapo</th>
-        <th scope="col">Contenu</th>
-        <th scope="col">Post Status</th>
-        <th scope="col">Auteur / Email *</th>
-        <th scope="col">Enregistrer</th>
-        </tr>
-    </thead>
-
-
-    <form action="{{ baseUrl }}index.php?owp=newrpostecord" method="post">    
-    <tbody class="">
-        <input type="hidden" name ="id" id="postId-new" class="form-control postId" type="text" value="{{array.postId}}" aria-label="readonly" readonly></input>
-    <td>
-        <div class="w-auto control-group">
-            <textarea name="postTitle" class="form-control" id="postTitle-new" required data-validation-required-message="Veuillez entrer votre chapo.">{{array.postTitle}} </textarea>
-        </div>
-    </td>
-
-    <td> 
-        <div class="w-auto control-group">
-            <textarea  name="postChapo" class="form-control" id="postChapo-new" required data-validation-required-message="Veuillez entrer votre chapo.">{{array.postChapo}} </textarea>
-        </div>
-    </td>
-
-    <td> 
-        <div class="w-auto control-group">
-            <textarea name="postContent" class="form-control" id="postContent-new" required data-validation-required-message="Veuillez entrer votre contenu.">{{array.postContent}} </textarea>
-        </div>
-    </td>
-
-    <td> 
-        <select name ="postStatus" id="postStatus-new" class="form-select">
-        <option selected>{{array.postStatus}}</option>  
-        <option>Waiting for validation</option>
-        <option>Open</option>
-        {# <option>Closed</option> #}
-        </select>
-    </td>
-
-    <td>
-        <select name="user_id" id="emailUser-{{array.emailUser}}" class="form-select">
-        <option value = "{{array.userId}}" selected>{{array.emailUser}}</option>
-        {# arrayEmails is an other array #}
-        {% for data in arrayEmails %}
-        <option value="{{data.idlUser}}">{{data.emailUser}}</option>
-        {% endfor %}
-        </select>
-
-    </td> 
-
-    <td>
-    <button type="submit" class="btn btn-success">Enregister</button> 
-    </td>
-</form>
-</tbody>
-</table>
-</div>
-</div>  
-</div>   
-
-
-
-
 
 
 

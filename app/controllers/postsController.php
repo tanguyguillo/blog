@@ -61,9 +61,7 @@ class PostsController extends AdminControllerAdminController
    */
   public function newPost(array $arrayPost)
   {
-    // var_dump($arrayPost);
     $connection = new DatabaseConnexion();
-    $arrayPost = json_decode(json_encode($arrayPost), true);
     $postsRepository = new PostsRepository();
     $postsRepository->connection = $connection;
 
@@ -72,7 +70,7 @@ class PostsController extends AdminControllerAdminController
       $message = "Enregistrement effectué";
 
       // we use the parent's function from AdminController
-      //$this->BlocPostadmin($arrayPost, $message);
+      $this->BlocPostadmin($arrayPost, $message);
     } else {
       // not OK
     }

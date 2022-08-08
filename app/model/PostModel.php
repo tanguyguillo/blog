@@ -20,7 +20,7 @@ class PostController extends Controller
     // public $postName;
     // public $postModified;
 }
-class PostsRepository
+class PostsRepository extends Controller
 {
     /**
      *
@@ -53,20 +53,17 @@ class PostsRepository
     public function updatePost(array $arrayPost)
     {
         // to look out data comming from outside even in admin aera
-        foreach ($arrayPost as $key => $value) {
-            $postData[$key]  = strip_tags(htmlspecialchars($value));
-        }
+        // foreach ($arrayPost as $key => $value) {
+        //     $postData[$key]  = strip_tags(htmlspecialchars($value));
+        //     $postTitle =  addcslashes($postTitle, "'");
+        // }
+
+        $arrayPost = $this->lookOutDataFromOustide($arrayPost); // From Controller
+
         $id = ($arrayPost["id"]);
-
         $postTitle = ($arrayPost["postTitle"]);
-        $postTitle =  addcslashes($postTitle, "'");
-
         $postChapo = ($arrayPost["postChapo"]);
-        $postTitle =  addcslashes($postTitle, "'");
-
         $postContent = ($arrayPost["postContent"]);
-        $postTitle =  addcslashes($postTitle, "'");
-
         $postStatus = ($arrayPost["postStatus"]);
         $postModified = date("Y-m-d H:i:s");    // not in the POST
         $postStatus = ($arrayPost["postStatus"]);
@@ -92,8 +89,38 @@ class PostsRepository
         }
     }
 
+    /**
+     * function to insert post
+     *
+     * @param array $arrayPost
+     * @return bool
+     */
     public function newPost(array $arrayPost)
     {
-        var_dump($arrayPost);
+        // var_dump($arrayPost);
+        $arrayPost = $this->lookOutDataFromOustide($arrayPost); // From Controller
+
+        $postTitle = ($arrayPost["postTitle"]);
+        $postChapo = ($arrayPost["postChapo"]);
+        $postContent = ($arrayPost["postContent"]);
+        $postStatus = ($arrayPost["postStatus"]);
+        $postCreated = date("Y-m-d H:i:s");
+        $postStatus = ($arrayPost["postStatus"]);
+        $user_id = ($arrayPost["user_id"]); // pop up admin Author
+        $postName = 'not used yet';
+        $postModified = $postCreated;
+
+        $query = "INSERT INTO blog_post (postTitle , postChapo, postContent, postCreated, postStatus, postName, postModified, user_id) 
+        VALUES ('$postTitle', '$postChapo', '$postContent', '$postCreated', '$postStatus', '$postName', '$postModified', '$user_id')";
+
+        try {
+            $statement = $this->connection->getConnexion()->query($query);
+            return true;
+        } catch (\Exception $e) {
+            // $this->twig->display('error/error.html.twig', compact('message'));
+            $errorMessage = $e->getMessage();
+            require(ROOT . '/app/templatesError/error.php');
+            return false;
+        }
     }
 }
