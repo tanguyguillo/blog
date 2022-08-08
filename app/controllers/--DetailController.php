@@ -125,11 +125,14 @@ class DetailController extends Controller
 
                     $_SESSION['ROLE_USER'] = $user["roleUser"]; // is User or Admin
 
-                    // we return to the page detail with the good id ... ? add block showing unrefesh thing ?
-                    $this->Detail($postData['postId'], $message);
-                }
-            }
+            // if ($this->myAuth($postData)) {
+            //     // we return to the page detail with the good id ... ? add block showing unrefesh thing ?
+            //     $messsageReadle = 'abort';
+            //     $this->Detail($postData['postId'], $message);
+            // 
         }
+        }
+
         // to avoid a bug because the url can to not change
         if ($messsageReadle != 'abort') {
             $message = 'Désolé, les données de connection sont incorrectes';
@@ -154,7 +157,17 @@ class DetailController extends Controller
         return $arrayMessage;
     }
 
-
+    /**
+     * function return true if number otherwise false
+     *
+     * @param [string] $identifier
+     * @return bool
+     */
+    public function isInteger($identifier): string
+    {
+        $identifier = filter_var($identifier, FILTER_VALIDATE_INT);
+        return ($identifier !== FALSE);
+    }
 
     /**
      * function to verify crypt password

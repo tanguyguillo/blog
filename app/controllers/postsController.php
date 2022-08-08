@@ -39,13 +39,40 @@ class PostsController extends AdminControllerAdminController
     $connection = new DatabaseConnexion();
     $arrayPost = json_decode(json_encode($arrayPost), true);
     $postsRepository = new PostsRepository();
-    $postsRepository->connection = $connection;  // connection ???
+    $postsRepository->connection = $connection;
+
+    // to correct in connexion
     if ($postsRepository->updatePost($arrayPost)) {
       // now have to redirect with message
       $message = "Enregistrement effectué";
 
       // we use the parent's function from AdminController
-      $this->BlocPostadmin($message);
+      $this->BlocPostadmin($arrayPost, $message);
+    } else {
+      // not OK
+    }
+  }
+
+  /**
+   * function adding Post
+   *
+   * @param array $arrayPost
+   * @return void
+   */
+  public function newPost(array $arrayPost)
+  {
+    // var_dump($arrayPost);
+    $connection = new DatabaseConnexion();
+    $arrayPost = json_decode(json_encode($arrayPost), true);
+    $postsRepository = new PostsRepository();
+    $postsRepository->connection = $connection;
+
+    if ($postsRepository->newPost($arrayPost)) {
+      // now have to redirect with message
+      $message = "Enregistrement effectué";
+
+      // we use the parent's function from AdminController
+      //$this->BlocPostadmin($arrayPost, $message);
     } else {
       // not OK
     }

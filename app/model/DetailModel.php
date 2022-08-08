@@ -8,9 +8,13 @@ namespace Application\Model\DetailModel;
  */
 class Detail
 {
+    /**
+     * Undocumented function
+     */
     function __construct()
     {
     }
+
     /**
      *  put in an array one post // use of htmlspecialchars for id (XSS)
      * 

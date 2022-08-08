@@ -4,7 +4,7 @@
 
     {% block adminMain %}
 <div class="d-flex flex-column min-vh-100">
-<section id="inscription">
+<section id="BlogPost manager">
 <div class="container">
 <div class="row">
 <br>
@@ -13,7 +13,7 @@
     <div class="container">
         <h4 class="text-center">Modifier un Post</h4> 
 
-        {% if arrayMessage.message != false %}
+        {% if arrayMessage.message != "false" %}
             <div class="alert alert-success alert-dismissible" role="alert">
                 <strong>{{ arrayMessage.message }}</strong>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -87,70 +87,90 @@
 
 </tbody>
 </table>
-
-</div></div>
-
-<h4 class="text-center">Nouveau Post</h4> 
-
-<table class="table d-flex flex-column min-vh-100">
-<thead>
-    <tr>
-    <th scope="col">#</th>
-    <th scope="col">Titre</th>
-    <th scope="col">Chapo</th>
-    <th scope="col">Contenu</th>
-    <th scope="col">Prénom</th>
-    <th scope="col">Nom</th>
-    <th scope="col">Email</th>
-    <th scope="col">Role</th>
-    <th scope="col">Enregistrer</th>
-    </tr>
-</thead>
-
-
-<tr>
-    <th scope="row">1</th>
-<td>
-    <textarea id="titre">      
-    </textarea> 
-</td>
-<td>
-    <textarea id="chapo">
-    </textarea>    
-</td>
-<td>
-    <textarea id="Contenu">
-    </textarea>
-</td>
-<td>
-    <textarea id="prénom">
-    </textarea>
-<td>
-    <textarea id="Nom">
-    </textarea>
-</th>
-<td>
-    <textarea id="email">
-    </textarea>
-<td>
-    <select>
-        <option value="">&nbsp;</option>
-        <option value="Admin" selected="">Admin</option>
-        <option value="User">User</option>
-    </select>
-</th>
-<td>
-    Enregister
-</td>
-</table>
-
-
+</div>
 </div>  
 </div>   
+
+<br>
+<!--  **************************************************************** -->
+<br>
+<h4 class="text-center">Nouveau Post</h4> 
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped table-highlight">
+    <thead>
+        <tr>
+        <th scope="col">Titre</th>
+        <th scope="col">Chapo</th>
+        <th scope="col">Contenu</th>
+        <th scope="col">Post Status</th>
+        <th scope="col">Auteur / Email *</th>
+        <th scope="col">Enregistrer</th>
+        </tr>
+    </thead>
+
+
+    <form action="{{ baseUrl }}index.php?owp=newrpostecord" method="post">    
+    <tbody class="">
+        <input type="hidden" name ="id" id="postId-new" class="form-control postId" type="text" value="{{array.postId}}" aria-label="readonly" readonly></input>
+    <td>
+        <div class="w-auto control-group">
+            <textarea name="postTitle" class="form-control" id="postTitle-new" required data-validation-required-message="Veuillez entrer votre chapo.">{{array.postTitle}} </textarea>
+        </div>
+    </td>
+
+    <td> 
+        <div class="w-auto control-group">
+            <textarea  name="postChapo" class="form-control" id="postChapo-new" required data-validation-required-message="Veuillez entrer votre chapo.">{{array.postChapo}} </textarea>
+        </div>
+    </td>
+
+    <td> 
+        <div class="w-auto control-group">
+            <textarea name="postContent" class="form-control" id="postContent-new" required data-validation-required-message="Veuillez entrer votre contenu.">{{array.postContent}} </textarea>
+        </div>
+    </td>
+
+    <td> 
+        <select name ="postStatus" id="postStatus-new" class="form-select">
+        <option selected>{{array.postStatus}}</option>  
+        <option>Waiting for validation</option>
+        <option>Open</option>
+        {# <option>Closed</option> #}
+        </select>
+    </td>
+
+    <td>
+        <select name="user_id" id="emailUser-{{array.emailUser}}" class="form-select">
+        <option value = "{{array.userId}}" selected>{{array.emailUser}}</option>
+        {# arrayEmails is an other array #}
+        {% for data in arrayEmails %}
+        <option value="{{data.idlUser}}">{{data.emailUser}}</option>
+        {% endfor %}
+        </select>
+
+    </td> 
+
+    <td>
+    <button type="submit" class="btn btn-success">Enregister</button> 
+    </td>
+</form>
+</tbody>
+</table>
 </div>
-</div>
+</div>  
+</div>   
+
+
+
+
+
+
+
+
+</section>
 </div>
 <br>
 
 
- {% endblock %}
+{% endblock %}

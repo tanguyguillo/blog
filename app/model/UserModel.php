@@ -7,6 +7,7 @@ namespace Application\Model\UserModel;
 
 class User
 {
+
     /**
      * function to get a user with all of this properties
      *

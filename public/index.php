@@ -29,16 +29,19 @@ require_once(ROOT . '/vendor/autoload.php');
 require_once(ROOT . '/app/myAutoloader.php');
 
 // check $_POST : strip_tags(htmlspecialchars()
-// if isset($_POST)....
-$postData = $_POST;
-foreach ($postData as $key => $value) {
-    $postData[$key]  = strip_tags(htmlspecialchars($value));
+if (isset($_POST)) {
+    $postData = $_POST;
+    foreach ($postData as $key => $value) {
+        $postData[$key]  = strip_tags(htmlspecialchars($value));
+    }
 }
-
-// $postData = $_GET;
-// foreach ($postData as $key => $value) {
-//     $postData[$key]  = strip_tags(htmlspecialchars($value));
-// }
+// check $_GET : strip_tags(htmlspecialchars()
+if (isset($_GET)) {
+    $getData = $_GET;
+    foreach ($getData as $key => $value) {
+        $getData[$key]  = strip_tags(htmlspecialchars($value));
+    }
+}
 
 // first router
 try {
@@ -74,23 +77,29 @@ try {
             exit;
         }
         // Admin aera
-        if ($_GET['owp'] === 'administration') {
+        if ($_GET['owp'] === 'administration-only-for-people-which-have-the-role-Admin') {
             (new AdminController())->ConnectAdmin();
             exit;
         }
         if ($_GET['owp'] === 'blocPostAdmin') {
-            $message = ""; // $message is used for message after recording
-            (new AdminController())->BlocPostadmin($message);
+            $message = ""; // $message is used for message after recording // passing by Auth
+            (new AdminController())->BlocPostadmin($postData, $message);
             exit;
         }
 
-        // Admin aera
+        // Admin aera // 
         if ($_GET['owp'] === 'record') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 //Here we get the POST data (and not $_GE)
-                (new PostsController())->update($_POST);
+                (new PostsController())->update($postData);
                 exit;
             }
+        }
+        // Admin aera // 
+        if ($_GET['owp'] === 'newrpostecord') {
+            //Here we get the POST data (and not $_GE)
+            (new PostsController())->newPost($postData);
+            exit;
         }
     }
 

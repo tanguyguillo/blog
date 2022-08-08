@@ -34,32 +34,17 @@ class ConnexionController extends Controller
   public function signOut()
   {
     $message = 'Voila, ' . "c'est fait, " . 'vous êtes déconnecté';
-    $this->InitSession();
+    $this->InitSession(); // heritage Extends
     $this->twig->display('info/info.html.twig', compact('message'));
   }
 
   /**
-   * signOut before new inscription
+   * signOut before new inscription // heritage Extends
    *
    * @return void
    */
   public function signOutForInscription()
   {
     $this->InitSession();
-  }
-
-  /**
-   * function Unset all of the session variables and Finally, destroy the session.
-   *
-   * @return void
-   */
-  public function InitSession()
-  {
-    $_SESSION = array();
-    unset($_SESSION['LOGGED_USER']);
-    unset($_SESSION['LOGGED_USER_NAME']);
-    unset($_SESSION['LOGGED_USER_ID']);
-    unset($_SESSION);
-    session_destroy();
   }
 }

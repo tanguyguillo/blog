@@ -192,9 +192,9 @@
                     
                     {# show the link admin only for people which have the role Admin (not only User) #}
                     {% if arrayMessage.message == false %}
-                        {# {% if session.ROLE_USER =="Admin"  %}  #}
-                            | <a href="index.php?owp=administration">Administration</a>
-                        {# {% endif %} #}
+                        {% if session.ROLE_USER =="Admin"  %}  
+                            | <a href="index.php?owp=administration-only-for-people-which-have-the-role-Admin">Administration</a>
+                        {% endif %} 
                     {% endif %}
 
                     </span>

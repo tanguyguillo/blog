@@ -4,17 +4,16 @@ declare(strict_types=1);
 
 namespace Application\Controllers;
 
+use Application\Core\Auth\Auth;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
 /**
  * make working twig by heritage
  */
-abstract class Controller
+abstract class Controller extends Auth
 {
     protected $twig;
-
-    public static $nbr = 10;
 
     /**
      * main controller
@@ -36,8 +35,6 @@ abstract class Controller
         $this->twig->addGlobal('session', $_SESSION);
     }
 
-
-
     /**
      * function to make message readeableby twig
      *
@@ -51,5 +48,54 @@ abstract class Controller
             "message" => $messageReadle
         );
         return $arrayMessage;
+    }
+
+    /**
+     * function to void session
+     *
+     * @return void
+     */
+    public function InitSession()
+    {
+        $_SESSION = array();
+        unset($_SESSION['LOGGED_USER']);
+        unset($_SESSION['LOGGED_USER_NAME']);
+        unset($_SESSION['LOGGED_USER_ID']);
+        unset($_SESSION);
+        session_destroy();
+    }
+
+    /************** Utilities From here ********************
+     *
+     * 
+     */
+
+    /**
+     * to verify user is an admin   
+     * 
+     * @return bool
+     */
+    public function isAdmin()
+    {
+        if (isset($_SESSION['ROLE_USER'])) {
+            if ($_SESSION['ROLE_USER'] == "Admin") {
+                return true;
+            } else {
+                return false;
+            }
+            return false;
+        }
+    }
+
+    /**
+     * function return true if number otherwise false
+     *
+     * @param [string] $identifier
+     * @return bool
+     */
+    public function isInteger(string $identifier)
+    {
+        $identifier = filter_var($identifier, FILTER_VALIDATE_INT);
+        return ($identifier !== FALSE);
     }
 }

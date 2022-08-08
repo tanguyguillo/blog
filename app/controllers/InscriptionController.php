@@ -2,7 +2,6 @@
 
 namespace Application\Controllers\InscriptionController;
 
-
 use Application\Model\UserModel\UsersRepository;
 use Application\Controllers\Controller;
 use Application\Controllers\ConnexionController\ConnexionController;

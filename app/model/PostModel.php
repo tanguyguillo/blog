@@ -72,10 +72,6 @@ class PostsRepository
         $postStatus = ($arrayPost["postStatus"]);
         $user_id = ($arrayPost["user_id"]); // pop up admin Author
 
-        // posttName of the DB is not used for now, 
-        // in the futur, can be used for "article namee in the url for the referencement
-        // addcslashes(string $string, string $characters): string
-
         $query = "UPDATE blog_post SET 
         postTitle = '$postTitle',
         postChapo = '$postChapo',
@@ -87,26 +83,17 @@ class PostsRepository
 
         try {
             $statement = $this->connection->getConnexion()->query($query);
-
-            // // have update also blo_post_user_id of
-            // $statement2 = $this->connection->getConnexion()->query(
-            //     "UPDATE comment
-            //         SET blog_post_user_id = '$user_id',
-            //      WHERE blog_post_id ='$id'"
-            // );
-
             return true;
         } catch (\Exception $e) {
-            // have to redirect own
-
-            // $errorMessage = $e->getMessage();
-            // (new ErrorController())->execute($errorMessage);
-
             // $this->twig->display('error/error.html.twig', compact('message'));
-
             $errorMessage = $e->getMessage();
             require(ROOT . '/app/templatesError/error.php');
             return false;
         }
+    }
+
+    public function newPost(array $arrayPost)
+    {
+        var_dump($arrayPost);
     }
 }

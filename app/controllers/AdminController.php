@@ -5,8 +5,7 @@ namespace Application\Controllers\AdminController;
 use Application\Controllers\Controller;
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
 use Application\Model\UserModel\UsersRepository;
-// use Application\model\PostModel\PostsRepository;
-// use Application\Controllers\PostsController;
+use Application\Core\Auth;
 
 class AdminController extends Controller
 {
@@ -17,22 +16,26 @@ class AdminController extends Controller
      */
     public function ConnectAdmin()
     {
-        $message = '';
+        $message = 'no menu';
         $this->twig->display('Admin/adminConnexion.html.twig', compact('message'));
     }
 
     /**
-     * to verify user is an admin   
+     * Undocumented function
+     *
+     * @param array $postData
+     * @param string $message
+     * @return void
      */
-    public function isAdmin()
+    public function auth(array $postData, string $message)
     {
-        if (isset($_SESSION['ROLE_USER'])) {
-            if ($_SESSION['ROLE_USER'] == "Admin") {
-                return true;
-            } else {
-                return false;
-            }
-            return false;
+        // $this->myAuth from Auth.php but "heritage" (Controller legacy Auth)
+        if ($this->myAuth($postData)) {
+            $message = "";
+            $Array = ['nothing' => ""];
+            $this->BlocPostadmin($Array, $message);
+        } else {
+            $this->redirectionNotAdmin();
         }
     }
 
@@ -52,7 +55,8 @@ class AdminController extends Controller
      *
      * @return void
      */
-    public function BlocPostadmin(string $message)
+    // public function BlocPostadmin(array $postData, string $message)
+    public function BlocPostadmin($array, $message)
     {
         if ($this->isAdmin()) {
             // get the data to modify all the data of a post and this author (admin)
@@ -66,7 +70,6 @@ class AdminController extends Controller
             } else {
                 $arrayMessage =  $this->setMessageForTwig($message); // setMessageForTwig : heritage from Controller
             }
-
 
             $this->twig->display('Admin/blocPostAdmin.html.twig', compact('arrayMessage', 'arrayTableModify', 'arrayEmails'));
         } else {
