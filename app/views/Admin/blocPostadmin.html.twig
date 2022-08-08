@@ -40,7 +40,7 @@
     </thead>
 
 
-    <form action="{{ baseUrl }}index.php?owp=newrpostecord" method="post">    
+    <form action="{{ baseUrl }}index.php?owp=newpostecord" method="post">    
     <tbody class="">
         <input type="hidden" name ="id" id="postId-new" class="form-control postId" type="text" value="{{array.postId}}" aria-label="readonly" readonly></input>
     <td>
@@ -98,6 +98,7 @@
     <table class="table table-bordered table-striped table-highlight">
     <thead>
         <tr>
+        <th scope="col"><span class="glyphicon glyphicon-trash"></th>
         <th scope="col">Titre</th>
         <th scope="col">Chapo</th>
         <th scope="col">Contenu</th>
@@ -108,9 +109,18 @@
     </thead>
 
 {% for array in arrayTableModify %}
+
     <form action="{{ baseUrl }}index.php?owp=record&id={{array.postId}}" method="post">    
     <tbody class="">
-        <input type="hidden" name ="id" id="postId-{{array.postId}}" class="form-control postId" type="text" value="{{array.postId}}" aria-label="readonly" readonly></input>
+
+    <td>
+    <div class="w-auto control-group">
+    <input type="checkbox" id="delete-{{array.postId}}" name="checkbox" value="{{array.postId}}">
+    </div>
+    </td>
+
+    <input type="hidden" name ="id" id="postId-{{array.postId}}" class="form-control postId" type="text" value="{{array.postId}}" aria-label="readonly" readonly></input>
+
     <td>
         <div class="w-auto control-group">
             <textarea name="postTitle" class="form-control" id="postTitle-{{array.postId}}" required data-validation-required-message="Veuillez entrer votre chapo.">{{array.postTitle}} </textarea>
@@ -151,6 +161,8 @@
 
     <td>
     <button type="submit" class="btn btn-success">Enregister</button> 
+    <br> <br>
+     {# <a href="{{ app.request.getBaseURL() }}index.php?owp=delete&id={{array.postId}}"><button type="submit" class="btn btn-danger">Supprimer</button></a>  #}
     </td>
 </form>
 

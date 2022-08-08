@@ -48,18 +48,18 @@ class Detail
     }
 
     /**
-     * find the max $identifier article open // test (getMaxAndOpen) to se the user tape by hand on the url 10000 for exemple for the article id
+     * Look if the post id exist and is open
      *
      * @return bool
      */
     public function getMaxAndOpen(int $identifier)
     {
         $identifier = htmlspecialchars($identifier);
-        $statement = $this->connection->getConnexion()->query("SELECT COUNT(*) FROM blog_post where postStatus = 'Open'");  // only if open
+        $statement = $this->connection->getConnexion()->query("SELECT * FROM blog_post where id = $identifier and postStatus = 'Open'");
         $statement->execute();
         $row = $statement->fetch();
-        $max = intval($row["COUNT(*)"]);
-        if ($identifier > $max) {
+
+        if (is_null($row["id"])) {
             return false;
         } else {
             return true;

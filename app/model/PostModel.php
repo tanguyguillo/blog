@@ -78,7 +78,16 @@ class PostsRepository extends Controller
         user_id = '$user_id'
         WHERE id = '$id' ";
 
+
         try {
+            // delete
+            if (isset($arrayPost["checkbox"])) {
+                $id = $arrayPost["id"];
+                $query = "DELETE FROM blog_post WHERE blog_post.id = $id";
+                $statement = $this->connection->getConnexion()->query($query);
+                return true;
+            }
+
             $statement = $this->connection->getConnexion()->query($query);
             return true;
         } catch (\Exception $e) {

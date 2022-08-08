@@ -24,8 +24,8 @@ class DetailController extends Controller
     {
         // // for intance when inscription
         if ($identifier === "") {
-            //$identifier = $_SESSION['LOGGED_PAGE_ID']; // article id
-            $identifier = "3";
+            $identifier = $_SESSION['LOGGED_PAGE_ID']; // article id
+            //$identifier = "3";
         }
 
         //verify is $identifier is a "string(integer)" if not display a message
@@ -35,6 +35,7 @@ class DetailController extends Controller
             $this->twig->display('error/error.html.twig', compact('message'));
             exit;
         }
+
 
         $connection = new DatabaseConnexion();
 

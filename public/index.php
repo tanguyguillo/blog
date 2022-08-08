@@ -96,7 +96,7 @@ try {
             }
         }
         // Admin aera // 
-        if ($_GET['owp'] === 'newrpostecord') {
+        if ($_GET['owp'] === 'newpostecord') {
             //Here we get the POST data (and not $_GE)
             (new PostsController())->newPost($postData);
             exit;
