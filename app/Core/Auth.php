@@ -90,7 +90,7 @@ class Auth
                     $message = $user["firstNameUser"];
                     $_SESSION['LOGGED_USER_NAME'] =  $message;
 
-                    $_SESSION['ROLE_USER'] = $user["roleUser"]; // is User or Admin
+                    $_SESSION['ROLE_USER'] = $user["roleUser"]; // is User or Admin... to review
 
                     $this->setuserRole($user["roleUser"]);
 

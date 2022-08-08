@@ -18,6 +18,8 @@ use Application\Controllers\InscriptionController\InscriptionController;
 use Application\Controllers\ErrorController\ErrorController;
 use Application\Controllers\AdminController\AdminController;
 use Application\Controllers\ConnexionController\ConnexionController;
+use Application\Controllers\AdminCommentController\AdminCommentController;
+use Application\Controllers\AdminUserController\AdminUserController;
 
 // Config
 require_once(ROOT . '/app/config/config.php');
@@ -82,10 +84,24 @@ try {
             exit;
         }
         if ($_GET['owp'] === 'blocPostAdmin') {
-            $message = ""; // $message is used for message after recording // passing by Auth
+            $message = "false"; // $message is used for message after recording // passing by Auth
             (new AdminController())->BlocPostadmin($postData, $message);
             exit;
         }
+
+        if ($_GET['owp'] === 'blocCommentAdmin') {
+            $message = "";
+            (new AdminCommentController())->blocCommentAdmin();
+            exit;
+        }
+
+        if ($_GET['owp'] === 'blocUserAdmin') {
+            $message = "";
+            (new AdminUserController())->blocUserAdmin();
+            exit;
+        }
+
+
 
         // Admin aera // 
         if ($_GET['owp'] === 'record') {

@@ -31,7 +31,9 @@ class AdminController extends Controller
     {
         // $this->myAuth from Auth.php but "heritage" (Controller legacy Auth)
         if ($this->myAuth($postData)) {
-            $message = "";
+
+            $message = "Bienvenue sur l'Admin du blog";
+
             $Array = ['nothing' => ""];
             $this->BlocPostadmin($Array, $message);
         } else {
@@ -58,6 +60,7 @@ class AdminController extends Controller
     // public function BlocPostadmin(array $postData, string $message)
     public function BlocPostadmin($array, $message)
     {
+        $message = $message;
         if ($this->isAdmin()) {
             // get the data to modify all the data of a post and this author (admin)
             $arrayTableModify = $this->getAdminUserAndData();
@@ -66,7 +69,7 @@ class AdminController extends Controller
             $arrayEmails = $this->getAdminEmails();
 
             if (!isset($message)) {
-                $message = "";
+                $arrayMessage =  $this->setMessageForTwig("false");
             } else {
                 $arrayMessage =  $this->setMessageForTwig($message); // setMessageForTwig : heritage from Controller
             }

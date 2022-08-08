@@ -1,0 +1,49 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}<title>Commentaires Admin</title>{% endblock %}
+
+    {% block adminMain %}
+<div class="d-flex flex-column min-vh-100">
+<section id="BlogPost manager">
+<div class="container">
+<div class="row">
+<br>
+<h3 class="text-center">Commentaires Admin</h3>
+<hr class="star-primary">
+    <div class="container">
+        {% if arrayMessage.message == "false" %}
+            {# nothing #}
+        {% else %}
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <strong>{{ arrayMessage.message }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endif %}
+        <br>
+<!--  **************************************************************** -->
+
+<!--  **************************************************************** -->
+<br>
+<h4 class="text-center">Gestion des commentaires</h4> 
+<div class="table-responsive">
+<table class="table table-bordered table-striped table-highlight">
+
+</tbody>
+</table>
+</div>
+</div>  
+</div>   
+
+<br>
+
+
+
+
+</section>
+</div>
+<br>
+
+
+{% endblock %}
