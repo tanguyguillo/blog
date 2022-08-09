@@ -19,13 +19,13 @@ class AdminCommentController extends Controller
      *
      * @return void
      */
-    public function blocCommentAdmin()
+    public function blocCommentAdmin($message = "false")
     {
         if ($this->isAdmin()) {
             // get what we need
             $arrayComments = $this->getAdminCommentData();
+            $arrayMessage =  $this->setMessageForTwig($message);
 
-            $arrayMessage =  $this->setMessageForTwig("false");
             $this->twig->display('Admin/blocCommentAdmin.html.twig', compact('arrayComments', 'arrayMessage'));
         } else {
             $this->redirectionNotAdmin();

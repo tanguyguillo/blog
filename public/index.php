@@ -24,6 +24,9 @@ use Application\Controllers\AdminUserController\AdminUserController;
 // Config
 require_once(ROOT . '/app/config/config.php');
 
+// requires
+//require_once(ROOT . '/app/config/required.php');
+
 // autoloader
 require_once(ROOT . '/vendor/autoload.php');
 
