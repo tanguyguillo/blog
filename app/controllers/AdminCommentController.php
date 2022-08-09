@@ -3,12 +3,9 @@
 namespace Application\Controllers\AdminCommentController;
 
 use Application\Controllers\Controller;
-use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
-use Application\Model\UserModel\UsersRepository;
-use Application\Core\Auth;
-use Application\Model\CommentModel\Comment;
 
-use Application\Controllers\PostsController\PostsController;
+use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
+
 use Application\Model\CommentModel\CommentsRepository;
 
 class AdminCommentController extends Controller

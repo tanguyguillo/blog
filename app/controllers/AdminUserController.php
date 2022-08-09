@@ -43,7 +43,9 @@ class AdminUserController extends Controller
     }
 
     /**
+     * Function to update role (or delete) user
      * 
+     * @return void
      */
     public function modifyUser($arrayUsers)
     {
@@ -52,7 +54,7 @@ class AdminUserController extends Controller
             $usersRepository = new UsersRepository();
             $usersRepository->connection = $connection;
             if ($usersRepository->updateUsers($arrayUsers)) {
-                $message = "user enregistré";
+                $message = "Utilisateur enregistré ou modifié";
                 $this->blocUserAdmin($message);
             } else {
                 $this->redirectionNotAdmin();

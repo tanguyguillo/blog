@@ -23,3 +23,7 @@ a:hover {
 .glyphicon-trash:before {
   color: red;
 }
+
+.comment {
+  color: red
+}

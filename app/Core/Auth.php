@@ -2,7 +2,6 @@
 
 namespace Application\Core\Auth;
 
-use Application\Controllers\Controller;
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
 use Application\Model\UserModel\UsersRepository;
 
@@ -53,7 +52,7 @@ class Auth
      */
     public function myAuth(array $postData)
     {
-        $this->InitSession();
+        //$this->InitSession();
 
         if (isset($postData['user_login']) &&  isset($postData['user_pass'])) {
 
@@ -61,8 +60,6 @@ class Auth
             $usersRepository = new UsersRepository();
             $usersRepository->connection = $connection;
             $users = $usersRepository->getUsers(); // return an array
-
-            // var_dump($users);  Ok
 
             // if correspondance email + password + crypt
             foreach ($users as $user) {
@@ -90,14 +87,9 @@ class Auth
                     $message = $user["firstNameUser"];
                     $_SESSION['LOGGED_USER_NAME'] =  $message;
 
-                    $_SESSION['ROLE_USER'] = $user["roleUser"]; // is User or Admin... to review
+                    $_SESSION['ROLE_USER'] = $user["roleUser"];
 
                     $this->setuserRole($user["roleUser"]);
-
-                    // add for admin menu
-                    // if ($this->userRole = "Admin") {
-                    //     $_SESSION['ROLE_USER']
-                    // }
 
                     return true;
                 }

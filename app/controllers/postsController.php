@@ -2,10 +2,8 @@
 
 namespace Application\Controllers\PostsController;
 
-use Application\Controllers\Controller;
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
 use Application\Model\PostModel\PostsRepository;
-use Application\Controllers\AdminController;
 use Application\Controllers\AdminController\AdminController as AdminControllerAdminController;
 
 /**

@@ -215,6 +215,12 @@ class UsersRepository
         }
     }
 
+    /**
+     * function to manage user
+     *
+     * @param array $arrayUser
+     * @return void
+     */
     public function updateUsers(array $arrayUser)
     {
         // to look out data comming from outside even in admin aera
@@ -224,9 +230,9 @@ class UsersRepository
         }
 
         $id = ($arrayUser["id"]);
-        $emailUser = ($arrayUser["emailUser"]);
-        $firstNameUser = ($arrayUser["firstNameUser"]);
-        $surNameUse = ($arrayUser["surNameUse"]);
+        // $emailUser = ($arrayUser["emailUser"]); /// perhaps for later....
+        // $firstNameUser = ($arrayUser["firstNameUser"]);
+        // $surNameUse = ($arrayUser["surNameUse"]);
         $roleUser = ($arrayUser["roleUser"]);
 
         try {
@@ -234,14 +240,14 @@ class UsersRepository
 
             // delete
             if (isset($arrayUser["checkbox"])) {
-                $query = "DELETE FROM user WHERE blog_post.id = $id";
+                $query = "DELETE FROM user WHERE id = $id";
                 $statement = $this->connection->getConnexion()->query($query);
                 return true;
             }
             $statement = $this->connection->getConnexion()->query($query);
             return true;
         } catch (\Exception $e) {
-            // $this->twig->display('error/error.html.twig', compact('message'));
+            //$this->twig->display('error/error.html.twig', compact('message'));
             $errorMessage = $e->getMessage();
             require(ROOT . '/app/templatesError/error.php');
             return false;

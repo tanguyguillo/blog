@@ -88,6 +88,14 @@ try {
             (new AdminController())->ConnectAdmin();
             exit;
         }
+
+        // enter in admin aera
+        if ($_GET['owp'] === 'authentity') {
+            $message = "false"; // $message is used for message after recording // passing by Auth
+            (new AdminController())->auth($postData, $message);
+            exit;
+        }
+
         if ($_GET['owp'] === 'blocPostAdmin') {
             $message = "false"; // $message is used for message after recording // passing by Auth
             (new AdminController())->BlocPostadmin($postData, $message);

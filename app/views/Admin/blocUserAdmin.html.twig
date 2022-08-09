@@ -34,7 +34,7 @@
         <th scope="col">Prénom</th>
         <th scope="col">Nom</th>
         <th scope="col">Roles</th>
-        <th scope="col">Enregistrer</th>
+        <th scope="col">Modifier</th>
         </tr>
     </thead>
 
@@ -53,33 +53,33 @@
 
     <td>
         <div class="w-auto control-group">
-            <textarea name="emailUser" class="form-control" id="emailUse-{{array.id}}" required data-validation-required-message="Veuillez entrer Email">{{array.emailUser}} </textarea>
+            <textarea name="emailUser" class="form-control" id="emailUse-{{array.id}}" aria-label="readonly" readonly>{{array.emailUser}} </textarea>
         </div>
     </td>
 
     <td> 
         <div class="w-auto control-group">
-            <textarea  name="firstNameUser" class="form-control" id="firstNameUser-{{array.id}}" required data-validation-required-message="Veuillez entrer votre prénom">{{array.firstNameUser}} </textarea>
+            <textarea  name="firstNameUser" class="form-control" id="firstNameUser-{{array.id}}" aria-label="readonly" readonly>{{array.firstNameUser}} </textarea>
         </div>
     </td>
 
     <td> 
         <div class="w-auto control-group">
-            <textarea name="surNameUse" class="form-control" id="surNameUse-{{array.id}}" required data-validation-required-message="Veuillez entrer votre nom.">{{array.surNameUse}} </textarea>
+            <textarea name="surNameUse" class="form-control" id="surNameUse-{{array.id}}" aria-label="readonly" readonly>{{array.surNameUse}} </textarea>
         </div>
     </td>
 
     <td> 
         <select name ="roleUser" id="roleUsers-{{array.id}}" class="form-select">
         <option selected>{{array.roleUser}}</option>  
-        <option>Waiting for validation</option>
+        {# <option disabled>Waiting for validation</option> #}
         <option>Admin</option>
         <option>User</option>
         </select>
     </td>
 
     <td>
-    <button type="submit" class="btn btn-success">Enregister</button> 
+    <button type="submit" class="btn btn-success">Modifier</button> 
     <br> <br>
     </td>
 </form>

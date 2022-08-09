@@ -9,8 +9,5 @@ define('BASE_URL', 'https://yourDomain.com');
 //MD5
 define('SALT', '$1$whatyouwant$');
 
-// SHA-256:
-//define('SALT', '$5$rounds=5000$whatyouwant$');
-
 // on production need to make it on 0
 ini_set('display_errors', '1');

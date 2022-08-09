@@ -96,7 +96,6 @@ abstract class Controller extends Auth
             } else {
                 return false;
             }
-            return false;
         }
     }
 

@@ -16,12 +16,12 @@ class AdminController extends Controller
      */
     public function ConnectAdmin()
     {
-        $message = 'no menu';
+        $message = 'false';
         $this->twig->display('Admin/adminConnexion.html.twig', compact('message'));
     }
 
     /**
-     * Undocumented function
+     *  function
      *
      * @param array $postData
      * @param string $message
@@ -29,10 +29,11 @@ class AdminController extends Controller
      */
     public function auth(array $postData, string $message)
     {
-        // $this->myAuth from Auth.php but "heritage" (Controller legacy Auth)
         if ($this->myAuth($postData)) {
 
             $message = "Bienvenue sur l'Admin du blog";
+
+            //var_dump($_SESSION['ROLE_USER']); here Admin
 
             $Array = ['nothing' => ""];
             $this->BlocPostadmin($Array, $message);
