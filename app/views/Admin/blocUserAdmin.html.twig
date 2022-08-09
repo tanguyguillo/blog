@@ -22,14 +22,69 @@
             </div>
         {% endif %}
         <br>
-<!--  **************************************************************** -->
 
-<!--  **************************************************************** -->
+<h4 class="text-center">Modifier un Utilisateur</h4> 
 <br>
-<h4 class="text-center">Gestion des utilisateurs</h4> 
 <div class="table-responsive">
-<table class="table table-bordered table-striped table-highlight">
+    <table class="table table-bordered table-striped table-highlight">
+    <thead>
+        <tr>
+        <th scope="col"><span class="glyphicon glyphicon-trash"></span></th>
+        <th scope="col">Email</th>
+        <th scope="col">Prénom</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Roles</th>
+        <th scope="col">Enregistrer</th>
+        </tr>
+    </thead>
 
+{% for array in arrayUser %}
+
+    <form action="{{ baseUrl }}index.php?owp=modifymyuser&id={{array.id}}" method="post">    
+    <tbody class="">
+
+    <td>
+    <div class="w-auto control-group">
+    <input type="checkbox" id="delete-{{array.id}}" name="checkbox" value="{{array.id}}">
+    </div>
+    </td>
+
+    <input type="hidden" name ="id" id="postId-{{array.id}}" class="form-control postId" type="text" value="{{array.id}}" aria-label="readonly" readonly></input>
+
+    <td>
+        <div class="w-auto control-group">
+            <textarea name="emailUser" class="form-control" id="emailUse-{{array.id}}" required data-validation-required-message="Veuillez entrer Email">{{array.emailUser}} </textarea>
+        </div>
+    </td>
+
+    <td> 
+        <div class="w-auto control-group">
+            <textarea  name="firstNameUser" class="form-control" id="firstNameUser-{{array.id}}" required data-validation-required-message="Veuillez entrer votre prénom">{{array.firstNameUser}} </textarea>
+        </div>
+    </td>
+
+    <td> 
+        <div class="w-auto control-group">
+            <textarea name="surNameUse" class="form-control" id="surNameUse-{{array.id}}" required data-validation-required-message="Veuillez entrer votre nom.">{{array.surNameUse}} </textarea>
+        </div>
+    </td>
+
+    <td> 
+        <select name ="roleUser" id="roleUsers-{{array.id}}" class="form-select">
+        <option selected>{{array.roleUser}}</option>  
+        <option>Waiting for validation</option>
+        <option>Admin</option>
+        <option>User</option>
+        </select>
+    </td>
+
+    <td>
+    <button type="submit" class="btn btn-success">Enregister</button> 
+    <br> <br>
+    </td>
+</form>
+
+{% endfor %}
 </tbody>
 </table>
 </div>
@@ -38,12 +93,8 @@
 
 <br>
 
-
-
-
 </section>
 </div>
 <br>
-
 
 {% endblock %}

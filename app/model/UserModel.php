@@ -214,4 +214,37 @@ class UsersRepository
             }
         }
     }
+
+    public function updateUsers(array $arrayUser)
+    {
+        // to look out data comming from outside even in admin aera
+        foreach ($arrayUser as $key => $value) {
+            $Data[$key]  = strip_tags(htmlspecialchars($value));
+            $Data[$key] = str_replace("'", "&apos;", $value);
+        }
+
+        $id = ($arrayUser["id"]);
+        $emailUser = ($arrayUser["emailUser"]);
+        $firstNameUser = ($arrayUser["firstNameUser"]);
+        $surNameUse = ($arrayUser["surNameUse"]);
+        $roleUser = ($arrayUser["roleUser"]);
+
+        try {
+            $query = "UPDATE user SET roleUser = '$roleUser' WHERE id = '$id' ";
+
+            // delete
+            if (isset($arrayUser["checkbox"])) {
+                $query = "DELETE FROM user WHERE blog_post.id = $id";
+                $statement = $this->connection->getConnexion()->query($query);
+                return true;
+            }
+            $statement = $this->connection->getConnexion()->query($query);
+            return true;
+        } catch (\Exception $e) {
+            // $this->twig->display('error/error.html.twig', compact('message'));
+            $errorMessage = $e->getMessage();
+            require(ROOT . '/app/templatesError/error.php');
+            return false;
+        }
+    }
 }

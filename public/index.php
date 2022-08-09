@@ -130,6 +130,13 @@ try {
             (new PostsController())->newPost($postData);
             exit;
         }
+
+        // Admin aera // 
+        if ($_GET['owp'] === 'modifymyuser') {
+            //Here we get the POST data (and not $_GE)
+            (new AdminUserController())->modifyUser($postData);
+            exit;
+        }
     }
 
     // Last router

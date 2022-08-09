@@ -9,8 +9,6 @@ use Application\Core\Auth;
 
 class AdminUserController extends Controller
 {
-
-
     /**
      * function to redirect user who are not admin
      *
@@ -23,31 +21,42 @@ class AdminUserController extends Controller
     }
 
     /**
-     * function to display admin comment aera
+     * function to display admin user aera
      *
      * @return void
      */
-    public function blocUserAdmin()
+    public function blocUserAdmin($message = "false")
     {
         if ($this->isAdmin()) {
-            // get the data to modify all the data of a post and this author (admin)
-            //$arrayTableModify = $this->getAdminUserAndData();
+            $connection = new DatabaseConnexion();
+            $usersRepository = new UsersRepository();
+            $usersRepository->connection = $connection;
+            $users = $usersRepository->getUsers();
+            $arrayUser = json_decode(json_encode($users), true);
 
-            // authors id + emails
-            // $arrayEmails = $this->getAdminEmails();
+            $arrayMessage =  $this->setMessageForTwig($message);
 
-            // if (!isset($message)) {
-            //     $message = "";
-            // } else {
-            //     $arrayMessage =  $this->setMessageForTwig($message); // setMessageForTwig : heritage from Controller
-            // }
-
-
-            $arrayMessage =  $this->setMessageForTwig("false");
-
-            $this->twig->display('Admin/blocUserAdmin.html.twig', compact('arrayMessage'));
+            $this->twig->display('Admin/blocUserAdmin.html.twig', compact('arrayMessage', 'arrayUser'));
         } else {
             $this->redirectionNotAdmin();
+        }
+    }
+
+    /**
+     * 
+     */
+    public function modifyUser($arrayUsers)
+    {
+        if ($this->isAdmin()) {
+            $connection = new DatabaseConnexion();
+            $usersRepository = new UsersRepository();
+            $usersRepository->connection = $connection;
+            if ($usersRepository->updateUsers($arrayUsers)) {
+                $message = "user enregistré";
+                $this->blocUserAdmin($message);
+            } else {
+                $this->redirectionNotAdmin();
+            }
         }
     }
 }

@@ -1,4 +1,6 @@
 <?php
+
+// not used
 require_once(ROOT . '/app/core/database/databaseConnexion.php');  // used for $connection
 
 require_once(ROOT . '/app/model/DetailModel.php');
