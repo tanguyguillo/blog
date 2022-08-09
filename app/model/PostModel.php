@@ -11,8 +11,8 @@ use Application\Controllers\Controller;
  */
 class PostController extends Controller
 {
-    // public $id;
-    // public $posTitle;
+    // private $id;
+    // private  $posTitle;
     // public $postChapo;
     // public $postContent;
     // public $postCreated;
@@ -29,7 +29,7 @@ class PostsRepository extends Controller
     public function getPosts(): array
     {
         $statement = $this->connection->getConnexion()->query(
-            "SELECT id, postTitle, postChapo, postStatus, DATE_FORMAT(postModified, '%d/%m/%Y à %Hh%imin') AS french_modified_date FROM blog_post ORDER BY postModified DESC LIMIT 0, 5"
+            "SELECT id, postTitle, postChapo, postStatus, DATE_FORMAT(postModified, '%d/%m/%Y à %Hh%imin') AS french_modified_date FROM blog_post ORDER BY postModified DESC LIMIT 0, 100"
         );
         $posts = [];
         while (($row = $statement->fetch())) {
@@ -53,12 +53,13 @@ class PostsRepository extends Controller
     public function updatePost(array $arrayPost)
     {
         // to look out data comming from outside even in admin aera
-        // foreach ($arrayPost as $key => $value) {
-        //     $postData[$key]  = strip_tags(htmlspecialchars($value));
-        //     $postTitle =  addcslashes($postTitle, "'");
-        // }
-
+        foreach ($arrayPost as $key => $value) {
+            $postData[$key]  = strip_tags(htmlspecialchars($value));
+            $postData[$key] = str_replace("'", "&apos;", $value);
+        }
         $arrayPost = $this->lookOutDataFromOustide($arrayPost); // From Controller
+        $arrayPost = $postData;
+
 
         $id = ($arrayPost["id"]);
         $postTitle = ($arrayPost["postTitle"]);
@@ -77,7 +78,6 @@ class PostsRepository extends Controller
         postModified = '$postModified',
         user_id = '$user_id'
         WHERE id = '$id' ";
-
 
         try {
             // delete
@@ -106,7 +106,6 @@ class PostsRepository extends Controller
      */
     public function newPost(array $arrayPost)
     {
-        // var_dump($arrayPost);
         $arrayPost = $this->lookOutDataFromOustide($arrayPost); // From Controller
 
         $postTitle = ($arrayPost["postTitle"]);

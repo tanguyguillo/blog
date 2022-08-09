@@ -23,8 +23,6 @@ class Comment
     public function getComments($identifier): array
     {
         $statement = $this->connection->getConnexion()->query(
-            // id	commentCreated	commentStatus	commentContent	user_id	blog_post_id	blog_post_user_id
-            //"SELECT id; EmailUser; passWordUser; firstnNameUser; surNameUser; titleUser; telGsmUser; roleUser; pictureOrLogo;  FROM user where  blog_post_id = $identifier"
             "SELECT * FROM comment where blog_post_id = $identifier" // blog_post_id is the id of the post
         );
         $postComment = [];
@@ -86,6 +84,84 @@ class Comment
             }
         } else {
             return true;
+        }
+    }
+}
+/**
+ * class
+ */
+class CommentsRepository
+{
+    /**
+     *  function to get data from comment, blog_post, user for admin
+     *
+     * @return object
+     */
+    public function getAllComments()
+    {
+        try {
+            $statement = $this->connection->getConnexion()->query(
+                "SELECT c.id, commentCreated, commentStatus, commentContent, c.user_id , blog_post_id , u.emailUser, u.roleUser, bp.postTitle, bp.postChapo
+                FROM comment AS c
+                JOIN user as u
+                ON(c.user_id = u.id)
+                JOIN blog_post as bp
+                ON( bp.id = c.blog_post_id ) ORDER BY commentCreated DESC
+            "
+            );
+            $datas = [];
+            $statement->execute();
+            while (($row = $statement->fetch())) {
+                $data = new CommentsRepository();
+                $data->commentId = $row['id'];
+                $data->commentCreated = $row['commentCreated'];
+                $data->commentStatus = $row['commentStatus'];
+                $data->commentContent = $row['commentContent'];
+                $data->postTitle = $row['postTitle'];
+                $data->postChapo = $row['postChapo'];
+                $data->emailUser = $row['emailUser'];
+                $data->roleUser = $row['roleUser'];
+                $datas[] = $data;
+            }
+
+            return $datas;
+        } catch (\Exception $e) {
+            $errorMessage = $e->getMessage();
+            require(ROOT . '/app/templatesError/error.php');
+            return false;
+        }
+    }
+
+    /**
+     * function to modify the visibility of a comment or delete it
+     *
+     * @param array $arrayComment
+     * @return bool
+     */
+    public function updateComment(array $arrayComment)
+    {
+        try {
+            $id = ($arrayComment["id"]);
+            $commentStatus = ($arrayComment["commentStatus"]);
+            $query = "UPDATE comment SET commentStatus = '$commentStatus'
+            WHERE id = '$id' ";
+
+            // delete
+            if (isset($arrayComment["checkbox"])) {
+                $id = $arrayComment["id"];
+                $query = "DELETE FROM comment WHERE id = '$id'";
+                $statement = $this->connection->getConnexion()->query($query);
+                return true;
+            }
+
+            // just valif "open" or not
+            $statement = $this->connection->getConnexion()->query($query);
+            return true;
+        } catch (\Exception $e) {
+            // $this->twig->display('error/error.html.twig', compact('message'));
+            $errorMessage = $e->getMessage();
+            require(ROOT . '/app/templatesError/error.php');
+            return false;
         }
     }
 }

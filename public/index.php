@@ -30,6 +30,8 @@ require_once(ROOT . '/vendor/autoload.php');
 // builf my own autoloader  :
 require_once(ROOT . '/app/myAutoloader.php');
 
+// var_dump($_POST);
+
 // check $_POST : strip_tags(htmlspecialchars()
 if (isset($_POST)) {
     $postData = $_POST;
@@ -101,9 +103,7 @@ try {
             exit;
         }
 
-
-
-        // Admin aera // 
+        // Admin aera post blog// 
         if ($_GET['owp'] === 'record') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 //Here we get the POST data (and not $_GE)
@@ -111,6 +111,16 @@ try {
                 exit;
             }
         }
+
+        // Admin aera comments
+        if ($_GET['owp'] === 'modify-comment') {
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                //Here we get the POST data (and not $_GE)
+                (new CommentController())->modifyComment($postData);
+                exit;
+            }
+        }
+
         // Admin aera // 
         if ($_GET['owp'] === 'newpostecord') {
             //Here we get the POST data (and not $_GE)
@@ -127,7 +137,8 @@ try {
                 $identifier = strip_tags(htmlspecialchars($identifier));
                 (new DetailController())->Detail($identifier);
             } else {
-                (new PostsController())->executePosts();
+                // here we want to render the posts in the blog
+                (new PostsController())->executePosts("render");
             }
         } elseif ($_GET['owp'] === 'tosee') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {

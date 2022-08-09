@@ -65,6 +65,19 @@ abstract class Controller extends Auth
         session_destroy();
     }
 
+    /**
+     *  function to verify that the user is logged
+     *
+     * @return void
+     */
+    public function verifyComment($message)
+    {
+        if (($_SESSION['LOGGED_USER_NAME'] == "")) {
+            // $message = "Vous devez être connecté pour pouvoir rédiger un commentaire";
+            $this->twig->display('info/info.html.twig', compact('message'));
+            exit;
+        }
+    }
     /************** Utilities From here ********************
      *
      * 
@@ -111,5 +124,16 @@ abstract class Controller extends Auth
             $postData[$key]  = strip_tags(htmlspecialchars($value));
         }
         return  $postData;
+    }
+
+    /**
+     * function to redirect user who are not admin
+     *
+     * @return void
+     */
+    public function redirectionNotAdmin()
+    {
+        $message = 'Désolé cette partie du site est réservé aux administrateurs';
+        $this->twig->display('info/info.html.twig', compact('message'));
     }
 }

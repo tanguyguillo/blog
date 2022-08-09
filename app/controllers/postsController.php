@@ -10,6 +10,8 @@ use Application\Controllers\AdminController\AdminController as AdminControllerAd
 
 /**
  * Class of the blog listing
+ * 
+ * may return an array if we don't want to render it onthe blog for admin comment
  */
 class PostsController extends AdminControllerAdminController
 {
@@ -18,14 +20,19 @@ class PostsController extends AdminControllerAdminController
    *
    * @return void
    */
-  public function executePosts()
+  public function executePosts(string $render)
   {
     $connection = new DatabaseConnexion();
     //then we will use this connexion to get what we want ; here posts
     $postsRepository = new PostsRepository();
     $postsRepository->connection = $connection;
     $posts = $postsRepository->getPosts(); // return an array
-    $this->twig->display('posts/posts.html.twig', compact('posts'));
+
+    if ($render == "render") {
+      $this->twig->display('posts/posts.html.twig', compact('posts'));
+    } else {
+      return $posts;
+    }
   }
 
   /**

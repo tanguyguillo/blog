@@ -6,21 +6,13 @@ use Application\Controllers\Controller;
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
 use Application\Model\UserModel\UsersRepository;
 use Application\Core\Auth;
+use Application\Model\CommentModel\Comment;
+
+use Application\Controllers\PostsController\PostsController;
+use Application\Model\CommentModel\CommentsRepository;
 
 class AdminCommentController extends Controller
 {
-
-
-    /**
-     * function to redirect user who are not admin
-     *
-     * @return void
-     */
-    public function redirectionNotAdmin()
-    {
-        $message = 'Désolé cette partie du site est réservé aux administrateurs';
-        $this->twig->display('info/info.html.twig', compact('message'));
-    }
 
     /**
      * function to display admin comment aera
@@ -30,22 +22,37 @@ class AdminCommentController extends Controller
     public function blocCommentAdmin()
     {
         if ($this->isAdmin()) {
-            // get the data to modify all the data of a post and this author (admin)
-            //$arrayTableModify = $this->getAdminUserAndData();
-
-            // authors id + emails
-            // $arrayEmails = $this->getAdminEmails();
-
-            // if (!isset($message)) {
-            //     $message = "";
-            // } else {
-            //     $arrayMessage =  $this->setMessageForTwig($message); // setMessageForTwig : heritage from Controller
-            // }
-
+            // get what we need
+            $arrayComments = $this->getAdminCommentData();
 
             $arrayMessage =  $this->setMessageForTwig("false");
+            $this->twig->display('Admin/blocCommentAdmin.html.twig', compact('arrayComments', 'arrayMessage'));
+        } else {
+            $this->redirectionNotAdmin();
+        }
+    }
 
-            $this->twig->display('Admin/blocCommentAdmin.html.twig', compact('arrayMessage'));
+    /**
+     * function to Comments + blog_post + user for admin comment
+     *
+     * @return array 
+     */
+    public function getAdminCommentData()
+    {
+        if ($this->isAdmin()) {
+            //  Comments + blog_post + user ;  getAllComments
+            $connection = new DatabaseConnexion();
+            $commentsRepository = new CommentsRepository();
+            $commentsRepository->connection = $connection;
+            $comments = $commentsRepository->getAllComments();
+            $arrayComments = json_decode(json_encode($comments), true);
+
+            if (is_array($arrayComments)) {
+                return $arrayComments;
+            } else {
+                $message = "Il y a eu un problème avec la transmission des données, vueillez reéssayer plus tard";
+                $this->twig->display('info/info.html.twig', compact('message'));
+            }
         } else {
             $this->redirectionNotAdmin();
         }

@@ -154,8 +154,6 @@ class DetailController extends Controller
         return $arrayMessage;
     }
 
-
-
     /**
      * function to verify crypt password
      *
