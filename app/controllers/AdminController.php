@@ -5,7 +5,6 @@ namespace Application\Controllers\AdminController;
 use Application\Controllers\Controller;
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
 use Application\Model\UserModel\UsersRepository;
-use Application\Core\Auth;
 
 class AdminController extends Controller
 {
@@ -61,6 +60,7 @@ class AdminController extends Controller
     // public function BlocPostadmin(array $postData, string $message)
     public function BlocPostadmin($array, $message)
     {
+
         $message = $message;
         if ($this->isAdmin()) {
             // get the data to modify all the data of a post and this author (admin)

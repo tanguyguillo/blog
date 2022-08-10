@@ -87,7 +87,6 @@ class PostsRepository extends Controller
                 $statement = $this->connection->getConnexion()->query($query);
                 return true;
             }
-
             $statement = $this->connection->getConnexion()->query($query);
             return true;
         } catch (\Exception $e) {

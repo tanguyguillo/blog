@@ -7,7 +7,6 @@ use Application\Controllers\Controller;
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
 use Application\Model\CommentModel\Comment;
 use Application\Model\CommentModel\CommentsRepository;
-use Application\Controllers\AdminController\AdminController;
 
 /**
  *  class manadging comments
