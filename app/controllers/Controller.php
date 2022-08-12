@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Application\Controllers;
 
 use Application\Core\Auth\Auth;
