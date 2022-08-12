@@ -17,7 +17,6 @@ class PostController extends Controller
     // public $postContent;
     // public $postCreated;
     // public $postStatus;
-    // public $postName;
     // public $postModified;
 }
 class PostsRepository extends Controller
@@ -114,11 +113,11 @@ class PostsRepository extends Controller
         $postCreated = date("Y-m-d H:i:s");
         $postStatus = ($arrayPost["postStatus"]);
         $user_id = ($arrayPost["user_id"]); // pop up admin Author
-        $postName = 'not used yet';
+
         $postModified = $postCreated;
 
-        $query = "INSERT INTO blog_post (postTitle , postChapo, postContent, postCreated, postStatus, postName, postModified, user_id) 
-        VALUES ('$postTitle', '$postChapo', '$postContent', '$postCreated', '$postStatus', '$postName', '$postModified', '$user_id')";
+        $query = "INSERT INTO blog_post (postTitle , postChapo, postContent, postCreated, postStatus, postModified, user_id) 
+        VALUES ('$postTitle', '$postChapo', '$postContent', '$postCreated', '$postStatus', '$postModified', '$user_id')";
 
         try {
             $statement = $this->connection->getConnexion()->query($query);

@@ -45,25 +45,37 @@
         <input type="hidden" name ="id" id="postId-new" class="form-control postId" type="text" value="{{array.postId}}" aria-label="readonly" readonly></input>
     <td>
         <div class="w-auto control-group">
-            <textarea name="postTitle" class="form-control" id="postTitle-new" required data-validation-required-message="Veuillez entrer votre chapo.">{{array.postTitle}} </textarea>
+            {# <textarea name="postTitle" class="form-control" id="postTitle-new" required data-validation-required-message="Veuillez entrer votre chapo.">{{array.postTitle}} </textarea> #}
+
+            {# <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Nom Prénom</label>
+                                <input type="text" class="form-control" placeholder="Nom / Prénom" id="name" required data-validation-required-message="S'il vous plaît entrez votre nom et prénom">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div> #}
+
+            <textarea name="postTitle" class="form-control" id="postTitle-new" placeholder="Veuillez entrer votre titre" required data-validation-required-message="S'il vous plaît entrez titre"></textarea>
         </div>
     </td>
 
     <td> 
         <div class="w-auto control-group">
-            <textarea  name="postChapo" class="form-control" id="postChapo-new" required data-validation-required-message="Veuillez entrer votre chapo.">{{array.postChapo}} </textarea>
+            {# <textarea  name="postChapo" class="form-control" id="postChapo-new" placeholder="Veuillez entrer votre chapo" required data-validation-required-message="S'il vous plaît entrez votre chapo">{{array.postChapo}} </textarea> #}
+            <textarea  name="postChapo" class="form-control" id="postChapo-new" placeholder="Veuillez entrer votre chapo" required data-validation-required-message="S'il vous plaît entrez votre chapo"></textarea>
         </div>
     </td>
 
     <td> 
         <div class="w-auto control-group">
-            <textarea name="postContent" class="form-control" id="postContent-new" required data-validation-required-message="Veuillez entrer votre contenu.">{{array.postContent}} </textarea>
+            {# <textarea name="postContent" class="form-control" id="postContent-new" required data-validation-required-message="Veuillez entrer votre contenu.">{{array.postContent}} </textarea> #}
+            <textarea name="postContent" class="form-control" id="postContent-new" placeholder="Veuillez entrer votre contenu" required data-validation-required-message="S'il vous plaît entrez votre contenu"></textarea>
         </div>
     </td>
 
     <td> 
         <select name ="postStatus" id="postStatus-new" class="form-select">
-        <option selected>{{array.postStatus}}</option>  
+        {# <option selected>{{array.postStatus}}</option>   #}
         <option>Waiting for validation</option>
         <option>Open</option>
         </select>
@@ -71,8 +83,6 @@
 
     <td>
         <select name="user_id" id="emailUser-{{array.emailUser}}" class="form-select">
-        <option value = "{{array.userId}}" selected>{{array.emailUser}}</option>
-        {# arrayEmails is an other array #}
         {% for data in arrayEmails %}
         <option value="{{data.idlUser}}">{{data.emailUser}}</option>
         {% endfor %}
