@@ -43,7 +43,6 @@ class DetailController extends Controller
 
         // test (getMaxAndOpen) to se the user tape by hand on the url 10000 for exemple for the article id
         if ($postDetail->getMaxAndOpen($identifier)) {
-            // $detail  :  ["postStatus"] - ["postName"] (not used ) -  ["postModified"] - ["user_id"] (author) etc...
             $detail =  $postDetail->getPost($identifier); // return an array
             $detailForAurhor = json_decode(json_encode($detail), true);
             $AuthorId = $detailForAurhor["user_id"];
@@ -81,7 +80,7 @@ class DetailController extends Controller
      *
      * @param [array] $postData
      * @param [string] $messsage
-     * @return void
+     * @return boll
      */
     public function detailConnexion(array $postData, string $messsage = '')
     {
@@ -90,13 +89,15 @@ class DetailController extends Controller
         if ($this->myAuth($postData)) {
             $message = $_SESSION['LOGGED_USER_NAME'];
             $this->Detail($postData['postId'], $message);
+            return true;
         }
 
         // to avoid a bug because the url can to not change
-        if ($messsageReadle != 'abort') {
+        if ($messsageReadle != 'false') {
             $message = 'Désolé, les données de connection sont incorrectes';
             // we go bach to connexion page
             (new ConnexionController())->connexion($message)();
+            return false;
         }
     }
 
