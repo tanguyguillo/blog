@@ -8,7 +8,6 @@ use Application\Models\UserModel;
 
 class User extends Controller
 {
-
     /**
      * function to get a user with all of this properties
      *
@@ -71,6 +70,9 @@ class UsersRepository
             $user->surNameUse = $row['surNameUser'];
             $user->roleUser = $row['roleUser'];
             $users[] = $user;
+
+            // hydratation userModel
+            $userModel = new UserModel($row);
         }
         // turn in Array
         $users = json_decode(json_encode($users), true);

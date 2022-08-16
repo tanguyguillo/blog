@@ -35,7 +35,7 @@ class UserModel extends Controller
     public function __construct($datas = [])
     {
         if (!empty($datas)) {
-            // var_dump("passage"); yesy
+            // var_dump("passage");
             $this->myHydrate($datas);
         }
     }
