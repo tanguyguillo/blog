@@ -2,13 +2,14 @@
 
 namespace Application\Controllers\DetailController;
 
-use Application\Model\DetailModel\Detail;
-use Application\Model\UserModel\User;
-use Application\Model\CommentModel\Comment;
+use Application\Repositories\Detail\Detail;
+use Application\Repositories\Comment\Comment;
 
 use Application\Controllers\Controller;
 use Application\Controllers\ConnexionController\ConnexionController;
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
+use Application\Repositories\User\User;
+
 
 class DetailController extends Controller
 {
@@ -57,6 +58,16 @@ class DetailController extends Controller
         $user = new User();
         $user->connection = $connection;
         $user  = $user->getUser($AuthorId); // return an array
+
+        // $user2 = UserModel->getFirstNameUser;
+        // var_dump($user2);
+
+        // $article = $this->post->findOne($articleId);
+        // $commentaires = $this->comment->findAll($articleId);
+
+
+
+        // $user2 = UserModel->getfirname();
 
         // 3 - Comment
         $connection = new DatabaseConnexion();

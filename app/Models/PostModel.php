@@ -1,9 +1,9 @@
 <?php
 
-namespace Application\Entity\blogPost;
+namespace Application\Entity\Post;
 
 
-class blogPost
+class Post
 {
     private $id;
     private $postTitle;
@@ -26,14 +26,14 @@ class blogPost
      */
     // public function __construct($id, $postTitle, $postChapo, $postContent, $postCreated, $postStatus, $postModified, $user_id)
     // {
-    //     $this->id = $id;
-    //     $this->postTitle = $postTitle;
-    //     $this->postChapo = $postChapo;
-    //     $this->postContent = $postContent;
-    //     $this->postCreated = $postCreated;
-    //     $this->postStatus = $postStatus;
-    //     $this->postModified = $postModified;
-    //     $this->user_id = $user_id;  
+    //     //  $this->id = $id;
+    //     //         $this->postTitle = $postTitle;
+    //     //         $this->postChapo = $postChapo;
+    //     //         $this->postContent = $postContent;
+    //     //         $this->postCreated = $postCreated;
+    //     //         $this->postStatus = $postStatus;
+    //     //         $this->postModified = $postModified;
+    //     //         $this->user_id = $user_id;
     // }
 
 

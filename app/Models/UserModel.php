@@ -1,10 +1,10 @@
 <?php
 
-namespace Application\Entity\User;
+namespace Application\Models;
 
 use Application\Controllers\Controller;
 
-class user extends Controller
+class UserModel extends Controller
 {
 
     private $id;
@@ -35,6 +35,7 @@ class user extends Controller
     public function __construct($datas = [])
     {
         if (!empty($datas)) {
+            // var_dump("passage"); yesy
             $this->myHydrate($datas);
         }
     }
