@@ -5,7 +5,7 @@ namespace Application\Core\Auth;
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
 use Application\Model\UserModel\UsersRepository;
 
-class Auth
+class Auth extends DatabaseConnexion
 {
     /**
      * variable Role

@@ -1,14 +1,18 @@
 <?php
 
-class user
+namespace Application\Entity\User;
+
+use Application\Controllers\Controller;
+
+class user extends Controller
 {
 
-  private $id;
-  private $emailUser;
-  private $passWordUser;
-  private $firstNameUser;
-  private $surNameUser;
-  private $roleUser;
+    private $id;
+    private $emailUser;
+    private $passWordUser;
+    private $firstNameUser;
+    private $surNameUser;
+    private $roleUser;
 
     /**
      * @param $id
@@ -18,14 +22,32 @@ class user
      * @param $surNameUser
      * @param $roleUser
      */
-    public function __construct($id, $emailUser, $passWordUser, $firstNameUser, $surNameUser, $roleUser)
+    // public function __construct($id, $emailUser, $passWordUser, $firstNameUser, $surNameUser, $roleUser)
+    // {
+    //     $this->id = $id;
+    //     $this->emailUser = $emailUser;
+    //     $this->passWordUser = $passWordUser;
+    //     $this->firstNameUser = $firstNameUser;
+    //     $this->surNameUser = $surNameUser;
+    //     $this->roleUser = $roleUser;
+    // }
+
+    public function __construct($datas = [])
     {
-        $this->id = $id;
-        $this->emailUser = $emailUser;
-        $this->passWordUser = $passWordUser;
-        $this->firstNameUser = $firstNameUser;
-        $this->surNameUser = $surNameUser;
-        $this->roleUser = $roleUser;
+        if (!empty($datas)) {
+            $this->myHydrate($datas);
+        }
+    }
+
+    public function myHydrate($datas): void
+    {
+        foreach ($datas as $key => $value) {
+            $method = 'set' . ucfirst($key);
+
+            if (is_callable([$this, $method])) {
+                $this->$method($value);
+            }
+        }
     }
 
     /**
@@ -123,7 +145,4 @@ class user
     {
         $this->roleUser = $roleUser;
     }
-
-
-
 }

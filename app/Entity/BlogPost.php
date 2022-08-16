@@ -1,18 +1,18 @@
 <?php
 
-class blog_post
+namespace Application\Entity\blogPost;
+
+
+class blogPost
 {
-
-
-
-private $id;
-private $postTitle;
-private $postChapo;
-private $postContent;
-private $postCreated;
-private $postStatus;
-private $postModified;
-private $user_id;
+    private $id;
+    private $postTitle;
+    private $postChapo;
+    private $postContent;
+    private $postCreated;
+    private $postStatus;
+    private $postModified;
+    private $user_id;
 
     /**
      * @param $id
@@ -24,17 +24,45 @@ private $user_id;
      * @param $postModified
      * @param $user_id
      */
-    public function __construct($id, $postTitle, $postChapo, $postContent, $postCreated, $postStatus, $postModified, $user_id)
+    // public function __construct($id, $postTitle, $postChapo, $postContent, $postCreated, $postStatus, $postModified, $user_id)
+    // {
+    //     $this->id = $id;
+    //     $this->postTitle = $postTitle;
+    //     $this->postChapo = $postChapo;
+    //     $this->postContent = $postContent;
+    //     $this->postCreated = $postCreated;
+    //     $this->postStatus = $postStatus;
+    //     $this->postModified = $postModified;
+    //     $this->user_id = $user_id;  
+    // }
+
+
+
+    public function __construct($datas = [])
     {
-        $this->id = $id;
-        $this->postTitle = $postTitle;
-        $this->postChapo = $postChapo;
-        $this->postContent = $postContent;
-        $this->postCreated = $postCreated;
-        $this->postStatus = $postStatus;
-        $this->postModified = $postModified;
-        $this->user_id = $user_id;
+        if (!empty($datas)) {
+            $this->myHydrate($datas);
+        }
     }
+
+
+    /**
+     * Undocumented function  to see  $method
+     *
+     * @param [type] $datas
+     * @return void
+     */
+    public function myHydrate($datas): void
+    {
+        foreach ($datas as $key => $value) {
+            $method = 'set' . ucfirst($key);
+
+            if (is_callable([$this, $method])) {
+                $this->$method($value);
+            }
+        }
+    }
+
 
     /**
      * @return mixed
@@ -163,7 +191,4 @@ private $user_id;
     {
         $this->user_id = $user_id;
     }
-
-
-`
 }

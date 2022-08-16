@@ -20,6 +20,8 @@ use Application\Controllers\AdminController\AdminController;
 use Application\Controllers\ConnexionController\ConnexionController;
 use Application\Controllers\AdminCommentController\AdminCommentController;
 use Application\Controllers\AdminUserController\AdminUserController;
+use Application\Controllers\TestController as ControllersTestController;
+use Application\Controllers\TestController\TestController;
 
 // Config
 require_once(ROOT . '/app/config/config.php');
@@ -160,10 +162,14 @@ try {
             }
         } elseif ($_GET['owp'] === 'tosee') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
+                //// for testing.... : http://blog-omega.local/index.php?owp=tosee&id=1
                 // $identifier = $_GET['id'];
                 // $identifier = strip_tags(htmlspecialchars($identifier));
                 // echo "yep";
-                // exit;
+
+                (new ControllersTestController())->myTest();
+
+                exit;
             } else {
             }
         } else {
