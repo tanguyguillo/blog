@@ -5,8 +5,8 @@ namespace Application\Controllers\CommentController;
 use Application\Controllers\AdminCommentController\AdminCommentController;
 use Application\Controllers\Controller;
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
-use Application\Redepositories\Comment\Comment;
-use Application\Redepositories\Comment\CommentsRepository;
+use Application\Repositories\Comment\Comment;
+use Application\Repositories\Comment\CommentsRepository as CommentsRepository;
 
 /**
  *  class manadging comments
