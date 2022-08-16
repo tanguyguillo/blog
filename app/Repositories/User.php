@@ -1,16 +1,12 @@
 <?php
 
-namespace Application\Model\UserModel;
+namespace Application\Repositories\User;
 
 // use Application\Core\Database\DatababaseConnexion;
 // use Application\Controllers\Controller;
 
 class User
 {
-
-
-
-
 
     /**
      * function to get a user with all of this properties

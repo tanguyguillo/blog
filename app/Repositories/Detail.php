@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Model\DetailModel;
+namespace Application\Repositories\Detail;
 
 
 /**
