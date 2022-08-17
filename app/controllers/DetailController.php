@@ -2,13 +2,21 @@
 
 namespace Application\Controllers\DetailController;
 
-use Application\Model\DetailModel\Detail;
-use Application\Model\UserModel\User;
-use Application\Model\CommentModel\Comment;
+use Application\Repositories\Detail\Detail;
+
+
+
+use Application\Repositories\Comment\Comment;
 
 use Application\Controllers\Controller;
 use Application\Controllers\ConnexionController\ConnexionController;
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
+
+
+
+
+use Application\Repositories\User\User as UserUser;
+
 
 class DetailController extends Controller
 {
@@ -43,7 +51,6 @@ class DetailController extends Controller
 
         // test (getMaxAndOpen) to se the user tape by hand on the url 10000 for exemple for the article id
         if ($postDetail->getMaxAndOpen($identifier)) {
-            // $detail  :  ["postStatus"] - ["postName"] (not used ) -  ["postModified"] - ["user_id"] (author) etc...
             $detail =  $postDetail->getPost($identifier); // return an array
             $detailForAurhor = json_decode(json_encode($detail), true);
             $AuthorId = $detailForAurhor["user_id"];
@@ -55,9 +62,19 @@ class DetailController extends Controller
 
         // 2 - user  
         $connection = new DatabaseConnexion();
-        $user = new User();
+        $user = new UserUser();
         $user->connection = $connection;
         $user  = $user->getUser($AuthorId); // return an array
+
+        // $user2 = UserModel->getFirstNameUser;
+        // var_dump($user2);
+
+        // $article = $this->post->findOne($articleId);
+        // $commentaires = $this->comment->findAll($articleId);
+
+
+
+        // $user2 = UserModel->getfirname();
 
         // 3 - Comment
         $connection = new DatabaseConnexion();
@@ -81,7 +98,7 @@ class DetailController extends Controller
      *
      * @param [array] $postData
      * @param [string] $messsage
-     * @return void
+     * @return boll
      */
     public function detailConnexion(array $postData, string $messsage = '')
     {
@@ -90,13 +107,15 @@ class DetailController extends Controller
         if ($this->myAuth($postData)) {
             $message = $_SESSION['LOGGED_USER_NAME'];
             $this->Detail($postData['postId'], $message);
+            return true;
         }
 
         // to avoid a bug because the url can to not change
-        if ($messsageReadle != 'abort') {
+        if ($messsageReadle != 'false') {
             $message = 'Désolé, les données de connection sont incorrectes';
             // we go bach to connexion page
             (new ConnexionController())->connexion($message)();
+            return false;
         }
     }
 

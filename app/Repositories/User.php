@@ -1,13 +1,13 @@
 <?php
 
-namespace Application\Model\UserModel;
+namespace Application\Repositories\User;
 
 // use Application\Core\Database\DatababaseConnexion;
-// use Application\Controllers\Controller;
+use Application\Controllers\Controller;
+use Application\Models\UserModel;
 
-class User
+class User extends Controller
 {
-
     /**
      * function to get a user with all of this properties
      *
@@ -29,10 +29,10 @@ class User
             $user->passWordUser = $row['passWordUser'];
             $user->firstNameUser = $row['firstNameUser'];
             $user->surNameUser = $row['surNameUser'];
-            $user->titleUser = $row['titleUser'];
-            $user->telGsmUser = $row['telGsmUser'];
             $user->roleUser = $row['roleUser'];
-            $user->pictureOrLogo = $row['pictureOrLogo'];
+
+            // hydratation userModel
+            $userModel =  new UserModel($row);
 
             // to convert the objet in array (warning if property private ?)
             // perhaps an function will be better....
@@ -70,6 +70,9 @@ class UsersRepository
             $user->surNameUse = $row['surNameUser'];
             $user->roleUser = $row['roleUser'];
             $users[] = $user;
+
+            // hydratation userModel
+            $userModel = new UserModel($row);
         }
         // turn in Array
         $users = json_decode(json_encode($users), true);
@@ -96,7 +99,7 @@ class UsersRepository
 
         try {
             $statement = $this->connection->getConnexion()->query(
-                "INSERT INTO user (emailUser, passWordUser, firstNameUser, surNameUser, titleUser, telGsmUser, roleUser, pictureOrLogo)  VALUES ('$emailUser', '$passWordUser', '$firstNameUser', '$surNameUser', NULL, NULL, '$roleUser', NULL);"
+                "INSERT INTO user (emailUser, passWordUser, firstNameUser, surNameUser, roleUser)  VALUES ('$emailUser', '$passWordUser', '$firstNameUser', '$surNameUser', '$roleUser');"
             );
         } catch (\Exception $e) {
             $errorMessage = $e->getMessage();
@@ -149,7 +152,7 @@ class UsersRepository
             $errorMessage = "you DO have admin role to acces to this Aera";
             try {
                 $statement = $this->connection->getConnexion()->query(
-                    "SELECT b.id, postTitle, postChapo, postContent, postName, postModified, postStatus, firstNameUser, surNameUser,emailUser, roleUser, b.user_id
+                    "SELECT b.id, postTitle, postChapo, postContent, postModified, postStatus, firstNameUser, surNameUser,emailUser, roleUser, b.user_id
                 FROM blog_post AS b
                 JOIN user as ud
                 ON(b.user_id = ud.id)"
@@ -163,7 +166,6 @@ class UsersRepository
                     $data->postChapo = $row['postChapo'];
                     $data->postContent = $row['postContent'];
                     $data->postStatus = $row['postStatus'];
-                    $data->postAuthor = $row['postName'];
                     $data->postModified = $row['postModified'];
                     $data->userId = $row['user_id'];
                     $data->firstNameUser = $row['firstNameUser'];

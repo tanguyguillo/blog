@@ -6,15 +6,11 @@ use Application\Controllers\AdminCommentController\AdminCommentController;
 use Application\Controllers\Controller;
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
 
+use Application\Models\CommentModel;
 
 
-use Application\Repositories\Comment\Comment as CommentComment;
-use Application\Repositories\Comment\CommentsRepository;
-
-// use Application\Redepositories\setComment;
-// use application\Repositories\modifyComment;
-
-
+use Application\Redepositories\setComment;
+use application\Repositories\modifyComment;
 
 /**
  *  class manadging comments
@@ -38,10 +34,10 @@ class CommentController extends Controller
         $this->verifyComment("Vous devez être connecté pour pouvoir rédiger un commentaire");
 
         $connection = new DatabaseConnexion();
-        $comment = new CommentComment();
+        $comment = new Comment();
         $comment->connection = $connection;
 
-        if ($comment->setComments($arrayComment)) {
+        if ($comment->setComment($arrayComment)) {
             $message = "Votre commentaire a été envoyé et est en attente de validation";
             $this->twig->display('info/info.html.twig', compact('message'));
         } else {

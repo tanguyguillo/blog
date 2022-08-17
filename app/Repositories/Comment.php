@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Model\CommentModel;
+namespace Application\Repositories\Comment;
 
 /**
  * class of blog's comments
