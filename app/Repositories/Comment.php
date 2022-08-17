@@ -94,7 +94,7 @@ class CommentsRepository
      * @param array
      * @return void
      */
-    public function setComments(array $array)
+    public function setComment(array $array)
     {
         if ($_SESSION['LOGGED_USER']) {
             $user_id = intval($array['idUser']);

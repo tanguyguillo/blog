@@ -3,9 +3,11 @@
 namespace Application\Repositories\User;
 
 use Application\Models\UserModel;
+use Application\Controllers\Controller;
 
-class User
+class User extends Controller
 {
+
 
     /**
      * function
@@ -13,6 +15,7 @@ class User
     public function __construct()
     {
     }
+
 
     /**
      * function to get a user with all of this properties
@@ -39,6 +42,8 @@ class User
 
             // hydratation userModel
             //$userModel =  new UserModel($row);
+
+            $userModel =  new UserModel($row);
 
             // to convert the objet in array (warning if property private ?)
             // perhaps an function will be better....
@@ -104,6 +109,9 @@ class UsersRepository
             $user->surNameUse = $row['surNameUser'];
             $user->roleUser = $row['roleUser'];
             $users[] = $user;
+
+            // hydratation userModel
+            $userModel = new UserModel($row);
         }
         // turn in Array
         $users = json_decode(json_encode($users), true);
@@ -151,7 +159,7 @@ class UsersRepository
 
         try {
             $statement = $this->connection->getConnexion()->query(
-                "INSERT INTO user (emailUser, passWordUser, firstNameUser, surNameUser,roleUser)  VALUES ('$emailUser', '$passWordUser', '$firstNameUser', '$surNameUser', '$roleUser');"
+                "INSERT INTO user (emailUser, passWordUser, firstNameUser, surNameUser, roleUser)  VALUES ('$emailUser', '$passWordUser', '$firstNameUser', '$surNameUser', '$roleUser');"
             );
         } catch (\Exception $e) {
             $errorMessage = $e->getMessage();

@@ -3,7 +3,7 @@
 namespace Application\Controllers\DetailController;
 
 use Application\Repositories\Detail\Detail;
-use Application\Repositoriesl\User\User;
+
 use Application\Repositories\Comment\Comment;
 
 use Application\Controllers\Controller;
@@ -62,6 +62,7 @@ class DetailController extends Controller
         $user->connection = $connection;
         $user  = $user->getUser($AuthorId); // return an array
 
+
         // hydratation and objet / entities
         $o = 0;
         if ($o) {
@@ -73,6 +74,17 @@ class DetailController extends Controller
             var_dump($Email);
             exit;
         }
+
+
+        // $user2 = UserModel->getFirstNameUser;
+        // var_dump($user2);
+
+        // $article = $this->post->findOne($articleId);
+        // $commentaires = $this->comment->findAll($articleId);
+
+
+
+        // $user2 = UserModel->getfirname();
 
 
         // 3 - Comment
