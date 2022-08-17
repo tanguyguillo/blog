@@ -1,0 +1,297 @@
+<!doctype html>
+<html class="no-js" lang="fr">
+
+<head>
+    <meta charset="utf-8">
+
+    {% block title %}Blog de OmegaWebProd{% endblock %}
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+
+    <link rel="manifest" href="site.webmanifest">
+
+        <!-- Place favicon.ico in the root directory -->
+    <link rel="apple-touch-icon" href="icon.png">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="css/freelancer.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- Theme CSS blog.omegawebprod -->
+    <link  rel="stylesheet" href="css/blogomegawebprod.css">
+
+    <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+    <span id="home"></span>
+
+    {% block nav %}
+    <!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button> 
+                <a class = "navbar-brand"  href= "index.php#page-top-logo"><img class="owp-logo" src="img/logo-small.png" alt="visuel logo omegawebprod" ></a>
+                <a class="navbar-brand" href="index.php?owp=bloglist"> &lt; Bienvenue &gt;
+                
+                {# to know how is connected, show only if connected but not on the first connexion there is arrayMessage.message for that#}
+                {% if session.LOGGED_USER == true  %}
+                    {% if arrayMessage.message == false %}
+                            <small> {{ session.LOGGED_USER_NAME }} </small> 
+                    {% endif %} 
+                {% endif %} 
+                </a> 
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="index.php#home">Accueil</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="index.php?owp=bloglist">Blog</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="index.php#contact">Contact</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="index.php#about">A propos</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    {% endblock %}
+
+    {% block header %}
+    {% endblock %}
+
+    <!--aera spécific to the homePage ? -->
+    {% block main %}
+    {% endblock %}
+
+    {% block myComments %}
+    {% endblock %}
+
+    {% block giveComment %}
+    {% endblock %}
+
+    {% block inscription %}
+    {% endblock %}
+
+    {% block connexion %}
+    {% endblock %}
+
+    <!--aera specific to homepage  -->
+    {% block contact %}
+    {% endblock %}
+
+    {% block footer %}
+    <footer class="text-center">
+        <div class="footer-above">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col col-md-4">
+                        <h3>Nous trouvez</h3>
+                        <p>109 rue de Fleury
+                            <br>92140 Clamart
+                            <br>France
+                            <br>+33 6 31 52 41 53
+                        </p>
+                    </div>
+                    <div id="about" class="footer-col col-md-4">
+                        <h3><img src="img/logo-small.png" alt="visuel logo omegawebprod" width="50"
+                                height="50">&ensp;OmegaWebProd</h3>
+                        <H4>François Tanguy Guillo</h4>
+                        <ul class="list-inline">
+                            <li>
+                                <a href="https://twitter.com/tanguy029" class="btn-social btn-outline"><i
+                                        class="fa fa-fw fa-twitter"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://www.linkedin.com/in/tanguy-guillo-15970bab"
+                                    class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/tanguyguillo/" class="btn-social btn-outline"><i
+                                        class="fa fa-fw fa-github"></i></a>
+                            </li>
+                            <li>
+                                <a class="btn-social btn-outline"
+                                    href="cv/tanguy-guillo--developpeur-full-stack.pdf">CV</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <div class="" id="about">
+                            <h3>A propos de OmegaWebProd</h3>
+                            <p>Nous sommes spécialisé dans la réalisation de sites web "sur mesure" pour de petites
+                                structures</p>
+                            <a href="mailto:blog-pots@omegawebprod.com?subject=Demande de devis OmegaWebProduct">Demandez un devis</A>
+                            </p>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <span class="col-lg-4">
+                        OmegaWebProd Copyright &copy; {{ "now"|date("Y") }}
+                    </span>
+                    
+                    {# to know how is connected, show only if connected but not just after a connenxion#}
+                    {# {% if session.LOGGED_USER != '' %}
+                        {% if arrayMessage.message == false %}
+                            <span >Connecté: {{ session.LOGGED_USER_NAME }} : {{ session.ROLE_USER }} <span> | 
+                        {% endif %} 
+                    {% endif %}  #}
+
+                    {# <a href="index.php?owp=connexion#connexion">Se connecter</a>  | posing issue with return #}
+                    <a href="#confidential" class="portfolio-link" data-toggle="modal">Politique de confidentialité</a>
+                    | <a href="index.php?owp=inscription" class="portfolio-link" data-toggle="modal">Creer un compte</a>
+                    | <a href="index.php?owp=connexion" class="portfolio-link" data-toggle="modal">Se connecter</a>                 
+                    
+                    {# show the link admin only for people which have the role Admin (not only User) #}
+                    {% if arrayMessage.message == false %}
+                        {% if session.ROLE_USER =="Admin"  %}  
+                            | <a href="index.php?owp=administration-only-for-people-which-have-the-role-Admin">Administration</a>
+                        {% endif %} 
+                    {% endif %}
+
+                    </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+    {% endblock %}
+
+    {% block modal %}
+    <!-- modal-->
+    <div class="portfolio-modal modal fade" id="confidential" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2> Qui sommes-nous ?</h2><br>
+                            <p>L’adresse de notre blog est : https://blog.omegawebblog.com</p>
+                                <br>
+                            <p>L’adresse de notre site est : https://omegawebblog.com</p>
+                            <br>
+                            <h2>commentaires</h2>
+                            <p>Quand vous laissez un commentaire sur notre blog, les données inscrites dans le
+                                formulaire de commentaire, ainsi que votre adresse IP et l’agent utilisateur de votre
+                                navigateur sont collectés pour nous aider à la détection des commentaires indésirables.
+                            <h2>Utilisation et transmission de vos données personnelles</h2>
+                            <p>Si vous demandez une réinitialisation de votre mot de passe, vueillez nous contacter par le formulaire de contact
+                                <p />
+                            <h2>Durées de stockage de vos données</h2>
+                            <p>Si vous laissez un commentaire, le commentaire et ses métadonnées sont conservés
+                                <br>    
+                                Pour les comptes qui s’inscrivent sur notre site (le cas échéant), nous stockons
+                                également les données personnelles indiquées dans leur profil. Tous les comptes peuvent
+                                voir, modifier ou supprimer leurs informations personnelles à tout moment (à l’exception
+                                de leur(s) commentaire(s) qui seront alors anonymisé). Les gestionnaires du site peuvent aussi voir et modifier ces
+                                informations.</p>
+                            <h2>Les droits que vous avez sur vos données</h2> 
+                            <p>Si vous avez un compte ou si vous avez laissé des commentaires sur le site, vous pouvez
+                                demander à recevoir un fichier contenant toutes les données personnelles que nous
+                                possédons à votre sujet, incluant celles que vous nous avez fournies. Vous pouvez
+                                également demander la suppression des données personnelles vous concernant. Cela ne
+                                prend pas en compte les données stockées à des fins administratives, légales ou pour des
+                                raisons de sécurité.
+                            </p>
+                            <h2>Transmission de vos données personnelles</h2>
+                            <p>Les commentaires des visiteurs peuvent être vérifiés à l’aide d’un service automatisé de
+                                détection des commentaires indésirables.</p>
+                                <br>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i
+                                    class="fa fa-times"></i> Fermer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+    <!-- <script src="js/vendor/modernizr-3.11.2.min.js"></script>-->
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/freelancer.min.js"></script>
+
+    <!-- Theme JavaScript Blog -->
+    <script src="js/blog.js"></script>
+
+    <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+    <script> </script>
+
+</body>
+</html>
