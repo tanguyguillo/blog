@@ -1,10 +1,12 @@
 <?php
 
-namespace Application\Entity\User;
+namespace Application\Models;
 
 use Application\Controllers\Controller;
+use Application\Core\Auth\Auth as Auth;
 
-class user extends Controller
+
+class UserModel extends Auth
 {
 
     private $id;
@@ -35,6 +37,7 @@ class user extends Controller
     public function __construct($datas = [])
     {
         if (!empty($datas)) {
+            // var_dump("passage");
             $this->myHydrate($datas);
         }
     }

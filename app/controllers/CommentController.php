@@ -5,8 +5,7 @@ namespace Application\Controllers\CommentController;
 use Application\Controllers\AdminCommentController\AdminCommentController;
 use Application\Controllers\Controller;
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
-use Application\Model\CommentModel\Comment;
-use Application\Model\CommentModel\CommentsRepository;
+use Application\Repositories\Comment\CommentsRepository as CommentCommentsRepository;
 
 /**
  *  class manadging comments
@@ -30,7 +29,7 @@ class CommentController extends Controller
         $this->verifyComment("Vous devez être connecté pour pouvoir rédiger un commentaire");
 
         $connection = new DatabaseConnexion();
-        $comment = new Comment();
+        $comment = new CommentCommentsRepository();
         $comment->connection = $connection;
 
         if ($comment->setComments($arrayComment)) {
@@ -52,7 +51,7 @@ class CommentController extends Controller
         if ($this->isAdmin()) {
             $connection = new DatabaseConnexion();
             $arrayComment = json_decode(json_encode($arrayComment), true);
-            $commentsRepository = new CommentsRepository();
+            $commentsRepository = new CommentCommentsRepository();
             $commentsRepository->connection = $connection;
 
             // to correct in connexion

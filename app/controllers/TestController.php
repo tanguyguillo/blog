@@ -2,25 +2,31 @@
 
 namespace Application\Controllers;
 
-use Application\Entity\blogPost\blogPost;
-use Application\EntityManager;
-use Application\EntityManager\BlogPostManager;
+use Application\Models\UserModel;
+use Application\Repositories\User\UsersRepository;
+use Application\Repositories\Repository\usersDepot;
+use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
 
-class TestController extends BlogPostManager
+
+class TestController
 {
     /**
-     * function to test
+     * function to test : UsersRepository   getUsersDepo
      *
      * @return void
      */
     public function myTest()
     {
+        //to test : http://blog-omega.local/index.php?owp=tosee&id=1
+
         echo "Bienvenue sur la zone de test";
 
-        $test = $this->readAll();
+        // list table user
+        $connection = new DatabaseConnexion();
+        $UsersRepository = new UsersRepository();
+        $UsersRepository->connection = $connection;
+        $users = $UsersRepository->usersDepot();
 
-        var_dump($test);
-
-        // $this->page->render('blog', compact('articles'));
+        var_dump($users);
     }
 }

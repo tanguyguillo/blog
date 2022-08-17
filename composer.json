@@ -5,7 +5,6 @@
             "Application\\": "app/",
             "Application\\Controllers\\": "app/Controllers/",
             "Application\\Core\\Database\\": "app/Core/Database/",
-            "Application\\Model\\": "app/Model/",
             "Application\\Models\\": "app/Models/",
             "Application\\Repositories\\": "app/Repositories/"
 

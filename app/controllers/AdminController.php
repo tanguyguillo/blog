@@ -4,7 +4,7 @@ namespace Application\Controllers\AdminController;
 
 use Application\Controllers\Controller;
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
-use Application\Model\UserModel\UsersRepository;
+use Application\Repositories\User\UsersRepository;
 
 class AdminController extends Controller
 {

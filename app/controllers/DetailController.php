@@ -2,13 +2,16 @@
 
 namespace Application\Controllers\DetailController;
 
-use Application\Model\DetailModel\Detail;
-use Application\Model\UserModel\User;
-use Application\Model\CommentModel\Comment;
+use Application\Repositories\Detail\Detail;
+use Application\Repositoriesl\User\User;
+use Application\Repositories\Comment\Comment;
 
 use Application\Controllers\Controller;
 use Application\Controllers\ConnexionController\ConnexionController;
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
+use Application\Models\PostModel;
+use Application\Repositories\User\User as UserUser;
+use Application\Repositories\UsersRepository\UsersRepository;
 
 class DetailController extends Controller
 {
@@ -43,6 +46,7 @@ class DetailController extends Controller
 
         // test (getMaxAndOpen) to se the user tape by hand on the url 10000 for exemple for the article id
         if ($postDetail->getMaxAndOpen($identifier)) {
+            // old method
             $detail =  $postDetail->getPost($identifier); // return an array
             $detailForAurhor = json_decode(json_encode($detail), true);
             $AuthorId = $detailForAurhor["user_id"];
@@ -54,9 +58,22 @@ class DetailController extends Controller
 
         // 2 - user  
         $connection = new DatabaseConnexion();
-        $user = new User();
+        $user = new UserUser();
         $user->connection = $connection;
         $user  = $user->getUser($AuthorId); // return an array
+
+        // hydratation and objet / entities
+        $o = 1;
+        if ($o) {
+            $user0 = new UserUser();
+            $user0->connection = $connection;;
+            $userO  = $user0->getUserO($AuthorId); // return an array
+
+            $Email =  $userO->getEmailUser();
+            var_dump($Email);
+            exit;
+        }
+
 
         // 3 - Comment
         $connection = new DatabaseConnexion();
@@ -69,7 +86,7 @@ class DetailController extends Controller
         $_SESSION['LOGGED_PAGE_ID'] = $identifier; // used article read for return button button after connexion
 
         $arrayMessage = $this->readleByTwig($message);
-        $this->twig->display('detail/detail.html.twig', compact('detail', 'user', 'postComments', 'baseUrl', 'identifier', 'arrayMessage'));
+        $this->twig->display('detail/detail.html.twig', compact('detail', 'userO', 'postComments', 'baseUrl', 'identifier', 'arrayMessage'));
     }
 
     /**

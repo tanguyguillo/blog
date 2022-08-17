@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Model\PostModel;
+namespace Application\Repositories\Post;
 
 use Application\Controllers\Controller;
 //use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;

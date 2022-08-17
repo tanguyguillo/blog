@@ -1,16 +1,18 @@
 <?php
 
-namespace Application\Model\UserModel;
+namespace Application\Repositories\User;
 
-// use Application\Core\Database\DatababaseConnexion;
-// use Application\Controllers\Controller;
+use Application\Models\UserModel;
 
 class User
 {
 
-
-
-
+    /**
+     * function
+     */
+    public function __construct()
+    {
+    }
 
     /**
      * function to get a user with all of this properties
@@ -35,6 +37,9 @@ class User
             $user->surNameUser = $row['surNameUser'];
             $user->roleUser = $row['roleUser'];
 
+            // hydratation userModel
+            //$userModel =  new UserModel($row);
+
             // to convert the objet in array (warning if property private ?)
             // perhaps an function will be better....
             $user = json_decode(json_encode($user), true);
@@ -43,6 +48,34 @@ class User
             // when user have been drop
             return array('id->Null');
         }
+    }
+
+    /**
+     *  function
+     *
+     * @param string $identifier
+     * @return 
+     */
+    public function getUserO(string $identifier): UserModel
+    {
+        if (ctype_digit($identifier)) {
+            $statement = $this->connection->getConnexion()->query(
+                "SELECT * FROM user where id = $identifier"
+            );
+            $statement->execute();
+            $row = $statement->fetch();
+            // when user have been drop
+            if ($row) {
+                // hydratation userModel
+                $userModel =  new UserModel($row);
+                return $userModel; // don't want to return: need an array and not an objet
+            } else {
+                // // when user have been drop
+                //return array('id->Null');
+            }
+        }
+        // when user have been drop
+        //return array('id->Null');
     }
 }
 /**
@@ -53,7 +86,7 @@ class UsersRepository
     /**
      * function get all users with main informations
      *
-     * 
+     *
      * @return array
      */
     public function getUsers(): array
@@ -78,6 +111,27 @@ class UsersRepository
     }
 
     /**
+     * function
+     *
+     * @return array
+     */
+    public function usersDepot(): array
+    {
+        $statement = $this->connection->getConnexion()->query(
+            "SELECT id, emailUser, passWordUser, firstNameUser, surNameUser, roleUser FROM user"
+        );
+        $userModel = [];
+        while (($row = $statement->fetch())) {
+            // Hydratation
+            $userModel[] =  new UserModel($row);
+        }
+        // turn in Array
+        //$users = json_decode(json_encode($users), true);
+        return $userModel;
+    }
+
+
+    /**
      * function to create a new user
      *
      * @param [array] $postData
@@ -97,7 +151,7 @@ class UsersRepository
 
         try {
             $statement = $this->connection->getConnexion()->query(
-                "INSERT INTO user (emailUser, passWordUser, firstNameUser, surNameUser, titleUser, telGsmUser, roleUser)  VALUES ('$emailUser', '$passWordUser', '$firstNameUser', '$surNameUser', NULL, NULL, '$roleUser');"
+                "INSERT INTO user (emailUser, passWordUser, firstNameUser, surNameUser,roleUser)  VALUES ('$emailUser', '$passWordUser', '$firstNameUser', '$surNameUser', '$roleUser');"
             );
         } catch (\Exception $e) {
             $errorMessage = $e->getMessage();
@@ -111,11 +165,11 @@ class UsersRepository
      * function to know if this email is already inDB
      *
      * @param array $postData
-     * @return string 
+     * @return string
      */
     public function findEmail(array $postData)
     {
-        $emailUser = $postData["email"]; // string 
+        $emailUser = $postData["email"]; // string
         $statement = $this->connection->getConnexion()->query(
             "SELECT emailUser,count(*) FROM user WHERE emailUser ='$emailUser' GROUP BY emailUser"
         );
@@ -184,10 +238,10 @@ class UsersRepository
     /**
      *
      * @return array
-     * 
+     *
      *  for admin
      * $role Admin or User  // GROUP BY emailUser
-     * 
+     *
      */
     public function getEmailUser(string $role)
     {
