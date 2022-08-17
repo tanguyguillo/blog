@@ -63,7 +63,7 @@ class DetailController extends Controller
         $user  = $user->getUser($AuthorId); // return an array
 
         // hydratation and objet / entities
-        $o = 1;
+        $o = 0;
         if ($o) {
             $user0 = new UserUser();
             $user0->connection = $connection;;
@@ -86,7 +86,7 @@ class DetailController extends Controller
         $_SESSION['LOGGED_PAGE_ID'] = $identifier; // used article read for return button button after connexion
 
         $arrayMessage = $this->readleByTwig($message);
-        $this->twig->display('detail/detail.html.twig', compact('detail', 'userO', 'postComments', 'baseUrl', 'identifier', 'arrayMessage'));
+        $this->twig->display('detail/detail.html.twig', compact('detail', 'user', 'postComments', 'baseUrl', 'identifier', 'arrayMessage'));
     }
 
     /**
