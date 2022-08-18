@@ -2,72 +2,102 @@
 
 namespace Application\Controllers\DetailController;
 
-use Application\Core\Database\Database\DatabaseConnection;
-use Application\Model\UserModel\UsersRepository;
-use Application\Model\DetailModel\Detail;
-use Application\Model\UserModel\User;
-use Application\Model\CommentModel\Comment;
-//
+use Application\Repositories\Detail\Detail;
+
+use Application\Repositories\Comment\Comment;
+
 use Application\Controllers\Controller;
-use Application\Controllers\ErrorController\ErrorController;
-use Application\Controllers\connexion\ConnexionController;
+use Application\Controllers\ConnexionController\ConnexionController;
+use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
+use Application\Models\PostModel;
+use Application\Repositories\User\User as UserUser;
+use Application\Repositories\UsersRepository\UsersRepository;
 
 class DetailController extends Controller
 {
-
-    //public $message;
-    // public $hash;  // conflict with twig ?
-    // public function __construct()
-    // {
-    //     $this->hash = '9DEFF146D808FFF8A263BDFA150C61F003C7B8B';
-    // }
-
-    // public function __construct()
-    // {
-    //     $this->message['message'] = "";
-    // }
     /**
      * Function to show one blog post
      *
      * @param string $identifier
      * @return void
      */
-    public function Detail($identifier, $message = '')
+    public function detail($identifier, $message = '')
     {
+        // // for intance when inscription
+        if ($identifier === "") {
+            //$identifier = $_SESSION['LOGGED_PAGE_ID']; // article id
+            $identifier = "3";
+        }
+
         //verify is $identifier is a "string(integer)" if not display a message
+        $this->isInteger($identifier);
         if ($this->isInteger($identifier) == false) {
             $message = "l'identifiant de la page doit être un chiffre";
             $this->twig->display('error/error.html.twig', compact('message'));
             exit;
         }
-        // verification .... to see   
-        //$this->isInteger($identifier); // if not redirection on error page
-        $connection = new DatabaseConnection();
+
+        $connection = new DatabaseConnexion();
 
         // 1 - Detail
         $identifier = htmlspecialchars($identifier);
         $postDetail = new Detail();
         $postDetail->connection = $connection;
-        $detail =   $postDetail->getPost($identifier); // return an array
 
-        // 2 - user
-        $connection = new DatabaseConnection();
-        $user = new User();
+        // test (getMaxAndOpen) to se the user tape by hand on the url 10000 for exemple for the article id
+        if ($postDetail->getMaxAndOpen($identifier)) {
+            // old method
+            $detail =  $postDetail->getPost($identifier); // return an array
+            $detailForAurhor = json_decode(json_encode($detail), true);
+            $AuthorId = $detailForAurhor["user_id"];
+        } else {
+            $message = "l'identifiant de la page est inexact";
+            $this->twig->display('error/error.html.twig', compact('message'));
+            exit;
+        };
+
+        // 2 - user  
+        $connection = new DatabaseConnexion();
+        $user = new UserUser();
         $user->connection = $connection;
-        $user  = $user->getUser($identifier); // return an array
+        $user  = $user->getUser($AuthorId); // return an array
+
+
+        // hydratation and objet / entities
+        $o = 0;
+        if ($o) {
+            $user0 = new UserUser();
+            $user0->connection = $connection;;
+            $userO  = $user0->getUserO($AuthorId); // return an array
+
+            $Email =  $userO->getEmailUser();
+            var_dump($Email);
+            exit;
+        }
+
+
+        // $user2 = UserModel->getFirstNameUser;
+        // var_dump($user2);
+
+        // $article = $this->post->findOne($articleId);
+        // $commentaires = $this->comment->findAll($articleId);
+
+
+
+        // $user2 = UserModel->getfirname();
+
 
         // 3 - Comment
-        $connection = new DatabaseConnection();
+        $connection = new DatabaseConnexion();
         $postComments = new Comment();
         $postComments->connection = $connection;
         $postComments  = $postComments->getComments($identifier); // return an array
         $postComments = json_decode(json_encode($postComments), true);
 
         $baseUrl = BASE_URL; // used for return button after connexion
-        $_SESSION['LOGGED_PAGE_ID'] = $identifier; // used for return button button after connexion
+        $_SESSION['LOGGED_PAGE_ID'] = $identifier; // used article read for return button button after connexion
 
         $arrayMessage = $this->readleByTwig($message);
-
         $this->twig->display('detail/detail.html.twig', compact('detail', 'user', 'postComments', 'baseUrl', 'identifier', 'arrayMessage'));
     }
 
@@ -79,52 +109,24 @@ class DetailController extends Controller
      *
      * @param [array] $postData
      * @param [string] $messsage
-     * @return void
+     * @return boll
      */
-    public function DetailConnexion(array $postData, string $messsage = '')
+    public function detailConnexion(array $postData, string $messsage = '')
     {
-        // if exist
-        if (isset($postData['user_login']) &&  isset($postData['user_pass'])) {
-            $connection = new DatabaseConnection();
-            $UsersRepository = new UsersRepository();
-            $UsersRepository->connection = $connection;
-            $users = $UsersRepository->getUsers(); // return an array
+        $messsageReadle = ""; // for no data message
 
-            // if correspondance email + password ( $_POST and DB )   // todo / see sha 512
-            foreach ($users as $user) {
-                if ($user['emailUser'] === $postData['user_login'] && $user['passWordUser'] === $postData['user_pass']) {
-
-                    setcookie(
-                        'LOGGED_USER',
-                        $postData['user_login'],
-                        [
-                            'expires' => time() + 3600,
-                            'secure' => true,
-                            'httponly' => true,
-                        ]
-                    );
-
-                    // to avod a bug because the url can to not change
-                    $messsageReadle = $messsage;
-                    $messsageReadle = 'abort';
-
-                    $_SESSION['LOGGED_USER'] =  $user["firstNameUser"];
-                    $_SESSION['LOGGED_USER_ID'] = $user['id'];
-
-                    $_SESSION['LOGGED_EMAIL'] = $postData['user_login'];
-                    $_SESSION['LOGGED_PAGE_ID'] = $postData['postId'];
-                    $message = $user["firstNameUser"];
-
-                    // we return to the page detail with the good id 
-                    $this->Detail($postData['postId'], $message);
-                }
-            }
+        if ($this->myAuth($postData)) {
+            $message = $_SESSION['LOGGED_USER_NAME'];
+            $this->Detail($postData['postId'], $message);
+            return true;
         }
-        // to avod a bug because the url can to not change
-        if ($messsageReadle != 'abort') {
+
+        // to avoid a bug because the url can to not change
+        if ($messsageReadle != 'false') {
             $message = 'Désolé, les données de connection sont incorrectes';
             // we go bach to connexion page
             (new ConnexionController())->connexion($message)();
+            return false;
         }
     }
 
@@ -145,14 +147,18 @@ class DetailController extends Controller
     }
 
     /**
-     * function return true if number otherwise false
+     * function to verify crypt password
      *
-     * @param [string] $identifier
-     * @return bool
+     * @param [type] $user_input
+     * @param [type] $hashed_password
+     * @return boll
      */
-    public function isInteger($identifier): string
+    private function verifyHashPassword($user_input, $hashed_password)
     {
-        $identifier = filter_var($identifier, FILTER_VALIDATE_INT);
-        return ($identifier !== FALSE);
+        if (hash_equals($hashed_password, crypt($user_input, $hashed_password))) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

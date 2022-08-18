@@ -1,0 +1,100 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}<title>Utilisateurs Admin</title>{% endblock %}
+
+    {% block adminMain %}
+<div class="d-flex flex-column min-vh-100">
+<section id="BlogPost manager">
+<div class="container">
+<div class="row">
+<br>
+<h3 class="text-center">Utilisateurs Admin</h3>
+<hr class="star-primary">
+    <div class="container">
+        {% if arrayMessage.message == "false" %}
+            {# nothing #}
+        {% else %}
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <strong>{{ arrayMessage.message }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endif %}
+        <br>
+
+<h4 class="text-center">Modifier un Utilisateur</h4> 
+<br>
+<div class="table-responsive">
+    <table class="table table-bordered table-striped table-highlight">
+    <thead>
+        <tr>
+        <th scope="col"><span class="glyphicon glyphicon-trash"></span></th>
+        <th scope="col">Email</th>
+        <th scope="col">Prénom</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Roles</th>
+        <th scope="col">Modifier</th>
+        </tr>
+    </thead>
+
+{% for array in arrayUser %}
+
+    <form action="{{ baseUrl }}index.php?owp=modifymyuser&id={{array.id}}" method="post">    
+    <tbody class="">
+
+    <td>
+    <div class="w-auto control-group">
+    <input type="checkbox" id="delete-{{array.id}}" name="checkbox" value="{{array.id}}">
+    </div>
+    </td>
+
+    <input type="hidden" name ="id" id="postId-{{array.id}}" class="form-control postId" type="text" value="{{array.id}}" aria-label="readonly" readonly></input>
+
+    <td>
+        <div class="w-auto control-group">
+            <textarea name="emailUser" class="form-control" id="emailUse-{{array.id}}" aria-label="readonly" readonly>{{array.emailUser}} </textarea>
+        </div>
+    </td>
+
+    <td> 
+        <div class="w-auto control-group">
+            <textarea  name="firstNameUser" class="form-control" id="firstNameUser-{{array.id}}" aria-label="readonly" readonly>{{array.firstNameUser}} </textarea>
+        </div>
+    </td>
+
+    <td> 
+        <div class="w-auto control-group">
+            <textarea name="surNameUse" class="form-control" id="surNameUse-{{array.id}}" aria-label="readonly" readonly>{{array.surNameUse}} </textarea>
+        </div>
+    </td>
+
+    <td> 
+        <select name ="roleUser" id="roleUsers-{{array.id}}" class="form-select">
+        <option selected>{{array.roleUser}}</option>  
+        {# <option disabled>Waiting for validation</option> #}
+        <option>Admin</option>
+        <option>User</option>
+        </select>
+    </td>
+
+    <td>
+    <button type="submit" class="btn btn-success">Modifier</button> 
+    <br> <br>
+    </td>
+</form>
+
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>  
+</div>   
+
+<br>
+
+</section>
+</div>
+<br>
+
+{% endblock %}

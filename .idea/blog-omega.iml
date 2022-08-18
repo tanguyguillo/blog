@@ -4,11 +4,10 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/app" isTestSource="false" packagePrefix="App\" />
-      <sourceFolder url="file://$MODULE_DIR$/app/controllers" isTestSource="false" packagePrefix="App\Controllers\" />
-      <sourceFolder url="file://$MODULE_DIR$/app/core/Database" isTestSource="false" packagePrefix="App\Core\Database\" />
-      <sourceFolder url="file://$MODULE_DIR$/app/models" isTestSource="false" packagePrefix="App\Models\" />
-      <sourceFolder url="file://$MODULE_DIR$/app/services" isTestSource="false" packagePrefix="App\Services\" />
+      <sourceFolder url="file://$MODULE_DIR$/app" isTestSource="false" packagePrefix="Application\" />
+      <sourceFolder url="file://$MODULE_DIR$/app/controllers" isTestSource="false" packagePrefix="Application\Controllers\" />
+      <sourceFolder url="file://$MODULE_DIR$/app/models" isTestSource="false" packagePrefix="Application\Models\" />
+      <sourceFolder url="file://$MODULE_DIR$/app/core/database" isTestSource="false" packagePrefix="Application\Core\Database\" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-ctype" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />

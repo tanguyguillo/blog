@@ -1,11 +1,15 @@
 <?php
 
-namespace Application\Core\Database\Database;
+namespace Application\Core\Database\DatabaseConnexion;
 
 // Loading the config
 require_once(ROOT . '/app/config/config.php');
 
-class DatabaseConnection
+
+/** like a Repositories
+ */
+
+class DatabaseConnexion
 {
   public ?\PDO $database = null;  // if PDO .... ok otherwise = null 
 
@@ -15,11 +19,10 @@ class DatabaseConnection
    * 
    * @var \PDO|null
    */
-  public function getConnection(): \PDO
+  public function getConnexion(): \PDO
   {
     if ($this->database === null) {
-      //Synthaxe for exeample: new PDO('mysql:host=localhost;dbname=test', $user, $pass);
-      // mettre un try ?
+      // todo : write a try ?
       $this->database = new \PDO('mysql:host=' . SERVER . ';dbname=' . BASE . ';charset=utf8', USER, PASSWD);
     }
     return $this->database;

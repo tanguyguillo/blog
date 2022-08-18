@@ -1,0 +1,45 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}<title>Connection Admininstration blog.omegawebprod</title>{% endblock %}
+
+{% block adminMain %}
+<div class="d-flex flex-column min-vh-100">
+<section id="connecttion">
+<div class="container">
+<div class="row">
+<br>
+<h3 class="text-center">Connection l'administration</h3>
+    <hr class="star-primary">
+        <div class="container">
+            <h4 class="text-center">Si vous êtes administrateur du site Connectez vous</h4>
+
+            <main class="d-flex flex-nowrap">
+
+                <form action="{{ baseUrl }}index.php?owp=authentity" method="post">     
+
+                <div class="form-group">
+                    <label for="userEmail">Votre Email</label>
+                    <input type="email" class="form-control" id="log"  name="user_login"  required placeholder="Entrez votre Email">
+                    <br>
+                </div>
+
+                {# session.LOGGED_PAGE_ID is the page from where we come from #}
+                <div class="form-group">
+                    <input id="postId" name="postId" type="hidden" value={{ session.LOGGED_PAGE_ID }}>
+                </div>
+
+                <div class="form-group" id="connexion">
+                    <label for="userPpassword">Votre mot de passe</label>
+                    <input type="password" class="form-control" id="pwd" name="user_pass" minlength="12" required placeholder="Mot de passe">
+                </div>
+                <button type="submit" class="btn btn-success btn-lg btn-block">Se connecter</button>
+            </form>
+            <br />
+        </div>
+        
+        {# {% include "includes/article_form.html.twig" %} #}
+    
+</div>
+</div>
+</div>
+{% endblock %}

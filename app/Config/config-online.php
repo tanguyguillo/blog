@@ -5,11 +5,8 @@ define('SERVER', "mysql-tanguy-guillo.alwaysdata.net");
 define('BASE', "tanguy-guillo_blog-omega");
 define('BASE_URL', 'https://blog.omegawebprod.com/');
 
-// For the password
-define('SALT', "gjhgQSjhggjkkjhhh");
+//MD5
+define('SALT', '$1$thexkyissobeautifull$');
 
 // on production need to make it on 0
-ini_set('display_errors', 'O');
-
-// Désactivation ofmagic_quotes_gpc
-ini_set('magic_quotes_gpc', 0);
+ini_set('display_errors', '1');

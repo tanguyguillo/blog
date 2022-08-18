@@ -7,24 +7,26 @@
     <div class="container">
         <div class="row">
 
-            {% if arrayMessage.message != false  %}
-                <div class="alert alert-success alert-dismissible">
+            {% if arrayMessage.message != false %}
+            <div class="alert alert-success alert-dismissible">
                 <strong>Bravo vous êtes connecté {{ arrayMessage.message}}</strong>
-                </div>
+            </div>
             {% endif %}
 
             <div class="col-lg-12">
                 {% if detail.postStatus == 'Open' %}
                 <h1>{{detail.postTitle}}</h1>
-                <h4><i class="bi bi-person-fill">&nbsp;&nbsp;</i>auteur : {{user.firstNameUser}} {{user.surNameUser}}</h4>
+                <h4><i class="bi bi-person-fill">&nbsp;&nbsp;</i>auteur : {{user.firstNameUser}} {{user.surNameUser}}
+                </h4>
                 <h6>Mise à jour le {{detail.postModified}}</h6>
                 <hr class="star-light">
                 {# todo : a condition post.postStatus = open # ... here not necessary the blogPost have been filtred
                 before #}
-                <p>&nbsp;{{detail.postChapo}} </p>
+
+                <p>&nbsp;{{detail.postChapo|replace({'\'': ""}) }} </p>
                 <br>
                 <p>{{detail.postContent}}</p>
-                <a href = "{{ baseUrl }}index.php?owp=bloglist#{{detail.idPost}}" class="btn btn-primary btn-small"
+                <a href="{{ baseUrl }}index.php?owp=bloglist#{{detail.idPost}}" class="btn btn-primary btn-small"
                     role="button" title="Retour">Retour</a>
                 <hr>
                 {% else %}
@@ -47,8 +49,8 @@
         <div class="mb-3">
             </p><span class="bi bi-chat-left">&nbsp;&nbsp;</span>{{comment.commentContent}}<span></p>
         </div>
-        {% endif %}
         <hr>
+        {% endif %}
         {% endfor %}
     </div>
 </div>
@@ -56,41 +58,52 @@
 
 {% block giveComment %}
 <div class="d-flex flex-column min-vh-100">
-            <div class="container">
-                    <h4 class="text-center"> 
-                    {% if session.LOGGED_USER != '' %}
-                        {{ session.LOGGED_USER }} -
-                    {% endif %}  Ajouter un commentaire</h4>
-                            {# form comment #}
-                            <form action="{{ baseUrl }}index.php?owp=faire-un-commentaire" method="post">    
-                                
-                            {# Comment input #}
-                            <div class="form-group">
-                                <label for="userComment">Votre commentaire sur cet article</label>
-                                <textarea id="commentPost" name="commentPost" rows="5" class="form-control" placeholder = "rédigez votre commentaire" required data-validation-required-message="Veuillez entrer un commentaire."></textarea>
-                                <br>
-                            </div>
-                            {# id current article #}
-                            <div class="form-group">
-                                <input id="postId" name="postId" type="hidden" value={{ session.LOGGED_PAGE_ID }}>
-                            </div>
-                            {# id current user #}
-                            <div class="form-group">
-                                <input id="idUser" name="idUser" type="hidden" value={{ session.LOGGED_USER_ID }}>
-                            </div> 
-                            {# Button #}
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-success btn-lg btn-block">Envoyer votre commentaire</button>
-                                <p><small><i>Votre commentaire sera soumis à une validation de nos modérateurs avant affichage</i></small></p>
-                            </div>
-                        </form>
-                        <br>
-                        {# other button #}
-                        <a href="{{ app.request.getBaseURL() }} index.php?owp=connexion&id={{detail.idPost}}"><button type="submit" class="btn btn-success btn-lg btn-block">Se connecter</button></a>
-                        <br>
-                        <a href="{{ app.request.getBaseURL() }} index.php?owp=inscription"><button type="submit" class="btn btn-success btn-lg btn-block">Créer son compte</button></a>
+    <div class="container">
+        <h4 class="text-center">
+            Ajouter un commentaire</h4>
+        {# form comment #}
+        <form action="{{ baseUrl }}index.php?owp=faire-un-commentaire" method="post">
+            {# Comment input #}
+            <div class="form-group">
+                <label for="userComment">Votre commentaire sur cet article</label>
+                <textarea rows="5" id="commentPost" name="commentPost" class="form-control"
+                    placeholder="rédigez votre commentaire" required
+                    data-validation-required-message="Veuillez entrer un commentaire."></textarea>
+                <br>
             </div>
+            {# id current article #}
+            <div class="form-group">
+                <input id="postId" name="postId" type="hidden" value={{ session.LOGGED_PAGE_ID }}>
+            </div>
+            {# id current user #}
+            <div class="form-group">
+                <input id="idUser" name="idUser" type="hidden" value={{ session.LOGGED_USER_ID }}>
+            </div>
+            {# Button #}
+            <div class="form-group">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success btn-lg btn-block">Envoyer</button>
+                </div>
+                <p><small><i>Votre commentaire sera soumis à une validation de nos modérateurs avant
+                            affichage</i></small></p>
+            </div>
+        </form>
+        <br>
+
+        {# connexion #}
+        <a href="{{ app.request.getBaseURL() }} index.php?owp=connexion&id={{detail.idPost}}"><button type="submit"
+                class="btn btn-success btn-lg btn-block">Se connecter</button></a>
+        <br>
+        <a href="{{ app.request.getBaseURL() }} index.php?owp=inscription"><button type="submit"
+                class="btn btn-success btn-lg btn-block">Créer son compte</button></a>
+
+        {# sign down #}
+        <div class="form-group" id="deconnexion"></div>
+        <a href="index.php?owp=se-deconnectez" class="btn btn-danger  btn-lg btn-block" role="button"
+            aria-pressed="true">Se déconnecter</a>
     </div>
+</div>
+</div>
 
 </div>
 <br>

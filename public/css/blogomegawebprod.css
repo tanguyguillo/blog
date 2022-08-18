@@ -3,16 +3,22 @@ header {
   min-height: 800px;
 }
 
-/* Class */
-
-/* Button connexion  */
-/* .btsign {
-  width: 300px !;
-} */
-
 .owp-logo {
   margin-top: -10px;
   width: 40px;
   height: 40px;
   /* border-radius: 50%; */
+}
+
+/* footer and footer-below allways on the bottom of the page */
+footer .footer-below {
+  z-index: 2;
+  position: fixed;
+  padding: 25px 0;
+  bottom: 0;
+  width: 100%;
+}
+
+div.footer-above {
+  height: 500px;
 }

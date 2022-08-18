@@ -1,0 +1,109 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}<title>Commentaires Admin</title>{% endblock %}
+
+    {% block adminMain %}
+<div class="d-flex flex-column min-vh-100">
+<section id="BlogPost manager">
+<div class="container">
+<div class="row">
+<br>
+<h3 class="text-center">Commentaires Admin</h3>
+<hr class="star-primary">
+    <div class="container">
+        {% if arrayMessage.message == "false" %}
+            {# nothing #}
+        {% else %}
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <strong>{{ arrayMessage.message }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endif %}
+        <br>
+
+<h4 class="text-center">Gestion des Commentaires</h4> 
+<br>
+<p></p><span class="glyphicon">&#xe086;</span> Pour Validez un commentaire changez son status en "Open"; pour supprimer un commentaire du blog, cliquez sur la case a cocher et cliquez sur le bouton modifier</p>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped table-highlight">
+    <thead>
+        <tr>
+        <th scope="col"><span class="glyphicon glyphicon-trash"></span></th>
+        <th scope="col">Titre article</th>
+        <th scope="col">Chapo article</th>
+        <th scope="col" class = "comment">Commentaires</th>
+        <th scope="col">Status Commentaire </th>
+        <th scope="col">Auteur du Commentaire</th>
+        <th scope="col">Enregistrer</th>
+        </tr>
+    </thead>
+
+{% for array in arrayComments %}
+
+    <form action="{{ baseUrl }}index.php?owp=modify-comment&id={{array.commentId}}" method="post">    
+    <tbody class="">
+
+    <td>
+        <div class="w-auto control-group">
+        <input type="checkbox" id="delete-{{array.commentId}}" name="checkbox" value="{{array.commentId}}">
+        </div>
+    </td>
+
+        <input type="hidden" name ="id" id="postId-{{array.commentId}}" class="form-control postId" type="text" value="{{array.commentId}}" aria-label="readonly" readonly> 
+
+    <td>
+        <div class="w-auto control-group">
+            <textarea name="postTitle" class="form-control" id="postTitle-{{array.postId}}" aria-label="readonly" readonly> {{array.postTitle}} </textarea>
+        </div>
+    </td>
+
+    <td> 
+        <div class="w-auto control-group">
+            <textarea  name="postChapo" class="form-control" id="postChapo-{{array.postId}}" ria-label="readonly" readonly>{{array.postChapo}} </textarea>
+        </div>
+    </td>
+
+        <td> 
+        <div class="w-auto control-group">
+            <textarea  name="commentContent" class="form-control" id="commentContent{{array.commentId}}" aria-label="readonly" readonly>{{array.commentContent}} </textarea>
+        </div>
+    </td>
+
+    <td> 
+        <select name ="commentStatus" id="commentStatus-{{array.commentId}}" class="form-select">
+        <option selected>{{array.commentStatus}}</option>  
+        <option>Waiting for validation</option>
+        <option>Open</option>
+        <option>Closed</option>
+        </select>
+    </td>
+
+    <td>
+        <div class="w-auto control-group">
+            <textarea name="userEmail" class="form-control" id="userEmail-{{array.userId}}" ria-label="readonly" readonly>{{array.emailUser}} </textarea>
+        </div>
+    </td> 
+
+    <td>
+    <button type="submit" class="btn btn-success">Modifier</button> 
+    <br> <br>
+    </td>
+</form>
+
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>  
+</div>   
+
+<br>
+
+</section>
+</div>
+<br>
+
+{% endblock %}

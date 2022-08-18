@@ -1,19 +1,16 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Application\Controllers;
 
+use Application\Core\Auth\Auth;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
-use Application\Core\Database\Database\DatabaseConnection;
 
 /**
  * make working twig by heritage
  */
-abstract class Controller
+abstract class Controller extends Auth
 {
-    private $Loader;
     protected $twig;
 
     /**
@@ -33,46 +30,107 @@ abstract class Controller
                 'debug' => false
             ]
         );
-
         $this->twig->addGlobal('session', $_SESSION);
     }
 
     /**
-     * Undocumented function not used yet
+     * function to make message readeableby twig
      *
-     * @param array $array
+     * @param string $message
+     * @return Array
+     */
+    public function setMessageForTwig(string $message)
+    {
+        $messageReadle = $message;
+        $arrayMessage = array(
+            "message" => $messageReadle
+        );
+        return $arrayMessage;
+    }
+
+    /**
+     * function to void session
+     *
      * @return void
      */
-    public function deletePostsIfNotValid(array $array)
+    public function InitSession()
     {
+        $_SESSION = array();
+        unset($_SESSION['LOGGED_USER']);
+        unset($_SESSION['LOGGED_USER_NAME']);
+        unset($_SESSION['LOGGED_USER_ID']);
+        unset($_SESSION);
+        session_destroy();
     }
 
     /**
-     * function return true if number false otherwise
+     *  function to verify that the user is logged
      *
-     * @param [type] $identifier
-     * @return boll
+     * @return void
      */
-    public function isInteger($identifier)
+    public function verifyComment($message)
     {
-        if ($this->isInteger($identifier) == false) {
-            $message = "l'identifiant de la page doit être un chiffre";
-            $this->twig->display('error/error.html.twig', compact('message'));
+        if (($_SESSION['LOGGED_USER_NAME'] == "")) {
+            // $message = "Vous devez être connecté pour pouvoir rédiger un commentaire";
+            $this->twig->display('info/info.html.twig', compact('message'));
             exit;
         }
-        return true;
     }
-
-    /**
+    /************** Utilities From here ********************
+     *
      * 
      */
-    public function disconnect()
+
+    /**
+     * to verify user is an admin   
+     * 
+     * @return bool
+     */
+    public function isAdmin()
     {
-        if ($_SESSION['LOGGED_USER'] = true) {
-            session_destroy();
-            $_SESSION['LOGGED_USER'] = false; // for twig view
-            // var_dump('yes');
-            exit;
+        if (isset($_SESSION['ROLE_USER'])) {
+            if ($_SESSION['ROLE_USER'] == "Admin") {
+                return true;
+            } else {
+                return false;
+            }
         }
+    }
+
+    /**
+     * function return true if number otherwise false
+     *
+     * @param [string] $identifier
+     * @return bool
+     */
+    public function isInteger(string $identifier)
+    {
+        $identifier = filter_var($identifier, FILTER_VALIDATE_INT);
+        return ($identifier !== FALSE);
+    }
+
+    /**
+     *function // to look out data comming from outside even in admin aera
+     *
+     * @param [array] $arrayPost
+     * @return void
+     */
+    public function lookOutDataFromOustide(array $arrayPost)
+    {
+        foreach ($arrayPost as $key => $value) {
+            $postData[$key]  = strip_tags(htmlspecialchars($value));
+        }
+        return  $postData;
+    }
+
+    /**
+     * function to redirect user who are not admin
+     *
+     * @return void
+     */
+    public function redirectionNotAdmin()
+    {
+        $message = 'Désolé cette partie du site est réservé aux administrateurs';
+        $this->twig->display('info/info.html.twig', compact('message'));
     }
 }

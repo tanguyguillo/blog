@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Controllers\connexion;
+namespace Application\Controllers\ConnexionController;
 
 use Application\Controllers\Controller;
 
@@ -18,6 +18,7 @@ class ConnexionController extends Controller
   public function connexion($message = '')
   {
     $baseUrl = BASE_URL;
+
     // to be readeable by twig
     $arrayMessage = array(
       "message" => $message
@@ -32,21 +33,18 @@ class ConnexionController extends Controller
    */
   public function signOut()
   {
-    if ($_SESSION['LOGGED_USER'] = true) {
-      $message = 'Voila, ' . "c'est fait, " . 'vous êtes déconnecté';
-      session_destroy();
-      $this->twig->display('info/info.html.twig', compact('message'));
-    }
+    $message = 'Voila, ' . "c'est fait, " . 'vous êtes déconnecté';
+    $this->InitSession(); // heritage Extends
+    $this->twig->display('info/info.html.twig', compact('message'));
   }
 
   /**
-   * signOut before insctiption
+   * signOut before new inscription // heritage Extends
    *
    * @return void
    */
   public function signOutForInscription()
   {
-    $_SESSION['LOGGED_USER']  = ''; // for twig view
-    session_destroy();
+    $this->InitSession();
   }
 }
