@@ -3,7 +3,7 @@
 namespace Application\Core\Auth;
 
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
-use Application\Repositories\User\UsersRepository;
+use Application\Repositories\UserRepository\UserRepository as UserRepository;
 
 class Auth extends DatabaseConnexion
 {
@@ -20,7 +20,6 @@ class Auth extends DatabaseConnexion
     public function __construct()
     {
     }
-
 
     /**
      *  function setuserRole
@@ -57,7 +56,7 @@ class Auth extends DatabaseConnexion
         if (isset($postData['user_login']) &&  isset($postData['user_pass'])) {
 
             $connection = new DatabaseConnexion();
-            $usersRepository = new UsersRepository();
+            $usersRepository = new UserRepository();
             $usersRepository->connection = $connection;
             $users = $usersRepository->getUsers(); // return an array
 

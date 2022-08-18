@@ -21,7 +21,8 @@ use Application\Controllers\ConnexionController\ConnexionController;
 use Application\Controllers\AdminCommentController\AdminCommentController;
 use Application\Controllers\AdminUserController\AdminUserController;
 use Application\Controllers\TestController as ControllersTestController;
-use Application\Controllers\TestController\TestController;
+
+
 
 // Config
 require_once(ROOT . '/app/config/config.php');

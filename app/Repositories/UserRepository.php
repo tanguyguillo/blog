@@ -58,7 +58,7 @@ class UserRepository extends Controller
      * @param string $identifier
      * @return 
      */
-    public function getUsesO(string $identifier): UserModel
+    public function getUsersO(string $identifier): UserModel
     {
         if (ctype_digit($identifier)) {
             $statement = $this->connection->getConnexion()->query(
@@ -79,12 +79,7 @@ class UserRepository extends Controller
         // when user have been drop
         //return array('id->Null');
     }
-}
-/**
- * class used for user connexion
- */
-class UsersRepository
-{
+
     /**
      * function get all users with main informations
      *
@@ -98,7 +93,7 @@ class UsersRepository
         );
         $users = [];
         while (($row = $statement->fetch())) {
-            $user = new UsersRepository();
+            $user = new UserRepository();
             $user->id = $row['id'];
             $user->emailUser = $row['emailUser'];
             $user->passWordUser = $row['passWordUser'];
@@ -217,7 +212,7 @@ class UsersRepository
                 $datas = [];
                 $statement->execute();
                 while (($row = $statement->fetch())) {
-                    $data = new UsersRepository();
+                    $data = new UserRepository();
                     $data->postId = $row['id'];
                     $data->postTitle = $row['postTitle'];
                     $data->postChapo = $row['postChapo'];
@@ -259,7 +254,7 @@ class UsersRepository
                 );
                 $statement->execute();
                 while (($row = $statement->fetch())) {
-                    $email = new UsersRepository();
+                    $email = new UserRepository();
                     $email->idlUser = $row['id'];
                     $email->emailUser = $row['emailUser'];
                     $Emails[] = $email;

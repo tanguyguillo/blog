@@ -7,7 +7,7 @@ use Application\Controllers\ConnexionController\ConnexionController;
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
 use Application\Repositories\CommentRepository\CommentRepository;
 use Application\Repositories\DetailRepository\DetailRepository as DetailRepository;
-use Application\Repositories\UserRepository\UsersRepository;
+use Application\Repositories\UserRepository\UserRepository;
 
 class DetailController extends Controller
 {
@@ -54,18 +54,17 @@ class DetailController extends Controller
 
         // 2 - user  
         $connection = new DatabaseConnexion();
-        $user = new UsersRepository();
+        $user = new UserRepository();
         $user->connection = $connection;
-        $user  = $user->getUsers($AuthorId); // return an array
+        $user  = $user->getUser($AuthorId); // return an array
 
 
         // hydratation and objet / entities
         $o = 0;
         if ($o) {
-            $user0 = new UsersRepository();
+            $user0 = new UserRepository();
             $user0->connection = $connection;;
             $userO  = $user0->getUsersO($AuthorId); // return an array
-
             $Email =  $userO->getEmailUser();
             var_dump($Email);
             exit;
@@ -77,8 +76,6 @@ class DetailController extends Controller
 
         // $article = $this->post->findOne($articleId);
         // $commentaires = $this->comment->findAll($articleId);
-
-
 
         // $user2 = UserModel->getfirname();
 

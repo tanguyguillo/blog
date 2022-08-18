@@ -4,7 +4,8 @@ namespace Application\Controllers\AdminUserController;
 
 use Application\Controllers\Controller;
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
-use Application\Repositories\User\UsersRepository;
+use Application\Repositories\UserRepository\UserRepository;
+
 
 class AdminUserController extends Controller
 {
@@ -28,9 +29,9 @@ class AdminUserController extends Controller
     {
         if ($this->isAdmin()) {
             $connection = new DatabaseConnexion();
-            $usersRepository = new UsersRepository();
+            $usersRepository = new UserRepository();
             $usersRepository->connection = $connection;
-            $users = $usersRepository->getUsers();
+            $users = $usersRepository->getUser;
             $arrayUser = json_decode(json_encode($users), true);
 
             $arrayMessage =  $this->setMessageForTwig($message);
@@ -50,9 +51,9 @@ class AdminUserController extends Controller
     {
         if ($this->isAdmin()) {
             $connection = new DatabaseConnexion();
-            $usersRepository = new UsersRepository();
+            $usersRepository = UserRepository();
             $usersRepository->connection = $connection;
-            if ($usersRepository->updateUsers($arrayUsers)) {
+            if ($usersRepository->updateUsers($arrayUsers)) {   //  if ($usersRepository->updateUsers($arrayUsers)) {
                 $message = "Utilisateur enregistré ou modifié";
                 $this->blocUserAdmin($message);
             } else {

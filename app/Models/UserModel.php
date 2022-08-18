@@ -3,7 +3,7 @@
 namespace Application\Models;
 
 use Application\Controllers\Controller;
-use Application\Core\Auth\Auth as Auth;
+use Application\Core\Auth\Auth;
 
 class UserModel extends Auth
 {

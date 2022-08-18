@@ -6,7 +6,7 @@ use Application\Controllers\Controller;
 
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
 
-use Application\Repositories\Comment\CommentsRepository;
+use Application\Repositories\CommentRepository\CommentRepository as CommentRepository;
 
 class AdminCommentController extends Controller
 {
@@ -39,7 +39,7 @@ class AdminCommentController extends Controller
         if ($this->isAdmin()) {
             //  Comments + blog_post + user ;  getAllComments
             $connection = new DatabaseConnexion();
-            $commentsRepository = new CommentsRepository();
+            $commentsRepository = new CommentRepository();
             $commentsRepository->connection = $connection;
             $comments = $commentsRepository->getAllComments();
             $arrayComments = json_decode(json_encode($comments), true);
