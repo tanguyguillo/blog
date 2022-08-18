@@ -1,9 +1,9 @@
 <?php
 
-namespace Application\Entity\Post;
+namespace Application\Models\PostModel;
 
+class PostModel
 
-class Post
 {
     private $id;
     private $postTitle;

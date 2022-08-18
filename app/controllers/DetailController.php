@@ -4,19 +4,14 @@ namespace Application\Controllers\DetailController;
 
 use Application\Repositories\Detail\Detail;
 
-
-
 use Application\Repositories\Comment\Comment;
 
 use Application\Controllers\Controller;
 use Application\Controllers\ConnexionController\ConnexionController;
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
-
-
-
-
+use Application\Models\PostModel;
 use Application\Repositories\User\User as UserUser;
-
+use Application\Repositories\UsersRepository\UsersRepository;
 
 class DetailController extends Controller
 {
@@ -51,6 +46,7 @@ class DetailController extends Controller
 
         // test (getMaxAndOpen) to se the user tape by hand on the url 10000 for exemple for the article id
         if ($postDetail->getMaxAndOpen($identifier)) {
+            // old method
             $detail =  $postDetail->getPost($identifier); // return an array
             $detailForAurhor = json_decode(json_encode($detail), true);
             $AuthorId = $detailForAurhor["user_id"];
@@ -66,6 +62,20 @@ class DetailController extends Controller
         $user->connection = $connection;
         $user  = $user->getUser($AuthorId); // return an array
 
+
+        // hydratation and objet / entities
+        $o = 0;
+        if ($o) {
+            $user0 = new UserUser();
+            $user0->connection = $connection;;
+            $userO  = $user0->getUserO($AuthorId); // return an array
+
+            $Email =  $userO->getEmailUser();
+            var_dump($Email);
+            exit;
+        }
+
+
         // $user2 = UserModel->getFirstNameUser;
         // var_dump($user2);
 
@@ -75,6 +85,7 @@ class DetailController extends Controller
 
 
         // $user2 = UserModel->getfirname();
+
 
         // 3 - Comment
         $connection = new DatabaseConnexion();

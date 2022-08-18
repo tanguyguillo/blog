@@ -3,8 +3,9 @@
 namespace Application\Models;
 
 use Application\Controllers\Controller;
+use Application\Core\Auth\Auth as Auth;
 
-class UserModel extends Controller
+class UserModel extends Auth
 {
 
     private $id;
