@@ -2,16 +2,12 @@
 
 namespace Application\Controllers\DetailController;
 
-use Application\Repositories\Detail\Detail;
-
-use Application\Repositories\Comment\Comment;
-
 use Application\Controllers\Controller;
 use Application\Controllers\ConnexionController\ConnexionController;
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
-use Application\Models\PostModel;
-use Application\Repositories\User\User as UserUser;
-use Application\Repositories\UsersRepository\UsersRepository;
+use Application\Repositories\CommentRepository\CommentRepository;
+use Application\Repositories\DetailRepository\DetailRepository as DetailRepository;
+use Application\Repositories\UserRepository\UsersRepository;
 
 class DetailController extends Controller
 {
@@ -41,7 +37,7 @@ class DetailController extends Controller
 
         // 1 - Detail
         $identifier = htmlspecialchars($identifier);
-        $postDetail = new Detail();
+        $postDetail = new DetailRepository();
         $postDetail->connection = $connection;
 
         // test (getMaxAndOpen) to se the user tape by hand on the url 10000 for exemple for the article id
@@ -58,17 +54,17 @@ class DetailController extends Controller
 
         // 2 - user  
         $connection = new DatabaseConnexion();
-        $user = new UserUser();
+        $user = new UsersRepository();
         $user->connection = $connection;
-        $user  = $user->getUser($AuthorId); // return an array
+        $user  = $user->getUsers($AuthorId); // return an array
 
 
         // hydratation and objet / entities
         $o = 0;
         if ($o) {
-            $user0 = new UserUser();
+            $user0 = new UsersRepository();
             $user0->connection = $connection;;
-            $userO  = $user0->getUserO($AuthorId); // return an array
+            $userO  = $user0->getUsersO($AuthorId); // return an array
 
             $Email =  $userO->getEmailUser();
             var_dump($Email);
@@ -89,7 +85,7 @@ class DetailController extends Controller
 
         // 3 - Comment
         $connection = new DatabaseConnexion();
-        $postComments = new Comment();
+        $postComments = new CommentRepository();
         $postComments->connection = $connection;
         $postComments  = $postComments->getComments($identifier); // return an array
         $postComments = json_decode(json_encode($postComments), true);

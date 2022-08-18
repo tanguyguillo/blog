@@ -1,21 +1,18 @@
 <?php
 
-namespace Application\Repositories\User;
+namespace Application\Repositories\UserRepository;
 
 use Application\Models\UserModel;
 use Application\Controllers\Controller;
 
-class User extends Controller
+class UserRepository extends Controller
 {
-
-
     /**
      * function
      */
     public function __construct()
     {
     }
-
 
     /**
      * function to get a user with all of this properties
@@ -32,7 +29,7 @@ class User extends Controller
         $row = $statement->fetch();
         // when user have been drop
         if ($row) {
-            $user = new User();
+            $user = new UserRepository();
             $user->idUser = $row['id'];
             $user->emailUser = $row['emailUser'];
             $user->passWordUser = $row['passWordUser'];
@@ -61,7 +58,7 @@ class User extends Controller
      * @param string $identifier
      * @return 
      */
-    public function getUserO(string $identifier): UserModel
+    public function getUsesO(string $identifier): UserModel
     {
         if (ctype_digit($identifier)) {
             $statement = $this->connection->getConnexion()->query(

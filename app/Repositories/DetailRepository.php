@@ -1,12 +1,12 @@
 <?php
 
-namespace Application\Repositories\Detail;
+namespace Application\Repositories\DetailRepository;
 
 
 /**
  * Undocumented class
  */
-class Detail
+class DetailRepository
 {
     /**
      * Undocumented function
@@ -22,7 +22,7 @@ class Detail
      *
      * return an Array
      */
-    public function getPost(string $identifier): Detail
+    public function getPost(string $identifier)
     {
         $identifier = htmlspecialchars($identifier);
         $statement = $this->connection->getConnexion()->query(
@@ -30,7 +30,7 @@ class Detail
         );
         $statement->execute();
         $row = $statement->fetch();
-        $post = new Detail();
+        $post = new DetailRepository();
         $post->idPost = $row['id'];
         $post->postTitle = $row['postTitle'];
         $post->postChapo = $row['postChapo'];
@@ -54,7 +54,7 @@ class Detail
      *
      * return an Array
      */
-    public function getPost2(string $identifier): Detail
+    public function getPost2(string $identifier)
     {
         $identifier = htmlspecialchars($identifier);
         $statement = $this->connection->getConnexion()->query(
@@ -62,7 +62,7 @@ class Detail
         );
         $statement->execute();
         $row = $statement->fetch();
-        $post = new Detail();
+        $post = new DetailRepository();
         $post->idPost = $row['id'];
         $post->postTitle = $row['postTitle'];
         $post->postChapo = $row['postChapo'];

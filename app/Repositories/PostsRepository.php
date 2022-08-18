@@ -1,32 +1,16 @@
 <?php
 
-namespace Application\Repositories\Post;
+namespace Application\Repositories\PostsRepository;
 
 use Application\Controllers\Controller;
-use Application\Models\PosModel;
-//use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
 
-
-/**
- * class just to keep in mind the attribut's names of the bdd
- */
-class PostController extends Controller
-{
-    // private $id;
-    // private  $posTitle;
-    // public $postChapo;
-    // public $postContent;
-    // public $postCreated;
-    // public $postStatus;
-    // public $postModified;
-}
 class PostsRepository extends Controller
 {
     /**
      *
      * return an Array
      */
-    public function getPosts(): array
+    public function getPost(): array
     {
         $statement = $this->connection->getConnexion()->query(
             "SELECT id, postTitle, postChapo, postStatus, DATE_FORMAT(postModified, '%d/%m/%Y à %Hh%imin') AS french_modified_date FROM blog_post ORDER BY postModified DESC LIMIT 0, 100"

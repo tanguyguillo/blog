@@ -1,11 +1,11 @@
 <?php
 
-namespace Application\Repositories\Comment;
+namespace Application\Repositories\CommentRepository;
 
 /**
- * class of blog's comments
+ * class
  */
-class Comment
+class CommentRepository
 {
 
     /**
@@ -21,7 +21,7 @@ class Comment
         );
         $postComment = [];
         while (($row = $statement->fetch())) {
-            $postComment = new comment();
+            $postComment = new CommentRepository();
             $postComment->commentStatus = $row['commentStatus'];
             $postComment->commentContent = $row['commentContent'];
             $postComment->blog_post_id = $row['blog_post_id'];
@@ -40,12 +40,12 @@ class Comment
         }
         return $postComments;
     }
-}
-/**
- * class
- */
-class CommentsRepository
-{
+
+
+
+
+
+
     /**
      *  function to get data from comment, blog_post, user for admin
      *
@@ -66,7 +66,7 @@ class CommentsRepository
             $datas = [];
             $statement->execute();
             while (($row = $statement->fetch())) {
-                $data = new CommentsRepository();
+                $data = new CommentRepository();
                 $data->commentId = $row['id'];
                 $data->commentCreated = $row['commentCreated'];
                 $data->commentStatus = $row['commentStatus'];
