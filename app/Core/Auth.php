@@ -44,7 +44,7 @@ class Auth extends DatabaseConnexion
     }
 
     /**
-     * function myAuth
+     * function myAuth ... in some case issue in admin "utilisateur" board not show....
      * 
      * return boll
      *
@@ -56,7 +56,7 @@ class Auth extends DatabaseConnexion
         if (isset($postData['user_login']) &&  isset($postData['user_pass'])) {
 
             $connection = new DatabaseConnexion();
-            $usersRepository = new UserRepository();
+            $usersRepository = new UserRepository;
             $usersRepository->connection = $connection;
             $users = $usersRepository->getUsers(); // return an array
 

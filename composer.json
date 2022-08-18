@@ -5,9 +5,9 @@
             "Application\\": "app/",
             "Application\\Controllers\\": "app/Controllers/",
             "Application\\Core\\Database\\": "app/Core/Database/",
+            "Application\\Core\\": "app/Core/",
             "Application\\Models\\": "app/Models/",
             "Application\\Repositories\\": "app/Repositories/"
-
         }
     },
     "authors": [

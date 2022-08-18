@@ -31,7 +31,7 @@ class AdminUserController extends Controller
             $connection = new DatabaseConnexion();
             $usersRepository = new UserRepository();
             $usersRepository->connection = $connection;
-            $users = $usersRepository->getUser;
+            $users = $usersRepository->getUsers(); // User with s
             $arrayUser = json_decode(json_encode($users), true);
 
             $arrayMessage =  $this->setMessageForTwig($message);
@@ -51,7 +51,7 @@ class AdminUserController extends Controller
     {
         if ($this->isAdmin()) {
             $connection = new DatabaseConnexion();
-            $usersRepository = UserRepository();
+            $usersRepository = new UserRepository();
             $usersRepository->connection = $connection;
             if ($usersRepository->updateUsers($arrayUsers)) {   //  if ($usersRepository->updateUsers($arrayUsers)) {
                 $message = "Utilisateur enregistré ou modifié";

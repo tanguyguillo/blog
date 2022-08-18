@@ -2,13 +2,15 @@
 
 namespace Application\Controllers\AdminController;
 
-use Application\Controllers\Controller;
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
+
+use Application\Controllers\Controller;
 
 use Application\Repositories\UserRepository\UserRepository;
 
-
-
+/**
+ * class
+ */
 class AdminController extends Controller
 {
     /**

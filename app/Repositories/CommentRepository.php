@@ -7,7 +7,6 @@ namespace Application\Repositories\CommentRepository;
  */
 class CommentRepository
 {
-
     /**
      * function to get all comments with all of this properties of a user
      *

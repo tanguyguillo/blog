@@ -2,17 +2,20 @@
 
 namespace Application\Repositories\UserRepository;
 
-use Application\Models\UserModel;
 use Application\Controllers\Controller;
+use Application\Models\User;
 
+/**
+ *  class 
+ */
 class UserRepository extends Controller
 {
-    /**
-     * function
-     */
-    public function __construct()
-    {
-    }
+    // /**
+    //  * function
+    //  */
+    // public function __construct()
+    // {
+    // }
 
     /**
      * function to get a user with all of this properties
@@ -37,13 +40,6 @@ class UserRepository extends Controller
             $user->surNameUser = $row['surNameUser'];
             $user->roleUser = $row['roleUser'];
 
-            // hydratation userModel
-            //$userModel =  new UserModel($row);
-
-            $userModel =  new UserModel($row);
-
-            // to convert the objet in array (warning if property private ?)
-            // perhaps an function will be better....
             $user = json_decode(json_encode($user), true);
             return $user;
         } else {
@@ -58,7 +54,7 @@ class UserRepository extends Controller
      * @param string $identifier
      * @return 
      */
-    public function getUsersO(string $identifier): UserModel
+    public function getUsersM(string $identifier)
     {
         if (ctype_digit($identifier)) {
             $statement = $this->connection->getConnexion()->query(
@@ -69,7 +65,7 @@ class UserRepository extends Controller
             // when user have been drop
             if ($row) {
                 // hydratation userModel
-                $userModel =  new UserModel($row);
+                $userModel =  new $this->User($row);
                 return $userModel; // don't want to return: need an array and not an objet
             } else {
                 // // when user have been drop
@@ -81,7 +77,7 @@ class UserRepository extends Controller
     }
 
     /**
-     * function get all users with main informations
+     * function getUsers with a S : get all users with main informations
      *
      *
      * @return array
@@ -103,7 +99,7 @@ class UserRepository extends Controller
             $users[] = $user;
 
             // hydratation userModel
-            $userModel = new UserModel($row);
+            //$userModel = new UserModel($row);
         }
         // turn in Array
         $users = json_decode(json_encode($users), true);
@@ -123,11 +119,11 @@ class UserRepository extends Controller
         $userModel = [];
         while (($row = $statement->fetch())) {
             // Hydratation
-            $userModel[] =  new UserModel($row);
+            $user[] =  new $this->User($row);
         }
         // turn in Array
         //$users = json_decode(json_encode($users), true);
-        return $userModel;
+        return $user;
     }
 
 

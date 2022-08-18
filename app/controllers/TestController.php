@@ -2,11 +2,17 @@
 
 namespace Application\Controllers;
 
-use Application\Models\UserModel;
-use Application\Repositories\User\UsersRepository;
-use Application\Repositories\Repository\usersDepot;
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
 
+use Application\Models\User;
+
+use Application\Repositories\User\UsersRepository;
+use Application\Repositories\CommentRepository;
+use Application\Repositories\UserRepository\UserRepository;
+
+/**
+ * class
+ */
 class TestController extends Controller
 {
         /**
@@ -22,10 +28,9 @@ class TestController extends Controller
 
                 // list table user
                 $connection = new DatabaseConnexion();
-                $UsersRepository = new UsersRepository();
+                $UsersRepository = new UserRepository();
                 $UsersRepository->connection = $connection;
-                $users = $UsersRepository->usersDepot();
-
+                $users = $UsersRepository->usersDepot(); // test
                 var_dump($users);
         }
 }

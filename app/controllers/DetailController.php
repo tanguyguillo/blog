@@ -7,7 +7,8 @@ use Application\Controllers\ConnexionController\ConnexionController;
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
 use Application\Repositories\CommentRepository\CommentRepository;
 use Application\Repositories\DetailRepository\DetailRepository as DetailRepository;
-use Application\Repositories\UserRepository\UserRepository;
+use Application\Repositories\UserRepository\UserRepository as UserRepository;
+use Application\Repositories\UserRepository\UserRepository as UserRepositoryUserRepository;
 
 class DetailController extends Controller
 {
@@ -54,7 +55,7 @@ class DetailController extends Controller
 
         // 2 - user  
         $connection = new DatabaseConnexion();
-        $user = new UserRepository();
+        $user = new UserRepositoryUserRepository();
         $user->connection = $connection;
         $user  = $user->getUser($AuthorId); // return an array
 
@@ -64,7 +65,7 @@ class DetailController extends Controller
         if ($o) {
             $user0 = new UserRepository();
             $user0->connection = $connection;;
-            $userO  = $user0->getUsersO($AuthorId); // return an array
+            $userO  = $user0->getUsersM($AuthorId); // return an array
             $Email =  $userO->getEmailUser();
             var_dump($Email);
             exit;

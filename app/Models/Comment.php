@@ -1,10 +1,15 @@
 <?php
 
-namespace Application\Models;
+namespace Application\Models\Comment;
 
-class CommentModel
+use Application\Core\Auth\Auth;
+
+
+/**
+ * Undocumented class
+ */
+class Comment extends Auth
 {
-
     private $id;
     private $commentCreated;
     private $commentStatus;

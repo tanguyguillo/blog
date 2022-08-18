@@ -1,9 +1,13 @@
 <?php
 
-namespace Application\Models\PostModel;
+namespace Application\Models\Post;
 
-class PostModel
+use Application\Core\Auth\Auth;
 
+/**
+ * class
+ */
+class Post extends Auth
 {
     private $id;
     private $postTitle;
