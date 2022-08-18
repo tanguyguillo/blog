@@ -1,16 +1,9 @@
 <?php
 
-<<<<<<< HEAD:app/Models/PostModel.php
-namespace Application\Models;
-
+namespace Application\Models\PostModel;
 
 class PostModel
-=======
-namespace Application\Entity\Post;
 
-
-class Post
->>>>>>> 9bab7d84409eb08537b80fbf2bb2eac192edd011:app/Entity/BlogPost.php
 {
     private $id;
     private $postTitle;
