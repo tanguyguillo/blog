@@ -2,10 +2,10 @@
 
 namespace Application\Controllers\InscriptionController;
 
-use Application\Repositories\User\UsersRepository;
 use Application\Controllers\Controller;
 use Application\Controllers\ConnexionController\ConnexionController;
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
+use Application\Repositories\UserRepository\UserRepository;
 
 /**
  * Class of user inscription
@@ -31,7 +31,7 @@ class InscriptionController extends Controller
   {
     (new ConnexionController())->signOutForInscription();
     $connection = new DatabaseConnexion();
-    $UserRepository = new UsersRepository();
+    $UserRepository = new UserRepository();
     $UserRepository->connection = $connection;
 
     // verify Email if not allready use in the DB before by created user

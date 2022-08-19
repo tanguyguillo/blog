@@ -8,13 +8,6 @@ namespace Application\Repositories\DetailRepository;
 class DetailRepository
 {
     /**
-     * Undocumented function
-     */
-    function __construct()
-    {
-    }
-
-    /**
      *  put in an array one post // use of htmlspecialchars for id (XSS)
      * 
      * todo : $str = str_replace("\", "", $str);

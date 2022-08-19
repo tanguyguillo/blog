@@ -2,13 +2,12 @@
 
 namespace Application\Models\Comment;
 
-use Application\Core\Auth\Auth;
-
+use Application\Models\Model\Model;
 
 /**
  * Undocumented class
  */
-class Comment extends Auth
+class Comment extends Model
 {
     private $id;
     private $commentCreated;
