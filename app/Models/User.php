@@ -3,54 +3,20 @@
 namespace Application\Models;
 
 use Application\Controllers\Controller;
-use Application\Core\Auth\Auth;
+use Application\Models\Model\Model;
 
-class User extends Auth
+/**
+ * Class User
+ * the hydratation is mafe by the class Model
+ */
+class User extends Model
 {
-
     private $id;
     private $emailUser;
     private $passWordUser;
     private $firstNameUser;
     private $surNameUser;
     private $roleUser;
-
-    /**
-     * @param $id
-     * @param $emailUser
-     * @param $passWordUser
-     * @param $firstNameUser
-     * @param $surNameUser
-     * @param $roleUser
-     */
-    // public function __construct($id, $emailUser, $passWordUser, $firstNameUser, $surNameUser, $roleUser)
-    // {
-    //     $this->id = $id;
-    //     $this->emailUser = $emailUser;
-    //     $this->passWordUser = $passWordUser;
-    //     $this->firstNameUser = $firstNameUser;
-    //     $this->surNameUser = $surNameUser;
-    //     $this->roleUser = $roleUser;
-    // }
-
-    public function __construct($datas = [])
-    {
-        if (!empty($datas)) {
-            // var_dump("passage");
-            $this->myHydrate($datas);
-        }
-    }
-
-    public function myHydrate($datas): void
-    {
-        foreach ($datas as $key => $value) {
-            $method = 'set' . ucfirst($key);
-
-            if (is_callable([$this, $method])) {
-                $this->$method($value);
-            }
-        }
-    }
 
     /**
      * @return mixed

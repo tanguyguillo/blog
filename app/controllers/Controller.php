@@ -71,7 +71,7 @@ abstract class Controller extends Auth
     public function verifyComment($message)
     {
         if (($_SESSION['LOGGED_USER_NAME'] == "")) {
-            // $message = "Vous devez être connecté pour pouvoir rédiger un commentaire";
+            // $message = "You have o be connected to comment a post";
             $this->twig->display('info/info.html.twig', compact('message'));
             exit;
         }

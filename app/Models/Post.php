@@ -2,12 +2,12 @@
 
 namespace Application\Models\Post;
 
-use Application\Core\Auth\Auth;
+use Application\Models\Model\Model;
 
 /**
  * class
  */
-class Post extends Auth
+class Post extends Model
 {
     private $id;
     private $postTitle;
@@ -17,55 +17,6 @@ class Post extends Auth
     private $postStatus;
     private $postModified;
     private $user_id;
-
-    /**
-     * @param $id
-     * @param $postTitle
-     * @param $postChapo
-     * @param $postContent
-     * @param $postCreated
-     * @param $postStatus
-     * @param $postModified
-     * @param $user_id
-     */
-    // public function __construct($id, $postTitle, $postChapo, $postContent, $postCreated, $postStatus, $postModified, $user_id)
-    // {
-    //     //  $this->id = $id;
-    //     //         $this->postTitle = $postTitle;
-    //     //         $this->postChapo = $postChapo;
-    //     //         $this->postContent = $postContent;
-    //     //         $this->postCreated = $postCreated;
-    //     //         $this->postStatus = $postStatus;
-    //     //         $this->postModified = $postModified;
-    //     //         $this->user_id = $user_id;
-    // }
-
-
-
-    public function __construct($datas = [])
-    {
-        if (!empty($datas)) {
-            $this->myHydrate($datas);
-        }
-    }
-
-
-    /**
-     * Undocumented function  to see  $method
-     *
-     * @param [type] $datas
-     * @return void
-     */
-    public function myHydrate($datas): void
-    {
-        foreach ($datas as $key => $value) {
-            $method = 'set' . ucfirst($key);
-
-            if (is_callable([$this, $method])) {
-                $this->$method($value);
-            }
-        }
-    }
 
 
     /**

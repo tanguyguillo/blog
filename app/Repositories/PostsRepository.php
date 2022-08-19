@@ -3,6 +3,7 @@
 namespace Application\Repositories\PostsRepository;
 
 use Application\Controllers\Controller;
+use Application\Models\Post\Post;
 
 class PostsRepository extends Controller
 {
@@ -23,6 +24,25 @@ class PostsRepository extends Controller
             $post->frenchModifiedDate = $row['french_modified_date'];
             $post->postChapo = $row['postChapo'];
             $post->id = $row['id'];
+            $posts[] = $post;
+        }
+        return $posts;
+    }
+
+    /**
+     *
+     * return an objet
+     */
+    public function getPosM()
+    {
+        $statement = $this->connection->getConnexion()->query(
+            "SELECT id, postTitle, postChapo, postStatus, DATE_FORMAT(postModified, '%d/%m/%Y à %Hh%imin') AS french_modified_date FROM blog_post ORDER BY postModified DESC LIMIT 0, 100"
+        );
+        $posts = [];
+        while (($row = $statement->fetch())) {
+            $post = new PostsRepository();
+            // hydratation Post
+            $post =  new Post($row);
             $posts[] = $post;
         }
         return $posts;

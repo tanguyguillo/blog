@@ -4,10 +4,6 @@ namespace Application\Controllers;
 
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
 
-use Application\Models\User;
-
-use Application\Repositories\User\UsersRepository;
-use Application\Repositories\CommentRepository;
 use Application\Repositories\UserRepository\UserRepository;
 
 /**

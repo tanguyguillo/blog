@@ -61,13 +61,14 @@ class DetailController extends Controller
 
 
         // hydratation and objet / entities
-        $o = 0;
+        $o = O;
         if ($o) {
             $user0 = new UserRepository();
             $user0->connection = $connection;;
-            $userO  = $user0->getUsers2($AuthorId); // return an array
-            $Email =  $userO->getEmailUser();
-            var_dump($Email);
+            $userO  = $user0->getUsersM($AuthorId); // return an array
+            var_dump($userO)
+            //$Email =  $userO->getEmailUser();
+            //var_dump($Email);
             exit;
         }
 

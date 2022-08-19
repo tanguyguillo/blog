@@ -10,13 +10,6 @@ use Application\Models\User;
  */
 class UserRepository extends Controller
 {
-    // /**
-    //  * function
-    //  */
-    // public function __construct()
-    // {
-    // }
-
     /**
      * function to get a user with all of this properties
      *
@@ -51,10 +44,10 @@ class UserRepository extends Controller
     /**
      *  function
      *
-     * @param string $identifier
-     * @return 
+     * @param string $identifier  OUI
+     * @return Objet
      */
-    public function getUsersM(string $identifier)
+    public function getUsers2(string $identifier)
     {
         if (ctype_digit($identifier)) {
             $statement = $this->connection->getConnexion()->query(
@@ -65,7 +58,7 @@ class UserRepository extends Controller
             // when user have been drop
             if ($row) {
                 // hydratation userModel
-                $userModel =  new $this->User($row);
+                $userModel =  new User($row);
                 return $userModel; // don't want to return: need an array and not an objet
             } else {
                 // // when user have been drop
@@ -105,27 +98,6 @@ class UserRepository extends Controller
         $users = json_decode(json_encode($users), true);
         return $users;
     }
-
-    /**
-     * function
-     *
-     * @return array
-     */
-    public function usersDepot(): array
-    {
-        $statement = $this->connection->getConnexion()->query(
-            "SELECT id, emailUser, passWordUser, firstNameUser, surNameUser, roleUser FROM user"
-        );
-        $userModel = [];
-        while (($row = $statement->fetch())) {
-            // Hydratation
-            $user[] =  new $this->User($row);
-        }
-        // turn in Array
-        //$users = json_decode(json_encode($users), true);
-        return $user;
-    }
-
 
     /**
      * function to create a new user
@@ -302,5 +274,28 @@ class UserRepository extends Controller
             require(ROOT . '/app/templatesError/error.php');
             return false;
         }
+    }
+
+
+
+    /**
+     * function get all users by User (hydratation model)
+     * just to test
+     *
+     * @return array
+     */
+    public function usersDepot(): array
+    {
+        $statement = $this->connection->getConnexion()->query(
+            "SELECT id, emailUser, passWordUser, firstNameUser, surNameUser, roleUser FROM user"
+        );
+        $userModel = [];
+        while (($row = $statement->fetch())) {
+            // Hydratation
+            $userModel[] =  new User($row);
+        }
+        // turn in Array
+        //$users = json_decode(json_encode($users), true);
+        return $userModel;
     }
 }
