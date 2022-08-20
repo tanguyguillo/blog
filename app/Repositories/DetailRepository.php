@@ -29,8 +29,6 @@ class DetailRepository
         //hydratation
         $post =  new post($row);
         $post->setUserId($author); // set that here because it's don't pass in the object (otherwise = NULL)?
-
-        $_SESSION['LOGGED_PAGE_WRITER_ID'] = $author;  // perhaps not here ?
         return $post;
     }
 
@@ -45,7 +43,6 @@ class DetailRepository
         $statement = $this->connection->getConnexion()->query("SELECT * FROM blog_post where id = $identifier and postStatus = 'Open'");
         $statement->execute();
         $row = $statement->fetch();
-
         if (is_null($row["id"])) {
             return false;
         } else {

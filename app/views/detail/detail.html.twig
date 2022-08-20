@@ -26,6 +26,9 @@
                 <p>&nbsp;{{detail.postChapo|replace({'\'': ""}) }} </p>
                 <br>
                 <p>{{detail.postContent}}</p>
+
+                {# todo :  The element button must not appear as a descendant of the a element. #}
+
                 <a href="{{ baseUrl }}index.php?owp=bloglist#{{detail.idPost}}" class="btn btn-primary btn-small"
                     role="button" title="Retour">Retour</a>
                 <hr>
@@ -34,7 +37,6 @@
                 {% endif %}
             </div>
         </div>
-    </div>
     </div>
 </header>
 {% endblock %}
@@ -47,7 +49,7 @@
         {% for comment in postComments %}
         {% if comment.commentStatus == 'Open' %}
         <div class="mb-3">
-            </p><span class="bi bi-chat-left">&nbsp;&nbsp;</span>{{comment.commentContent}}<span></p>
+            <p><span class="bi bi-chat-left">&nbsp;&nbsp;</span><small>{{comment.commentContent}}</small></p>
         </div>
         <hr>
         {% endif %}
@@ -65,7 +67,7 @@
         <form action="{{ baseUrl }}index.php?owp=faire-un-commentaire" method="post">
             {# Comment input #}
             <div class="form-group">
-                <label for="userComment">Votre commentaire sur cet article</label>
+                <label>">Votre commentaire sur cet article</label>
                 <textarea rows="5" id="commentPost" name="commentPost" class="form-control"
                     placeholder="rédigez votre commentaire" required
                     data-validation-required-message="Veuillez entrer un commentaire."></textarea>
@@ -91,20 +93,18 @@
         <br>
 
         {# connexion #}
-        <a href="{{ app.request.getBaseURL() }} index.php?owp=connexion&id={{detail.idPost}}"><button type="submit"
-                class="btn btn-success btn-lg btn-block">Se connecter</button></a>
+        <a href="{{ app.request.getBaseURL() }} index.php?owp=connexion&id={{detail.idPost}}" class="btn btn-success btn-lg btn-block" role="button">
+            Se connecter</a>
         <br>
-        <a href="{{ app.request.getBaseURL() }} index.php?owp=inscription"><button type="submit"
-                class="btn btn-success btn-lg btn-block">Créer son compte</button></a>
+        {# sign on #}
+        <a href="{{ app.request.getBaseURL() }} index.php?owp=inscription" class="btn btn-success btn-lg btn-block" role="button">
+            Créer son compte</a>
 
         {# sign down #}
         <div class="form-group" id="deconnexion"></div>
-        <a href="index.php?owp=se-deconnectez" class="btn btn-danger  btn-lg btn-block" role="button"
-            aria-pressed="true">Se déconnecter</a>
+        <a href="index.php?owp=se-deconnectez" class="btn btn-danger btn-lg btn-block" role="button">
+            Se déconnecter</a>
     </div>
-</div>
-</div>
-
 </div>
 <br>
 {% endblock %}

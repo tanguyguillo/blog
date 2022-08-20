@@ -24,7 +24,7 @@
             <form action="{{ baseUrl }}index.php?owp=detailconnexion" method="post">     
 
             <div class="form-group">
-                <label for="userEmail">Votre Email</label>
+                <label>Votre Email</label>
                 <input type="email" class="form-control" id="log"  name="user_login"  required placeholder="Entrez votre Email">
                 <br>
             </div>
@@ -35,23 +35,23 @@
             </div>
 
             <div class="form-group" id="connexion">
-                <label for="userPpassword">Votre mot de passe</label>
+                <label>Votre mot de passe</label>
                 <input type="password" class="form-control" id="pwd" name="user_pass" minlength="12" required placeholder="Mot de passe">
                 <div class="form-text">Le mot de passe est constitué d'au minimum 12 caractères, une phrase facile à retenir et pas déja utilisée sur un autre site</div>
             </div>
-            <button id="connexion" type="submit" class="btn btn-success btn-lg btn-block">Se connecter</button>
-
+            <button id="mainConnexion" type="submit" class="btn btn-success btn-lg btn-block">Se connecter</button>
+            <br> <br>
             {# another button #}
-            <div class="form-group" id="deconnexion"></div>
+            <div class="form-group" id="deconnexion">
                 <a href="index.php?owp=se-deconnectez" class="btn btn-danger  btn-lg btn-block" role="button" aria-pressed="true">Se déconnecter</a>
             </div>
         </form>
         <br />
 
-    </div>
-    
+    </div> 
 </div>
 </div>
+</section>
 </div>
 <br>
 {% endblock %}

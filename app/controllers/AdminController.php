@@ -65,7 +65,6 @@ class AdminController extends Controller
     // public function BlocPostadmin(array $postData, string $message)
     public function BlocPostadmin($array, $message)
     {
-
         $message = $message;
         if ($this->isAdmin()) {
             // get the data to modify all the data of a post and this author (admin)
