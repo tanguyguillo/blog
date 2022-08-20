@@ -43,6 +43,8 @@
 
     <!-- Theme CSS blog.omegawebprod -->
     <link  rel="stylesheet" href="css/blogomegawebprod.css">
+     {% block style %}
+     {% endblock %}
 
     <meta name="theme-color" content="#fafafa">
 </head>
@@ -101,10 +103,13 @@
     {% block header %}
     {% endblock %}
 
-    <!--aera spécific to the homePage ? -->
     {% block main %}
     {% endblock %}
-
+    
+     <!--blocks spécifics for admin -->
+    {% block adminMain %}
+    {% endblock %}
+    
     {% block myComments %}
     {% endblock %}
 
@@ -201,6 +206,7 @@
         </a>
     </div>
     {% endblock %}
+    
 
     {% block modal %}
     <!-- modal-->
