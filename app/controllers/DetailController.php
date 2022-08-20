@@ -7,7 +7,6 @@ use Application\Controllers\ConnexionController\ConnexionController;
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
 use Application\Repositories\CommentRepository\CommentRepository;
 use Application\Repositories\DetailRepository\DetailRepository as DetailRepository;
-use Application\Repositories\UserRepository\UserRepository as UserRepository;
 use Application\Repositories\UserRepository\UserRepository as UserRepositoryUserRepository;
 
 class DetailController extends Controller
@@ -20,33 +19,18 @@ class DetailController extends Controller
      */
     public function detail($identifier, $message = '')
     {
-        // // for intance when inscription
-        if ($identifier === "") {
-            //$identifier = $_SESSION['LOGGED_PAGE_ID']; // article id
-            $identifier = "3";
-        }
-
-        //verify is $identifier is a "string(integer)" if not display a message
-        $this->isInteger($identifier);
-        if ($this->isInteger($identifier) == false) {
-            $message = "l'identifiant de la page doit être un chiffre";
-            $this->twig->display('error/error.html.twig', compact('message'));
-            exit;
-        }
-
-        $connection = new DatabaseConnexion();
+        // to check the user's enter for exemple 10 0000 which don't exist (yet)
+        $identifier = $this->checkIdentifier($identifier);
 
         // 1 - Detail
-        $identifier = htmlspecialchars($identifier);
+        $connection = new DatabaseConnexion();
         $postDetail = new DetailRepository();
         $postDetail->connection = $connection;
 
-        // test (getMaxAndOpen) to se the user tape by hand on the url 10000 for exemple for the article id
+        // Test (getMaxAndOpen : return true/false to see the user tape by hand on the url 10000 for exemple for the article id
         if ($postDetail->getMaxAndOpen($identifier)) {
-            // old method
-            $detail =  $postDetail->getPost($identifier); // return an array
-            $detailForAurhor = json_decode(json_encode($detail), true);
-            $AuthorId = $detailForAurhor["user_id"];
+            $detail =  $postDetail->getPost($identifier); // return an objet Post // $identifier is the identifier of the post
+            $AuthorId = $detail->getUserId(); // get the id of the author gracefull of the entitie user_id of the post object
         } else {
             $message = "l'identifiant de la page est inexact";
             $this->twig->display('error/error.html.twig', compact('message'));
@@ -57,43 +41,21 @@ class DetailController extends Controller
         $connection = new DatabaseConnexion();
         $user = new UserRepositoryUserRepository();
         $user->connection = $connection;
-        $user  = $user->getUser($AuthorId); // return an array
-
-
-        // hydratation and objet / entities
-        $o = 0;
-        if ($o) {
-            $user0 = new UserRepository();
-            $user0->connection = $connection;;
-            $userO  = $user0->getUsers2($AuthorId); // return an array
-            $Email =  $userO->getEmailUser();
-            var_dump($Email);
-            exit;
-        }
-
-
-        // $user2 = UserModel->getFirstNameUser;
-        // var_dump($user2);
-
-        // $article = $this->post->findOne($articleId);
-        // $commentaires = $this->comment->findAll($articleId);
-
-        // $user2 = UserModel->getfirname();
-
+        $user  = $user->getUser($AuthorId); // return an object
 
         // 3 - Comment
         $connection = new DatabaseConnexion();
         $postComments = new CommentRepository();
         $postComments->connection = $connection;
-        $postComments  = $postComments->getComments($identifier); // return an array
-        $postComments = json_decode(json_encode($postComments), true);
+        $postComments  = $postComments->getComments($identifier); // return an objet
 
+        $this->infoNavDetail($identifier, $user);
         $baseUrl = BASE_URL; // used for return button after connexion
-        $_SESSION['LOGGED_PAGE_ID'] = $identifier; // used article read for return button button after connexion
 
         $arrayMessage = $this->readleByTwig($message);
         $this->twig->display('detail/detail.html.twig', compact('detail', 'user', 'postComments', 'baseUrl', 'identifier', 'arrayMessage'));
     }
+
 
     /**
      *  function to get all data which is useful - EXAMPLE  string(10) "tsd@fqd.fr" string(21) "sffqddfdqfqdfdqsffdqs"
@@ -120,38 +82,6 @@ class DetailController extends Controller
             $message = 'Désolé, les données de connection sont incorrectes';
             // we go bach to connexion page
             (new ConnexionController())->connexion($message)();
-            return false;
-        }
-    }
-
-    /**
-     * function to make a string reable by twig
-     *
-     * @param string $message
-     * @return array
-     */
-    public function readleByTwig(string $message)
-    {
-        // to make readeableby twig
-        $messageReadle = $message;
-        $arrayMessage = array(
-            "message" => $messageReadle
-        );
-        return $arrayMessage;
-    }
-
-    /**
-     * function to verify crypt password
-     *
-     * @param [type] $user_input
-     * @param [type] $hashed_password
-     * @return boll
-     */
-    private function verifyHashPassword($user_input, $hashed_password)
-    {
-        if (hash_equals($hashed_password, crypt($user_input, $hashed_password))) {
-            return true;
-        } else {
             return false;
         }
     }

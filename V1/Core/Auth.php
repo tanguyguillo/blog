@@ -98,19 +98,6 @@ class Auth extends DatabaseConnexion
     }
 
     /**
-     * function infoNavDetail ... like his name
-     *
-     * @param [string] $identifier
-     * @return void
-     */
-    public function infoNavDetail($identifier, $user)
-    {
-        $baseUrl = BASE_URL; // used for return button after connexion
-        $_SESSION['LOGGED_PAGE_ID'] = $identifier; // used article read for return button button after connexion
-        $_SESSION['LOGGED_PAGE_WRITER_ID'] = $user->getId();
-    }
-
-    /**
      * function heriatgae Controlleur-InitSession
      *
      * @return void

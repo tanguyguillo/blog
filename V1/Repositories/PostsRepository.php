@@ -8,13 +8,35 @@ use Application\Models\Post\Post;
 class PostsRepository extends Controller
 {
     /**
-     * function getPost for bloglist
-     * return an objet
+     *
+     * return an Array
      */
     public function getPost(): array
     {
         $statement = $this->connection->getConnexion()->query(
-            "SELECT id, postTitle, postChapo, postStatus, DATE_FORMAT(postModified, '%d/%m/%Y à %Hh%imin') AS postModified FROM blog_post ORDER BY postModified DESC LIMIT 0, 100"
+            "SELECT id, postTitle, postChapo, postStatus, DATE_FORMAT(postModified, '%d/%m/%Y à %Hh%imin') AS french_modified_date FROM blog_post ORDER BY postModified DESC LIMIT 0, 100"
+        );
+        $posts = [];
+        while (($row = $statement->fetch())) {
+            $post = new PostsRepository();
+            $post->postStatus = $row['postStatus'];
+            $post->postTitle = $row['postTitle'];
+            $post->frenchModifiedDate = $row['french_modified_date'];
+            $post->postChapo = $row['postChapo'];
+            $post->id = $row['id'];
+            $posts[] = $post;
+        }
+        return $posts;
+    }
+
+    /**
+     *
+     * return an objet
+     */
+    public function getPosM()
+    {
+        $statement = $this->connection->getConnexion()->query(
+            "SELECT id, postTitle, postChapo, postStatus, DATE_FORMAT(postModified, '%d/%m/%Y à %Hh%imin') AS french_modified_date FROM blog_post ORDER BY postModified DESC LIMIT 0, 100"
         );
         $posts = [];
         while (($row = $statement->fetch())) {
@@ -25,7 +47,6 @@ class PostsRepository extends Controller
         }
         return $posts;
     }
-
 
     /**
      * function to update a post from admin

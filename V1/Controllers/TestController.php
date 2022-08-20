@@ -19,7 +19,6 @@ class TestController extends Controller
         public function myTest()
         {
                 //to test : http://blog-omega.local/index.php?owp=tosee&id=1
-
                 echo "Bienvenue sur la zone de test";
 
                 $test = 0;
@@ -28,7 +27,7 @@ class TestController extends Controller
                         $connection = new DatabaseConnexion();
                         $UsersRepository = new UserRepository();
                         $UsersRepository->connection = $connection;
-                        $users = $UsersRepository->usersDepot(); // test
+                        $users = $UsersRepository->usersDepot();
                 }
         }
 }

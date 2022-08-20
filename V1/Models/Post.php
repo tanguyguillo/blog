@@ -100,14 +100,6 @@ class Post extends Model
     }
 
     /**
-     * @param mixed $french_created_date  // special
-     */
-    public function french_created_date($french_created_date)
-    {
-        $this->setPostCreated = $french_created_date;
-    }
-
-    /**
      * @return mixed
      */
     public function getPostStatus()
@@ -140,14 +132,6 @@ class Post extends Model
     }
 
     /**
-     * @param mixed $french_modified_date // special
-     */
-    public function french_modified_date($french_modified_date)
-    {
-        $this->postModified = $french_modified_date;
-    }
-
-    /**
      * @return mixed
      */
     public function getUserId()
@@ -156,7 +140,7 @@ class Post extends Model
     }
 
     /**
-     * @param mixed
+     * @param mixed $user_id
      */
     public function setUserId($user_id)
     {

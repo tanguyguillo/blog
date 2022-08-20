@@ -2,8 +2,6 @@
 
 namespace Application\Repositories\CommentRepository;
 
-use Application\Models\Comment\Comment;
-
 /**
  * class
  */
@@ -23,22 +21,30 @@ class CommentRepository
         $postComment = [];
         while (($row = $statement->fetch())) {
             $postComment = new CommentRepository();
-            $postComment = new Comment($row); //hydratation
+            $postComment->commentStatus = $row['commentStatus'];
+            $postComment->commentContent = $row['commentContent'];
+            $postComment->blog_post_id = $row['blog_post_id'];
+            $postComment->user_id = $row['user_id'];
+            $postComment->id = $row['id'];
             $postComments[] = $postComment;
         }
+
         // if no comment... "Désolé pas de commentaire pour ce post" is a kind of comment....
         if (!isset($postComments)) {
-            // $postComment = [
-            //     'commentStatus' => 'Open',
-            //     'commentContent' => 'Désolé pas de commentaire pour ce post',
-            // ];
-            $postComment = new Comment();
-            $postComment->setCommentStatus('Open');
-            $postComment->setCommentContent('Désolé pas de commentaire pour ce post');
+            $postComment = [
+                'commentStatus' => 'Open',
+                'commentContent' => 'Désolé pas de commentaire pour ce post',
+            ];
             $postComments[] = $postComment;
         }
         return $postComments;
     }
+
+
+
+
+
+
     /**
      *  function to get data from comment, blog_post, user for admin
      *

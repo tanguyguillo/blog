@@ -2,6 +2,8 @@
 
 namespace Application\Repositories\DetailRepository;
 
+use Application\Models\Post\Post;
+
 /**
  * Undocumented class
  */
@@ -12,65 +14,25 @@ class DetailRepository
      * 
      * todo : $str = str_replace("\", "", $str);
      *
-     * return an Array
+     * return an objet
      */
     public function getPost(string $identifier)
     {
         $identifier = htmlspecialchars($identifier);
         $statement = $this->connection->getConnexion()->query(
-            "SELECT id, postTitle, postChapo, postContent, DATE_FORMAT(postCreated, '%d/%m/%Y à %Hh%imin') AS french_created_date, postStatus, DATE_FORMAT(postModified, '%d/%m/%Y à %Hh%imin') AS french_modified_date, user_id  FROM blog_post where id = $identifier"
+            "SELECT id, postTitle, postChapo, postContent, DATE_FORMAT(postCreated, '%d/%m/%Y à %Hh%imin') AS postCreated, postStatus, DATE_FORMAT(postModified, '%d/%m/%Y à %Hh%imin') AS postModified, user_id FROM blog_post where id = $identifier"
         );
         $statement->execute();
         $row = $statement->fetch();
+        $author = $row['user_id']; // get that here because it's don't pass in the object ?
         $post = new DetailRepository();
-        $post->idPost = $row['id'];
-        $post->postTitle = $row['postTitle'];
-        $post->postChapo = $row['postChapo'];
-        $post->postContent = $row['postContent'];
-        $post->postCreated = $row['french_created_date'];
-        $post->postStatus = $row['postStatus'];
-        $post->postModified = $row['french_modified_date'];
-        $post->user_id = $row['user_id'];
-        $posts[] = $post;
-        $posts = json_decode(json_encode($posts), true); // it's was an object
-        $_SESSION['LOGGED_PAGE_WRITER_ID'] = $row['user_id'];
+        //hydratation
+        $post =  new post($row);
+        $post->setUserId($author); // set that here because it's don't pass in the object (otherwise = NULL)?
 
+        $_SESSION['LOGGED_PAGE_WRITER_ID'] = $author;  // perhaps not here ?
         return $post;
     }
-
-
-    /**
-     *  put in an array one post // use of htmlspecialchars for id (XSS)
-     * 
-     * todo : $str = str_replace("\", "", $str);
-     *
-     * return an Array
-     */
-    public function getPost2(string $identifier)
-    {
-        $identifier = htmlspecialchars($identifier);
-        $statement = $this->connection->getConnexion()->query(
-            "SELECT id, postTitle, postChapo, postContent, DATE_FORMAT(postCreated, '%d/%m/%Y à %Hh%imin') AS french_created_date, postStatus, DATE_FORMAT(postModified, '%d/%m/%Y à %Hh%imin') AS french_modified_date, user_id  FROM blog_post where id = $identifier"
-        );
-        $statement->execute();
-        $row = $statement->fetch();
-        $post = new DetailRepository();
-        $post->idPost = $row['id'];
-        $post->postTitle = $row['postTitle'];
-        $post->postChapo = $row['postChapo'];
-        $post->postContent = $row['postContent'];
-        $post->postCreated = $row['french_created_date'];
-        $post->postStatus = $row['postStatus'];
-        $post->postModified = $row['french_modified_date'];
-        $post->user_id = $row['user_id'];
-        $posts[] = $post;
-        $posts = json_decode(json_encode($posts), true); // it's was an object
-        $_SESSION['LOGGED_PAGE_WRITER_ID'] = $row['user_id'];
-
-        return $post;
-    }
-
-
 
     /**
      * Look if the post id exist and is open

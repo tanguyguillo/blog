@@ -14,9 +14,9 @@ class UserRepository extends Controller
      * function to get a user with all of this properties
      *
      * @param string $identifier
-     * @return Object
+     * @return Array
      */
-    public function getUser(string $identifier)
+    public function getUser(string $identifier): array
     {
         $statement = $this->connection->getConnexion()->query(
             "SELECT * FROM user where id = $identifier"
@@ -26,12 +26,47 @@ class UserRepository extends Controller
         // when user have been drop
         if ($row) {
             $user = new UserRepository();
-            $user = new User($row); // hydratattion
+            $user->idUser = $row['id'];
+            $user->emailUser = $row['emailUser'];
+            $user->passWordUser = $row['passWordUser'];
+            $user->firstNameUser = $row['firstNameUser'];
+            $user->surNameUser = $row['surNameUser'];
+            $user->roleUser = $row['roleUser'];
+
+            $user = json_decode(json_encode($user), true);
+            return $user;
         } else {
-            $user = new User();
-            $user->setId("NULL");
+            // when user have been drop
+            return array('id->Null');
         }
-        return $user;
+    }
+
+    /**
+     *  function
+     *
+     * @param string $identifier  OUI
+     * @return Objet
+     */
+    public function getUsers2(string $identifier)
+    {
+        if (ctype_digit($identifier)) {
+            $statement = $this->connection->getConnexion()->query(
+                "SELECT * FROM user where id = $identifier"
+            );
+            $statement->execute();
+            $row = $statement->fetch();
+            // when user have been drop
+            if ($row) {
+                // hydratation userModel
+                $userModel =  new User($row);
+                return $userModel; // don't want to return: need an array and not an objet
+            } else {
+                // // when user have been drop
+                //return array('id->Null');
+            }
+        }
+        // when user have been drop
+        //return array('id->Null');
     }
 
     /**
@@ -239,5 +274,28 @@ class UserRepository extends Controller
             require(ROOT . '/app/templatesError/error.php');
             return false;
         }
+    }
+
+
+
+    /**
+     * function get all users by User (hydratation model)
+     * just to test
+     *
+     * @return array
+     */
+    public function usersDepot(): array
+    {
+        $statement = $this->connection->getConnexion()->query(
+            "SELECT id, emailUser, passWordUser, firstNameUser, surNameUser, roleUser FROM user"
+        );
+        $userModel = [];
+        while (($row = $statement->fetch())) {
+            // Hydratation
+            $userModel[] =  new User($row);
+        }
+        // turn in Array
+        //$users = json_decode(json_encode($users), true);
+        return $userModel;
     }
 }

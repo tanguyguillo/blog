@@ -65,7 +65,6 @@ abstract class Controller extends Auth
 
     /**
      *  function to verify that the user is logged
-     * early return
      *
      * @return void
      */
@@ -133,64 +132,5 @@ abstract class Controller extends Auth
     {
         $message = 'Désolé cette partie du site est réservé aux administrateurs';
         $this->twig->display('info/info.html.twig', compact('message'));
-    }
-
-
-    /**
-     * function to make a string reable by twig
-     *
-     * @param string $message
-     * @return array
-     */
-    public function readleByTwig(string $message)
-    {
-        // to make readeableby twig
-        $messageReadle = $message;
-        $arrayMessage = array(
-            "message" => $messageReadle
-        );
-        return $arrayMessage;
-    }
-
-    /**
-     * function to verify crypt password
-     *
-     * @param [type] $user_input
-     * @param [type] $hashed_password
-     * @return boll
-     */
-    private function verifyHashPassword($user_input, $hashed_password)
-    {
-        if (hash_equals($hashed_password, crypt($user_input, $hashed_password))) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /**
-     *function to verif $identifier
-     *
-     * @param [type] $identifier
-     * @return string
-     */
-    public function checkIdentifier($identifier)
-    {
-        $identifier = htmlspecialchars($identifier);
-        // // for intance when inscription
-        if ($identifier === "") {
-            //$identifier = $_SESSION['LOGGED_PAGE_ID']; // article id
-            $identifier = "3";
-        }
-        return $identifier;
-        //verify is $identifier is a "string(integer)" if not display a message
-        $this->isInteger($identifier);
-        if ($this->isInteger($identifier) == false) {
-            $message = "l'identifiant de la page doit être un chiffre";
-            $this->twig->display('error/error.html.twig', compact('message'));
-            exit;
-        }
-
-        return  $identifier;
     }
 }
