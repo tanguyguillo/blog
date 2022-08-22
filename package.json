@@ -1,10 +1,12 @@
 {
-  "name": " ",
+  "name": "blog.omegawebproduct",
   "version": "0.0.1",
-  "description": "",
-  "keywords": "",
+  "description": "le Blog de la société omegawebproduct",
+  "keywords": [
+    "omegawebproduct blog"
+  ],
   "license": "",
-  "author": "",
+  "author": "François Marie Tanguy Guillo",
   "scripts": {
     "build": "parcel build index.html",
     "dev": "parcel index.html --open",

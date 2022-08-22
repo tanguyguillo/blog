@@ -18,5 +18,8 @@
     ],
     "require": {
         "twig/twig": "^3.4"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "*"
     }
 }

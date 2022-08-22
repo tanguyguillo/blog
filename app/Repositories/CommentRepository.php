@@ -79,8 +79,6 @@ class CommentRepository
         }
     }
 
-
-
     /**
      * function to write a comment
      *
