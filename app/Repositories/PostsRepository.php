@@ -98,6 +98,8 @@ class PostsRepository extends Controller
         $postStatus = ($arrayPost["postStatus"]);
         $user_id = ($arrayPost["user_id"]); // pop up admin Author
 
+
+
         $postModified = $postCreated;
 
         $query = "INSERT INTO blog_post (postTitle , postChapo, postContent, postCreated, postStatus, postModified, user_id) 

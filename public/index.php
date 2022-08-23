@@ -72,7 +72,7 @@ try {
         }
         // setcomment from page detail
         if ($_GET['owp'] === 'faire-un-commentaire') {
-            (new CommentController())->SetComment($postData);
+            (new CommentController())->setComment($postData);
             exit;
         }
         // Create an user account

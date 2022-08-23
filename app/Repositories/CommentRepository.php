@@ -3,6 +3,7 @@
 namespace Application\Repositories\CommentRepository;
 
 use Application\Models\Comment\Comment;
+use Application\Models\Model\Model;
 
 /**
  * class
@@ -28,10 +29,6 @@ class CommentRepository
         }
         // if no comment... "Désolé pas de commentaire pour ce post" is a kind of comment....
         if (!isset($postComments)) {
-            // $postComment = [
-            //     'commentStatus' => 'Open',
-            //     'commentContent' => 'Désolé pas de commentaire pour ce post',
-            // ];
             $postComment = new Comment();
             $postComment->setCommentStatus('Open');
             $postComment->setCommentContent('Désolé pas de commentaire pour ce post');
@@ -79,6 +76,7 @@ class CommentRepository
         }
     }
 
+
     /**
      * function to write a comment
      *
@@ -118,6 +116,50 @@ class CommentRepository
             return true;
         }
     }
+
+
+    /**
+     * function to write a comment  ... vPDO
+     *
+     * @param array
+     * @return void
+     */
+    // public function setComment(array $array)
+    // {
+    //     if ($_SESSION['LOGGED_USER']) {
+    //         $user_id = intval($array['idUser']);
+
+    //         // sometimes it's happens ... issue with data refreshed page
+    //         if ($user_id == 0) {
+    //             $user_id = $_SESSION['LOGGED_USER_ID'];
+    //             if ($user_id == 0) {
+    //                 return false;
+    //             }
+    //         }
+
+    //         $commentCreated = date('Y-m-d h:i:s');
+    //         $commentStatus = "Waiting for validation";
+    //         $commentContent = $array['commentPost'];
+    //         $blog_post_id = intval($_SESSION['LOGGED_PAGE_ID']);
+    //         $blog_post_user_id = intval($_SESSION['LOGGED_PAGE_WRITER_ID']); // the writter'id of the article
+
+    //         // Hydratation of the object
+    //         $comment =  new Comment(); // instanciation of the object
+    //         $comt = $comment;
+    //         $comt->setCommentCreated($commentCreated);
+    //         $comt->setCommentStatus($commentStatus);
+    //         $comt->setCommentContent($array['commentPost']);
+    //         $comt->setUserId($user_id);
+    //         $comt->setBlogPostUserId($blog_post_user_id);
+
+    //         $table = "comment";
+    //         $pace = "Application\Models\Comment\Comment";
+
+    //         $comment->create($comt, $pace, $table);
+    //     } else {
+    //         return true;
+    //     }
+    // }
 
     /**
      * function to modify the visibility of a comment or delete it

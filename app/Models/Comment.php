@@ -5,7 +5,7 @@ namespace Application\Models\Comment;
 use Application\Models\Model\Model;
 
 /**
- * Undocumented class
+ * Class Comment Model
  */
 class Comment extends Model
 {

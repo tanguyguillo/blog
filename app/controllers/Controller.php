@@ -190,8 +190,6 @@ abstract class Controller extends Auth
             $this->twig->display('error/error.html.twig', compact('message'));
             exit;
         }
-
         return  $identifier;
     }
-
 }
