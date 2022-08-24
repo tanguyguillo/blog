@@ -17,6 +17,12 @@ class Comment extends Model
     private $blog_post_id;
     private $blog_post_user_id;
 
+
+    public function __construct()
+    {
+        $this->table = 'comment';
+    }
+
     /**
      * @return mixed
      */
@@ -127,5 +133,10 @@ class Comment extends Model
     public function setBlogPostUserId($blog_post_user_id)
     {
         $this->blog_post_user_id = $blog_post_user_id;
+    }
+
+    public function makeArrayFromObjet()
+    {
+        return var_dump(get_object_vars($this));
     }
 }
