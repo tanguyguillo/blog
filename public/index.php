@@ -21,21 +21,16 @@ use Application\Controllers\ConnexionController\ConnexionController;
 use Application\Controllers\AdminCommentController\AdminCommentController;
 use Application\Controllers\AdminUserController\AdminUserController;
 use Application\Controllers\TestController as ControllersTestController;
-use Application\Controllers\TestController\TestController;
+
 
 // Config
 require_once(ROOT . '/app/config/config.php');
-
-// requires
-//require_once(ROOT . '/app/config/required.php');
 
 // autoloader
 require_once(ROOT . '/vendor/autoload.php');
 
 // builf my own autoloader  :
 require_once(ROOT . '/app/myAutoloader.php');
-
-// var_dump($_POST);
 
 // check $_POST : strip_tags(htmlspecialchars()
 if (isset($_POST)) {
@@ -77,7 +72,7 @@ try {
         }
         // setcomment from page detail
         if ($_GET['owp'] === 'faire-un-commentaire') {
-            (new CommentController())->SetComment($postData);
+            (new CommentController())->setComment($postData);
             exit;
         }
         // Create an user account
@@ -163,12 +158,8 @@ try {
         } elseif ($_GET['owp'] === 'tosee') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 //// for testing.... : http://blog-omega.local/index.php?owp=tosee&id=1
-                // $identifier = $_GET['id'];
-                // $identifier = strip_tags(htmlspecialchars($identifier));
-                // echo "yep";
-
+                // $identifier = $_GET['id']; is useless
                 (new ControllersTestController())->myTest();
-
                 exit;
             } else {
             }

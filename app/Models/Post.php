@@ -1,9 +1,13 @@
 <?php
 
-namespace Application\Models\PostModel;
+namespace Application\Models\Post;
 
-class PostModel
+use Application\Models\Model\Model;
 
+/**
+ * class
+ */
+class Post extends Model
 {
     private $id;
     private $postTitle;
@@ -13,55 +17,6 @@ class PostModel
     private $postStatus;
     private $postModified;
     private $user_id;
-
-    /**
-     * @param $id
-     * @param $postTitle
-     * @param $postChapo
-     * @param $postContent
-     * @param $postCreated
-     * @param $postStatus
-     * @param $postModified
-     * @param $user_id
-     */
-    // public function __construct($id, $postTitle, $postChapo, $postContent, $postCreated, $postStatus, $postModified, $user_id)
-    // {
-    //     //  $this->id = $id;
-    //     //         $this->postTitle = $postTitle;
-    //     //         $this->postChapo = $postChapo;
-    //     //         $this->postContent = $postContent;
-    //     //         $this->postCreated = $postCreated;
-    //     //         $this->postStatus = $postStatus;
-    //     //         $this->postModified = $postModified;
-    //     //         $this->user_id = $user_id;
-    // }
-
-
-
-    public function __construct($datas = [])
-    {
-        if (!empty($datas)) {
-            $this->myHydrate($datas);
-        }
-    }
-
-
-    /**
-     * Undocumented function  to see  $method
-     *
-     * @param [type] $datas
-     * @return void
-     */
-    public function myHydrate($datas): void
-    {
-        foreach ($datas as $key => $value) {
-            $method = 'set' . ucfirst($key);
-
-            if (is_callable([$this, $method])) {
-                $this->$method($value);
-            }
-        }
-    }
 
 
     /**
@@ -145,6 +100,14 @@ class PostModel
     }
 
     /**
+     * @param mixed $french_created_date  // special
+     */
+    public function french_created_date($french_created_date)
+    {
+        $this->setPostCreated = $french_created_date;
+    }
+
+    /**
      * @return mixed
      */
     public function getPostStatus()
@@ -177,6 +140,14 @@ class PostModel
     }
 
     /**
+     * @param mixed $french_modified_date // special
+     */
+    public function french_modified_date($french_modified_date)
+    {
+        $this->postModified = $french_modified_date;
+    }
+
+    /**
      * @return mixed
      */
     public function getUserId()
@@ -185,7 +156,7 @@ class PostModel
     }
 
     /**
-     * @param mixed $user_id
+     * @param mixed
      */
     public function setUserId($user_id)
     {

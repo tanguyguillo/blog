@@ -3,8 +3,8 @@
 namespace Application\Controllers\PostsController;
 
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
-use Application\Repositories\Post\PostsRepository;
 use Application\Controllers\AdminController\AdminController as AdminControllerAdminController;
+use Application\Repositories\PostsRepository\PostsRepository as PostsRepository;
 
 /**
  * Class of the blog listing
@@ -24,7 +24,7 @@ class PostsController extends AdminControllerAdminController
     //then we will use this connexion to get what we want ; here posts
     $postsRepository = new PostsRepository();
     $postsRepository->connection = $connection;
-    $posts = $postsRepository->getPosts(); // return an array
+    $posts = $postsRepository->getPost(); // return an array
 
     if ($render == "render") {
       $this->twig->display('posts/posts.html.twig', compact('posts'));

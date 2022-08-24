@@ -1,48 +1,31 @@
 <?php
 
-namespace Application\Repositories\Post;
+namespace Application\Repositories\PostsRepository;
 
 use Application\Controllers\Controller;
-use Application\Models\PosModel;
-//use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
+use Application\Models\Post\Post;
 
-
-/**
- * class just to keep in mind the attribut's names of the bdd
- */
-class PostController extends Controller
-{
-    // private $id;
-    // private  $posTitle;
-    // public $postChapo;
-    // public $postContent;
-    // public $postCreated;
-    // public $postStatus;
-    // public $postModified;
-}
 class PostsRepository extends Controller
 {
     /**
-     *
-     * return an Array
+     * function getPost for bloglist
+     * return an objet
      */
-    public function getPosts(): array
+    public function getPost(): array
     {
         $statement = $this->connection->getConnexion()->query(
-            "SELECT id, postTitle, postChapo, postStatus, DATE_FORMAT(postModified, '%d/%m/%Y à %Hh%imin') AS french_modified_date FROM blog_post ORDER BY postModified DESC LIMIT 0, 100"
+            "SELECT id, postTitle, postChapo, postStatus, DATE_FORMAT(postModified, '%d/%m/%Y à %Hh%imin') AS postModified FROM blog_post ORDER BY postModified DESC LIMIT 0, 100"
         );
         $posts = [];
         while (($row = $statement->fetch())) {
             $post = new PostsRepository();
-            $post->postStatus = $row['postStatus'];
-            $post->postTitle = $row['postTitle'];
-            $post->frenchModifiedDate = $row['french_modified_date'];
-            $post->postChapo = $row['postChapo'];
-            $post->id = $row['id'];
+            // hydratation Post
+            $post =  new Post($row);
             $posts[] = $post;
         }
         return $posts;
     }
+
 
     /**
      * function to update a post from admin
@@ -114,6 +97,8 @@ class PostsRepository extends Controller
         $postCreated = date("Y-m-d H:i:s");
         $postStatus = ($arrayPost["postStatus"]);
         $user_id = ($arrayPost["user_id"]); // pop up admin Author
+
+
 
         $postModified = $postCreated;
 

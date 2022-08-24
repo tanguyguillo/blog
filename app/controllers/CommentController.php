@@ -5,13 +5,7 @@ namespace Application\Controllers\CommentController;
 use Application\Controllers\AdminCommentController\AdminCommentController;
 use Application\Controllers\Controller;
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
-use Application\Repositories\Comment\Comment as commentRepo;
-use Application\Repositories\Comment\CommentsRepository as commentRepo2;
-
-
-
-// use Application\Redepositories\setComment;
-// use application\Repositories\modifyComment;
+use Application\Repositories\CommentRepository\CommentRepository;
 
 /**
  *  class manadging comments
@@ -36,7 +30,7 @@ class CommentController extends Controller
 
         $connection = new DatabaseConnexion();
 
-        $comment = new commentRepo2();
+        $comment = new CommentRepository();
         $comment->connection = $connection;
 
         if ($comment->setComment($arrayComment)) {
@@ -58,7 +52,7 @@ class CommentController extends Controller
         if ($this->isAdmin()) {
             $connection = new DatabaseConnexion();
             $arrayComment = json_decode(json_encode($arrayComment), true);
-            $commentsRepository = new commentRepo2();
+            $commentsRepository = new CommentRepository();
             $commentsRepository->connection = $connection;
 
             // to correct in connexion

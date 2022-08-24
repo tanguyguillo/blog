@@ -1,10 +1,14 @@
 <?php
 
-namespace Application\Models;
+namespace Application\Models\Comment;
 
-class CommentModel
+use Application\Models\Model\Model;
+
+/**
+ * Class Comment Model
+ */
+class Comment extends Model
 {
-
     private $id;
     private $commentCreated;
     private $commentStatus;
@@ -12,44 +16,6 @@ class CommentModel
     private $user_id;
     private $blog_post_id;
     private $blog_post_user_id;
-
-    /**
-     * @param $id
-     * @param $commentCreated
-     * @param $commentStatus
-     * @param $commentContent
-     * @param $user_id
-     * @param $blog_post_id
-     * @param $blog_post_user_id
-     */
-    // public function __construct($id, $commentCreated, $commentStatus, $commentContent, $user_id, $blog_post_id, $blog_post_user_id)
-    // {
-    //     $this->id = $id;
-    //     $this->commentCreated = $commentCreated;
-    //     $this->commentStatus = $commentStatus;
-    //     $this->commentContent = $commentContent;
-    //     $this->user_id = $user_id;
-    //     $this->blog_post_id = $blog_post_id;
-    //     $this->blog_post_user_id = $blog_post_user_id;
-    // }
-
-    public function __construct($datas = [])
-    {
-        if (!empty($datas)) {
-            $this->myHydrate($datas);
-        }
-    }
-
-    public function myHydrate($datas): void
-    {
-        foreach ($datas as $key => $value) {
-            $method = 'set' . ucfirst($key);
-
-            if (is_callable([$this, $method])) {
-                $this->$method($value);
-            }
-        }
-    }
 
     /**
      * @return mixed

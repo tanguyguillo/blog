@@ -1,29 +1,22 @@
 <?php
 
-namespace Application\Repositories\User;
+namespace Application\Repositories\UserRepository;
 
-use Application\Models\UserModel;
 use Application\Controllers\Controller;
+use Application\Models\User;
 
-class User extends Controller
+/**
+ *  class 
+ */
+class UserRepository extends Controller
 {
-
-
-    /**
-     * function
-     */
-    public function __construct()
-    {
-    }
-
-
     /**
      * function to get a user with all of this properties
      *
      * @param string $identifier
-     * @return Array
+     * @return Object
      */
-    public function getUser(string $identifier): array
+    public function getUser(string $identifier)
     {
         $statement = $this->connection->getConnexion()->query(
             "SELECT * FROM user where id = $identifier"
@@ -32,64 +25,17 @@ class User extends Controller
         $row = $statement->fetch();
         // when user have been drop
         if ($row) {
-            $user = new User();
-            $user->idUser = $row['id'];
-            $user->emailUser = $row['emailUser'];
-            $user->passWordUser = $row['passWordUser'];
-            $user->firstNameUser = $row['firstNameUser'];
-            $user->surNameUser = $row['surNameUser'];
-            $user->roleUser = $row['roleUser'];
-
-            // hydratation userModel
-            //$userModel =  new UserModel($row);
-
-            $userModel =  new UserModel($row);
-
-            // to convert the objet in array (warning if property private ?)
-            // perhaps an function will be better....
-            $user = json_decode(json_encode($user), true);
-            return $user;
+            $user = new UserRepository();
+            $user = new User($row); // hydratattion
         } else {
-            // when user have been drop
-            return array('id->Null');
+            $user = new User();
+            $user->setId("NULL");
         }
+        return $user;
     }
 
     /**
-     *  function
-     *
-     * @param string $identifier
-     * @return 
-     */
-    public function getUserO(string $identifier): UserModel
-    {
-        if (ctype_digit($identifier)) {
-            $statement = $this->connection->getConnexion()->query(
-                "SELECT * FROM user where id = $identifier"
-            );
-            $statement->execute();
-            $row = $statement->fetch();
-            // when user have been drop
-            if ($row) {
-                // hydratation userModel
-                $userModel =  new UserModel($row);
-                return $userModel; // don't want to return: need an array and not an objet
-            } else {
-                // // when user have been drop
-                //return array('id->Null');
-            }
-        }
-        // when user have been drop
-        //return array('id->Null');
-    }
-}
-/**
- * class used for user connexion
- */
-class UsersRepository
-{
-    /**
-     * function get all users with main informations
+     * function getUsers with a S : get all users with main informations
      *
      *
      * @return array
@@ -101,7 +47,7 @@ class UsersRepository
         );
         $users = [];
         while (($row = $statement->fetch())) {
-            $user = new UsersRepository();
+            $user = new UserRepository();
             $user->id = $row['id'];
             $user->emailUser = $row['emailUser'];
             $user->passWordUser = $row['passWordUser'];
@@ -111,33 +57,12 @@ class UsersRepository
             $users[] = $user;
 
             // hydratation userModel
-            $userModel = new UserModel($row);
+            //$userModel = new UserModel($row);
         }
         // turn in Array
         $users = json_decode(json_encode($users), true);
         return $users;
     }
-
-    /**
-     * function
-     *
-     * @return array
-     */
-    public function usersDepot(): array
-    {
-        $statement = $this->connection->getConnexion()->query(
-            "SELECT id, emailUser, passWordUser, firstNameUser, surNameUser, roleUser FROM user"
-        );
-        $userModel = [];
-        while (($row = $statement->fetch())) {
-            // Hydratation
-            $userModel[] =  new UserModel($row);
-        }
-        // turn in Array
-        //$users = json_decode(json_encode($users), true);
-        return $userModel;
-    }
-
 
     /**
      * function to create a new user
@@ -220,7 +145,7 @@ class UsersRepository
                 $datas = [];
                 $statement->execute();
                 while (($row = $statement->fetch())) {
-                    $data = new UsersRepository();
+                    $data = new UserRepository();
                     $data->postId = $row['id'];
                     $data->postTitle = $row['postTitle'];
                     $data->postChapo = $row['postChapo'];
@@ -262,7 +187,7 @@ class UsersRepository
                 );
                 $statement->execute();
                 while (($row = $statement->fetch())) {
-                    $email = new UsersRepository();
+                    $email = new UserRepository();
                     $email->idlUser = $row['id'];
                     $email->emailUser = $row['emailUser'];
                     $Emails[] = $email;

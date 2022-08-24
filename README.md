@@ -5,8 +5,11 @@
  Maria DB
  Composer
  Twig
+ Codesniffer
  MVC
  Php
+ HTML
+ CSS
 **********************
 
 How to use it ?
@@ -23,5 +26,11 @@ How to use it ?
 You can see a onLine version to this URL (web site in french):
 
 https://blog.omegawebprod.com/
+
+admin's role:
+
+Login : me@me.com
+password : me@me.comme@me.com
+
 
 **********************

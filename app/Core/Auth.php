@@ -3,7 +3,7 @@
 namespace Application\Core\Auth;
 
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
-use Application\Repositories\User\UsersRepository;
+use Application\Repositories\UserRepository\UserRepository as UserRepository;
 
 class Auth extends DatabaseConnexion
 {
@@ -20,7 +20,6 @@ class Auth extends DatabaseConnexion
     public function __construct()
     {
     }
-
 
     /**
      *  function setuserRole
@@ -45,7 +44,7 @@ class Auth extends DatabaseConnexion
     }
 
     /**
-     * function myAuth
+     * function myAuth ... in some case issue in admin "utilisateur" board not show....
      * 
      * return boll
      *
@@ -57,7 +56,7 @@ class Auth extends DatabaseConnexion
         if (isset($postData['user_login']) &&  isset($postData['user_pass'])) {
 
             $connection = new DatabaseConnexion();
-            $usersRepository = new UsersRepository();
+            $usersRepository = new UserRepository;
             $usersRepository->connection = $connection;
             $users = $usersRepository->getUsers(); // return an array
 
@@ -96,6 +95,18 @@ class Auth extends DatabaseConnexion
             }
             return false;
         }
+    }
+
+    /**
+     * function infoNavDetail ... like his name
+     *
+     * @param [string] $identifier
+     * @return void
+     */
+    public function infoNavDetail($identifier, $user)
+    {
+        $_SESSION['LOGGED_PAGE_ID'] = $identifier; // used article read for return button button after connexion
+        $_SESSION['LOGGED_PAGE_WRITER_ID'] = $user->getId();
     }
 
     /**

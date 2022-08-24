@@ -2,11 +2,13 @@
 
 namespace Application\Controllers;
 
-use Application\Models\UserModel;
-use Application\Repositories\User\UsersRepository;
-use Application\Repositories\Repository\usersDepot;
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
 
+use Application\Repositories\UserRepository\UserRepository;
+
+/**
+ * class
+ */
 class TestController extends Controller
 {
         /**
@@ -20,12 +22,13 @@ class TestController extends Controller
 
                 echo "Bienvenue sur la zone de test";
 
-                // list table user
-                $connection = new DatabaseConnexion();
-                $UsersRepository = new UsersRepository();
-                $UsersRepository->connection = $connection;
-                $users = $UsersRepository->usersDepot();
+                $test = 0;
 
-                var_dump($users);
+                if ($test) {
+                        $connection = new DatabaseConnexion();
+                        $UsersRepository = new UserRepository();
+                        $UsersRepository->connection = $connection;
+                        // $users = $UsersRepository->usersDepot(); // test
+                }
         }
 }

@@ -9,4 +9,4 @@ define('BASE_URL', 'https://blog.omegawebprod.com/');
 define('SALT', '$1$thexkyissobeautifull$');
 
 // on production need to make it on 0
-ini_set('display_errors', '1');
+ini_set('display_errors', 'O');

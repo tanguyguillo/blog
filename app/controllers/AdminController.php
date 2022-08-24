@@ -2,10 +2,15 @@
 
 namespace Application\Controllers\AdminController;
 
-use Application\Controllers\Controller;
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
-use Application\Repositories\User\UsersRepository;
 
+use Application\Controllers\Controller;
+
+use Application\Repositories\UserRepository\UserRepository;
+
+/**
+ * class
+ */
 class AdminController extends Controller
 {
     /**
@@ -60,7 +65,6 @@ class AdminController extends Controller
     // public function BlocPostadmin(array $postData, string $message)
     public function BlocPostadmin($array, $message)
     {
-
         $message = $message;
         if ($this->isAdmin()) {
             // get the data to modify all the data of a post and this author (admin)
@@ -91,7 +95,7 @@ class AdminController extends Controller
     {
         if ($this->isAdmin()) {
             $connection = new DatabaseConnexion();
-            $adminUserAndData = new UsersRepository();
+            $adminUserAndData = new UserRepository();
             $adminUserAndData->connection = $connection;
             $adminUserAndData = $adminUserAndData->getPostAndUser();
 
@@ -117,7 +121,7 @@ class AdminController extends Controller
     {
         if ($this->isAdmin()) {
             $connection = new DatabaseConnexion();
-            $adminUserEmails = new UsersRepository();
+            $adminUserEmails = new UserRepository();
             $adminUserEmails->connection = $connection;
             $adminUserEmails = $adminUserEmails->getEmailUser('Admin');
 

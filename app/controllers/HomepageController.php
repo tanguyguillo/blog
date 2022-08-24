@@ -4,6 +4,9 @@ namespace Application\Controllers\HomepageController;
 
 use Application\Controllers\Controller;
 
+/**
+ * class HomepageController : do nothing
+ */
 class HomepageController extends Controller
 {
     /**
