@@ -17,11 +17,14 @@ class Comment extends Model
     private $blog_post_id;
     private $blog_post_user_id;
 
-
-    public function __construct()
-    {
-        $this->table = 'comment';
-    }
+    /**
+     *  function to get the table name in the objet
+     * perhaps later....
+     */
+    // public function __construct()
+    // {
+    //     $this->table = 'comment';
+    // }
 
     /**
      * @return mixed
@@ -137,6 +140,6 @@ class Comment extends Model
 
     public function makeArrayFromObjet()
     {
-        return var_dump(get_object_vars($this));
+        return (get_object_vars($this));
     }
 }
