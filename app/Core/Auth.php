@@ -3,7 +3,7 @@
 namespace Application\Core\Auth;
 
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
-use Application\Repositories\UserRepository\UserRepository as UserRepository;
+use Application\Repositories\UserRepository\UserRepository;
 
 class Auth extends DatabaseConnexion
 {
