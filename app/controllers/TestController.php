@@ -28,7 +28,7 @@ class TestController extends Controller
                         $connection = new DatabaseConnexion();
                         $UsersRepository = new UserRepository();
                         $UsersRepository->connection = $connection;
-                        $users = $UsersRepository->usersDepot(); // test
+                        // $users = $UsersRepository->usersDepot(); // test
                 }
         }
 }

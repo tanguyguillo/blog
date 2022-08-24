@@ -21,7 +21,7 @@ abstract class Controller extends Auth
     public function __construct()
     {
         // where the twig views
-        $this->loader = new FilesystemLoader(ROOT . '/app/Views');
+        $this->loader = new FilesystemLoader(ROOT . '/app/views');
         // env twig
         // put true for debug // prod
         $this->twig = new Environment(
