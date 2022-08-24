@@ -27,7 +27,7 @@ class DetailRepository
         $author = $row['user_id']; // get that here because it's don't pass in the object ?
         $post = new DetailRepository();
         //hydratation
-        $post =  new post($row);
+        $post = new post($row);
         $post->setUserId($author); // set that here because it's don't pass in the object (otherwise = NULL)?
         return $post;
     }
