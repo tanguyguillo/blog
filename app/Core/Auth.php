@@ -3,7 +3,7 @@
 namespace Application\Core\Auth;
 
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
-use Application\Repositories\UserRepository\UserRepository as UserRepository;
+use Application\Repositories\UserRepository\UserRepository;
 
 class Auth extends DatabaseConnexion
 {
@@ -56,7 +56,7 @@ class Auth extends DatabaseConnexion
         if (isset($postData['user_login']) &&  isset($postData['user_pass'])) {
 
             $connection = new DatabaseConnexion();
-            $usersRepository = new UserRepository;
+            $usersRepository = new UserRepository();
             $usersRepository->connection = $connection;
             $users = $usersRepository->getUsers(); // return an array
 
