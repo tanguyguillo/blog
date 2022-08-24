@@ -3,7 +3,8 @@
 namespace Application\Repositories\CommentRepository;
 
 use Application\Models\Comment\Comment;
-use Application\Models\Model\Model;
+use Application\Repositories\Repository\Repository;
+
 
 /**
  * class
@@ -78,12 +79,12 @@ class CommentRepository
 
 
     /**
-     * function to write a comment
+     * function to write a comment  V1 : Not more used
      *
      * @param array
      * @return void
      */
-    public function setComment(array $array)
+    public function setCommentV1(array $array)
     {
         if ($_SESSION['LOGGED_USER']) {
             $user_id = intval($array['idUser']);
@@ -103,6 +104,8 @@ class CommentRepository
             $blog_post_user_id = intval($_SESSION['LOGGED_PAGE_WRITER_ID']); // the writter'id of the article
 
             try {
+                // var_dump("INSERT INTO comment (commentCreated, commentStatus, commentContent, user_id, blog_post_id, blog_post_user_id)  VALUES ('$commentCreated ', '$commentStatus', '$commentContent', '$user_id ', '$blog_post_id', '$blog_post_user_id')");
+
                 $statement = $this->connection->getConnexion()->query(
                     "INSERT INTO comment (commentCreated, commentStatus, commentContent, user_id, blog_post_id, blog_post_user_id)  VALUES ('$commentCreated ', '$commentStatus', '$commentContent', '$user_id ', '$blog_post_id', '$blog_post_user_id');"
                 );
@@ -118,51 +121,51 @@ class CommentRepository
     }
 
     /**
-     * function to write a comment  ... vPDO
+     * function to write a comment  ... V2 used
      *
      * @param array
      * @return void
      */
-    // public function setComment(array $array)
-    // {
-    //     if ($_SESSION['LOGGED_USER']) {
-    //         $user_id = intval($array['idUser']);
+    public function setComment(array $array)
+    {
+        if ($_SESSION['LOGGED_USER']) {
+            $user_id = intval($array['idUser']);
 
-    //         // sometimes it's happens ... issue with data refreshed page
-    //         if ($user_id == 0) {
-    //             $user_id = $_SESSION['LOGGED_USER_ID'];
-    //             if ($user_id == 0) {
-    //                 return false;
-    //             }
-    //         }
+            // sometimes it's happens ... issue with data refreshed page
+            if ($user_id == 0) {
+                $user_id = $_SESSION['LOGGED_USER_ID'];
+                if ($user_id == 0) {
+                    return false;
+                }
+            }
 
-    //         $commentCreated = date('Y-m-d h:i:s');
-    //         $commentStatus = "Waiting for validation";
-    //         $commentContent = $array['commentPost'];
-    //         $blog_post_id = intval($_SESSION['LOGGED_PAGE_ID']);
-    //         $blog_post_user_id = intval($_SESSION['LOGGED_PAGE_WRITER_ID']); // the writter'id of the article
+            $commentCreated = date('Y-m-d h:i:s');
+            $commentStatus = "Waiting for validation";
+            $commentContent = $array['commentPost'];
+            $blog_post_id = intval($_SESSION['LOGGED_PAGE_ID']);
+            $blog_post_user_id = intval($_SESSION['LOGGED_PAGE_WRITER_ID']); // the writter'id of the article
 
-    //         // Hydratation of the object
-    //         $comment =  new Comment(); // instanciation of the object
-    //         $comt = $comment;
-    //         $comt->setCommentCreated($commentCreated);
-    //         $comt->setCommentStatus($commentStatus);
-    //         $comt->setCommentContent($array['commentPost']);
-    //         $comt->setUserId($user_id);
-    //         $comt->setBlogPostUserId($blog_post_user_id);
+            // Hydratation of the object
+            $comment =  new Comment(); // instanciation of the object
+            $comt = $comment;
+            $comt->setCommentCreated($commentCreated);
+            $comt->setCommentStatus($commentStatus);
+            $comt->setCommentContent($array['commentPost']);
+            $comt->setUserId($user_id);
+            $comt->setBlogPostUserId($blog_post_user_id);
+            $comt->setBlogPostId($blog_post_id);
 
-    //         $table = "comment";
-    //         $pace = "Application\Models\Comment\Comment";
+            $table = "Comment";
+            $statement = $this->connection->getConnexion();
 
-    //         $comment->create($comt, $pace, $table);
-    //     } else {
-    //         return true;
-    //     }
-    // }
-
-
-
-
+            $repository = new Repository;
+            if ($repository->create($comt, $table, $statement)) {
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
 
     /**
      * function to modify the visibility of a comment or delete it

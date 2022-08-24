@@ -5,6 +5,7 @@ namespace Application\Core\Database\DatabaseConnexion;
 // Loading the config
 require_once(ROOT . '/app/config/config.php');
 
+
 /**
  */
 class DatabaseConnexion
@@ -26,6 +27,9 @@ class DatabaseConnexion
     if ($this->database === null) {
       // todo : write a try ?
       $this->database = new \PDO('mysql:host=' . SERVER . ';dbname=' . BASE . ';charset=utf8', USER, PASSWD);
+
+      $this->database->setAttribute(\PDO::MYSQL_ATTR_INIT_COMMAND, 'SET NAMES utf8');
+      $this->database->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
     }
     return $this->database;
   }
