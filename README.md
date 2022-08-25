@@ -29,8 +29,12 @@ https://blog.omegawebprod.com/
 
 admin's role:
 
-Login : me@me.com
-password : me@me.comme@me.com
+Login : admin@admin.fr
+password : madmin@admin.fr
 
+user's role:
+
+Login : moi@moi.fr
+password : moi@moi.frmoi@moi.fr
 
 **********************
