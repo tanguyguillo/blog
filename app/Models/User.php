@@ -2,7 +2,6 @@
 
 namespace Application\Models;
 
-use Application\Controllers\Controller;
 use Application\Models\Model\Model;
 
 /**
@@ -112,5 +111,15 @@ class User extends Model
     public function setRoleUser($roleUser)
     {
         $this->roleUser = $roleUser;
+    }
+
+    /**
+     * function to get back the object in Array
+     *
+     * @return void
+     */
+    public function makeArrayFromObjet()
+    {
+        return (get_object_vars($this));
     }
 }
