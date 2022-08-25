@@ -2,8 +2,6 @@
 
 namespace Application\Repositories\Repository;
 
-//use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
-
 /**
  *  class Repository 
  */
@@ -33,12 +31,12 @@ class Repository //extends DatabaseConnexion
         $champs = array_slice($champs, 1);
         $valeurs = array_slice($valeurs, 1);
         // add ', '
-        $liste_champs = implode(', ', $champs);
-        $liste_Valeurs = implode(', ', $valeurs);
+        $list_champs = implode(', ', $champs);
+        $list_Valeurs = implode(', ', $valeurs);
 
         try {
             $statement->query(
-                "INSERT INTO " . $table . " ($liste_champs)" . " VALUES " . "($liste_Valeurs);"
+                "INSERT INTO " . $table . " ($list_champs)" . " VALUES " . "($list_Valeurs);"
             );
         } catch (\Exception $e) {
             $errorMessage = $e->getMessage();

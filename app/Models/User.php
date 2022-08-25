@@ -17,6 +17,8 @@ class User extends Model
     private $surNameUser;
     private $roleUser;
 
+    private  $user_id;
+
     /**
      * @return mixed
      */
@@ -111,6 +113,23 @@ class User extends Model
     public function setRoleUser($roleUser)
     {
         $this->roleUser = $roleUser;
+    }
+
+    /**
+     * specific data getUser_id here is the id of the writer of the post
+     * @return mixed
+     */
+    public function getUser_id()
+    {
+        return $this->user_id;
+    }
+
+    /**
+     * @param mixed $roleUser
+     */
+    public function setUser_id2($User_id)
+    {
+        $this->User_id = $User_id;
     }
 
     /**

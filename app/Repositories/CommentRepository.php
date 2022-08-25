@@ -156,46 +156,4 @@ class CommentRepository
             return false;
         }
     }
-
-    /***************************************************** from here V1 not used ******************************************************************************************
-     * function to write a comment  V1 : Not more used
-     *
-     * @param array
-     * @return void
-     */
-    public function setCommentV1(array $array)
-    {
-        if ($_SESSION['LOGGED_USER']) {
-            $user_id = intval($array['idUser']);
-
-            // sometimes it's happens ... isuue with data refreshed page
-            if ($user_id == 0) {
-                $user_id = $_SESSION['LOGGED_USER_ID'];
-                if ($user_id == 0) {
-                    return false;
-                }
-            }
-
-            $commentCreated = date('Y-m-d h:i:s');
-            $commentStatus = "Waiting for validation";
-            $commentContent = $array['commentPost'];
-            $blog_post_id = intval($_SESSION['LOGGED_PAGE_ID']);
-            $blog_post_user_id = intval($_SESSION['LOGGED_PAGE_WRITER_ID']); // the writter'id of the article
-
-            try {
-                // var_dump("INSERT INTO comment (commentCreated, commentStatus, commentContent, user_id, blog_post_id, blog_post_user_id)  VALUES ('$commentCreated ', '$commentStatus', '$commentContent', '$user_id ', '$blog_post_id', '$blog_post_user_id')");
-
-                $statement = $this->connection->getConnexion()->query(
-                    "INSERT INTO comment (commentCreated, commentStatus, commentContent, user_id, blog_post_id, blog_post_user_id)  VALUES ('$commentCreated ', '$commentStatus', '$commentContent', '$user_id ', '$blog_post_id', '$blog_post_user_id');"
-                );
-                return true;
-            } catch (\Exception $e) {
-                $errorMessage = $e->getMessage();
-                require(ROOT . '/app/templatesError/error.php');
-                return false;
-            }
-        } else {
-            return true;
-        }
-    }
 }

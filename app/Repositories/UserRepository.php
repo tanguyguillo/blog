@@ -6,7 +6,7 @@ use Application\Models\User;
 use Application\Repositories\Repository\Repository;
 
 /**
- *  class 
+ *  class UserRepository
  */
 class UserRepository
 {
@@ -248,40 +248,5 @@ class UserRepository
             require(ROOT . '/app/templatesError/error.php');
             return false;
         }
-    }
-
-
-    /***************************************************** from here V1 not used ******************************************************************************************
-     * 
-     */
-
-    /**
-     * function to create a new user
-     *
-     * @param [array] $postData
-     * @return void
-     */
-    public function createUserV1(array $postData)
-    {
-        $emailUser = $postData["email"];
-
-        $passWordUser = $postData["password"];
-        // Crypt the password
-        $this->cryptPassword($passWordUser);
-
-        $firstNameUser = $postData["fname"];
-        $surNameUser = $postData["lname"];
-        $roleUser = "User";
-
-        try {
-            $statement = $this->connection->getConnexion()->query(
-                "INSERT INTO user (emailUser, passWordUser, firstNameUser, surNameUser, roleUser)  VALUES ('$emailUser', '$passWordUser', '$firstNameUser', '$surNameUser', '$roleUser');"
-            );
-        } catch (\Exception $e) {
-            $errorMessage = $e->getMessage();
-            require(ROOT . '/app/templatesError/error.php');
-            return false;
-        }
-        return true;
     }
 }

@@ -162,4 +162,14 @@ class Post extends Model
     {
         $this->user_id = $user_id;
     }
+
+    /**
+     * function to get back the object in Array
+     *
+     * @return void
+     */
+    public function makeArrayFromObjet()
+    {
+        return (get_object_vars($this));
+    }
 }

@@ -4,6 +4,7 @@ namespace Application\Repositories\PostsRepository;
 
 use Application\Controllers\Controller;
 use Application\Models\Post\Post;
+use Application\Repositories\Repository\Repository;
 
 class PostsRepository extends Controller
 {
@@ -88,7 +89,7 @@ class PostsRepository extends Controller
      */
     public function newPost(array $arrayPost)
     {
-        $arrayPost = $this->lookOutDataFromOustide($arrayPost); // From Controller
+        $arrayPost = $this->lookOutDataFromOustide($arrayPost); // From Controller for control
 
         $postTitle = ($arrayPost["postTitle"]);
         $postChapo = ($arrayPost["postChapo"]);
@@ -98,20 +99,24 @@ class PostsRepository extends Controller
         $postStatus = ($arrayPost["postStatus"]);
         $user_id = ($arrayPost["user_id"]); // pop up admin Author
 
+        // add to hydrate object Post
+        $post = new Post();
+        $post->setPostTitle($postTitle);
+        $post->setPostChapo($postChapo);
+        $post->setPostContent($postContent);
+        $post->setPostStatus($postStatus);
+        $post->setPostCreated($postCreated);
+        $post->setPostModified($postCreated);
+        $post->setUserId($user_id); // here it's write user : it's the id of the writer postUserId will have been better....
 
-
-        $postModified = $postCreated;
-
-        $query = "INSERT INTO blog_post (postTitle , postChapo, postContent, postCreated, postStatus, postModified, user_id) 
-        VALUES ('$postTitle', '$postChapo', '$postContent', '$postCreated', '$postStatus', '$postModified', '$user_id')";
-
-        try {
-            $statement = $this->connection->getConnexion()->query($query);
+        // adding info for generic $repository->create()
+        $table = "blog_post";
+        $statement = $this->connection->getConnexion();
+        $repository = new Repository;
+        // Generic create
+        if ($repository->create($post, $table, $statement)) {
             return true;
-        } catch (\Exception $e) {
-            // $this->twig->display('error/error.html.twig', compact('message'));
-            $errorMessage = $e->getMessage();
-            require(ROOT . '/app/templatesError/error.php');
+        } else {
             return false;
         }
     }
