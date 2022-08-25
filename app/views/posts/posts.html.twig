@@ -12,8 +12,7 @@
                 {% for post in posts %}
                 {% if post.postStatus == 'Open' %}
                 <h2 id="{{post.id}}">{{post.postTitle}}</h2>
-                <h6>Dernière modification : {{post.postModified}}</h6> {# id fot eventualy for ana
-                anvhor #}
+                <h6>Dernière modification : {{post.postModified}}</h6>
                 <p>{{post.postChapo}}</p>
                 <a href="index.php?owp=bloglist&id={{post.id}}" class="btn btn-primary btn-small" role="button"
                     title="En savoir plus ?">En savoir plus</a>

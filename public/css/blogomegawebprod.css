@@ -19,6 +19,13 @@ footer .footer-below {
   width: 100%;
 }
 
+/* to avoid white for very small GSM
 div.footer-above {
-  height: 500px;
+  height: 400px;
 }
+
+@media (min-width: 20px) {
+  div.footer-above {
+    height: 1000px;
+  }
+} */

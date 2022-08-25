@@ -22,7 +22,6 @@ use Application\Controllers\AdminCommentController\AdminCommentController;
 use Application\Controllers\AdminUserController\AdminUserController;
 use Application\Controllers\TestController as ControllersTestController;
 
-
 // Config
 require_once(ROOT . '/app/config/config.php');
 

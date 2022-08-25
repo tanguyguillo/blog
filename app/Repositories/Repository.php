@@ -2,15 +2,15 @@
 
 namespace Application\Repositories\Repository;
 
-use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
+//use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
 
 /**
- *  class Repository
+ *  class Repository 
  */
-class Repository extends DatabaseConnexion
+class Repository //extends DatabaseConnexion
 {
     /**
-     * function create // tranform objet to array an string to record in DB
+     * function create // tranform objet to array and string to record in DB
      *
      * @param Object $object
      * @param [string] $table
@@ -19,6 +19,7 @@ class Repository extends DatabaseConnexion
      */
     public function create(Object $object, $table, $statement)
     {
+        // todo change the names of the variables
         $dataArr = $object->makeArrayFromObjet();
         $champs = [];
         $valeurs = [];
