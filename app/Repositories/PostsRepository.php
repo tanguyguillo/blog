@@ -12,7 +12,7 @@ class PostsRepository extends Controller
      * function getPost for bloglist
      * return an objet
      */
-    public function getPost(): array
+    public function getPost()
     {
         $statement = $this->connection->getConnexion()->query(
             "SELECT id, postTitle, postChapo, postStatus, DATE_FORMAT(postModified, '%d/%m/%Y à %Hh%imin') AS postModified FROM blog_post ORDER BY postModified DESC LIMIT 0, 100"

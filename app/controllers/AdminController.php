@@ -37,8 +37,6 @@ class AdminController extends Controller
 
             $message = "Bienvenue sur l'Admin du blog";
 
-            //var_dump($_SESSION['ROLE_USER']); here Admin
-
             $Array = ['nothing' => ""];
             $this->BlocPostadmin($Array, $message);
         } else {
@@ -68,7 +66,7 @@ class AdminController extends Controller
         $message = $message;
         if ($this->isAdmin()) {
             // get the data to modify all the data of a post and this author (admin)
-            $arrayTableModify = $this->getAdminUserAndData();
+            $arrayTableModify = $this->getAdminUserAndData(); // is now an array of objects ... ex : array(5) { [0]=> object(Application\Models\Post\Post)#15 (8) { ["id":"Application\Models\Post\Post":private]=> string(1)
 
             // authors id + emails
             $arrayEmails = $this->getAdminEmails();
@@ -97,7 +95,7 @@ class AdminController extends Controller
             $connection = new DatabaseConnexion();
             $adminUserAndData = new UserRepository();
             $adminUserAndData->connection = $connection;
-            $adminUserAndData = $adminUserAndData->getPostAndUser();
+            $adminUserAndData = $adminUserAndData->getPostAndUser();  // now $adminUserAndData is an array d'objects : ex : array(5) { [0]=> object(Application\Models\Post\Post)#15 (8) { ["id":"Applicati
 
             if (is_array($adminUserAndData)) {
                 return $adminUserAndData;
@@ -123,6 +121,7 @@ class AdminController extends Controller
             $connection = new DatabaseConnexion();
             $adminUserEmails = new UserRepository();
             $adminUserEmails->connection = $connection;
+
             $adminUserEmails = $adminUserEmails->getEmailUser('Admin');
 
             if (is_array($adminUserEmails)) {

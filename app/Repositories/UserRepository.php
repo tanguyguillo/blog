@@ -3,6 +3,8 @@
 namespace Application\Repositories\UserRepository;
 
 use Application\Models\User;
+use Application\Models\Post\Post;
+use Application\Repositories\PostsRepository\PostsRepository;
 use Application\Repositories\Repository\Repository;
 
 /**
@@ -137,6 +139,8 @@ class UserRepository
      * get the listing for admin part to modify a post : you DO have admin role to acces to this Aera
      *   b.id, postTitle, postChapo, postContent, firstNameUser, surNameUser,emailUser, roleUser, 'user_id'
      * du plus récent au plus ancien?  postName for author
+     * 
+     * From admin area
      *
      * @return array
      */
@@ -153,21 +157,32 @@ class UserRepository
                 );
                 $datas = [];
                 $statement->execute();
+                ////// V1  not a objet (exeample how i did before)
+                // while (($row = $statement->fetch())) {
+                //     $data = new UserRepository();
+                //     $data->postId = $row['id'];
+                //     $data->postTitle = $row['postTitle'];
+                //     $data->postChapo = $row['postChapo'];
+                //     $data->postContent = $row['postContent'];
+                //     $data->postStatus = $row['postStatus'];
+                //     $data->postModified = $row['postModified'];
+                //     $data->userId = $row['user_id'];
+                //     $data->firstNameUser = $row['firstNameUser'];
+                //     $data->surNameUser = $row['surNameUser'];
+                //     $data->emailUser = $row['emailUser'];
+                //     $data->roleUser = $row['roleUser'];
+                //     $datas[] = $data;
+                // }
+                $datas = [];
                 while (($row = $statement->fetch())) {
-                    $data = new UserRepository();
-                    $data->postId = $row['id'];
-                    $data->postTitle = $row['postTitle'];
-                    $data->postChapo = $row['postChapo'];
-                    $data->postContent = $row['postContent'];
-                    $data->postStatus = $row['postStatus'];
-                    $data->postModified = $row['postModified'];
-                    $data->userId = $row['user_id'];
-                    $data->firstNameUser = $row['firstNameUser'];
-                    $data->surNameUser = $row['surNameUser'];
-                    $data->emailUser = $row['emailUser'];
-                    $data->roleUser = $row['roleUser'];
+                    $data = new PostsRepository();
+                    // hydratation Post
+                    $data =  new Post($row);
+                    $data->setUserId($row['user_id']);
+                    //var_dump(['emailUser']);
                     $datas[] = $data;
                 }
+
                 return $datas;
             } catch (\Exception $e) {
                 $errorMessage = $e->getMessage();
@@ -195,6 +210,7 @@ class UserRepository
                     "SELECT id, emailUser FROM user WHERE roleUser ='$role'"
                 );
                 $statement->execute();
+                // todo poo
                 while (($row = $statement->fetch())) {
                     $email = new UserRepository();
                     $email->idlUser = $row['id'];
