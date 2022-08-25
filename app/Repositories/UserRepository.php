@@ -92,7 +92,7 @@ class UserRepository
         $user->setEmailUser($emailUser);
 
         // adding info for generic $repository->create()
-        $table = "User";
+        $table = "user";
         $statement = $this->connection->getConnexion();
         $repository = new Repository;
         // Generic

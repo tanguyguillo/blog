@@ -1,4 +1,8 @@
-# Project Blog Web Site (OmegaWebProduct)
+# Projet P5 of openclassrooms.com : create your own blog web site
+
+OPENCLASSROOMS project P5 for DEV PHP/SYMFONY certificate
+
+Create your own blog web site
 
 **********************
  PHP 8.08
@@ -8,8 +12,8 @@
  Codesniffer
  MVC
  Php
- HTML
- CSS
+ Html
+ Css
 **********************
 
 How to use it ?
@@ -25,7 +29,7 @@ How to use it ?
 
 You can see a onLine version to this URL (web site in french):
 
-https://blog.omegawebprod.com/
+<https://blog.omegawebprod.com/>
 
 admin's role:
 

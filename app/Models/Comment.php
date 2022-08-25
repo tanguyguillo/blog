@@ -138,6 +138,11 @@ class Comment extends Model
         $this->blog_post_user_id = $blog_post_user_id;
     }
 
+    /**
+     * function to get back the object in Array
+     *
+     * @return void
+     */
     public function makeArrayFromObjet()
     {
         return (get_object_vars($this));
