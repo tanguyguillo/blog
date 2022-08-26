@@ -2,97 +2,100 @@
 
 {% block title %}<title>Connection Admininstration blog.omegawebprod</title>{% endblock %}
 
-    {% block adminMain %}
+{% block adminMain %}
 <div class="d-flex flex-column min-vh-100">
 <section id="BlogPost-manager">
 <div class="container">
 <div class="row">
-<br>
+
+
 <h3 class="text-center">BlogPost Admin</h3>
 <hr class="star-primary">
-    <div class="container">
-        {% if arrayMessage.message == "false" %}
-            {# nothing #}
-        {% else %}
-            <div class="alert alert-success alert-dismissible" role="alert">
-                <strong>{{ arrayMessage.message }}</strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        {% endif %}
-<br>
+<div class="container">
+{% if arrayMessage.message == "false" %}
+{# nothing #}
+{% else %}
+<div class="alert alert-success alert-dismissible" role="alert">
+<strong>{{ arrayMessage.message }}</strong>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+{% endif %}
 
-<br>
-<h4 class="text-center">Nouveau Post</h4> 
-    <small>* Tous les Auteurs sont des administrateurs</small>
+
+
+
+
+<h4 class="text-center">Nouveau Post</h4>
+<small>* Tous les Auteurs sont des administrateurs</small>
 <div class="table-responsive">
-    <table class="table table-bordered table-striped table-highlight">
-    <thead>
-        <tr>
-        <th scope="col">Titre</th>
-        <th scope="col">Chapo</th>
-        <th scope="col">Contenu</th>
-        <th scope="col">Post Status</th>
-        <th scope="col">Auteur / Email *</th>
-        <th scope="col">Enregistrer</th>
-        </tr>
-    </thead>
+<table class="table table-bordered table-striped table-highlight">
+<thead>
+<tr>
+<th scope="col">Titre</th>
+<th scope="col">Chapo</th>
+<th scope="col">Contenu</th>
+<th scope="col">Post Status</th>
+<th scope="col">Auteur / Email *</th>
+<th scope="col">Enregistrer</th>
+</tr>
+</thead>
 
-    <tr>
-    <form action="{{ baseUrl }}index.php?owp=newpostecord" method="post">
-    <tr>
-    <tbody class="">
-        <input type="hidden" name ="id" id="postId-new" class="form-control postId" type="text" value="{{array.postId}}" aria-label="readonly" readonly></input>
-    <td>
-        <div class="w-auto control-group">
-            {# <textarea name="postTitle" class="form-control" id="postTitle-new" required data-validation-required-message="Veuillez entrer votre chapo.">{{array.postTitle}} </textarea> #}
+<tr>
+<form action="{{ baseUrl }}index.php?owp=newpostecord" method="post">
+<tr>
+<tbody class="">
+<input type="hidden" name ="id" id="postId-new" class="form-control postId" type="text" value="{{array.postId}}" aria-label="readonly" readonly></input>
+<td>
+<div class="w-auto control-group">
+{# <textarea name="postTitle" class="form-control" id="postTitle-new" required data-validation-required-message="Veuillez entrer votre chapo.">{{array.postTitle}} </textarea> #}
 
-            {# <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Nom Prénom</label>
-                                <input type="text" class="form-control" placeholder="Nom / Prénom" id="name" required data-validation-required-message="S'il vous plaît entrez votre nom et prénom">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div> #}
+{# <div class="row control-group">
+<div class="form-group col-xs-12 floating-label-form-group controls">
+<label>Nom Prénom</label>
+<input type="text" class="form-control" placeholder="Nom / Prénom" id="name" required data-validation-required-message="S'il vous plaît entrez votre nom et prénom">
+<p class="help-block text-danger"></p>
+</div>
+</div> #}
 
-            <textarea name="postTitle" class="form-control" id="postTitle-new" placeholder="Veuillez entrer votre titre" required data-validation-required-message="S'il vous plaît entrez titre"></textarea>
-        </div>
-    </td>
+<textarea name="postTitle" class="form-control" id="postTitle-new" placeholder="Veuillez entrer votre titre" required data-validation-required-message="S'il vous plaît entrez titre"></textarea>
+</div>
+</td>
 
-    <td> 
-        <div class="w-auto control-group">
-            {# <textarea  name="postChapo" class="form-control" id="postChapo-new" placeholder="Veuillez entrer votre chapo" required data-validation-required-message="S'il vous plaît entrez votre chapo">{{array.postChapo}} </textarea> #}
-            <textarea  name="postChapo" class="form-control" id="postChapo-new" placeholder="Veuillez entrer votre chapo" required data-validation-required-message="S'il vous plaît entrez votre chapo"></textarea>
-        </div>
-    </td>
+<td>
+<div class="w-auto control-group">
+{# <textarea name="postChapo" class="form-control" id="postChapo-new" placeholder="Veuillez entrer votre chapo" required data-validation-required-message="S'il vous plaît entrez votre chapo">{{array.postChapo}} </textarea> #}
+<textarea name="postChapo" class="form-control" id="postChapo-new" placeholder="Veuillez entrer votre chapo" required data-validation-required-message="S'il vous plaît entrez votre chapo"></textarea>
+</div>
+</td>
 
-    <td> 
-        <div class="w-auto control-group">
-            {# <textarea name="postContent" class="form-control" id="postContent-new" required data-validation-required-message="Veuillez entrer votre contenu.">{{array.postContent}} </textarea> #}
-            <textarea name="postContent" class="form-control" id="postContent-new" placeholder="Veuillez entrer votre contenu" required data-validation-required-message="S'il vous plaît entrez votre contenu"></textarea>
-        </div>
-    </td>
+<td>
+<div class="w-auto control-group">
+{# <textarea name="postContent" class="form-control" id="postContent-new" required data-validation-required-message="Veuillez entrer votre contenu.">{{array.postContent}} </textarea> #}
+<textarea name="postContent" class="form-control" id="postContent-new" placeholder="Veuillez entrer votre contenu" required data-validation-required-message="S'il vous plaît entrez votre contenu"></textarea>
+</div>
+</td>
 
-    <td> 
-        <select name ="postStatus" id="postStatus-new" class="form-select">
-        {# <option selected>{{array.postStatus}}</option>   #}
-        <option>Waiting for validation</option>
-        <option>Open</option>
-        </select>
-    </td>
+<td>
+<select name ="postStatus" id="postStatus-new" class="form-select">
+{# <option selected>{{array.postStatus}}</option> #}
+<option>Waiting for validation</option>
+<option>Open</option>
+</select>
+</td>
 
-    <td>
-        <select name="user_id" id="emailUser-{{array.emailUser}}" class="form-select">
-        {% for data in arrayEmails %}
-        <option value="{{data.idlUser}}">{{data.emailUser}}</option>
-        {% endfor %}
-        </select>
-    </td> 
+<td>
+<select name="user_id" id="emailUser-{{array.emailUser}}" class="form-select">
+{% for data in arrayEmails %}
+<option value="{{data.idlUser}}">{{data.emailUser}}</option>
+{% endfor %}
+</select>
+</td>
 
-    <td>
-    <button type="submit" class="btn btn-success">Enregister</button> 
-    </td>
+<td>
+<button type="submit" class="btn btn-success">Enregister</button>
+</td>
 
 </form>
 
@@ -101,111 +104,109 @@
 </tbody>
 </table>
 </div>
-</div>  
-</div>   
-<br>
+</div>
+</div>
 
-<h4 class="text-center">Modifier un Post</h4> 
-<br>
+
+
+<h4 class="text-center">Modifier un Post</h4>
+
+
 <div class="table-responsive">
-    <table class="table table-bordered table-striped table-highlight">
-    <thead>
-        <tr>
-        <th scope="col"><span class="glyphicon glyphicon-trash"></span></th>
-        <th scope="col">Titre</th>
-        <th scope="col">Chapo</th>
-        <th scope="col">Contenu</th>
-        <th scope="col">Post Status</th>
-        <th scope="col">Auteur / Email *</th>
-        <th scope="col">Enregistrer</th>
-        </tr>
-    </thead>
+<table class="table table-bordered table-striped table-highlight">
+<thead>
+<tr>
+<th scope="col"><span class="glyphicon glyphicon-trash"></span></th>
+<th scope="col">Titre</th>
+<th scope="col">Chapo</th>
+<th scope="col">Contenu</th>
+<th scope="col">Post Status</th>
+<th scope="col">Auteur / Email *</th>
+<th scope="col">Enregistrer</th>
+</tr>
+</thead>
+
 
 {% for array in arrayTableModify %}
-    <td>
-    <form action="{{ baseUrl }}index.php?owp=record&id={{array.postId}}" method="post">    
-    </td>
-    <tbody class="">
 
-    <td>
-    <div class="w-auto control-group">
-    <input type="checkbox" id="delete-{{array.postId}}" name="checkbox" value="{{array.postId}}">
-    </div>
-    </td>
+{# {{ dump( array.id) }} #}
 
-    <input type="hidden" name ="id" id="postId-{{array.postId}}" class="form-control postId" type="text" value="{{array.postId}}" aria-label="readonly" readonly></input>
+<td>
+<form action="{{ baseUrl }}index.php?owp=record&id={{array.id}}" method="post">
+</td>
+<tbody class="">
 
-    <td>
-        <div class="w-auto control-group">
-            <textarea name="postTitle" class="form-control" id="postTitle-{{array.postId}}" required data-validation-required-message="Veuillez entrer votre chapo.">{{array.postTitle}} </textarea>
-        </div>
-    </td>
+<td>
+<div class="w-auto control-group">
+<input type="checkbox" id="delete-{{array.postId}}" name="checkbox" value="{{array.id}}">
+</div>
+</td>
 
-    <td> 
-        <div class="w-auto control-group">
-            <textarea  name="postChapo" class="form-control" id="postChapo-{{array.postId}}" required data-validation-required-message="Veuillez entrer votre chapo.">{{array.postChapo}} </textarea>
-        </div>
-    </td>
+<input type="hidden" name ="id" id="postId-{{array.id}}" class="form-control postId" type="text" value="{{array.id}}" aria-label="readonly" readonly></input>
 
-    <td> 
-        <div class="w-auto control-group">
-            <textarea name="postContent" class="form-control" id="postContent-{{array.postId}}" required data-validation-required-message="Veuillez entrer votre contenu.">{{array.postContent}} </textarea>
-        </div>
-    </td>
+<td>
+<div class="w-auto control-group">
+<textarea name="postTitle" class="form-control" id="postTitle-{{array.id}}" required data-validation-required-message="Veuillez entrer votre chapo.">{{array.postTitle}} </textarea>
+</div>
+</td>
 
-    <td> 
-        <select name ="postStatus" id="postStatus-{{array.postId}}" class="form-select">
-        <option selected>{{array.postStatus}}</option>  
-        <option>Waiting for validation</option>
-        <option>Open</option>
-        <option>Closed</option>
-        </select>
-    </td>
+<td>
+<div class="w-auto control-group">
+<textarea name="postChapo" class="form-control" id="postChapo-{{array.id}}" required data-validation-required-message="Veuillez entrer votre chapo.">{{array.postChapo}} </textarea>
+</div>
+</td>
 
-    <td>
-      4
-        <pre>
-            {# {{ dump(array.postStatus) }}  fonctionne #}
-            {# {{ dump(array.user_id) }} ne fonctionne pas Why ? #}
-             {{ dump(array.user_id) }}
-            {{ dump(array) }}
-           
-        </pre>
+<td>
+<div class="w-auto control-group">
+<textarea name="postContent" class="form-control" id="postContent-{{array.id}}" required data-validation-required-message="Veuillez entrer votre contenu.">{{array.postContent}} </textarea>
+</div>
+</td>
 
-        {# <select name="user_id" id="emailUser-{{array.emailUser}}" class="form-select"></select> #}
-        <select name="user_id" id="emailUser-{{array.postId}}" class="form-select">
-        {# <option value = "{{array.user_id}}" selected>{{array.emailUser}}</option> #}
-        {# <option value = "{{array.user_id.value }}" selected>{{arrayAuthor[1]}}</option> #}
+<td>
+<select name ="postStatus" id="postStatus-{{array.id}}" class="form-select">
+<option selected>{{array.postStatus}}</option>
+<option>Waiting for validation</option>
+<option>Open</option>
+<option>Closed</option>
+</select>
+</td>
 
-        <option value = "{{array.user_id }}" selected>{{arrayAuthor[1]}}</option>
+<td>
+{# to get the author Email #}
+{% set emailAuthor = "" %}
+{% for arrayB in arrayEmails %}
+{% if arrayB.idlUser == array.user_id %}
+{% set emailAuthor = arrayB.emailUser %}
+{% endif %}
+{% endfor %}
 
-        {# arrayEmails is an other array #}
-        {% for data in arrayEmails %}
-        <option value="{{data.idlUser}}">{{data.emailUser}}</option>
-        {% endfor %}
-        </select>
+<select name="user_id" id="emailUser-{{ emailAuthor }}" class="form-select">
+<option value = "{{ array.user_id }}" selected>{{ emailAuthor }}</option>
+{# arrayEmails is an other array/object #}
+{% for data in arrayEmails %}
+<option value="{{data.idlUser}}">{{data.emailUser}}</option>
+{% endfor %}
+</select>
 
-    </td> 
+</td>
 
-    <td>
-    <button type="submit" class="btn btn-success">Enregister</button> 
-    <br> <br>
-    </td>
+<td>
+<button type="submit" class="btn btn-success">Enregister</button>
+
+
+</td>
 </form>
 
 {% endfor %}
 
 </tbody>
 </table>
-    <span class="glyphicon">&#xe086;</span> Pour supprimer un article du blog, cliquez sur la case a cocher et cliquez sur le bouton enregistrer
+<span class="glyphicon">&#xe086;</span> Pour supprimer un article du blog, cliquez sur la case a cocher et cliquez sur le bouton enregistrer
 </div>
-</div>  
-</div>   
-
-<br>
+</div>
+</div>
 
 </section>
 </div>
-<br>
 
 {% endblock %}

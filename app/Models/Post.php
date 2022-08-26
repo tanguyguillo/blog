@@ -16,8 +16,6 @@ class Post extends Model
     private $postCreated;
     private $postStatus;
     private $postModified;
-    private $user_id;
-
 
     /**
      * @return int
@@ -44,7 +42,7 @@ class Post extends Model
     }
 
     /**
-     * @param mixed $postTitle
+     * @param mixed
      */
     public function setPostTitle($postTitle)
     {
@@ -60,7 +58,7 @@ class Post extends Model
     }
 
     /**
-     * @param mixed $postChapo
+     * @param mixed
      */
     public function setPostChapo($postChapo)
     {
@@ -76,7 +74,7 @@ class Post extends Model
     }
 
     /**
-     * @param mixed $postContent
+     * @param mixed
      */
     public function setPostContent($postContent)
     {
@@ -92,15 +90,15 @@ class Post extends Model
     }
 
     /**
-     * @param mixed $postCreated
+     * @param mixed
      */
     public function setPostCreated($postCreated)
     {
         $this->postCreated = $postCreated;
     }
 
-    /**
-     * @param mixed $french_created_date  // special
+    /** 
+     * @param mixed
      */
     public function french_created_date($french_created_date)
     {
@@ -116,7 +114,7 @@ class Post extends Model
     }
 
     /**
-     * @param mixed $postStatus
+     * @param mixed
      */
     public function setPostStatus($postStatus)
     {
@@ -132,7 +130,7 @@ class Post extends Model
     }
 
     /**
-     * @param mixed $postModified
+     * @param mixed
      */
     public function setPostModified($postModified)
     {
@@ -140,7 +138,7 @@ class Post extends Model
     }
 
     /**
-     * @param mixed $french_modified_date // special
+     * @param mixed
      */
     public function french_modified_date($french_modified_date)
     {
@@ -148,7 +146,7 @@ class Post extends Model
     }
 
     /**
-     * @return mixed $user_id
+     * @return mixed
      */
     public function getUserId()
     {
@@ -156,7 +154,7 @@ class Post extends Model
     }
 
     /**
-     * @param mixed $user_id
+     * @param mixed
      */
     public function setUserId($user_id)
     {

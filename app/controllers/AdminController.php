@@ -68,11 +68,15 @@ class AdminController extends Controller
             // get the data to modify all the data of a post and this author (admin)
             $arrayTableModify = $this->getAdminUserAndData(); // is now an array of objects ... ex : array(5) { [0]=> object(Application\Models\Post\Post)#15 (8) { ["id":"Application\Models\Post\Post":private]=> string(1)
 
+            // var_dump($arrayTableModify); //OK
+
             // authors id + emails
             $arrayEmails = $this->getAdminEmails();
 
-            $arrayAuthor = $arrayTableModify[1]; // array of objects
-            $arrayTableModify = $arrayTableModify[0]; // array of objects
+            // $arrayTableModify = $arrayTableModify[0]; // array of objects
+
+            // $arrayAuthor = $arrayTableModify[1]; // array of objects
+
 
             if (!isset($message)) {
                 $arrayMessage =  $this->setMessageForTwig("false");
@@ -80,10 +84,7 @@ class AdminController extends Controller
                 $arrayMessage =  $this->setMessageForTwig($message); // setMessageForTwig : heritage from Controller
             }
 
-            // var_dump($arrayTableModify);
-            // exit;
-
-            $this->twig->display('Admin/blocPostAdmin.html.twig', compact('arrayMessage', 'arrayTableModify', 'arrayEmails', 'arrayAuthor'));
+            $this->twig->display('Admin/blocPostAdmin.html.twig', compact('arrayMessage', 'arrayTableModify', 'arrayEmails'));
         } else {
             $this->redirectionNotAdmin();
         }

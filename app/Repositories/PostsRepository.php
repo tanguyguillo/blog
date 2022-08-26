@@ -27,7 +27,6 @@ class PostsRepository extends Controller
         return $posts;
     }
 
-
     /**
      * function to update a post from admin
      *

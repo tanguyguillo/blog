@@ -157,44 +157,15 @@ class UserRepository
                 );
                 $datas = [];
                 $statement->execute();
-                ////// V1  not a objet (exeample how i did before)
-                // while (($row = $statement->fetch())) {
-                //     $data = new UserRepository();
-                //     $data->postId = $row['id'];
-                //     $data->postTitle = $row['postTitle'];
-                //     $data->postChapo = $row['postChapo'];
-                //     $data->postContent = $row['postContent'];
-                //     $data->postStatus = $row['postStatus'];
-                //     $data->postModified = $row['postModified'];
-                //     $data->userId = $row['user_id'];
-                //     $data->firstNameUser = $row['firstNameUser'];
-                //     $data->surNameUser = $row['surNameUser'];
-                //     $data->emailUser = $row['emailUser'];
-                //     $data->roleUser = $row['roleUser'];
-                //     $datas[] = $data;
-                // }
                 $datas = [];
-                $users = [];
+                //$users = [];
                 while (($row = $statement->fetch())) {
                     $data = new PostsRepository();
                     // hydratation Post
                     $data =  new Post($row);
                     $data->setUserId($row['user_id']);
-
-                    // hydratation user
-                    $user =  new user();
-                    $user->setEmailUser($row['emailUser']);
-                    $user->setId($row['user_id']);
-
                     $datas[] = $data;
-                    $users[] =  $user;
                 }
-
-                // then i do an array of object
-                $array[0] = $datas;
-                $array[1] = $user;
-                $datas = $array;
-
                 return $datas;
             } catch (\Exception $e) {
                 $errorMessage = $e->getMessage();

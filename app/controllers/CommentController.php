@@ -16,8 +16,6 @@ class CommentController extends Controller
      * function to set a new comment on an article
      *
      * @param sarray $arrayComment 
-     * ex : array(3) { ["commentPost"]=> string(7) "qSsqsqs" ["postId"]=> string(1) "3" ["idUser"]=> string(1) "2" }
-     * or : array(3) { ["commentPost"]=> string(12) "SDsqdsqdqsdq" ["postId"]=> string(0) "" ["idUser"]=> string(0) "" }
      * 
      * @return void
      */
