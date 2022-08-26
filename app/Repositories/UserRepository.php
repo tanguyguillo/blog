@@ -179,8 +179,8 @@ class UserRepository
      *
      * @return array
      *
-     *  for admin
-     * $role Admin or User  // GROUP BY emailUser
+     * for admin / object
+     * $role Admin or User // GROUP BY emailUser
      *
      */
     public function getEmailUser(string $role)
@@ -193,7 +193,6 @@ class UserRepository
                     "SELECT id, emailUser FROM user WHERE roleUser ='$role'"
                 );
                 $statement->execute();
-                // todo poo
                 while (($row = $statement->fetch())) {
                     $email = new UserRepository();
                     $email->idlUser = $row['id'];
@@ -211,7 +210,7 @@ class UserRepository
     }
 
     /**
-     * function to manage user
+     * function to manage user .... to in object
      *
      * @param array $arrayUser
      * @return void
