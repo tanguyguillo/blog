@@ -71,13 +71,19 @@ class AdminController extends Controller
             // authors id + emails
             $arrayEmails = $this->getAdminEmails();
 
+            $arrayAuthor = $arrayTableModify[1]; // array of objects
+            $arrayTableModify = $arrayTableModify[0]; // array of objects
+
             if (!isset($message)) {
                 $arrayMessage =  $this->setMessageForTwig("false");
             } else {
                 $arrayMessage =  $this->setMessageForTwig($message); // setMessageForTwig : heritage from Controller
             }
 
-            $this->twig->display('Admin/blocPostAdmin.html.twig', compact('arrayMessage', 'arrayTableModify', 'arrayEmails'));
+            // var_dump($arrayTableModify);
+            // exit;
+
+            $this->twig->display('Admin/blocPostAdmin.html.twig', compact('arrayMessage', 'arrayTableModify', 'arrayEmails', 'arrayAuthor'));
         } else {
             $this->redirectionNotAdmin();
         }

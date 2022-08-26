@@ -5,6 +5,7 @@ namespace Application\Controllers;
 use Application\Core\Auth\Auth;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
+use Twig\Extension\DebugExtension;
 
 /**
  * make working twig by heritage
@@ -27,9 +28,12 @@ abstract class Controller extends Auth
         $this->twig = new Environment(
             $this->loader,
             [
-                'debug' => false
+                'debug' => true
             ]
         );
+
+        $this->twig->addExtension(new DebugExtension());
+
         $this->twig->addGlobal('session', $_SESSION);
     }
 

@@ -2,19 +2,25 @@
 
 OPENCLASSROOMS project P5 for DEV PHP/SYMFONY certificate
 
-Create your own blog web site
+## Context
 
-**********************
+Create your own blog web site with Php/MVC/Composer/bootstrap without Framework
+
+## Stack
+
  PHP 8.08
  Maria DB
  Composer
  Twig
  Codesniffer
  MVC
+ Jquery
  Php
  Html
  Css
-**********************
+
+
+## Getting Started
 
 How to use it ?
 
@@ -25,7 +31,7 @@ How to use it ?
 5) Create new host and make the root of the web site the folder "public"
 6) that's it
 
-**********************
+## how to test
 
 You can see a onLine version to this URL (web site in french):
 
@@ -41,4 +47,10 @@ user's role:
 Login : moi@moi.fr
 password : moi@moi.frmoi@moi.fr
 
-**********************
+## IDE
+
+Visual Studio Code
+
+## Creator
+
+François marie Tanguy Guillo

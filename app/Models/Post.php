@@ -20,7 +20,7 @@ class Post extends Model
 
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getId()
     {
@@ -28,7 +28,7 @@ class Post extends Model
     }
 
     /**
-     * @param mixed $id
+     * @param int
      */
     public function setId($id)
     {
@@ -148,7 +148,7 @@ class Post extends Model
     }
 
     /**
-     * @return mixed
+     * @return mixed $user_id
      */
     public function getUserId()
     {
@@ -156,7 +156,7 @@ class Post extends Model
     }
 
     /**
-     * @param mixed
+     * @param mixed $user_id
      */
     public function setUserId($user_id)
     {

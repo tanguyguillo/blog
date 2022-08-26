@@ -174,14 +174,26 @@ class UserRepository
                 //     $datas[] = $data;
                 // }
                 $datas = [];
+                $users = [];
                 while (($row = $statement->fetch())) {
                     $data = new PostsRepository();
                     // hydratation Post
                     $data =  new Post($row);
                     $data->setUserId($row['user_id']);
-                    //var_dump(['emailUser']);
+
+                    // hydratation user
+                    $user =  new user();
+                    $user->setEmailUser($row['emailUser']);
+                    $user->setId($row['user_id']);
+
                     $datas[] = $data;
+                    $users[] =  $user;
                 }
+
+                // then i do an array of object
+                $array[0] = $datas;
+                $array[1] = $user;
+                $datas = $array;
 
                 return $datas;
             } catch (\Exception $e) {
