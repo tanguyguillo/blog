@@ -126,14 +126,10 @@
 </tr>
 </thead>
 
-
 {% for array in arrayTableModify %}
 
-{# {{ dump( array.id) }} #}
-
-<td>
 <form action="{{ baseUrl }}index.php?owp=record&id={{array.id}}" method="post">
-</td>
+
 <tbody class="">
 
 <td>
@@ -172,17 +168,14 @@
 </td>
 
 <td>
-{# to get the author Email #}
 {% set emailAuthor = "" %}
 {% for arrayB in arrayEmails %}
 {% if arrayB.idlUser == array.user_id %}
 {% set emailAuthor = arrayB.emailUser %}
 {% endif %}
 {% endfor %}
-
 <select name="user_id" id="emailUser-{{ emailAuthor }}" class="form-select">
 <option value = "{{ array.user_id }}" selected>{{ emailAuthor }}</option>
-{# arrayEmails is an other array/object #}
 {% for data in arrayEmails %}
 <option value="{{data.idlUser}}">{{data.emailUser}}</option>
 {% endfor %}
@@ -191,10 +184,10 @@
 </td>
 
 <td>
+
 <button type="submit" class="btn btn-success">Enregister</button>
-
-
 </td>
+
 </form>
 
 {% endfor %}
