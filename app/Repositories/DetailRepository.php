@@ -15,7 +15,7 @@ class DetailRepository
      *
      * return an objet
      */
-    public function getPost(string $identifier)
+    public function getPost($identifier)
     {
         $identifier = htmlspecialchars($identifier);
         $statement = $this->connection->getConnexion()->query(
@@ -23,11 +23,11 @@ class DetailRepository
         );
         $statement->execute();
         $row = $statement->fetch();
-        $author = $row['user_id']; // get that here because it's don't pass in the object ?
+        $author = $row['user_id'];
         $post = new DetailRepository();
         //hydratation
         $post = new post($row);
-        $post->setUserId($author); // set that here because it's don't pass in the object (otherwise = NULL)?
+        $post->setUserId($author);
         return $post;
     }
 
@@ -36,8 +36,9 @@ class DetailRepository
      *
      * @return bool
      */
-    public function getMaxAndOpen(int $identifier)
+    public function getMaxAndOpen($identifier)
     {
+        $identifier = intval($identifier);
         $identifier = htmlspecialchars($identifier);
         $statement = $this->connection->getConnexion()->query("SELECT * FROM blog_post where id = $identifier and postStatus = 'Open'");
         $statement->execute();

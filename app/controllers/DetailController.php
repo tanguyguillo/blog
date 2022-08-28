@@ -41,6 +41,9 @@ class DetailController extends Controller
             $detail =  $postDetail->getPost($identifier);
             $AuthorId = $detail->getUserId();
         } else {
+
+            var_dump($identifier);
+
             $message = "l'identifiant de la page est inexact";
             $this->twig->display('error/error.html.twig', compact('message'));
         };
