@@ -73,7 +73,6 @@ class PostsRepository extends Controller
             $statement = $this->connection->getConnexion()->query($query);
             return true;
         } catch (\Exception $e) {
-            // $this->twig->display('error/error.html.twig', compact('message'));
             $errorMessage = $e->getMessage();
             require(ROOT . '/app/templatesError/error.php');
             return false;
@@ -88,7 +87,6 @@ class PostsRepository extends Controller
      */
     public function newPost(array $arrayPost)
     {
-
         /**
          * From Controller for control
          */

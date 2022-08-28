@@ -15,7 +15,7 @@ class Repository //extends DatabaseConnexion
      * @param [connexion] $comm
      * @return bool
      */
-    public function create(Object $object, $table, $comm)
+    public function create(Object $object, $table, Object $comm)
     {
         $dataArr = $object->makeArrayFromObjet();
         $fields = [];
