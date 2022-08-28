@@ -12,31 +12,35 @@ class Repository //extends DatabaseConnexion
      *
      * @param Object $object
      * @param [string] $table
-     * @param [connexion] $statement
+     * @param [connexion] $comm
      * @return bool
      */
-    public function create(Object $object, $table, $statement)
+    public function create(Object $object, $table, $comm)
     {
-        // todo change the names of the variables
         $dataArr = $object->makeArrayFromObjet();
-        $champs = [];
-        $valeurs = [];
+        $fields = [];
+        $theValues = [];
 
-        foreach ($dataArr  as $champ => $valeur) {
-            $champs[] = $champ;
-            $valeurs[] = "'" . $valeur . "'";
+        foreach ($dataArr  as $field => $theValue) {
+            $fields[] = $field;
+            $theValues[] = "'" . $theValue . "'";
         }
 
-        // remove the id
-        $champs = array_slice($champs, 1);
-        $valeurs = array_slice($valeurs, 1);
-        // add ', '
-        $list_champs = implode(', ', $champs);
-        $list_Valeurs = implode(', ', $valeurs);
+        /**
+         * remove the id
+         */
+        $fields = array_slice($fields, 1);
+        $theValues = array_slice($theValues, 1);
+
+        /**
+         * add ', '
+         */
+        $list_fields = implode(', ', $fields);
+        $list_theValues = implode(', ', $theValues);
 
         try {
-            $statement->query(
-                "INSERT INTO " . $table . " ($list_champs)" . " VALUES " . "($list_Valeurs);"
+            $comm->query(
+                "INSERT INTO " . $table . " ($list_fields)" . " VALUES " . "($list_theValues);"
             );
         } catch (\Exception $e) {
             $errorMessage = $e->getMessage();

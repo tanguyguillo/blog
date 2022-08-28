@@ -25,10 +25,13 @@ class UserRepository
         );
         $statement->execute();
         $row = $statement->fetch();
-        // when user have been drop
+
+        /**
+         * when user have been drop
+         */
         if ($row) {
             $user = new UserRepository();
-            $user = new User($row); // hydratattion
+            $user = new User($row);
         } else {
             $user = new User();
             $user->setId("NULL");
@@ -70,7 +73,9 @@ class UserRepository
      */
     public function createUser(array $postData)
     {
-        // Crypt the password
+        /**
+         * Crypt the password
+         */
         $passWordUser = $postData["password"];
         $this->cryptPassword($passWordUser);
 
@@ -79,7 +84,6 @@ class UserRepository
         $surNameUser = $postData["lname"];
         $roleUser = "User";
 
-        // have to hydrate the model user
         $user = new User();
         $user->setFirstNameUser($firstNameUser);
         $user->setSurNameUser($surNameUser);
@@ -87,7 +91,9 @@ class UserRepository
         $user->setRoleUser($roleUser);
         $user->setEmailUser($emailUser);
 
-        // adding info for generic $repository->create()
+        /**
+         * generic $repository->create()
+         */
         $table = "user";
         $statement = $this->connection->getConnexion();
         $repository = new Repository;
@@ -107,7 +113,7 @@ class UserRepository
      */
     public function findEmail(array $postData)
     {
-        $emailUser = $postData["email"]; // string
+        $emailUser = $postData["email"];
         $statement = $this->connection->getConnexion()->query(
             "SELECT emailUser,count(*) FROM user WHERE emailUser ='$emailUser' GROUP BY emailUser"
         );
@@ -152,7 +158,6 @@ class UserRepository
                 $datas = [];
                 $statement->execute();
                 $datas = [];
-                //$users = [];
                 while (($row = $statement->fetch())) {
                     $data = new PostsRepository();
                     // hydratation Post
@@ -195,7 +200,6 @@ class UserRepository
                 }
                 return $Emails;
             } catch (\Exception $e) {
-                // to redirect own error page
                 $errorMessage = $e->getMessage();
                 require(ROOT . '/app/templatesError/error.php');
                 return false;
@@ -211,7 +215,6 @@ class UserRepository
      */
     public function updateUsers(array $arrayUser)
     {
-        // to look out data comming from outside even in admin aera
         foreach ($arrayUser as $key => $value) {
             $Data[$key]  = strip_tags(htmlspecialchars($value));
             $Data[$key] = str_replace("'", "&apos;", $value);
@@ -222,7 +225,9 @@ class UserRepository
 
         try {
             $query = "UPDATE user SET roleUser = '$roleUser' WHERE id = '$id' ";
-            // delete
+            /**
+             * delete
+             */
             if (isset($arrayUser["checkbox"])) {
                 $query = "DELETE FROM user WHERE id = $id";
                 $statement = $this->connection->getConnexion()->query($query);
@@ -231,7 +236,6 @@ class UserRepository
             $statement = $this->connection->getConnexion()->query($query);
             return true;
         } catch (\Exception $e) {
-            //$this->twig->display('error/error.html.twig', compact('message'));
             $errorMessage = $e->getMessage();
             require(ROOT . '/app/templatesError/error.php');
             return false;

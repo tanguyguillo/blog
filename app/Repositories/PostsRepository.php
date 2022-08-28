@@ -88,7 +88,11 @@ class PostsRepository extends Controller
      */
     public function newPost(array $arrayPost)
     {
-        $arrayPost = $this->lookOutDataFromOustide($arrayPost); // From Controller for control
+
+        /**
+         * From Controller for control
+         */
+        $arrayPost = $this->lookOutDataFromOustide($arrayPost);
 
         $postTitle = ($arrayPost["postTitle"]);
         $postChapo = ($arrayPost["postChapo"]);
@@ -96,9 +100,15 @@ class PostsRepository extends Controller
         $postStatus = ($arrayPost["postStatus"]);
         $postCreated = date("Y-m-d H:i:s");
         $postStatus = ($arrayPost["postStatus"]);
-        $user_id = ($arrayPost["user_id"]); // pop up admin Author
 
-        // add to hydrate object Post
+        /**
+         * pop up admin Author
+         */
+        $user_id = ($arrayPost["user_id"]);
+
+        /**
+         * hhydrate object Post
+         */
         $post = new Post();
         $post->setPostTitle($postTitle);
         $post->setPostChapo($postChapo);
@@ -106,13 +116,19 @@ class PostsRepository extends Controller
         $post->setPostStatus($postStatus);
         $post->setPostCreated($postCreated);
         $post->setPostModified($postCreated);
-        $post->setUserId($user_id); // here it's write user : it's the id of the writer postUserId will have been better....
 
-        // adding info for generic $repository->create()
+        /**
+         * here it's write user
+         */
+        $post->setUserId($user_id);
+
         $table = "blog_post";
         $statement = $this->connection->getConnexion();
         $repository = new Repository;
-        // Generic create
+
+        /**
+         * Generic create
+         */
         if ($repository->create($post, $table, $statement)) {
             return true;
         } else {

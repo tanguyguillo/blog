@@ -138,7 +138,9 @@ class CommentRepository
             $query = "UPDATE comment SET commentStatus = '$commentStatus'
             WHERE id = '$id' ";
 
-            // delete
+            /**
+             * delete
+             */
             if (isset($arrayComment["checkbox"])) {
                 $id = $arrayComment["id"];
                 $query = "DELETE FROM comment WHERE id = '$id'";
@@ -146,11 +148,9 @@ class CommentRepository
                 return true;
             }
 
-            // just valif "open" or not
             $statement = $this->connection->getConnexion()->query($query);
             return true;
         } catch (\Exception $e) {
-            // $this->twig->display('error/error.html.twig', compact('message'));
             $errorMessage = $e->getMessage();
             require(ROOT . '/app/templatesError/error.php');
             return false;

@@ -181,11 +181,9 @@ abstract class Controller extends Auth
         $identifier = htmlspecialchars($identifier);
         // // for intance when inscription
         if ($identifier === "") {
-            //$identifier = $_SESSION['LOGGED_PAGE_ID']; // article id
-            $identifier = "3";
+            $identifier = $_SESSION['LOGGED_PAGE_ID'];
         }
         return $identifier;
-        //verify is $identifier is a "string(integer)" if not display a message
         $this->isInteger($identifier);
         if ($this->isInteger($identifier) === false) {
             $message = "l'identifiant de la page doit être un chiffre";

@@ -19,37 +19,46 @@ class DetailController extends Controller
      */
     public function detail($identifier, $message = '')
     {
-        // to check the user's enter for exemple 10 0000 which don't exist (yet)
+        /**
+         * to check the user's enter for exemple 10 0000 which don't exist (yet)
+         */
         $identifier = $this->checkIdentifier($identifier);
 
-        // 1 - Detail
+        /**
+         * /1 - Detail
+         */
         $connection = new DatabaseConnexion();
         $postDetail = new DetailRepository();
         $postDetail->connection = $connection;
 
-        // Test (getMaxAndOpen : return true/false to see the user tape by hand on the url 10000 for exemple for the article id
+        /**
+         * Test (getMaxAndOpen : return true/false to see the user tape by hand on the url 10000 for exemple for the article id
+         */
         if ($postDetail->getMaxAndOpen($identifier)) {
-            $detail =  $postDetail->getPost($identifier); // return an objet Post // $identifier is the identifier of the post
-            $AuthorId = $detail->getUserId(); // get the id of the author gracefull of the entitie user_id of the post object
+            /**
+             * return an objet Post // $identifier is the identifier of the post
+             */
+            $detail =  $postDetail->getPost($identifier);
+            $AuthorId = $detail->getUserId();
         } else {
             $message = "l'identifiant de la page est inexact";
             $this->twig->display('error/error.html.twig', compact('message'));
         };
 
-        // 2 - user  
+
         $connection = new DatabaseConnexion();
         $user = new UserRepositoryUserRepository();
         $user->connection = $connection;
-        $user  = $user->getUser($AuthorId); // return an object
+        $user  = $user->getUser($AuthorId);
 
-        // 3 - Comment
+
         $connection = new DatabaseConnexion();
         $postComments = new CommentRepository();
         $postComments->connection = $connection;
-        $postComments  = $postComments->getComments($identifier); // return an objet
+        $postComments  = $postComments->getComments($identifier);
 
         $this->infoNavDetail($identifier, $user);
-        $baseUrl = BASE_URL; // used for return button after connexion
+        $baseUrl = BASE_URL;
 
         $arrayMessage = $this->readleByTwig($message);
         $this->twig->display('detail/detail.html.twig', compact('detail', 'user', 'postComments', 'baseUrl', 'identifier', 'arrayMessage'));
@@ -68,7 +77,7 @@ class DetailController extends Controller
      */
     public function detailConnexion(array $postData, string $messsage = '')
     {
-        $messsageReadle = ""; // for no data message
+        $messsageReadle = "";
 
         if ($this->myAuth($postData)) {
             $message = $_SESSION['LOGGED_USER_NAME'];
@@ -76,10 +85,8 @@ class DetailController extends Controller
             return true;
         }
 
-        // to avoid a bug because the url can to not change
         if ($messsageReadle != 'false') {
             $message = 'Désolé, les données de connection sont incorrectes';
-            // we go bach to connexion page
             (new ConnexionController())->connexion($message)();
             return false;
         }

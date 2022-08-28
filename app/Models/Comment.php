@@ -18,15 +18,6 @@ class Comment extends Model
     private $blog_post_user_id;
 
     /**
-     *  function to get the table name in the objet
-     * perhaps later....
-     */
-    // public function __construct()
-    // {
-    //     $this->table = 'comment';
-    // }
-
-    /**
      * @return mixed
      */
     public function getId()
