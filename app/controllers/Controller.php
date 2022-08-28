@@ -21,19 +21,15 @@ abstract class Controller extends Auth
      */
     public function __construct()
     {
-        // where the twig views
+        $debugTwig = TWIGDEBUG;
         $this->loader = new FilesystemLoader(ROOT . '/app/views');
-        // env twig
-        // put true for debug // prod
         $this->twig = new Environment(
             $this->loader,
             [
-                'debug' => true
+                'debug' => $debugTwig
             ]
         );
-
         $this->twig->addExtension(new DebugExtension());
-
         $this->twig->addGlobal('session', $_SESSION);
     }
 
@@ -136,7 +132,6 @@ abstract class Controller extends Auth
         $message = 'Désolé cette partie du site est réservé aux administrateurs';
         $this->twig->display('info/info.html.twig', compact('message'));
     }
-
 
     /**
      * function to make a string reable by twig

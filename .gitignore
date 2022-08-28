@@ -3,6 +3,7 @@
 # Useful .gitignore templates: https://github.com/github/gitignore
 #####################################################################
 #.DS_Store
+.idea
 /vendor/
 /config.php/
 /config-local.php/

@@ -4,7 +4,7 @@ OPENCLASSROOMS project P5 for DEV PHP/SYMFONY certificate
 
 ## Context
 
-Create your own blog web site with Php/MVC/Composer/bootstrap without Framework
+Create your own blog website with Php/MVC/Composer/bootstrap without Framework
 
 ## Stack
 
@@ -19,12 +19,11 @@ Create your own blog web site with Php/MVC/Composer/bootstrap without Framework
  Html
  Css
 
-
 ## Getting Started
 
 How to use it ?
 
-1) Just copy the files on your Desktop
+1) Just copy the file onto the desktop or website provider
 2) Create a new DB
 3) Import the sql files from the folder "DB" at the root of the project in your new DB
 4) write the new informations of connection and the baseUrl  in "app/config/config-example.php" and rename it in config.php
@@ -33,7 +32,7 @@ How to use it ?
 
 ## how to test
 
-You can see a onLine version to this URL (web site in french):
+You can see an onLine version to this URL (web site in french):
 
 <https://blog.omegawebprod.com/>
 

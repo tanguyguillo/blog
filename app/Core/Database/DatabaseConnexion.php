@@ -9,11 +9,9 @@ require_once(ROOT . '/app/config/config.php');
  */
 class DatabaseConnexion
 {
-
-  // Instance unique de la classe
   private static $instance;
 
-  public ?\PDO $database = null;  // if PDO .... ok or otherwise = null
+  public ?\PDO $database = null;
 
   /**
    * connexion to the database;

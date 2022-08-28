@@ -52,13 +52,17 @@ class Auth extends DatabaseConnexion
             $usersRepository->connection = $connection;
             $users = $usersRepository->getUsers(); // return an array
 
-            // if correspondance email + password + crypt
+            /**
+             * if correspondance email + password + crypt
+             */
             foreach ($users as $user) {
 
-                // verified data form == data db (email and password)
+
+                /**
+                 * verified data form == data db (email and password)
+                 */
                 if (($user['emailUser'] === $postData['user_login']) && ($user['passWordUser']  === crypt($postData['user_pass'], SALT))) {
 
-                    // for preferences only
                     setcookie(
                         'LOGGED_USER',
                         $postData['user_login'],
