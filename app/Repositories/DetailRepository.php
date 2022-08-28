@@ -33,6 +33,8 @@ class DetailRepository
 
     /**
      * Look if the post id exist and is open
+     * 
+     * to see here bug version on line
      *
      * @return bool
      */
