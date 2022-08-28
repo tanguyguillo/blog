@@ -76,12 +76,12 @@ try {
         }
         // Create an user account
         if ($_GET['owp'] === 'creation-d-un-compte') {
-            (new InscriptionController())->CreateAccount($postData);
+            (new InscriptionController())->createAccount($postData);
             exit;
         }
         // Admin aera
         if ($_GET['owp'] === 'administration-only-for-people-which-have-the-role-Admin') {
-            (new AdminController())->ConnectAdmin();
+            (new AdminController())->connectAdmin();
             exit;
         }
 
@@ -94,7 +94,7 @@ try {
 
         if ($_GET['owp'] === 'blocPostAdmin') {
             $message = "false"; // $message is used for message after recording // passing by Auth
-            (new AdminController())->BlocPostadmin($postData, $message);
+            (new AdminController())->blocPostadmin($postData, $message);
             exit;
         }
 

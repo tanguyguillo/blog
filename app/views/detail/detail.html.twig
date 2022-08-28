@@ -20,15 +20,9 @@
                 </h4>
                 <h6>Mise à jour le {{detail.postModified}}</h6>
                 <hr class="star-light">
-                {# todo : a condition post.postStatus = open # ... here not necessary the blogPost have been filtred
-                before #}
-
                 <p>&nbsp;{{detail.postChapo|replace({'\'': ""}) }} </p>
                 <br>
                 <p>{{detail.postContent}}</p>
-
-                {# todo :  The element button must not appear as a descendant of the a element. #}
-
                 <a href="{{ baseUrl }}index.php?owp=bloglist#{{detail.idPost}}" class="btn btn-primary btn-small"
                     role="button" title="Retour">Retour</a>
                 <hr>

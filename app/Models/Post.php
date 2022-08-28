@@ -97,13 +97,6 @@ class Post extends Model
         $this->postCreated = $postCreated;
     }
 
-    /** 
-     * @param mixed
-     */
-    public function french_created_date($french_created_date)
-    {
-        $this->setPostCreated = $french_created_date;
-    }
 
     /**
      * @return mixed
@@ -135,14 +128,6 @@ class Post extends Model
     public function setPostModified($postModified)
     {
         $this->postModified = $postModified;
-    }
-
-    /**
-     * @param mixed
-     */
-    public function french_modified_date($french_modified_date)
-    {
-        $this->postModified = $french_modified_date;
     }
 
     /**

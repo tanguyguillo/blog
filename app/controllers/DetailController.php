@@ -34,7 +34,6 @@ class DetailController extends Controller
         } else {
             $message = "l'identifiant de la page est inexact";
             $this->twig->display('error/error.html.twig', compact('message'));
-            exit;
         };
 
         // 2 - user  

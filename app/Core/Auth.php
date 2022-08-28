@@ -15,13 +15,6 @@ class Auth extends DatabaseConnexion
     private $userRole;
 
     /**
-     * function
-     */
-    public function __construct()
-    {
-    }
-
-    /**
      *  function setuserRole
      *
      * @param [type] $userRole// in french : mutateur
@@ -45,14 +38,13 @@ class Auth extends DatabaseConnexion
 
     /**
      * function myAuth ... in some case issue in admin "utilisateur" board not show....
+     *  to the beginning  : //$this->InitSession(); sup
      * 
      * return boll
      *
      */
     public function myAuth(array $postData)
     {
-        //$this->InitSession();
-
         if (isset($postData['user_login']) &&  isset($postData['user_pass'])) {
 
             $connection = new DatabaseConnexion();
@@ -110,12 +102,12 @@ class Auth extends DatabaseConnexion
     }
 
     /**
-     * function heriatgae Controlleur-InitSession
+     * function heriatgae Controlleur-initSession
      *
      * @return void
      */
-    public function InitSession()
+    public function initSession()
     {
-        $this->InitSession();
+        $this->initSession();
     }
 }

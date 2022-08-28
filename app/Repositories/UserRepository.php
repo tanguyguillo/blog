@@ -38,7 +38,7 @@ class UserRepository
 
     /**
      * function getUsers with a S : get all users with main informations
-     *
+     *  for $users = json_decode(json_encode($users), true);  : turn in array
      *
      * @return array
      */
@@ -57,16 +57,10 @@ class UserRepository
             $user->surNameUse = $row['surNameUser'];
             $user->roleUser = $row['roleUser'];
             $users[] = $user;
-
-            // hydratation userModel
-            //$userModel = new UserModel($row);
         }
-        // turn in Array
         $users = json_decode(json_encode($users), true);
         return $users;
     }
-
-
 
     /**
      * function to create a user with "user" role
@@ -146,7 +140,7 @@ class UserRepository
      */
     public function getPostAndUser()
     {
-        if ($_SESSION['LOGGED_USER'] and ($_SESSION['ROLE_USER'] == 'Admin')) {
+        if ($_SESSION['LOGGED_USER'] && ($_SESSION['ROLE_USER'] == 'Admin')) {
             $errorMessage = "you DO have admin role to acces to this Aera";
             try {
                 $statement = $this->connection->getConnexion()->query(
@@ -185,7 +179,7 @@ class UserRepository
      */
     public function getEmailUser(string $role)
     {
-        if ($_SESSION['LOGGED_USER'] and ($_SESSION['ROLE_USER'] == 'Admin')) {
+        if ($_SESSION['LOGGED_USER'] && ($_SESSION['ROLE_USER'] == 'Admin')) {
             $errorMessage = "you DO have admin role to acces to this Aera";
             $Emails = [];
             try {
@@ -224,14 +218,10 @@ class UserRepository
         }
 
         $id = ($arrayUser["id"]);
-        // $emailUser = ($arrayUser["emailUser"]); /// perhaps for later....
-        // $firstNameUser = ($arrayUser["firstNameUser"]);
-        // $surNameUse = ($arrayUser["surNameUse"]);
         $roleUser = ($arrayUser["roleUser"]);
 
         try {
             $query = "UPDATE user SET roleUser = '$roleUser' WHERE id = '$id' ";
-
             // delete
             if (isset($arrayUser["checkbox"])) {
                 $query = "DELETE FROM user WHERE id = $id";

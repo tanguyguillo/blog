@@ -18,7 +18,7 @@ class AdminController extends Controller
      *
      * @return void
      */
-    public function ConnectAdmin()
+    public function connectAdmin()
     {
         $message = 'false';
         $this->twig->display('Admin/adminConnexion.html.twig', compact('message'));
@@ -38,7 +38,7 @@ class AdminController extends Controller
             $message = "Bienvenue sur l'Admin du blog";
 
             $Array = ['nothing' => ""];
-            $this->BlocPostadmin($Array, $message);
+            $this->blocPostadmin($Array, $message);
         } else {
             $this->redirectionNotAdmin();
         }
@@ -60,8 +60,8 @@ class AdminController extends Controller
      *
      * @return void
      */
-    // public function BlocPostadmin(array $postData, string $message)
-    public function BlocPostadmin($array, $message)
+    // public function blocPostadmin(array $postData, string $message)
+    public function blocPostadmin($array, $message)
     {
         $message = $message;
         if ($this->isAdmin()) {

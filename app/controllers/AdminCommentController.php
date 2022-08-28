@@ -37,7 +37,9 @@ class AdminCommentController extends Controller
     public function getAdminCommentData()
     {
         if ($this->isAdmin()) {
-            //  Comments + blog_post + user ;  getAllComments
+            /**
+             *  Comments + blog_post + user ;  getAllComments
+             */
             $connection = new DatabaseConnexion();
             $commentsRepository = new CommentRepository();
             $commentsRepository->connection = $connection;

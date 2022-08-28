@@ -57,7 +57,7 @@ abstract class Controller extends Auth
      *
      * @return void
      */
-    public function InitSession()
+    public function initSession()
     {
         $_SESSION = array();
         unset($_SESSION['LOGGED_USER']);
@@ -69,16 +69,14 @@ abstract class Controller extends Auth
 
     /**
      *  function to verify that the user is logged
-     * early return
+     * $message = "You have o be connected to comment a post";
      *
      * @return void
      */
     public function verifyComment($message)
     {
         if (($_SESSION['LOGGED_USER_NAME'] == "")) {
-            // $message = "You have o be connected to comment a post";
             $this->twig->display('info/info.html.twig', compact('message'));
-            exit;
         }
     }
     /************** Utilities From here ********************
@@ -189,10 +187,9 @@ abstract class Controller extends Auth
         return $identifier;
         //verify is $identifier is a "string(integer)" if not display a message
         $this->isInteger($identifier);
-        if ($this->isInteger($identifier) == false) {
+        if ($this->isInteger($identifier) === false) {
             $message = "l'identifiant de la page doit être un chiffre";
             $this->twig->display('error/error.html.twig', compact('message'));
-            exit;
         }
         return  $identifier;
     }

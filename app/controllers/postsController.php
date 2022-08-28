@@ -52,7 +52,7 @@ class PostsController extends AdminControllerAdminController
       $message = "Enregistrement effectué";
 
       // we use the parent's function from AdminController
-      $this->BlocPostadmin($arrayPost, $message);
+      $this->blocPostadmin($arrayPost, $message);
     } else {
       // not OK
     }
@@ -75,7 +75,7 @@ class PostsController extends AdminControllerAdminController
       $message = "Enregistrement effectué";
 
       // we use the parent's function from AdminController
-      $this->BlocPostadmin($arrayPost, $message);
+      $this->blocPostadmin($arrayPost, $message);
     } else {
       // not OK
     }

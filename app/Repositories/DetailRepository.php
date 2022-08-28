@@ -11,8 +11,7 @@ class DetailRepository
 {
     /**
      *  put in an array one post // use of htmlspecialchars for id (XSS)
-     * 
-     * todo : $str = str_replace("\", "", $str);
+     *
      *
      * return an objet
      */
