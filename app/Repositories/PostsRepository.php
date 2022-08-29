@@ -40,9 +40,8 @@ class PostsRepository extends Controller
             $postData[$key]  = strip_tags(htmlspecialchars($value));
             $postData[$key] = str_replace("'", "&apos;", $value);
         }
-        $arrayPost = $this->lookOutDataFromOustide($arrayPost); // From Controller
+        $arrayPost = $this->lookOutDataFromOustide($arrayPost);
         $arrayPost = $postData;
-
 
         $id = ($arrayPost["id"]);
         $postTitle = ($arrayPost["postTitle"]);
@@ -127,7 +126,7 @@ class PostsRepository extends Controller
         /**
          * Generic create
          */
-        if ($repository->create($post, $table, $statement)) {
+        if ($repository->create($post, $table, $statement, "create")) {
             return true;
         } else {
             return false;

@@ -116,7 +116,7 @@ class CommentRepository
             $statement = $this->connection->getConnexion();
 
             $repository = new Repository;
-            if ($repository->create($comt, $table, $statement)) {
+            if ($repository->create($comt, $table, $statement, "create")) {
                 return true;
             }
         } else {

@@ -9,13 +9,21 @@ class Repository //extends DatabaseConnexion
 {
     /**
      * function create // tranform objet to array and string to record in DB
+     * 
+     * 
+     * 
+     *        if ($action == "delete") {$action = "INSERT INTO ";}
+     * 
+     * 
+     * 
+     * 
      *
      * @param Object $object
      * @param [string] $table
      * @param [connexion] $comm
      * @return bool
      */
-    public function create(Object $object, $table, Object $comm)
+    public function create(Object $object, $table, Object $comm, $action)
     {
         $dataArr = $object->makeArrayFromObjet();
         $fields = [];
@@ -26,11 +34,15 @@ class Repository //extends DatabaseConnexion
             $theValues[] = "'" . $theValue . "'";
         }
 
-        /**
-         * remove the id
-         */
-        $fields = array_slice($fields, 1);
-        $theValues = array_slice($theValues, 1);
+        if ($action == "create") {
+            /**
+             * remove the id
+             */
+            $fields = array_slice($fields, 1);
+            $theValues = array_slice($theValues, 1);
+            $action = "INSERT INTO ";
+        }
+
 
         /**
          * add ', '
@@ -38,9 +50,10 @@ class Repository //extends DatabaseConnexion
         $list_fields = implode(', ', $fields);
         $list_theValues = implode(', ', $theValues);
 
+        var_dump($action);
         try {
             $comm->query(
-                "INSERT INTO " . $table . " ($list_fields)" . " VALUES " . "($list_theValues);"
+                $action . $table . " ($list_fields)" . " VALUES " . "($list_theValues);"
             );
         } catch (\Exception $e) {
             $errorMessage = $e->getMessage();

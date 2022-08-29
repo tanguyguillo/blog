@@ -61,7 +61,7 @@ class UserRepository
             $user->roleUser = $row['roleUser'];
             $users[] = $user;
         }
-        $users = json_decode(json_encode($users), true);
+        $users = json_decode(json_encode($users), true); // to review
         return $users;
     }
 
@@ -98,7 +98,7 @@ class UserRepository
         $statement = $this->connection->getConnexion();
         $repository = new Repository;
         // Generic
-        if ($repository->create($user, $table, $statement)) {
+        if ($repository->create($user, $table, $statement, "create")) {
             return true;
         } else {
             return false;
