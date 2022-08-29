@@ -112,7 +112,7 @@ class CommentRepository
             $comt->setBlogPostUserId($blog_post_user_id);
             $comt->setBlogPostId($blog_post_id);
 
-            $table = "Comment";
+            $table = "comment";
             $statement = $this->connection->getConnexion();
 
             $repository = new Repository;
