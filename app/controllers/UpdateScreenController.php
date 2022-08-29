@@ -7,7 +7,6 @@ use Application\Controllers\PostsController\PostsController;
 
 class UpdateScreenController extends Controller
 {
-
     /**
      * to refresh the screen infos
      */
