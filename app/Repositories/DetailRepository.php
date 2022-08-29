@@ -5,13 +5,13 @@ namespace Application\Repositories\DetailRepository;
 use Application\Models\Post\Post;
 
 /**
- * Undocumented class
+ *  class DetailRepository
  */
 class DetailRepository
 {
     /**
-     *  put in an array one post // use of htmlspecialchars for id (XSS)
-     *
+     *  
+     * hydratation post ( $post->setUserId($author);)
      *
      * return an objet
      */
@@ -25,7 +25,7 @@ class DetailRepository
         $row = $statement->fetch();
         $author = $row['user_id'];
         $post = new DetailRepository();
-        //hydratation
+
         $post = new post($row);
         $post->setUserId($author);
         return $post;

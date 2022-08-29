@@ -57,6 +57,7 @@ class AdminController extends Controller
 
     /**
      * function to display admin modify aera posts
+     * $arrayMessage =  $this->setMessageForTwig($message); // setMessageForTwig : heritage from Controller
      *
      * @return void
      */
@@ -65,16 +66,14 @@ class AdminController extends Controller
     {
         $message = $message;
         if ($this->isAdmin()) {
-            // get the data to modify all the data of a post and this author (admin)
             $arrayTableModify = $this->getAdminUserAndData(); // is now an array of objects ... ex : array(5) { [0]=> object(Application\Models\Post\Post)#15 (8) { ["id":"Application\Models\Post\Post":private]=> string(1)
 
-            // authors id + emails
             $arrayEmails = $this->getAdminEmails();
 
             if (!isset($message)) {
                 $arrayMessage =  $this->setMessageForTwig("false");
             } else {
-                $arrayMessage =  $this->setMessageForTwig($message); // setMessageForTwig : heritage from Controller
+                $arrayMessage =  $this->setMessageForTwig($message);
             }
 
             $this->twig->display('Admin/blocPostAdmin.html.twig', compact('arrayMessage', 'arrayTableModify', 'arrayEmails'));

@@ -169,11 +169,12 @@ abstract class Controller extends Auth
      *function to verif $identifier
      *
      * @param [type] $identifier
-     * @return string
+     * @return int
      */
     public function checkIdentifier($identifier)
     {
         $identifier = htmlspecialchars($identifier);
+        $identifier = (int)$identifier;
         // // for intance when inscription
         if ($identifier === "") {
             $identifier = $_SESSION['LOGGED_PAGE_ID'];

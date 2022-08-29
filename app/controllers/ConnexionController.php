@@ -28,13 +28,14 @@ class ConnexionController extends Controller
 
   /**
    * function to signOut
+   *  $this->initSession(); // heritage Extends
    *
    * @return void
    */
   public function signOut()
   {
     $message = 'Voila, ' . "c'est fait, " . 'vous êtes déconnecté';
-    $this->initSession(); // heritage Extends
+    $this->initSession();
     $this->twig->display('info/info.html.twig', compact('message'));
   }
 
