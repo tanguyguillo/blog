@@ -44,7 +44,6 @@ class DetailRepository
         if ($identifier == 0) {
             $render = "render";
             (new UpdateScreenController())->refreshScreen($render);
-            exit;
         }
 
         $identifier = intval($identifier);
