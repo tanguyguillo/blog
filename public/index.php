@@ -31,14 +31,13 @@ require_once(ROOT . '/vendor/autoload.php');
 // builf my own autoloader  :
 require_once(ROOT . '/app/myAutoloader.php');
 
-// check $_POST : strip_tags(htmlspecialchars()
 if (isset($_POST)) {
     $postData = $_POST;
     foreach ($postData as $key => $value) {
         $postData[$key]  = strip_tags(htmlspecialchars($value));
     }
 }
-// check $_GET : strip_tags(htmlspecialchars()
+
 if (isset($_GET)) {
     $getData = $_GET;
     foreach ($getData as $key => $value) {
@@ -87,13 +86,13 @@ try {
 
         // enter in admin aera
         if ($_GET['owp'] === 'authentity') {
-            $message = "false"; // $message is used for message after recording // passing by Auth
+            $message = "false";
             (new AdminController())->auth($postData, $message);
             exit;
         }
 
         if ($_GET['owp'] === 'blocPostAdmin') {
-            $message = "false"; // $message is used for message after recording // passing by Auth
+            $message = "false";
             (new AdminController())->blocPostadmin($postData, $message);
             exit;
         }

@@ -174,9 +174,10 @@ abstract class Controller extends Auth
     public function checkIdentifier($identifier)
     {
         $identifier = htmlspecialchars($identifier);
+
         $identifier = (int)$identifier;
-        // // for intance when inscription
         if ($identifier === "") {
+            $identifier = "3";
             $identifier = $_SESSION['LOGGED_PAGE_ID'];
         }
         return $identifier;

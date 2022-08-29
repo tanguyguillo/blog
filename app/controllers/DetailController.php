@@ -8,6 +8,7 @@ use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
 use Application\Repositories\CommentRepository\CommentRepository;
 use Application\Repositories\DetailRepository\DetailRepository as DetailRepository;
 use Application\Repositories\UserRepository\UserRepository as UserRepositoryUserRepository;
+use Application\Controllers\UpdateScreen\UpdateScreen;
 
 class DetailController extends Controller
 {
@@ -45,12 +46,10 @@ class DetailController extends Controller
             $this->twig->display('error/error.html.twig', compact('message'));
         };
 
-
         $connection = new DatabaseConnexion();
         $user = new UserRepositoryUserRepository();
         $user->connection = $connection;
         $user  = $user->getUser($AuthorId);
-
 
         $connection = new DatabaseConnexion();
         $postComments = new CommentRepository();
@@ -60,10 +59,10 @@ class DetailController extends Controller
         $this->infoNavDetail($identifier, $user);
         $baseUrl = BASE_URL;
 
+
         $arrayMessage = $this->readleByTwig($message);
         $this->twig->display('detail/detail.html.twig', compact('detail', 'user', 'postComments', 'baseUrl', 'identifier', 'arrayMessage'));
     }
-
 
     /**
      *  function to get all data which is useful - EXAMPLE  string(10) "tsd@fqd.fr" string(21) "sffqddfdqfqdfdqsffdqs"
@@ -78,6 +77,11 @@ class DetailController extends Controller
     public function detailConnexion(array $postData, string $messsage = '')
     {
         $messsageReadle = "";
+
+        // if ($postData["postId"] === "") {
+        //     $render = "render";
+        //     (new UpdateScreen())->refreshScreen($render);
+        // }
 
         if ($this->myAuth($postData)) {
             $message = $_SESSION['LOGGED_USER_NAME'];

@@ -56,8 +56,6 @@ class Auth extends DatabaseConnexion
              * if correspondance email + password + crypt
              */
             foreach ($users as $user) {
-
-
                 /**
                  * verified data form == data db (email and password)
                  */

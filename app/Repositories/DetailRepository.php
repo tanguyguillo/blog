@@ -3,6 +3,7 @@
 namespace Application\Repositories\DetailRepository;
 
 use Application\Models\Post\Post;
+use Application\Controllers\UpdateScreenController\UpdateScreenController;
 
 /**
  *  class DetailRepository
@@ -40,6 +41,12 @@ class DetailRepository
      */
     public function getMaxAndOpen($identifier)
     {
+        if ($identifier == 0) {
+            $render = "render";
+            (new UpdateScreenController())->refreshScreen($render);
+            exit;
+        }
+
         $identifier = intval($identifier);
         $identifier = htmlspecialchars($identifier);
         $statement = $this->connection->getConnexion()->query("SELECT * FROM blog_post where id = $identifier and postStatus = 'Open'");
