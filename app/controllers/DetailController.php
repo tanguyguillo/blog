@@ -9,6 +9,7 @@ use Application\Repositories\CommentRepository\CommentRepository;
 use Application\Repositories\DetailRepository\DetailRepository as DetailRepository;
 use Application\Repositories\UserRepository\UserRepository as UserRepositoryUserRepository;
 use Application\Controllers\UpdateScreen\UpdateScreen;
+use Application\Controllers\UpdateScreenController\UpdateScreenController;
 
 class DetailController extends Controller
 {
@@ -78,10 +79,10 @@ class DetailController extends Controller
     {
         $messsageReadle = "";
 
-        // if ($postData["postId"] === "") {
-        //     $render = "render";
-        //     (new UpdateScreen())->refreshScreen($render);
-        // }
+        if ($postData["postId"] === "") {
+            $render = "render";
+            (new UpdateScreenController())->refreshScreen($render);
+        }
 
         if ($this->myAuth($postData)) {
             $message = $_SESSION['LOGGED_USER_NAME'];

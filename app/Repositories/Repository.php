@@ -50,7 +50,6 @@ class Repository //extends DatabaseConnexion
         $list_fields = implode(', ', $fields);
         $list_theValues = implode(', ', $theValues);
 
-        var_dump($action);
         try {
             $comm->query(
                 $action . $table . " ($list_fields)" . " VALUES " . "($list_theValues);"
