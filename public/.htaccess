@@ -470,6 +470,8 @@ AddDefaultCharset utf-8
 
 # <IfModule mod_headers.c>
 #     Header always set X-Frame-Options "DENY" "expr=%{CONTENT_TYPE} =~ m#text/html#i"
+Header always set X-Frame-Options "DENY" 
+Header set X-Frame-Options "DENY"
 # </IfModule>
 
 # ----------------------------------------------------------------------
@@ -1222,6 +1224,14 @@ FileETag None
 #     RewriteCond %{REQUEST_FILENAME} !-f
 #     RewriteRule ^(.+)\.(\w+)\.(bmp|css|cur|gif|ico|jpe?g|m?js|a?png|svgz?|webp|webmanifest)$ $1.$3 [L]
 # </IfModule>
+
+
+<IfModule mod_headers.c>
+
+Header set X-XSS-Protection "1; mode=block"
+
+</IfModule>
+
 
 
 
