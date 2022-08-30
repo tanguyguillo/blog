@@ -4,54 +4,59 @@
 
 {% block connexion %}
 <div class="d-flex flex-column min-vh-100">
-<section id="inscription">
-<div class="container">
-<div class="row">
+    <section id="inscription">
+        <div class="container">
+            <div class="row">
 
-<h3 class="text-center">Connection</h3>
-<hr class="star-primary">
-    <div class="container">
-        <h4 class="text-center">Connectez vous</h4>
-        <p><span class="text-center">Pour pouvoir écrire un commentaire, connectez vous</span></p>
+                <h3 class="text-center">Connection</h3>
+                <hr class="star-primary">
+                <div class="container">
+                    <h4 class="text-center">Connectez vous</h4>
+                    <p><span class="text-center">Pour pouvoir écrire un commentaire, connectez vous</span></p>
 
-    {% if arrayMessage.message != false  %}
-    <div class="alert alert-danger">
-        <strong> {{ arrayMessage.message }} </strong> 
-    </div>
-    {% endif %}
+                    {% if arrayMessage.message != false %}
+                    <div class="alert alert-danger">
+                        <strong> {{ arrayMessage.message }} </strong>
+                    </div>
+                    {% endif %}
 
-    <!-- Only HTTPS crypt POST data -->
-            <form action="{{ baseUrl }}index.php?owp=detailconnexion" method="post">     
+                    <!-- Only HTTPS crypt POST data -->
+                    <form action="{{ baseUrl }}index.php?owp=detailconnexion" method="post">
 
-            <div class="form-group">
-                <label>Votre Email</label>
-                <input type="email" class="form-control" id="log"  name="user_login"  required placeholder="Entrez votre Email">
-                <br>
+                        <div class="form-group">
+                            <label>Votre Email</label>
+                            <input type="email" class="form-control" id="log" name="user_login" required
+                                placeholder="Entrez votre Email">
+                            <br>
+                        </div>
+
+                        {# session.LOGGED_PAGE_ID is the page from where we come from #}
+                        <div class="form-group">
+                            <input id="postId" name="postId" type="hidden" value={{ session.LOGGED_PAGE_ID }}>
+                        </div>
+
+                        <div class="form-group" id="connexion2">
+                            <label>Votre mot de passe</label>
+                            <input type="password" class="form-control" id="pwd" name="user_pass" minlength="12"
+                                required placeholder="Mot de passe">
+                            <div class="form-text">Le mot de passe doit être constitué d'au minimum 12 caractères, par
+                                exemple une phrase facile à retenir et pas déja utilisée sur un autre site</div>
+                        </div>
+                        <button id="mainConnexion" type="submit" class="btn btn-success btn-lg btn-block">Se
+                            connecter</button>
+                        <br> <br>
+                        {# another button #}
+                        <div class="form-group" id="deconnexion">
+                            <a href="index.php?owp=se-deconnectez" class="btn btn-danger  btn-lg btn-block"
+                                role="button" aria-pressed="true">Se déconnecter</a>
+                        </div>
+                    </form>
+                    <br />
+
+                </div>
             </div>
-
-            {# session.LOGGED_PAGE_ID is the page from where we come from #}
-            <div class="form-group">
-                <input id="postId" name="postId" type="hidden" value={{ session.LOGGED_PAGE_ID }}>
-            </div>
-
-            <div class="form-group" id="connexion2">
-                <label>Votre mot de passe</label>
-                <input type="password" class="form-control" id="pwd" name="user_pass" minlength="12" required placeholder="Mot de passe">
-                <div class="form-text">Le mot de passe doit être constitué d'au minimum 12 caractères, par exemple une phrase facile à retenir et pas déja utilisée sur un autre site</div>
-            </div>
-            <button id="mainConnexion" type="submit" class="btn btn-success btn-lg btn-block">Se connecter</button>
-            <br> <br>
-            {# another button #}
-            <div class="form-group" id="deconnexion">
-                <a href="index.php?owp=se-deconnectez" class="btn btn-danger  btn-lg btn-block" role="button" aria-pressed="true">Se déconnecter</a>
-            </div>
-        </form>
-        <br />
-
-    </div> 
-</div>
-</div>
-</section>
+        </div>
+    </section>
 </div>
 <br>
 {% endblock %}

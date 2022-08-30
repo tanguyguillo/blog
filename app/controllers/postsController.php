@@ -16,7 +16,7 @@ class PostsController extends AdminControllerAdminController
   /**
    * Only showing post with all posts with new date and teaser
    *
-   * @return void
+   * @return mixed
    */
   public function executePosts(string $render)
   {
@@ -24,8 +24,9 @@ class PostsController extends AdminControllerAdminController
     //then we will use this connexion to get what we want ; here posts
     $postsRepository = new PostsRepository();
     $postsRepository->connection = $connection;
-    $posts = $postsRepository->getPost(); // return an array
+    $posts = $postsRepository->getPost(); // return objet
 
+    // main come from refresh
     if ($render == "render") {
       $this->twig->display('posts/posts.html.twig', compact('posts'));
     } else {

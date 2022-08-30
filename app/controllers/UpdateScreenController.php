@@ -3,7 +3,10 @@
 namespace Application\Controllers\UpdateScreenController;
 
 use Application\Controllers\Controller;
+use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
+use Application\Repositories\PostsRepository\PostsRepository as PostsRepository;
 use Application\Controllers\PostsController\PostsController;
+use Application\Controllers\HomepageController\HomepageController;
 
 class UpdateScreenController extends Controller
 {
@@ -12,6 +15,6 @@ class UpdateScreenController extends Controller
      */
     public function refreshScreen($render)
     {
-        //(new PostsController())->executePosts("render");
+        (new HomepageController())->execute();
     }
 }

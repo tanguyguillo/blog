@@ -50,7 +50,7 @@ class Auth extends DatabaseConnexion
             $connection = new DatabaseConnexion();
             $usersRepository = new UserRepository();
             $usersRepository->connection = $connection;
-            $users = $usersRepository->getUsers();  // array of object
+            $users = $usersRepository->getUsers();  // array of objects
 
             /**
              * if correspondance email + password + crypt

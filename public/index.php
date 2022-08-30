@@ -18,7 +18,7 @@ require_once(ROOT . '/app/config/config.php');
 // autoloader
 require_once(ROOT . '/vendor/autoload.php');
 
-// build my own autoloader  :
+// build my own autoloader
 require_once(ROOT . '/app/myAutoloader.php');
 
 $router = new Router();

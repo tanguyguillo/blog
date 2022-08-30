@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Application\Router;
 
 use Application\Controllers\AdminCommentController\AdminCommentController;
@@ -27,7 +26,6 @@ class Router
      */
     public function myRouter(array $get, array $post)
     {
-
         if (isset($post)) {
             $postData = $post;
             foreach ($postData as $key => $value) {
@@ -42,104 +40,78 @@ class Router
             }
         }
 
-        // first step
         try {
             if (isset($get['owp']) && $get['owp'] !== '') {
                 // from page connexion : redirection to comment
                 if ($get['owp'] === 'detailconnexion') {
                     (new DetailController())->detailconnexion($postData);
-                    exit;
                 }
                 //signout
-                if ($get['owp'] === 'se-deconnectez') {
+                elseif ($get['owp'] === 'se-deconnectez') {
                     (new ConnexionController())->signOut();
-                    exit;
                 }
                 //inscription : (not create an account just sign in)
-                if ($get['owp'] === 'inscription') {
+                elseif ($get['owp'] === 'inscription') {
                     (new InscriptionController())->inscription();
-                    exit;
-                }
+                } elseif ($get['owp'] === 'connexion') {
 
-                if ($get['owp'] === 'connexion') {
-                    (new ConnexionController())->connexion();
-                    exit;
+
+
+                    // connexion
+                    (new ConnexionController())->connexion('', ($post));
                 }
                 // setcomment from page detail
-                if ($get['owp'] === 'faire-un-commentaire') {
+                elseif ($get['owp'] === 'faire-un-commentaire') {
                     (new CommentController())->setComment($postData);
-                    exit;
                 }
                 // Create an user account
-                if ($get['owp'] === 'creation-d-un-compte') {
+                elseif ($get['owp'] === 'creation-d-un-compte') {
                     (new InscriptionController())->createAccount($postData);
-                    exit;
                 }
                 // Admin aera
-                if ($get['owp'] === 'administration-only-for-people-which-have-the-role-Admin') {
+                elseif ($get['owp'] === 'administration-only-for-people-which-have-the-role-Admin') {
                     (new AdminController())->connectAdmin();
-                    exit;
                 }
-
                 // enter in admin aera
-                if ($get['owp'] === 'authentity') {
+                elseif ($get['owp'] === 'authentity') {
                     $message = "false";
                     (new AdminController())->auth($postData, $message);
-                    exit;
-                }
-
-                if ($get['owp'] === 'blocPostAdmin') {
+                } elseif ($get['owp'] === 'blocPostAdmin') {
                     $message = "false";
                     (new AdminController())->blocPostadmin($postData, $message);
-                    exit;
-                }
-
-                if ($get['owp'] === 'blocCommentAdmin') {
+                } elseif ($get['owp'] === 'blocCommentAdmin') {
                     $message = "";
                     (new AdminCommentController())->blocCommentAdmin();
-                    exit;
-                }
-
-                if ($get['owp'] === 'blocUserAdmin') {
+                } elseif ($get['owp'] === 'blocUserAdmin') {
                     $message = "";
                     (new AdminUserController())->blocUserAdmin();
-                    exit;
                 }
-
                 // Admin aera post blog// 
-                if ($get['owp'] === 'record') {
+                elseif ($get['owp'] === 'record') {
                     if (isset($get['id']) && $get['id'] > 0) {
                         //Here we get the POST data (and not $_GE)
                         (new PostsController())->update($postData);
-                        exit;
                     }
                 }
-
                 // Admin aera comments
-                if ($get['owp'] === 'modify-comment') {
+                elseif ($get['owp'] === 'modify-comment') {
                     if (isset($get['id']) && $get['id'] > 0) {
                         //Here we get the POST data (and not $_GE)
                         (new CommentController())->modifyComment($postData);
-                        exit;
                     }
                 }
-
                 // Admin aera // 
-                if ($get['owp'] === 'newpostecord') {
+                elseif ($get['owp'] === 'newpostecord') {
                     //Here we get the POST data (and not $_GE)
                     (new PostsController())->newPost($postData);
-                    exit;
                 }
-
                 // Admin aera // 
-                if ($get['owp'] === 'modifymyuser') {
+                elseif ($get['owp'] === 'modifymyuser') {
                     //Here we get the POST data (and not $_GE)
                     (new AdminUserController())->modifyUser($postData);
-                    exit;
                 }
             }
 
-            // Last step
             if (isset($get['owp']) && $get['owp'] !== '') {
                 if ($get['owp'] === 'bloglist') {
                     if (isset($get['id']) && $get['id'] > 0) {
@@ -155,10 +127,9 @@ class Router
                         //// for testing.... : http://blog-omega.local/index.php?owp=tosee&id=1
                         // $identifier = $get['id']; is useless
                         (new ControllersTestController())->myTest();
-                    } else {
                     }
                 } else {
-                    throw new Exception("La page que vous recherchez n'existe pas.");
+                    throw new Exception(" ");
                 }
             } else {
                 (new HomepageController())->execute();

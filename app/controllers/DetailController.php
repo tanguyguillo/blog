@@ -8,9 +8,9 @@ use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
 use Application\Repositories\CommentRepository\CommentRepository;
 use Application\Repositories\DetailRepository\DetailRepository as DetailRepository;
 use Application\Repositories\UserRepository\UserRepository as UserRepositoryUserRepository;
-use Application\Controllers\UpdateScreen\UpdateScreen;
-use Application\Controllers\UpdateScreenController\UpdateScreenController;
 use Application\Controllers\PostsController\PostsController;
+use Application\Controllers\UpdateScreenController\UpdateScreenController;
+
 
 class DetailController extends Controller
 {
@@ -66,34 +66,26 @@ class DetailController extends Controller
     }
 
     /**
-     *  function to get all data which is useful - EXAMPLE  string(10) "tsd@fqd.fr" string(21) "sffqddfdqfqdfdqsffdqs"
-     * htmlspecialchars($_COOKIE["name"])
-     * time() + 365 * 24 * 3600 : one year
-     * time() + 3600 : one hour ?
+     * function detailConnexion
      *
      * @param [array] $postData
      * @param [string] $messsage
-     * @return boll
+     * @return
      */
     public function detailConnexion(array $postData, string $messsage = '')
     {
         $messsageReadle = "";
 
-        if ($postData["postId"] === "") {
-            $render = "render";
-            (new PostsController())->executePosts("render");
-        }
-
         if ($this->myAuth($postData)) {
             $message = $_SESSION['LOGGED_USER_NAME'];
-            $this->Detail($postData['postId'], $message);
-            return true;
-        }
-
-        if ($messsageReadle != 'false') {
+            // it's here than we have to refresh screnn
+            (new PostsController())->executePosts("render");
+        } elseif ($messsageReadle != 'false') {
             $message = 'Désolé, les données de connection sont incorrectes';
             (new ConnexionController())->connexion($message)();
-            return false;
+        } elseif ($postData["postId"] === "") {
+            $render = "render";
+            (new PostsController())->executePosts("render");
         }
     }
 }
