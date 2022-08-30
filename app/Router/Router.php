@@ -21,11 +21,11 @@ class Router
     /**
      *  function
      *
-     * @param [type] $get
-     * @param [type] $post
+     * @param [array] $get
+     * @param [array] $post
      * @return void
      */
-    public function myRouter($get, $post)
+    public function myRouter(array $get, array $post)
     {
 
         if (isset($post)) {
@@ -42,7 +42,7 @@ class Router
             }
         }
 
-        // first router
+        // first step
         try {
             if (isset($get['owp']) && $get['owp'] !== '') {
                 // from page connexion : redirection to comment
@@ -139,7 +139,7 @@ class Router
                 }
             }
 
-            // Last router
+            // Last step
             if (isset($get['owp']) && $get['owp'] !== '') {
                 if ($get['owp'] === 'bloglist') {
                     if (isset($get['id']) && $get['id'] > 0) {
@@ -155,7 +155,6 @@ class Router
                         //// for testing.... : http://blog-omega.local/index.php?owp=tosee&id=1
                         // $identifier = $get['id']; is useless
                         (new ControllersTestController())->myTest();
-                        exit;
                     } else {
                     }
                 } else {

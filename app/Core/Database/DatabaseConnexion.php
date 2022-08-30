@@ -12,7 +12,6 @@ class DatabaseConnexion
   private static $instance;
 
   public ?\PDO $database = null;
-
   /**
    * connexion to the database;
    *  SERVER, BASE and USER, PASSWD in a congig file in folder config to the root of app

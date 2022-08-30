@@ -10,6 +10,7 @@ use Application\Repositories\DetailRepository\DetailRepository as DetailReposito
 use Application\Repositories\UserRepository\UserRepository as UserRepositoryUserRepository;
 use Application\Controllers\UpdateScreen\UpdateScreen;
 use Application\Controllers\UpdateScreenController\UpdateScreenController;
+use Application\Controllers\PostsController\PostsController;
 
 class DetailController extends Controller
 {
@@ -60,7 +61,6 @@ class DetailController extends Controller
         $this->infoNavDetail($identifier, $user);
         $baseUrl = BASE_URL;
 
-
         $arrayMessage = $this->readleByTwig($message);
         $this->twig->display('detail/detail.html.twig', compact('detail', 'user', 'postComments', 'baseUrl', 'identifier', 'arrayMessage'));
     }
@@ -81,7 +81,7 @@ class DetailController extends Controller
 
         if ($postData["postId"] === "") {
             $render = "render";
-            (new UpdateScreenController())->refreshScreen($render);
+            (new PostsController())->executePosts("render");
         }
 
         if ($this->myAuth($postData)) {

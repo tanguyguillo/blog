@@ -41,10 +41,10 @@ class DetailRepository
      */
     public function getMaxAndOpen($identifier)
     {
-        if ($identifier == 0) {
-            $render = "render";
-            (new UpdateScreenController())->refreshScreen($render);
-        }
+        // if ($identifier == 0) {
+        //     $render = "render";
+        //     (new UpdateScreenController())->refreshScreen($render);
+        // }
 
         $identifier = intval($identifier);
         $identifier = htmlspecialchars($identifier);

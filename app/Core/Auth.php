@@ -4,6 +4,7 @@ namespace Application\Core\Auth;
 
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
 use Application\Repositories\UserRepository\UserRepository;
+use Application\Controllers\Controller\Controller;
 
 class Auth extends DatabaseConnexion
 {
@@ -38,19 +39,18 @@ class Auth extends DatabaseConnexion
 
     /**
      * function myAuth ... in some case issue in admin "utilisateur" board not show....
-     *  to the beginning  : //$this->InitSession(); sup
-     * 
+     * $users = $usersRepository->getUsers();  // array of object
+     * beginning :->initSession;
      * return boll
      *
      */
     public function myAuth(array $postData)
     {
         if (isset($postData['user_login']) &&  isset($postData['user_pass'])) {
-
             $connection = new DatabaseConnexion();
             $usersRepository = new UserRepository();
             $usersRepository->connection = $connection;
-            $users = $usersRepository->getUsers(); // return an array
+            $users = $usersRepository->getUsers();  // array of object
 
             /**
              * if correspondance email + password + crypt
@@ -59,7 +59,7 @@ class Auth extends DatabaseConnexion
                 /**
                  * verified data form == data db (email and password)
                  */
-                if (($user['emailUser'] === $postData['user_login']) && ($user['passWordUser']  === crypt($postData['user_pass'], SALT))) {
+                if (($user->emailUser === $postData['user_login']) && ($user->passWordUser  === crypt($postData['user_pass'], SALT))) {
 
                     setcookie(
                         'LOGGED_USER',
@@ -72,17 +72,17 @@ class Auth extends DatabaseConnexion
                     );
 
                     $_SESSION['LOGGED_USER'] =  true;
-                    $_SESSION['LOGGED_USER_ID'] = $user['id'];
+                    $_SESSION['LOGGED_USER_ID'] = $user->id;
 
                     $_SESSION['LOGGED_EMAIL'] = $postData['user_login'];
                     $_SESSION['LOGGED_PAGE_ID'] = $postData['postId'];
 
-                    $message = $user["firstNameUser"];
+                    $message = $user->firstNameUser;
                     $_SESSION['LOGGED_USER_NAME'] =  $message;
 
-                    $_SESSION['ROLE_USER'] = $user["roleUser"];
+                    $_SESSION['ROLE_USER'] = $user->roleUser;
 
-                    $this->setuserRole($user["roleUser"]);
+                    $this->setuserRole($user->roleUser);
 
                     return true;
                 }
@@ -101,15 +101,5 @@ class Auth extends DatabaseConnexion
     {
         $_SESSION['LOGGED_PAGE_ID'] = $identifier; // used article read for return button button after connexion
         $_SESSION['LOGGED_PAGE_WRITER_ID'] = $user->getId();
-    }
-
-    /**
-     * function heriatgae Controlleur-initSession
-     *
-     * @return void
-     */
-    public function initSession()
-    {
-        $this->initSession();
     }
 }

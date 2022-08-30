@@ -40,12 +40,12 @@ class UserRepository
     }
 
     /**
-     * function getUsers with a S : get all users with main informations
-     *  for $users = json_decode(json_encode($users), true);  : turn in array
-     *
-     * @return array
+     * function getUsers
+     *  // +++ $users = json_decode(json_encode($users), true); // to review
+
+     * @return Array of Objects
      */
-    public function getUsers(): array
+    public function getUsers()
     {
         $statement = $this->connection->getConnexion()->query(
             "SELECT id, emailUser, passWordUser, firstNameUser, surNameUser, roleUser FROM user"
@@ -61,7 +61,6 @@ class UserRepository
             $user->roleUser = $row['roleUser'];
             $users[] = $user;
         }
-        $users = json_decode(json_encode($users), true); // to review
         return $users;
     }
 

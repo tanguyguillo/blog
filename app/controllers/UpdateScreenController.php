@@ -12,6 +12,6 @@ class UpdateScreenController extends Controller
      */
     public function refreshScreen($render)
     {
-        (new PostsController())->executePosts("render");
+        //(new PostsController())->executePosts("render");
     }
 }
