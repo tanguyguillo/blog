@@ -1,8 +1,6 @@
 <?php
 
-/**
- * ini_set('display_errors', 'O');
- */
+/// if necessary : ini_set('display_errors', '1');
 define('USER', "blog");
 define('PASSWD', "blog");
 define('SERVER', "localhost");

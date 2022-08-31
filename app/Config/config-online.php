@@ -1,8 +1,6 @@
 <?php
 
-/**
- * ini_set('display_errors', 'O');
- */
+// if necessary : ini_set('display_errors', '1');
 define('USER', "102845_blog-omeg");
 define('PASSWD', "blog-omega.Tanguy029");
 define('SERVER', "mysql-tanguy-guillo.alwaysdata.net");
