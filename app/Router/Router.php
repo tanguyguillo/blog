@@ -20,8 +20,8 @@ class Router
     /**
      *  function
      *
-     * @param [array] $get
-     * @param [array] $post
+     * @param  [array] $get
+     * @param  [array] $post
      * @return void
      */
     public function myRouter(array $get, array $post)

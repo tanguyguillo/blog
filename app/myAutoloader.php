@@ -1,11 +1,9 @@
 <?php
 
 /**
- *
  * function my_autoloader
- * 
  *
- * @param [string] $class
+ * @param  [string] $class
  * @return void
  */
 function my_autoloader($class)
@@ -19,7 +17,7 @@ function my_autoloader($class)
     $path = (dirname(__DIR__)  . "/app/" . $class2 . ".php");
 
     if (file_exists($path)) {
-        require $path;
+        include $path;
     }
 }
 spl_autoload_register('my_autoloader');

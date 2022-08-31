@@ -9,7 +9,7 @@ class ErrorController extends Controller
     /**
      * error page
      *
-     * @param [string] $errorMessager
+     * @param  [string] $errorMessager
      * @return void
      */
     public function execute(string $errorMessage)

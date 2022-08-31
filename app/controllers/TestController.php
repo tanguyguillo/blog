@@ -16,19 +16,19 @@ class TestController extends Controller
          *
          * @return void
          */
-        public function myTest()
-        {
-                //to test : http://blog-omega.local/index.php?owp=tosee&id=1
+    public function myTest()
+    {
+            //to test : http://blog-omega.local/index.php?owp=tosee&id=1
 
-                echo "Bienvenue sur la zone de test";
+            echo "Bienvenue sur la zone de test";
 
-                $test = 0;
+            $test = 0;
 
-                if ($test) {
-                        $connection = new DatabaseConnexion();
-                        $UsersRepository = new UserRepository();
-                        $UsersRepository->connection = $connection;
-                        // $users = $UsersRepository->usersDepot(); // test
-                }
+        if ($test) {
+                $connection = new DatabaseConnexion();
+                $UsersRepository = new UserRepository();
+                $UsersRepository->connection = $connection;
+                // $users = $UsersRepository->usersDepot(); // test
         }
+    }
 }

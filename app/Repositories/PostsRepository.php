@@ -30,7 +30,7 @@ class PostsRepository extends Controller
     /**
      * function to update a post from admin
      *
-     * @param [type] $arrayPost
+     * @param  [type] $arrayPost
      * @return bool
      */
     public function updatePost(array $arrayPost)
@@ -73,7 +73,7 @@ class PostsRepository extends Controller
             return true;
         } catch (\Exception $e) {
             $errorMessage = $e->getMessage();
-            require(ROOT . '/app/templatesError/error.php');
+            include ROOT . '/app/templatesError/error.php';
             return false;
         }
     }
@@ -81,7 +81,7 @@ class PostsRepository extends Controller
     /**
      * function to insert post
      *
-     * @param array $arrayPost
+     * @param  array $arrayPost
      * @return bool
      */
     public function newPost(array $arrayPost)
