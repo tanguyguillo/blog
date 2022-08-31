@@ -72,6 +72,7 @@
                 <input id="postId" name="postId" type="hidden" value={{ session.LOGGED_PAGE_ID }}>
             </div>
             {# Button #}
+        {% if session.LOGGED_USER == true  %}
             <div class="form-group">
                 <div class="form-group">
                     <button type="submit" class="btn btn-success btn-lg btn-block">Envoyer</button>
@@ -79,6 +80,7 @@
                 <p><small><i>Votre commentaire sera soumis à une validation de nos modérateurs avant
                             affichage</i></small></p>
             </div>
+        {% endif %} 
         </form>
         <br>
 
