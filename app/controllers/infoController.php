@@ -9,7 +9,7 @@ class InfoController extends Controller
     /**
      * information
      *
-     * @param  [string] $message
+     * @param [string] $message
      * @return void
      */
     public function execute(string $errorMessage)

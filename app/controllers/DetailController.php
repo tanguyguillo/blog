@@ -17,7 +17,7 @@ class DetailController extends Controller
     /**
      * Function to show one blog post
      *
-     * @param  string $identifier
+     * @param string $identifier
      * @return void
      */
     public function detail($identifier, $message = '')
@@ -68,8 +68,8 @@ class DetailController extends Controller
     /**
      * function detailConnexion
      *
-     * @param  [array]  $postData
-     * @param  [string] $messsage
+     * @param [array] $postData
+     * @param [string] $messsage
      * @return
      */
     public function detailConnexion(array $postData, string $messsage = '')
@@ -83,7 +83,7 @@ class DetailController extends Controller
             (new ConnexionController())->connexion($message)();
         } elseif ($postData["postId"] === "") {
             $render = "render";
-            (new PostsController())->executePosts("render");
+            //(new PostsController())->executePosts("render");
         }
     }
 }

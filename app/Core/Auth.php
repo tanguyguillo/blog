@@ -18,7 +18,7 @@ class Auth extends DatabaseConnexion
     /**
      *  function setuserRole
      *
-     * @param  [type] $userRole// in french : mutateur
+     * @param [type] $userRole// in french : mutateur
      * @return void
      */
     public function setUserRole($userRole)
@@ -29,7 +29,7 @@ class Auth extends DatabaseConnexion
     /**
      *  function getuserRole // in french : accesseur
      *
-     * @param  [type] $userRole
+     * @param [type] $userRole
      * @return $this->user
      */
     public function getuserRole($userRole)
@@ -42,6 +42,7 @@ class Auth extends DatabaseConnexion
      * $users = $usersRepository->getUsers();  // array of object
      * beginning :->initSession;
      * return boll
+     *
      */
     public function myAuth(array $postData)
     {
@@ -93,7 +94,7 @@ class Auth extends DatabaseConnexion
     /**
      * function infoNavDetail ... like his name
      *
-     * @param  [string] $identifier
+     * @param [string] $identifier
      * @return void
      */
     public function infoNavDetail($identifier, $user)

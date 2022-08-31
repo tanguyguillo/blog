@@ -17,6 +17,7 @@ abstract class Controller extends Auth
     /**
      * main controller
      * integration twig
+     * 
      */
     public function __construct()
     {
@@ -35,7 +36,7 @@ abstract class Controller extends Auth
     /**
      * function to make message readeableby twig
      *
-     * @param  string $message
+     * @param string $message
      * @return Array
      */
     public function setMessageForTwig(string $message)
@@ -74,8 +75,9 @@ abstract class Controller extends Auth
             $this->twig->display('info/info.html.twig', compact('message'));
         }
     }
-    /**************
-     * Utilities From here ********************
+    /************** Utilities From here ********************
+     *
+     * 
      */
 
     /**
@@ -97,19 +99,19 @@ abstract class Controller extends Auth
     /**
      * function return true if number otherwise false
      *
-     * @param  [string] $identifier
+     * @param [string] $identifier
      * @return bool
      */
     public function isInteger(string $identifier)
     {
         $identifier = filter_var($identifier, FILTER_VALIDATE_INT);
-        return ($identifier !== false);
+        return ($identifier !== FALSE);
     }
 
     /**
-     * function // to look out data comming from outside even in admin aera
+     *function // to look out data comming from outside even in admin aera
      *
-     * @param  [array] $arrayPost
+     * @param [array] $arrayPost
      * @return void
      */
     public function lookOutDataFromOustide(array $arrayPost)
@@ -134,7 +136,7 @@ abstract class Controller extends Auth
     /**
      * function to make a string reable by twig
      *
-     * @param  string $message
+     * @param string $message
      * @return array
      */
     public function readleByTwig(string $message)
@@ -150,8 +152,8 @@ abstract class Controller extends Auth
     /**
      * function to verify crypt password
      *
-     * @param  [type] $user_input
-     * @param  [type] $hashed_password
+     * @param [type] $user_input
+     * @param [type] $hashed_password
      * @return boll
      */
     private function verifyHashPassword($user_input, $hashed_password)
@@ -164,9 +166,9 @@ abstract class Controller extends Auth
     }
 
     /**
-     * function to verif $identifier
+     *function to verif $identifier
      *
-     * @param  [type] $identifier
+     * @param [type] $identifier
      * @return int
      */
     public function checkIdentifier($identifier)

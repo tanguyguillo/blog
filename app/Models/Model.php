@@ -16,7 +16,7 @@ class Model
     /**
      * function to hydrate the objet
      *
-     * @param  [type] $datas
+     * @param [type] $datas
      * @return void
      */
     public function myHydrate($datas): void
