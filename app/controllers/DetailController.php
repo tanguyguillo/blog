@@ -75,17 +75,15 @@ class DetailController extends Controller
     public function detailConnexion(array $postData, string $messsage = '')
     {
         $messsageReadle = "";
-
         if ($this->myAuth($postData)) {
             $message = $_SESSION['LOGGED_USER_NAME'];
-            // it's here than we have to refresh screnn
             (new PostsController())->executePosts("render");
         } elseif ($messsageReadle != 'false') {
             $message = 'Désolé, les données de connection sont incorrectes';
             (new ConnexionController())->connexion($message)();
         } elseif ($postData["postId"] === "") {
             $render = "render";
-            (new PostsController())->executePosts("render");
+            //(new PostsController())->executePosts("render");
         }
     }
 }

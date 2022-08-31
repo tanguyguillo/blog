@@ -181,6 +181,7 @@ abstract class Controller extends Auth
             $identifier = $_SESSION['LOGGED_PAGE_ID'];
         }
         return $identifier;
+
         $this->isInteger($identifier);
         if ($this->isInteger($identifier) === false) {
             $message = "l'identifiant de la page doit être un chiffre";

@@ -14,7 +14,7 @@ use Application\Repositories\UserRepository\UserRepository;
 class AdminController extends Controller
 {
     /**
-     *  function
+     *  function connectAdmin
      *
      * @return void
      */

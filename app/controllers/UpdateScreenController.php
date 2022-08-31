@@ -13,7 +13,7 @@ class UpdateScreenController extends Controller
     /**
      * to refresh the screen infos
      */
-    public function refreshScreen($render)
+    public function refreshScreen()
     {
         (new HomepageController())->execute();
     }

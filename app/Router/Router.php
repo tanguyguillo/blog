@@ -39,6 +39,8 @@ class Router
                 $getData[$key]  = strip_tags(htmlspecialchars($value));
             }
         }
+        // fix an issue with error page after connection next bottom page
+        $ConnectCurrent  = 0;
 
         try {
             if (isset($get['owp']) && $get['owp'] !== '') {
@@ -54,10 +56,8 @@ class Router
                 elseif ($get['owp'] === 'inscription') {
                     (new InscriptionController())->inscription();
                 } elseif ($get['owp'] === 'connexion') {
-
-
-
                     // connexion
+                    $ConnectCurrent = 1;
                     (new ConnexionController())->connexion('', ($post));
                 }
                 // setcomment from page detail
@@ -70,6 +70,7 @@ class Router
                 }
                 // Admin aera
                 elseif ($get['owp'] === 'administration-only-for-people-which-have-the-role-Admin') {
+                    $ConnectCurrent = 1;
                     (new AdminController())->connectAdmin();
                 }
                 // enter in admin aera
@@ -135,8 +136,10 @@ class Router
                 (new HomepageController())->execute();
             }
         } catch (Exception $e) {
-            $errorMessage = $e->getMessage();
-            (new ErrorController())->execute($errorMessage);
+            if ($ConnectCurrent <> 1) {
+                $errorMessage = $e->getMessage();
+                (new ErrorController())->execute($errorMessage);
+            }
         }
     }
 }
