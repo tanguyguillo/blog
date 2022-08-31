@@ -41,11 +41,6 @@ class DetailRepository
      */
     public function getMaxAndOpen($identifier)
     {
-        // if ($identifier == 0) {
-        //     $render = "render";
-        //     (new UpdateScreenController())->refreshScreen($render);
-        // }
-
         $identifier = intval($identifier);
         $identifier = htmlspecialchars($identifier);
         $statement = $this->connection->getConnexion()->query("SELECT * FROM blog_post where id = $identifier and postStatus = 'Open'");

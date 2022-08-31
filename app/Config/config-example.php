@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  exemple to use for you
+ * ini_set('display_errors', 'O');
  */
 define('USER', "your user name");
 define('PASSWD', "your password");
@@ -11,4 +11,3 @@ define('TWIGDEBUG', "O");
 define('BASE_URL', 'https://yourDomain.com');
 // MD5
 define('SALT', '$1$thexkyissobeautifull$');
-//  ini_set('display_errors', '1');
