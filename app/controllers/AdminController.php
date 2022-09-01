@@ -27,8 +27,8 @@ class AdminController extends Controller
     /**
      *  function
      *
-     * @param array $postData
-     * @param string $message
+     * @param  array  $postData
+     * @param  string $message
      * @return void
      */
     public function auth(array $postData, string $message)
@@ -84,7 +84,6 @@ class AdminController extends Controller
 
     /**
      * function to get data to fill the table to modify in admin aera
-     * 
      *
      * @return an Array or display error
      */

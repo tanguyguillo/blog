@@ -10,17 +10,11 @@ class Repository //extends DatabaseConnexion
     /**
      * function create // tranform objet to array and string to record in DB
      * 
-     * 
-     * 
      *        if ($action == "delete") {$action = "INSERT INTO ";}
-     * 
-     * 
-     * 
-     * 
      *
-     * @param Object $object
-     * @param [string] $table
-     * @param [connexion] $comm
+     * @param  Object      $object
+     * @param  [string]    $table
+     * @param  [connexion] $comm
      * @return bool
      */
     public function create(Object $object, $table, Object $comm, $action)
@@ -56,7 +50,7 @@ class Repository //extends DatabaseConnexion
             );
         } catch (\Exception $e) {
             $errorMessage = $e->getMessage();
-            require(ROOT . '/app/templatesError/error.php');
+            include ROOT . '/app/templatesError/error.php';
             return false;
         }
         return true;

@@ -2,11 +2,11 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title><?= $title ?></title>
+        <title><?php echo $title ?></title>
         <link href="style.css" rel="stylesheet" />
     </head>
 
     <body>
-        <?= $content ?>
+        <?php echo $content ?>
     </body>
 </html>

@@ -20,8 +20,8 @@ class Router
     /**
      *  function
      *
-     * @param [array] $get
-     * @param [array] $post
+     * @param  [array] $get
+     * @param  [array] $post
      * @return void
      */
     public function myRouter(array $get, array $post)
@@ -62,6 +62,7 @@ class Router
                 }
                 // setcomment from page detail
                 elseif ($get['owp'] === 'faire-un-commentaire') {
+                    $ConnectCurrent = 1;
                     (new CommentController())->setComment($postData);
                 }
                 // Create an user account
@@ -75,22 +76,27 @@ class Router
                 }
                 // enter in admin aera
                 elseif ($get['owp'] === 'authentity') {
+                    $ConnectCurrent = 1;
                     $message = "false";
                     (new AdminController())->auth($postData, $message);
                 } elseif ($get['owp'] === 'blocPostAdmin') {
                     $message = "false";
+                    $ConnectCurrent = 1;
                     (new AdminController())->blocPostadmin($postData, $message);
                 } elseif ($get['owp'] === 'blocCommentAdmin') {
                     $message = "";
+                    $ConnectCurrent = 1;
                     (new AdminCommentController())->blocCommentAdmin();
                 } elseif ($get['owp'] === 'blocUserAdmin') {
                     $message = "";
+                    $ConnectCurrent = 1;
                     (new AdminUserController())->blocUserAdmin();
                 }
                 // Admin aera post blog// 
                 elseif ($get['owp'] === 'record') {
                     if (isset($get['id']) && $get['id'] > 0) {
                         //Here we get the POST data (and not $_GE)
+                        $ConnectCurrent = 1;
                         (new PostsController())->update($postData);
                     }
                 }
@@ -109,6 +115,7 @@ class Router
                 // Admin aera // 
                 elseif ($get['owp'] === 'modifymyuser') {
                     //Here we get the POST data (and not $_GE)
+                    $ConnectCurrent = 1;
                     (new AdminUserController())->modifyUser($postData);
                 }
             }

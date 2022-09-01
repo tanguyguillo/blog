@@ -11,7 +11,6 @@ use Application\Controllers\UpdateScreenController\UpdateScreenController;
 class DetailRepository
 {
     /**
-     *  
      * hydratation post ( $post->setUserId($author);)
      *
      * return an objet

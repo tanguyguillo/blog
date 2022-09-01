@@ -21,7 +21,7 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
-    
+
     <!-- Theme CSS -->
     <link href="css/freelancer.min.css" rel="stylesheet">
 
@@ -169,39 +169,42 @@
                         <div id="about">
                             <h3>A propos de OmegaWebProd</h3>
                             <p>Nous sommes spécialisé dans la réalisation de sites web "sur mesure" pour de petites
-                                structures  <br> <br></p>
+                                structures <br> <br></p>
                         </div>
                         <br>
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="space">
+                <br><br><br>
+            </div>
+            <div class="footer-below">
+                <div class="container">
+                    <div class="row">
+                        <span class="col-lg-4">
+                            OmegaWebProd Copyright &copy; {{ "now"|date("Y") }}
+                        </span>
 
-        <div class="footer-below">
-            <div class="container">
-                <div class="row">
-                    <span class="col-lg-4">
-                        OmegaWebProd Copyright &copy; {{ "now"|date("Y") }}
-                    </span>
+                        {# <a href="index.php?owp=connexion#connexion">Se connecter</a> | posing issue with return #}
+                        <a href="#confidential" class="portfolio-link" data-toggle="modal">Politique de
+                            confidentialité</a>
+                        | <a href="index.php?owp=inscription" class="portfolio-link"
+                            data-toggle="modal">Creer&nbsp;un&nbsp;compte</a>
+                        | <a href="index.php?owp=connexion" class="portfolio-link" data-toggle="modal">Se connecter</a>
 
-                    {# <a href="index.php?owp=connexion#connexion">Se connecter</a> | posing issue with return #}
-                    <a href="#confidential" class="portfolio-link" data-toggle="modal">Politique de confidentialité</a>
-                    | <a href="index.php?owp=inscription" class="portfolio-link"
-                        data-toggle="modal">Creer&nbsp;un&nbsp;compte</a>
-                    | <a href="index.php?owp=connexion" class="portfolio-link" data-toggle="modal">Se connecter</a>
+                        {# show the link admin only for people which have the role Admin (not only User) #}
+                        {% if arrayMessage.message == false %}
+                        {% if session.ROLE_USER =="Admin" %}
+                        | <a
+                            href="index.php?owp=administration-only-for-people-which-have-the-role-Admin">Administration</a>
+                        {% endif %}
+                        {% endif %}
 
-                    {# show the link admin only for people which have the role Admin (not only User) #}
-                    {% if arrayMessage.message == false %}
-                    {% if session.ROLE_USER =="Admin" %}
-                    | <a
-                        href="index.php?owp=administration-only-for-people-which-have-the-role-Admin">Administration</a>
-                    {% endif %}
-                    {% endif %}
-
+                    </div>
                 </div>
             </div>
-        </div>
     </footer>
+
 
     <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
     <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">

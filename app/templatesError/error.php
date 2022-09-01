@@ -2,7 +2,7 @@
 
 <?php ob_start(); ?>
 <h1>oooops !</h1>
-<p>Une erreur est survenue : <?= $errorMessage ?></p>
+<p>Une erreur est survenue : <?php echo $errorMessage ?></p>
 <?php $content = ob_get_clean(); ?>
 
-<?php require('layout.php') ?>
+<?php require 'layout.php' ?>

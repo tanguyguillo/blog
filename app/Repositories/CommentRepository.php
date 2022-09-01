@@ -14,7 +14,7 @@ class CommentRepository
     /**
      * function to get all comments with all of this properties of a user
      *
-     * @param string $identifier (of a post)
+     * @param  string $identifier (of a post)
      * @return Array
      */
     public function getComments($identifier): array
@@ -72,7 +72,7 @@ class CommentRepository
             return $datas;
         } catch (\Exception $e) {
             $errorMessage = $e->getMessage();
-            require(ROOT . '/app/templatesError/error.php');
+            include ROOT . '/app/templatesError/error.php';
             return false;
         }
     }
@@ -80,15 +80,14 @@ class CommentRepository
     /**
      * function to write a comment  with MVC and POO ... V2 used
      *
-     * @param array
+     * @param  array
      * @return void
      */
     public function setComment(array $array)
     {
         if ($_SESSION['LOGGED_USER']) {
-            $user_id = intval($array['idUser']);
+            $user_id = intval($array['postId']);
 
-            // sometimes it's happens ... issue with data refreshed page
             if ($user_id == 0) {
                 $user_id = $_SESSION['LOGGED_USER_ID'];
                 if ($user_id == 0) {
@@ -127,7 +126,7 @@ class CommentRepository
     /**
      * function to modify the visibility of a comment or delete it
      *
-     * @param array $arrayComment
+     * @param  array $arrayComment
      * @return bool
      */
     public function updateComment(array $arrayComment)
@@ -152,7 +151,7 @@ class CommentRepository
             return true;
         } catch (\Exception $e) {
             $errorMessage = $e->getMessage();
-            require(ROOT . '/app/templatesError/error.php');
+            include ROOT . '/app/templatesError/error.php';
             return false;
         }
     }

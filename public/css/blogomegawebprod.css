@@ -20,6 +20,15 @@ footer .footer-below {
   font-size: 24px;
 }
 
+/* body {
+  background-color: #212120;
+}
+
+section#contact,
+section#inscription {
+  background-color: whitesmoke;
+} */
+
 .myBackground {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/background.png") !important;
   background-repeat: no-repeat;

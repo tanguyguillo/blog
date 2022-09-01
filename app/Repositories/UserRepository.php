@@ -15,7 +15,7 @@ class UserRepository
     /**
      * function to get a user with all of this properties
      *
-     * @param string $identifier
+     * @param  string $identifier
      * @return Object
      */
     public function getUser(string $identifier)
@@ -67,7 +67,7 @@ class UserRepository
     /**
      * function to create a user with "user" role
      *
-     * @param array $postData
+     * @param  array $postData
      * @return void
      */
     public function createUser(array $postData)
@@ -107,7 +107,7 @@ class UserRepository
     /**
      * function to know if this email is already inDB
      *
-     * @param array $postData
+     * @param  array $postData
      * @return string
      */
     public function findEmail(array $postData)
@@ -125,7 +125,7 @@ class UserRepository
     /**
      * function for hashage of the user password
      *
-     * @param [string] $password
+     * @param  [string] $password
      * @return hashed password
      */
     private function cryptPassword($password)
@@ -167,7 +167,7 @@ class UserRepository
                 return $datas;
             } catch (\Exception $e) {
                 $errorMessage = $e->getMessage();
-                require(ROOT . '/app/templatesError/error.php');
+                include ROOT . '/app/templatesError/error.php';
                 return false;
             }
         }
@@ -179,7 +179,6 @@ class UserRepository
      *
      * for admin / object
      * $role Admin or User // GROUP BY emailUser
-     *
      */
     public function getEmailUser(string $role)
     {
@@ -200,7 +199,7 @@ class UserRepository
                 return $Emails;
             } catch (\Exception $e) {
                 $errorMessage = $e->getMessage();
-                require(ROOT . '/app/templatesError/error.php');
+                include ROOT . '/app/templatesError/error.php';
                 return false;
             }
         }
@@ -209,7 +208,7 @@ class UserRepository
     /**
      * function to manage user .... to in object
      *
-     * @param array $arrayUser
+     * @param  array $arrayUser
      * @return void
      */
     public function updateUsers(array $arrayUser)
@@ -236,7 +235,7 @@ class UserRepository
             return true;
         } catch (\Exception $e) {
             $errorMessage = $e->getMessage();
-            require(ROOT . '/app/templatesError/error.php');
+            include ROOT . '/app/templatesError/error.php';
             return false;
         }
     }
