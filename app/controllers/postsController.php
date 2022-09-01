@@ -34,8 +34,6 @@ class PostsController extends AdminControllerAdminController
         }
     }
 
-
-
     /**
      * function to update from admin (blocPostAdmin)
      *

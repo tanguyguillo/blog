@@ -24,9 +24,6 @@
 {% endif %}
 
 
-
-
-
 <h4 class="text-center">Nouveau Post</h4>
 <small>* Tous les Auteurs sont des administrateurs</small>
 <div class="table-responsive">
@@ -45,19 +42,10 @@
 <tr>
 <form action="{{ baseUrl }}index.php?owp=newpostecord" method="post">
 <tr>
-<tbody class="">
-<input type="hidden" name ="id" id="postId-new" class="form-control postId" type="text" value="{{array.postId}}" aria-label="readonly" readonly></input>
+<tbody>
+<input type="hidden" name ="id" id="postId-new" class="form-control postId"  value="{{array.postId}}" aria-label="">
 <td>
 <div class="w-auto control-group">
-{# <textarea name="postTitle" class="form-control" id="postTitle-new" required data-validation-required-message="Veuillez entrer votre chapo.">{{array.postTitle}} </textarea> #}
-
-{# <div class="row control-group">
-<div class="form-group col-xs-12 floating-label-form-group controls">
-<label>Nom Prénom</label>
-<input type="text" class="form-control" placeholder="Nom / Prénom" id="name" required data-validation-required-message="S'il vous plaît entrez votre nom et prénom">
-<p class="help-block text-danger"></p>
-</div>
-</div> #}
 
 <textarea name="postTitle" class="form-control" id="postTitle-new" placeholder="Veuillez entrer votre titre" required data-validation-required-message="S'il vous plaît entrez titre"></textarea>
 </div>
@@ -65,21 +53,18 @@
 
 <td>
 <div class="w-auto control-group">
-{# <textarea name="postChapo" class="form-control" id="postChapo-new" placeholder="Veuillez entrer votre chapo" required data-validation-required-message="S'il vous plaît entrez votre chapo">{{array.postChapo}} </textarea> #}
 <textarea name="postChapo" class="form-control" id="postChapo-new" placeholder="Veuillez entrer votre chapo" required data-validation-required-message="S'il vous plaît entrez votre chapo"></textarea>
 </div>
 </td>
 
 <td>
 <div class="w-auto control-group">
-{# <textarea name="postContent" class="form-control" id="postContent-new" required data-validation-required-message="Veuillez entrer votre contenu.">{{array.postContent}} </textarea> #}
 <textarea name="postContent" class="form-control" id="postContent-new" placeholder="Veuillez entrer votre contenu" required data-validation-required-message="S'il vous plaît entrez votre contenu"></textarea>
 </div>
 </td>
 
 <td>
 <select name ="postStatus" id="postStatus-new" class="form-select">
-{# <option selected>{{array.postStatus}}</option> #}
 <option>Waiting for validation</option>
 <option>Open</option>
 </select>
@@ -99,15 +84,11 @@
 
 </form>
 
-
-
 </tbody>
 </table>
 </div>
 </div>
 </div>
-
-
 
 <h4 class="text-center">Modifier un Post</h4>
 
@@ -116,7 +97,7 @@
 <table class="table table-bordered table-striped table-highlight">
 <thead>
 <tr>
-<th scope="col"><span class="glyphicon glyphicon-trash"></span></th>
+<th scope="col"><span class = "glyphicon glyphicon-trash"></span></th>
 <th scope="col">Titre</th>
 <th scope="col">Chapo</th>
 <th scope="col">Contenu</th>
@@ -130,15 +111,15 @@
 
 <form action="{{ baseUrl }}index.php?owp=record&id={{array.id}}" method="post">
 
-<tbody class="">
+<tbody>
 
 <td>
 <div class="w-auto control-group">
-<input type="checkbox" id="delete-{{array.postId}}" name="checkbox" value="{{array.id}}">
+<input type="checkbox" id="delete-{{array.id}}" name="checkbox" value="{{array.id}}">
 </div>
 </td>
 
-<input type="hidden" name ="id" id="postId-{{array.id}}" class="form-control postId" type="text" value="{{array.id}}" aria-label="readonly" readonly></input>
+<input type="hidden" name ="id" id="postId-{{array.id}}" class="form-control postId" value="{{array.id}}" aria-label="">
 
 <td>
 <div class="w-auto control-group">
@@ -194,12 +175,11 @@
 
 </tbody>
 </table>
-<span class="<span class="glyphicon glyphicon-info-sign"></span> Pour supprimer un article du blog, cliquez sur la case à cocher et cliquez sur le bouton enregistrer
-</div>
+<p class="glyphicon glyphicon-info-sign"></p> Pour supprimer un article du blog, cliquez sur la case à cocher et cliquez sur le bouton enregistrer
 </div>
 </div>
 
+
 </section>
-</div>
 
 {% endblock %}

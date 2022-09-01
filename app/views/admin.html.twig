@@ -73,7 +73,7 @@
                     </span>
                     {# to know how is connected, show only if connected #}
                     {% if session.LOGGED_USER != '' %}
-                        <span> Connecté : {{ session.LOGGED_USER_NAME }}  &nbsp; &nbsp; &nbsp;<span>  {# role : <span >Connecté: {{ session.LOGGED_ROLE }} #}
+                        <span> Connecté : {{ session.LOGGED_USER_NAME }}  &nbsp; &nbsp; &nbsp;</span>  {# role : <span >Connecté: {{ session.LOGGED_ROLE }} #}
                     {% endif %}
                     <span><a href="index.php">Retour au blog</a> | <a href="index.php?owp=se-deconnectez">Se déconnecter</a></span>
                 </div>      
