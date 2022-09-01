@@ -83,7 +83,7 @@ class DetailController extends Controller
             (new ConnexionController())->connexion($message)();
         } elseif ($postData["postId"] === "") {
             $render = "render";
-            //(new PostsController())->executePosts("render");
+            (new PostsController())->executePosts("render");
         }
     }
 }
