@@ -46,10 +46,12 @@ class Router
             if (isset($get['owp']) && $get['owp'] !== '') {
                 // from page connexion : redirection to comment
                 if ($get['owp'] === 'detailconnexion') {
+                    $ConnectCurrent = 1;
                     (new DetailController())->detailconnexion($postData);
                 }
                 //signout
                 elseif ($get['owp'] === 'se-deconnectez') {
+                    $ConnectCurrent = 1;
                     (new ConnexionController())->signOut();
                 }
                 //inscription : (not create an account just sign in)
@@ -67,6 +69,7 @@ class Router
                 }
                 // Create an user account
                 elseif ($get['owp'] === 'creation-d-un-compte') {
+                    $ConnectCurrent = 1;
                     (new InscriptionController())->createAccount($postData);
                 }
                 // Admin aera
@@ -103,6 +106,7 @@ class Router
                 // Admin aera comments
                 elseif ($get['owp'] === 'modify-comment') {
                     if (isset($get['id']) && $get['id'] > 0) {
+                        $ConnectCurrent = 1;
                         //Here we get the POST data (and not $_GE)
                         (new CommentController())->modifyComment($postData);
                     }
@@ -110,6 +114,7 @@ class Router
                 // Admin aera // 
                 elseif ($get['owp'] === 'newpostecord') {
                     //Here we get the POST data (and not $_GE)
+                    $ConnectCurrent = 1;
                     (new PostsController())->newPost($postData);
                 }
                 // Admin aera // 
