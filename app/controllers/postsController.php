@@ -20,6 +20,7 @@ class PostsController extends AdminControllerAdminController
      */
     public function executePosts(string $render)
     {
+
         $connection = new DatabaseConnexion();
         //then we will use this connexion to get what we want ; here posts
         $postsRepository = new PostsRepository();

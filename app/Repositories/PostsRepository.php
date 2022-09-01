@@ -104,7 +104,7 @@ class PostsRepository extends Controller
         $user_id = ($arrayPost["user_id"]);
 
         /**
-         * hydrate object Post
+         * hhydrate object Post
          */
         $post = new Post();
         $post->setPostTitle($postTitle);

@@ -27,6 +27,8 @@ class DetailRepository
         $post = new DetailRepository();
 
         $post = new post($row);
+
+
         $post->setUserId($author);
         return $post;
     }
@@ -42,7 +44,7 @@ class DetailRepository
     {
         $identifier = intval($identifier);
         $identifier = htmlspecialchars($identifier);
-        $statement = $this->connection->getConnexion()->query("SELECT * FROM blog_post where id = $identifier and postStatus = 'Open'");
+        $statement = $this->connection->getConnexion()->query("SELECT * FROM blog_post where id = $identifier and postStatus = 'Open' ");
         $statement->execute();
         $row = $statement->fetch();
         if (is_null($row["id"])) {
