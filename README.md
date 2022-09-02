@@ -39,7 +39,7 @@ You can see an onLine version to this URL (web site in french):
 admin's role:
 
 Login : admin@admin.fr
-password : madmin@admin.fr
+password : admin@admin.fr
 
 user's role:
 
