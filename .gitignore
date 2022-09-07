@@ -2,11 +2,15 @@
 # Read about how to use .gitignore: https://help.github.com/articles/ignoring-files
 # Useful .gitignore templates: https://github.com/github/gitignore
 #####################################################################
+app/config/config.php
+app/config-local.php
+app/config/config-online.php
+#####################################################################
 #.DS_Store
-/vendor/
-/config.php/
-/config-local.php/
-/config-online.php/
+# /vendor/
+# /config.php/
+# /config-local.php/
+# /config-online.php/
 
 ### JetBrains ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm

@@ -107,20 +107,6 @@ abstract class Controller extends Auth
     }
 
     /**
-     * function // to look out data comming from outside even in admin aera
-     *
-     * @param  [array] $arrayPost
-     * @return void
-     */
-    public function lookOutDataFromOustide(array $arrayPost)
-    {
-        foreach ($arrayPost as $key => $value) {
-            $postData[$key]  = strip_tags(htmlspecialchars($value));
-        }
-        return  $postData;
-    }
-
-    /**
      * function to redirect user who are not admin
      *
      * @return void

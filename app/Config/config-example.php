@@ -8,4 +8,4 @@ define('BASE', "your BD's name");
 define('TWIGDEBUG', "O");
 define('BASE_URL', 'https://yourDomain.com');
 // MD5
-define('SALT', '$1$thexkyissobeautifull$');
+define('SALT', '$1$twatyouwant$');
