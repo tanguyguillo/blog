@@ -6,7 +6,7 @@ use Application\Controllers\Controller;
 use Application\Models\Post\Post;
 use Application\Repositories\Repository\Repository;
 
-class PostsRepository
+class PostsRepository extends repository
 {
     /**
      * function getPost for bloglist
