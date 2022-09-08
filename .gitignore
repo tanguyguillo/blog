@@ -7,7 +7,7 @@
 /app/config/config-online.php
 #####################################################################
 .DS_Store
- /vendor/
+/vendor/
 # /config.php/
 # /config-local.php/
 # /config-online.php/
@@ -20,7 +20,7 @@
 .idea/workspace.xml
 .idea/tasks.xml
 .idea/dictionaries
-.idea/vcs.xml
+.idea/vcs.xmlgit add .
 .idea/jsLibraryMappings.xml
 
 # Sensitive or high-churn files:
