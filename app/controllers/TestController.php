@@ -3,11 +3,10 @@
 namespace Application\Controllers;
 
 use Application\Core\Database\DatabaseConnexion\DatabaseConnexion;
-
 use Application\Repositories\UserRepository\UserRepository;
 
 /**
- * class
+ * class TestController
  */
 class TestController extends Controller
 {
@@ -16,19 +15,16 @@ class TestController extends Controller
          *
          * @return void
          */
-    public function myTest()
-    {
-            //to test : http://blog-omega.local/index.php?owp=tosee&id=1
-
-            echo "Bienvenue sur la zone de test";
-
-            $test = 0;
-
-        if ($test) {
-                $connection = new DatabaseConnexion();
-                $UsersRepository = new UserRepository();
-                $UsersRepository->connection = $connection;
-                // $users = $UsersRepository->usersDepot(); // test
+        public function myTest()
+        {
+                //to test : http://blog-omega.local/index.php?owp=tosee&id=1
+                echo "Bienvenue sur la zone de test";
+                $test = 0;
+                if ($test) {
+                        $connection = new DatabaseConnexion();
+                        $UsersRepository = new UserRepository();
+                        $UsersRepository->connection = $connection;
+                        // $users = $UsersRepository->usersDepot(); // test
+                }
         }
-    }
 }
