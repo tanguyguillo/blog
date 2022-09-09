@@ -75,7 +75,6 @@ class PostsController extends AdminControllerAdminController
         if ($postsRepository->newPost($arrayPost)) {
             // now have to redirect with message
             $message = "Enregistrement effectué";
-
             // we use the parent's function from AdminController
             $this->blocPostadmin($arrayPost, $message);
         } else {
