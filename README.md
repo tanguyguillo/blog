@@ -43,8 +43,8 @@ password : admin@admin.fr
 
 user's role:
 
-Login : moi@moi.fr
-password : moi@moi.frmoi@moi.fr
+Login : test123@ttest.fr
+password : test123@ttest.fr
 
 ## IDE
 
